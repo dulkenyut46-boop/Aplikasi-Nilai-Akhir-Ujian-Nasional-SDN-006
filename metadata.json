@@ -1,0 +1,8 @@
+{
+  "name": "Aplikasi Nilai Akhir Ujian Nasional SDN 006",
+  "description": "Sistem Informasi Rekapitulasi Nilai Akhir, Transkrip SKHU, dan Administrasi Ujian Nasional SDN 006 Sungai Buluh, Kuantan Singingi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+}
+
+@media print {
+  /* Hide all normal UI chrome, preserving Kop Surat and printable headers */
+  aside,
+  header:not(.printable-header):not(.kop-surat),
+  footer:not(.printable-footer),
+  nav,
+  button:not(.printable-button),
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure Kop Surat is ALWAYS visible when printing across all document sheets */
+  .kop-surat,
+  header.kop-surat,
+  header.printable-header {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .kop-surat img,
+  header.kop-surat img,
+  header.printable-header img {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-width: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* When PrintPreviewModal is open, hide the entire #root app so ONLY the selected document prints! */
+  body.has-print-modal-open > #root {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.has-print-modal-open > .print-preview-portal {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  /* Reset main layouts so no sidebar margin or offset is inherited */
+  html,
+  body,
+  #root,
+  .main-content-layout,
+  main {
+    background-color: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  /* When printing from PrintPreviewModal or document overlays */
+  .print-modal-overlay {
+    position: static !important;
+    inset: auto !important;
+    z-index: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    overflow: visible !important;
+  }
+
+  .print-modal-dialog {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .print-modal-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    transform: none !important;
+    zoom: 100% !important;
+  }
+
+  /* Force table formatting and prevent awkward page breaks */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th,
+  td {
+    border-color: #000 !important;
+  }
+
+  tr,
+  .print-avoid-break,
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  /* Color accuracy for seals, logos, stamps */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print\:border-none {
+    border: none !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+
+  .print\:m-0 {
+    margin: 0 !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0.8cm 1cm;
+  }
+
+  body.print-landscape @page,
+  .print-landscape-page {
+    page: landscape;
+  }
+
+  @page landscape {
+    size: A4 landscape;
+    margin: 0.8cm 1cm;
+  }
+}
