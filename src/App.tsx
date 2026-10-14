@@ -13,6 +13,7 @@ import { ExamToolsView } from './components/exam-tools/ExamToolsView';
 import { DiplomaManagementView } from './components/diploma/DiplomaManagementView';
 import { SettingsView } from './components/settings/SettingsView';
 import { ToastContainer } from './components/common/Toast';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 const MainLayout: React.FC = () => {
   const { activeTab } = useApp();
@@ -89,8 +90,10 @@ const MainLayout: React.FC = () => {
 
 export default function App() {
   return (
-    <AppProvider>
-      <MainLayout />
-    </AppProvider>
+    <ErrorBoundary>
+      <AppProvider>
+        <MainLayout />
+      </AppProvider>
+    </ErrorBoundary>
   );
 }
