@@ -22,7 +22,20 @@ import {
   Award,
   Download,
   Users,
+  Edit3,
+  Calendar,
+  Clock,
+  MapPin,
+  CheckCircle2,
 } from 'lucide-react';
+import {
+  SerahTerimaMeta,
+  PerpisahanMeta,
+  loadSerahTerimaMeta,
+  loadPerpisahanMeta,
+} from './diplomaExtraState';
+import { EditSerahTerimaModal } from './EditSerahTerimaModal';
+import { EditPerpisahanModal } from './EditPerpisahanModal';
 
 export const DiplomaManagementView: React.FC = () => {
   const {
@@ -46,6 +59,18 @@ export const DiplomaManagementView: React.FC = () => {
   const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
   const [printSelectedDoc, setPrintSelectedDoc] = useState<TabKey>('skhu');
 
+  // Edit Modals and Metadata States
+  const [isEditSerahTerimaOpen, setIsEditSerahTerimaOpen] = useState(false);
+  const [isEditPerpisahanOpen, setIsEditPerpisahanOpen] = useState(false);
+  const [serahTerimaMeta, setSerahTerimaMeta] = useState<SerahTerimaMeta>(() =>
+    loadSerahTerimaMeta(schoolProfile)
+  );
+  const [perpisahanMeta, setPerpisahanMeta] = useState<PerpisahanMeta>(() =>
+    loadPerpisahanMeta(schoolProfile)
+  );
+  const [serahTerimaSearch, setSerahTerimaSearch] = useState('');
+  const [perpisahanSearch, setPerpisahanSearch] = useState('');
+
   const currentStudent = students.find((s) => s.id === selectedStudentId) || students[0];
 
   const handlePrintDocument = (docToPrint?: TabKey) => {
@@ -57,6 +82,12 @@ export const DiplomaManagementView: React.FC = () => {
     updateStudent(id, {
       tanggalAmbilIjazah: date,
       penerimaIjazah: recipient,
+    });
+  };
+
+  const handleBatchUpdateStudents = (updates: Array<{ id: string; data: Partial<Student> }>) => {
+    updates.forEach((u) => {
+      updateStudent(u.id, u.data);
     });
   };
 
@@ -613,67 +644,127 @@ export const DiplomaManagementView: React.FC = () => {
       )}
 
       {/* 4. BUKU SERAH TERIMA IJAZAH & SKHU */}
-      {activeTab === 'serah-terima' && (
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
-          <div className="flex items-center justify-between print:hidden">
-            <div>
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
-                Buku Ekspedisi Serah Terima Ijazah & SKHU
-              </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
-                Tanda bukti penerimaan fisik ijazah asli oleh orang tua / wali murid
-              </p>
-            </div>
-            <button
-              onClick={() => handlePrintDocument('serah-terima')}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
-            >
-              <Printer className="h-4 w-4" />
-              Cetak Buku Serah Terima
-            </button>
-          </div>
+      {activeTab === 'serah-terima' && (() => {
+        const filteredStudents = students.filter(
+          (s) =>
+            s.nama.toLowerCase().includes(serahTerimaSearch.toLowerCase()) ||
+            s.nisn.includes(serahTerimaSearch) ||
+            (s.noSeriIjazah && s.noSeriIjazah.toLowerCase().includes(serahTerimaSearch.toLowerCase())) ||
+            (s.penerimaIjazah && s.penerimaIjazah.toLowerCase().includes(serahTerimaSearch.toLowerCase()))
+        );
+        const deliveredCount = students.filter(
+          (s) => s.tanggalAmbilIjazah && s.tanggalAmbilIjazah !== 'Belum Diambil'
+        ).length;
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-zinc-200 dark:border-zinc-700">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
-                <tr>
-                  <th className="p-3 w-10 text-center">No</th>
-                  <th className="p-3">Nama Siswa</th>
-                  <th className="p-3">No. Seri Ijazah</th>
-                  <th className="p-3">Tanggal Penyerahan</th>
-                  <th className="p-3">Penerima (Orang Tua/Wali)</th>
-                  <th className="p-3 text-center">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                {students.map((s, idx) => (
-                  <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                    <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
-                    <td className="p-3">
-                      <div className="font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</div>
-                      <div className="text-[10px] text-zinc-400 font-mono">NISN: {s.nisn}</div>
-                    </td>
-                    <td className="p-3 font-mono font-semibold text-emerald-800 dark:text-emerald-400">
-                      {s.noSeriIjazah || '-'}
-                    </td>
-                    <td className="p-3 font-medium text-zinc-700 dark:text-zinc-300">
-                      {s.tanggalAmbilIjazah || 'Belum Diambil'}
-                    </td>
-                    <td className="p-3 font-semibold text-zinc-800 dark:text-zinc-200">
-                      {s.penerimaIjazah || `${s.namaAyah} (Orang Tua)`}
-                    </td>
-                    <td className="p-3 text-center">
-                      <Badge variant="emerald" size="sm">
-                        Sudah Diserahkan
-                      </Badge>
-                    </td>
+        return (
+          <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-zinc-200 dark:border-zinc-800 print:hidden">
+              <div>
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                  <span>{serahTerimaMeta.judul}</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                    {deliveredCount}/{students.length} Diserahkan
+                  </span>
+                </h3>
+                <p className="text-xs text-zinc-500 mt-0.5">
+                  Tanda bukti penerimaan fisik ijazah asli oleh orang tua / wali murid • Titimangsa:{' '}
+                  <b>{serahTerimaMeta.titimangsaTempat}, {serahTerimaMeta.titimangsaTanggal}</b>
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsEditSerahTerimaOpen(true)}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
+                  title="Ubah nomor seri ijazah, tanggal penyerahan, dan nama penerima serentak atau per siswa"
+                >
+                  <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  Ubah / Edit Data Buku Serah Terima
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handlePrintDocument('serah-terima')}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                >
+                  <Printer className="h-4 w-4" />
+                  Cetak Buku Serah Terima
+                </button>
+              </div>
+            </div>
+
+            {/* Filter Search */}
+            <div className="flex items-center justify-between gap-3 print:hidden">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <input
+                  type="text"
+                  value={serahTerimaSearch}
+                  onChange={(e) => setSerahTerimaSearch(e.target.value)}
+                  placeholder="Cari siswa, NISN, nomor ijazah, atau penerima..."
+                  className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 py-2 pl-9 pr-4 text-xs dark:text-zinc-100"
+                />
+              </div>
+              <span className="text-xs text-zinc-500 font-semibold">
+                Menampilkan {filteredStudents.length} dari {students.length} Siswa
+              </span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-zinc-200 dark:border-zinc-700">
+                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+                  <tr>
+                    <th className="p-3 w-10 text-center">No</th>
+                    <th className="p-3">Nama Siswa</th>
+                    <th className="p-3">No. Seri Ijazah</th>
+                    <th className="p-3">Tanggal Penyerahan</th>
+                    <th className="p-3">Penerima (Orang Tua/Wali)</th>
+                    <th className="p-3 text-center">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                  {filteredStudents.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="p-6 text-center text-zinc-400 italic">
+                        Tidak ditemukan data siswa dengan kata kunci "{serahTerimaSearch}"
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredStudents.map((s, idx) => (
+                      <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
+                        <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
+                        <td className="p-3">
+                          <div className="font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</div>
+                          <div className="text-[10px] text-zinc-400 font-mono">NISN: {s.nisn}</div>
+                        </td>
+                        <td className="p-3 font-mono font-semibold text-emerald-800 dark:text-emerald-400">
+                          {s.noSeriIjazah || '-'}
+                        </td>
+                        <td className="p-3 font-medium text-zinc-700 dark:text-zinc-300">
+                          {s.tanggalAmbilIjazah || serahTerimaMeta.titimangsaTanggal}
+                        </td>
+                        <td className="p-3 font-semibold text-zinc-800 dark:text-zinc-200">
+                          {s.penerimaIjazah || `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}
+                        </td>
+                        <td className="p-3 text-center">
+                          <Badge variant="emerald" size="sm">
+                            Sudah Diserahkan
+                          </Badge>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {serahTerimaMeta.catatanKaki && (
+              <p className="text-[11px] text-zinc-500 italic pt-1">
+                Catatan: {serahTerimaMeta.catatanKaki}
+              </p>
+            )}
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* 5. BUKU REGISTER NOMOR IJAZAH & SURAT RESMI */}
       {activeTab === 'register' && (
@@ -740,58 +831,161 @@ export const DiplomaManagementView: React.FC = () => {
       )}
 
       {/* 6. DAFTAR HADIR ACARA PERPISAHAN SISWA KELAS 6 */}
-      {activeTab === 'perpisahan' && (
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
-          <div className="flex items-center justify-between pb-4 border-b border-zinc-200 dark:border-zinc-800 print:hidden">
-            <div>
-              <h3 className="text-base font-extrabold uppercase text-zinc-900 dark:text-zinc-50">
-                DAFTAR HADIR ACARA PERPISAHAN SISWA SISWI KELAS VI
-              </h3>
-              <p className="text-xs text-zinc-500 font-semibold mt-0.5">
-                SDN 006 SUNGAI BULUH • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
-              </p>
-            </div>
-            <button
-              onClick={() => handlePrintDocument('perpisahan')}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
-            >
-              <Printer className="h-4 w-4" />
-              Cetak Daftar Hadir Ini
-            </button>
-          </div>
+      {activeTab === 'perpisahan' && (() => {
+        const filteredStudents = students.filter(
+          (s) => {
+            const rowData = perpisahanMeta.attendanceMap[s.id] || {};
+            const wali = rowData.namaWali || s.namaAyah || '';
+            const ket = rowData.keterangan || '';
+            return (
+              s.nama.toLowerCase().includes(perpisahanSearch.toLowerCase()) ||
+              s.nisn.includes(perpisahanSearch) ||
+              wali.toLowerCase().includes(perpisahanSearch.toLowerCase()) ||
+              ket.toLowerCase().includes(perpisahanSearch.toLowerCase())
+            );
+          }
+        );
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-zinc-300 dark:border-zinc-700">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold border-b border-zinc-300 dark:border-zinc-700">
-                <tr>
-                  <th className="p-2.5 w-10 text-center border-r border-zinc-300">No</th>
-                  <th className="p-2.5 min-w-[200px] border-r border-zinc-300">Nama Siswa</th>
-                  <th className="p-2.5 min-w-[180px] border-r border-zinc-300">Nama Orang Tua / Wali</th>
-                  <th className="p-2.5 text-center w-28 border-r border-zinc-300">Tanda Tangan Siswa</th>
-                  <th className="p-2.5 text-center w-28 border-r border-zinc-300">Tanda Tangan Wali</th>
-                  <th className="p-2.5 text-center w-16">Ket</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                {students.map((s, idx) => (
-                  <tr key={s.id} className="h-10">
-                    <td className="p-2 text-center font-bold border-r border-zinc-200">{idx + 1}</td>
-                    <td className="p-2 font-bold uppercase border-r border-zinc-200">{s.nama}</td>
-                    <td className="p-2 text-zinc-700 dark:text-zinc-300 border-r border-zinc-200">{s.namaAyah}</td>
-                    <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400">
-                      {idx + 1}. .........
-                    </td>
-                    <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400">
-                      {idx + 1}. .........
-                    </td>
-                    <td className="p-2 text-center font-bold text-emerald-700 text-[10px]">Hadir</td>
+        return (
+          <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-zinc-200 dark:border-zinc-800 print:hidden">
+              <div>
+                <h3 className="text-base font-extrabold uppercase text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                  <span>{perpisahanMeta.judul}</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                    {students.length} Siswa & Wali
+                  </span>
+                </h3>
+                <p className="text-xs text-zinc-500 font-semibold mt-0.5">
+                  {perpisahanMeta.subJudul}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsEditPerpisahanOpen(true)}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
+                  title="Ubah jadwal acara, tempat, nama wali murid, dan status presensi kehadiran"
+                >
+                  <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  Ubah / Edit Data Perpisahan
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handlePrintDocument('perpisahan')}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                >
+                  <Printer className="h-4 w-4" />
+                  Cetak Daftar Hadir Ini
+                </button>
+              </div>
+            </div>
+
+            {/* Event Metadata Banner */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-750 text-xs">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-emerald-600 shrink-0" />
+                <div>
+                  <span className="text-[10px] text-zinc-400 block font-semibold">Hari / Tanggal Acara:</span>
+                  <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.hariTanggal}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-emerald-600 shrink-0" />
+                <div>
+                  <span className="text-[10px] text-zinc-400 block font-semibold">Waktu Pelaksanaan:</span>
+                  <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.waktu}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                <div className="min-w-0">
+                  <span className="text-[10px] text-zinc-400 block font-semibold">Tempat Acara:</span>
+                  <span className="font-bold text-zinc-900 dark:text-zinc-100 truncate block">{perpisahanMeta.tempat}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Filter Search */}
+            <div className="flex items-center justify-between gap-3 print:hidden">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <input
+                  type="text"
+                  value={perpisahanSearch}
+                  onChange={(e) => setPerpisahanSearch(e.target.value)}
+                  placeholder="Cari siswa atau nama wali murid..."
+                  className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 py-2 pl-9 pr-4 text-xs dark:text-zinc-100"
+                />
+              </div>
+              <span className="text-xs text-zinc-500 font-semibold">
+                Menampilkan {filteredStudents.length} dari {students.length} Siswa
+              </span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-zinc-300 dark:border-zinc-700">
+                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold border-b border-zinc-300 dark:border-zinc-700">
+                  <tr>
+                    <th className="p-2.5 w-10 text-center border-r border-zinc-300">No</th>
+                    <th className="p-2.5 min-w-[200px] border-r border-zinc-300">Nama Siswa</th>
+                    <th className="p-2.5 min-w-[180px] border-r border-zinc-300">Nama Orang Tua / Wali</th>
+                    <th className="p-2.5 text-center w-28 border-r border-zinc-300">Tanda Tangan Siswa</th>
+                    <th className="p-2.5 text-center w-28 border-r border-zinc-300">Tanda Tangan Wali</th>
+                    <th className="p-2.5 text-center w-24">Status Presensi</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                  {filteredStudents.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="p-6 text-center text-zinc-400 italic">
+                        Tidak ditemukan data presensi dengan kata kunci "{perpisahanSearch}"
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredStudents.map((s, idx) => {
+                      const att = perpisahanMeta.attendanceMap[s.id] || {};
+                      const namaWali = att.namaWali || s.namaAyah || 'Orang Tua / Wali';
+                      const statusSiswa = att.kehadiranSiswa || 'Hadir';
+                      const statusWali = att.kehadiranWali || 'Hadir';
+                      const ket = att.keterangan || 'Hadir Lengkap';
+
+                      return (
+                        <tr key={s.id} className="h-10 hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
+                          <td className="p-2 text-center font-bold border-r border-zinc-200">{idx + 1}</td>
+                          <td className="p-2 font-bold uppercase border-r border-zinc-200 text-zinc-900 dark:text-zinc-100">
+                            {s.nama}
+                          </td>
+                          <td className="p-2 text-zinc-700 dark:text-zinc-300 border-r border-zinc-200 font-medium">
+                            {namaWali}
+                          </td>
+                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400 font-mono">
+                            {idx + 1}. .........
+                          </td>
+                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400 font-mono">
+                            {idx + 1}. .........
+                          </td>
+                          <td className="p-2 text-center">
+                            <span
+                              className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
+                                statusSiswa === 'Hadir' && statusWali === 'Hadir'
+                                  ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                                  : 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300'
+                              }`}
+                            >
+                              {ket}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ========================================================
           PRINT PREVIEW MODAL: DOKUMEN IJAZAH & KELULUSAN TERPILIH
@@ -846,6 +1040,32 @@ export const DiplomaManagementView: React.FC = () => {
                   ))}
                 </select>
               </div>
+            )}
+
+            {/* Tombol Ubah / Edit Data Buku Serah Terima */}
+            {printSelectedDoc === 'serah-terima' && (
+              <button
+                type="button"
+                onClick={() => setIsEditSerahTerimaOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-zinc-950 font-bold px-3 py-1.5 text-xs shadow-md transition-all cursor-pointer shrink-0"
+                title="Buka menu edit nomor ijazah, tanggal penyerahan, dan nama penerima"
+              >
+                <Edit3 className="h-3.5 w-3.5" />
+                <span>Ubah / Edit Data</span>
+              </button>
+            )}
+
+            {/* Tombol Ubah / Edit Data Daftar Hadir Perpisahan */}
+            {printSelectedDoc === 'perpisahan' && (
+              <button
+                type="button"
+                onClick={() => setIsEditPerpisahanOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-zinc-950 font-bold px-3 py-1.5 text-xs shadow-md transition-all cursor-pointer shrink-0"
+                title="Buka menu edit jadwal acara, tempat, nama wali murid, dan presensi"
+              >
+                <Edit3 className="h-3.5 w-3.5" />
+                <span>Ubah / Edit Data</span>
+              </button>
             )}
           </div>
         }
@@ -1154,10 +1374,10 @@ export const DiplomaManagementView: React.FC = () => {
               <KopSurat schoolProfile={schoolProfile} />
               <div className="text-center my-3">
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
-                  BUKU EKSPEDISI SERAH TERIMA IJAZAH & TRANSKRIP NILAI
+                  {serahTerimaMeta.judul}
                 </h3>
                 <p className="text-xs font-bold text-zinc-700">
-                  SDN 006 SUNGAI BULUH • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+                  {serahTerimaMeta.subJudul}
                 </p>
               </div>
               <table className="w-full text-left text-xs border border-black border-collapse">
@@ -1179,20 +1399,27 @@ export const DiplomaManagementView: React.FC = () => {
                       <td className="p-1.5 font-bold uppercase border-r border-black">{s.nama}</td>
                       <td className="p-1.5 font-mono border-r border-black">{s.nisn}</td>
                       <td className="p-1.5 font-mono border-r border-black">{s.noSeriIjazah || '-'}</td>
-                      <td className="p-1.5 border-r border-black">{s.tanggalAmbilIjazah || '-'}</td>
-                      <td className="p-1.5 border-r border-black">{s.penerimaIjazah || `${s.namaAyah} (Orang Tua)`}</td>
-                      <td className="p-1.5 text-center text-[10px] text-zinc-500">{idx + 1}. .........</td>
+                      <td className="p-1.5 border-r border-black">{s.tanggalAmbilIjazah || serahTerimaMeta.titimangsaTanggal}</td>
+                      <td className="p-1.5 border-r border-black">{s.penerimaIjazah || `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}</td>
+                      <td className="p-1.5 text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+
+              {serahTerimaMeta.catatanKaki && (
+                <p className="text-[10px] text-zinc-600 italic">
+                  * {serahTerimaMeta.catatanKaki}
+                </p>
+              )}
+
               <div className="flex justify-end pt-6 break-inside-avoid text-xs">
                 <div className="w-64 space-y-1 text-center">
-                  <div>Sungai Buluh, {schoolProfile.tanggalKelulusan}</div>
-                  <div className="font-bold">Kepala SD Negeri 006 Sungai Buluh</div>
+                  <div>{serahTerimaMeta.titimangsaTempat}, {serahTerimaMeta.titimangsaTanggal}</div>
+                  <div className="font-bold">{serahTerimaMeta.jabatanPenyerah}</div>
                   <div className="h-16"></div>
-                  <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                  <div>NIP. {schoolProfile.nipKepalaSekolah}</div>
+                  <div className="font-bold underline uppercase">{serahTerimaMeta.namaPenyerah}</div>
+                  <div>NIP. {serahTerimaMeta.nipPenyerah}</div>
                 </div>
               </div>
             </div>
@@ -1256,11 +1483,16 @@ export const DiplomaManagementView: React.FC = () => {
               <KopSurat schoolProfile={schoolProfile} />
               <div className="text-center my-3">
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
-                  DAFTAR HADIR ACARA PERPISAHAN SISWA SISWI KELAS VI
+                  {perpisahanMeta.judul}
                 </h3>
                 <p className="text-xs font-bold text-zinc-700">
-                  SDN 006 SUNGAI BULUH • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+                  {perpisahanMeta.subJudul}
                 </p>
+                <div className="mt-2 text-[11px] font-semibold text-zinc-800 border-y border-black py-1 max-w-2xl mx-auto flex flex-wrap justify-center gap-x-4">
+                  <span>Hari / Tgl: <b>{perpisahanMeta.hariTanggal}</b></span>
+                  <span>Pukul: <b>{perpisahanMeta.waktu}</b></span>
+                  <span>Tempat: <b>{perpisahanMeta.tempat}</b></span>
+                </div>
               </div>
               <table className="w-full text-left text-xs border border-black border-collapse">
                 <thead className="bg-zinc-100 font-bold border-b border-black">
@@ -1270,35 +1502,62 @@ export const DiplomaManagementView: React.FC = () => {
                     <th className="p-2 border-r border-black">Nama Orang Tua / Wali</th>
                     <th className="p-2 text-center w-28 border-r border-black">Tanda Tangan Siswa</th>
                     <th className="p-2 text-center w-28 border-r border-black">Tanda Tangan Wali</th>
-                    <th className="p-2 text-center w-16">Ket</th>
+                    <th className="p-2 text-center w-20">Ket</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {students.map((s, idx) => (
-                    <tr key={s.id} className="border-b border-zinc-300 break-inside-avoid h-9">
-                      <td className="p-2 text-center font-bold border-r border-black">{idx + 1}</td>
-                      <td className="p-2 font-bold uppercase border-r border-black">{s.nama}</td>
-                      <td className="p-2 border-r border-black">{s.namaAyah}</td>
-                      <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500">{idx + 1}. .........</td>
-                      <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500">{idx + 1}. .........</td>
-                      <td className="p-2 text-center font-bold">Hadir</td>
-                    </tr>
-                  ))}
+                  {students.map((s, idx) => {
+                    const att = perpisahanMeta.attendanceMap[s.id] || {};
+                    const namaWali = att.namaWali || s.namaAyah || 'Orang Tua / Wali';
+                    const ket = att.keterangan || att.kehadiranSiswa || 'Hadir';
+
+                    return (
+                      <tr key={s.id} className="border-b border-zinc-300 break-inside-avoid h-9">
+                        <td className="p-2 text-center font-bold border-r border-black">{idx + 1}</td>
+                        <td className="p-2 font-bold uppercase border-r border-black">{s.nama}</td>
+                        <td className="p-2 border-r border-black font-medium">{namaWali}</td>
+                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
+                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
+                        <td className="p-2 text-center font-bold">{ket}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               <div className="flex justify-end pt-6 break-inside-avoid text-xs">
                 <div className="w-64 space-y-1 text-center">
-                  <div>Sungai Buluh, {schoolProfile.tanggalKelulusan}</div>
+                  <div>{perpisahanMeta.titimangsaTempat}, {perpisahanMeta.titimangsaTanggal}</div>
                   <div className="font-bold">Kepala SD Negeri 006 Sungai Buluh</div>
                   <div className="h-16"></div>
-                  <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                  <div>NIP. {schoolProfile.nipKepalaSekolah}</div>
+                  <div className="font-bold underline uppercase">{perpisahanMeta.kepalaSekolah}</div>
+                  <div>NIP. {perpisahanMeta.nipKepalaSekolah}</div>
                 </div>
               </div>
             </div>
           )}
         </div>
       </PrintPreviewModal>
+
+      {/* Modal Edit Buku Serah Terima Ijazah */}
+      <EditSerahTerimaModal
+        isOpen={isEditSerahTerimaOpen}
+        onClose={() => setIsEditSerahTerimaOpen(false)}
+        students={students}
+        schoolProfile={schoolProfile}
+        onSaveStudents={handleBatchUpdateStudents}
+        onSaveMeta={(newMeta) => setSerahTerimaMeta(newMeta)}
+        showToast={showToast}
+      />
+
+      {/* Modal Edit Daftar Hadir Perpisahan */}
+      <EditPerpisahanModal
+        isOpen={isEditPerpisahanOpen}
+        onClose={() => setIsEditPerpisahanOpen(false)}
+        students={students}
+        schoolProfile={schoolProfile}
+        onSaveMeta={(newMeta) => setPerpisahanMeta(newMeta)}
+        showToast={showToast}
+      />
     </div>
   );
 };

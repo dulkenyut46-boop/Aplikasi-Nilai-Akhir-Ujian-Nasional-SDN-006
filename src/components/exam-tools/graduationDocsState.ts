@@ -285,10 +285,50 @@ export const DEFAULT_SK_KELULUSAN: SKKelulusanState = {
   lineSpacing: '1.35',
 };
 
+export interface HadirRapatMeta {
+  rapatTanggal: string;
+  rapatJam: string;
+  rapatTempat: string;
+  rapatPengesahanTanggal: string;
+  notulisNama: string;
+  notulisNip: string;
+}
+
+export const DEFAULT_HADIR_RAPAT_META: HadirRapatMeta = {
+  rapatTanggal: 'Sabtu, 30 Mei 2026',
+  rapatJam: '11.00 WIB s.d. Selesai',
+  rapatTempat: 'Ruang Guru SDN 006 Sungai Buluh',
+  rapatPengesahanTanggal: 'Sungai Buluh, 30 Mei 2026',
+  notulisNama: 'BUDI SANTOSO, S.Pd.SD',
+  notulisNip: '19851210 200903 1 005',
+};
+
 const GURU_STORAGE_KEY = 'sdn006_rapat_guru_list_v2';
 const SK_STORAGE_KEY = 'sdn006_sk_kelulusan_state_v3';
 const UNDANGAN_STORAGE_KEY = 'sdn006_undangan_state_v1';
 const BA_STORAGE_KEY = 'sdn006_ba_state_v1';
+const HADIR_RAPAT_META_KEY = 'sdn006_hadir_rapat_meta';
+
+export function loadHadirRapatMeta(): HadirRapatMeta {
+  try {
+    const raw = localStorage.getItem(HADIR_RAPAT_META_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { ...DEFAULT_HADIR_RAPAT_META, ...parsed };
+    }
+  } catch (err) {
+    console.error('Error loading hadir rapat meta from localStorage', err);
+  }
+  return DEFAULT_HADIR_RAPAT_META;
+}
+
+export function saveHadirRapatMeta(meta: HadirRapatMeta): void {
+  try {
+    localStorage.setItem(HADIR_RAPAT_META_KEY, JSON.stringify(meta));
+  } catch (err) {
+    console.error('Error saving hadir rapat meta to localStorage', err);
+  }
+}
 
 export function loadGuruRapatList(): GuruRapat[] {
   try {

@@ -39,6 +39,10 @@ import {
   saveSKKelulusanState,
   loadGuruRapatList,
   saveGuruRapatList,
+  HadirRapatMeta,
+  DEFAULT_HADIR_RAPAT_META,
+  loadHadirRapatMeta,
+  saveHadirRapatMeta,
   downloadAsWordDoc,
   formatSignatureDots,
   DocFontFamily,
@@ -89,6 +93,7 @@ export const GraduationDocsView: React.FC<Props> = ({
   const [baState, setBaState] = useState<BeritaAcaraDocState>(loadBeritaAcaraDocState);
 
   // 3. Daftar Hadir State (Loaded from localStorage)
+  const [hadirMeta, setHadirMeta] = useState<HadirRapatMeta>(loadHadirRapatMeta);
   const [rapatHadirTanggal, setRapatHadirTanggal] = useState('Sungai Buluh, 30 Mei 2026');
   const [signatureMode, setSignatureMode] = useState<'manual' | 'digital'>('manual');
   const [guruList, setGuruList] = useState<GuruRapat[]>(loadGuruRapatList);
@@ -118,6 +123,10 @@ export const GraduationDocsView: React.FC<Props> = ({
   useEffect(() => {
     saveSKKelulusanState(skState);
   }, [skState]);
+
+  useEffect(() => {
+    saveHadirRapatMeta(hadirMeta);
+  }, [hadirMeta]);
 
   const handleUpdateGuruList = (newList: GuruRapat[]) => {
     setGuruList(newList);
@@ -155,6 +164,8 @@ export const GraduationDocsView: React.FC<Props> = ({
     setBaState(DEFAULT_BERITA_ACARA);
     saveBeritaAcaraDocState(DEFAULT_BERITA_ACARA);
 
+    setHadirMeta(DEFAULT_HADIR_RAPAT_META);
+    saveHadirRapatMeta(DEFAULT_HADIR_RAPAT_META);
     setRapatHadirTanggal('Sungai Buluh, 30 Mei 2026');
     setGuruList(DEFAULT_GURU_RAPAT);
     saveGuruRapatList(DEFAULT_GURU_RAPAT);
@@ -1863,11 +1874,11 @@ export const GraduationDocsView: React.FC<Props> = ({
               {/* Rincian Rapat Singkat */}
               <div className="grid grid-cols-12 text-[11px] font-medium py-1 px-1 gap-y-1 border-b border-zinc-300 pb-2">
                 <div className="col-span-6 space-y-0.5">
-                  <div>Hari / Tanggal : <b>Sabtu, 30 Mei 2026</b></div>
-                  <div>Waktu / Pukul : <b>11.00 WIB s.d. Selesai</b></div>
+                  <div>Hari / Tanggal : <b>{hadirMeta.rapatTanggal}</b></div>
+                  <div>Waktu / Pukul : <b>{hadirMeta.rapatJam}</b></div>
                 </div>
                 <div className="col-span-6 space-y-0.5 text-right">
-                  <div>Tempat : <b>Ruang Guru SDN 006 Sungai Buluh</b></div>
+                  <div>Tempat : <b>{hadirMeta.rapatTempat}</b></div>
                   <div>Jumlah Hadir : <b>{guruList.length} Orang (Lengkap)</b></div>
                 </div>
               </div>
@@ -1938,11 +1949,11 @@ export const GraduationDocsView: React.FC<Props> = ({
                 <div className="text-left w-56 space-y-1">
                   <div>Notulis / Sekretaris Rapat,</div>
                   <div className="h-16"></div>
-                  <div className="font-bold underline uppercase">BUDI SANTOSO, S.Pd.SD</div>
-                  <div className="pt-0.5 text-zinc-900 tracking-normal font-normal">NIP. 19851210 200903 1 005</div>
+                  <div className="font-bold underline uppercase">{hadirMeta.notulisNama}</div>
+                  <div className="pt-0.5 text-zinc-900 tracking-normal font-normal">NIP. {hadirMeta.notulisNip}</div>
                 </div>
                 <div className="text-center w-64 space-y-1">
-                  <div>{rapatHadirTanggal}</div>
+                  <div>{hadirMeta.rapatPengesahanTanggal}</div>
                   <div className="font-bold">Kepala SDN 006 Sungai Buluh</div>
                   <div className="h-16"></div>
                   <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
@@ -2215,6 +2226,7 @@ export const GraduationDocsView: React.FC<Props> = ({
           setBaState(loadBeritaAcaraDocState());
           setSkState(loadSKKelulusanState());
           setGuruList(loadGuruRapatList());
+          setHadirMeta(loadHadirRapatMeta());
           if (showToast) {
             showToast(
               'Data Berhasil Disimpan',

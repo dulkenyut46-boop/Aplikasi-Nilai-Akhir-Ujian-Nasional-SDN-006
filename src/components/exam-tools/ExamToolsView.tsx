@@ -42,6 +42,7 @@ import {
   loadSKKelulusanState,
   loadUndanganDocState,
   loadBeritaAcaraDocState,
+  loadHadirRapatMeta,
   getFontCssFamily,
   formatSignatureDots,
 } from './graduationDocsState';
@@ -2173,6 +2174,7 @@ export const ExamToolsView: React.FC = () => {
              ======================================================== */}
           {printDoc === 'hadir-rapat' && (() => {
             const currentGuruList = loadGuruRapatList();
+            const hadirMeta = loadHadirRapatMeta();
             return (
               <div className="space-y-4 text-xs font-sans text-black">
                 <KopSurat schoolProfile={schoolProfile} />
@@ -2190,11 +2192,11 @@ export const ExamToolsView: React.FC = () => {
 
                 <div className="grid grid-cols-12 text-[11px] font-medium py-1 px-1 gap-y-1 border-b border-zinc-300 pb-2">
                   <div className="col-span-6 space-y-0.5">
-                    <div>Hari / Tanggal : <b>Sabtu, 30 Mei 2026</b></div>
-                    <div>Waktu / Pukul : <b>11.00 WIB s.d. Selesai</b></div>
+                    <div>Hari / Tanggal : <b>{hadirMeta.rapatTanggal}</b></div>
+                    <div>Waktu / Pukul : <b>{hadirMeta.rapatJam}</b></div>
                   </div>
                   <div className="col-span-6 space-y-0.5 text-right">
-                    <div>Tempat : <b>Ruang Guru SDN 006 Sungai Buluh</b></div>
+                    <div>Tempat : <b>{hadirMeta.rapatTempat}</b></div>
                     <div>Jumlah Hadir : <b>{currentGuruList.length} Orang (Lengkap)</b></div>
                   </div>
                 </div>
@@ -2244,11 +2246,11 @@ export const ExamToolsView: React.FC = () => {
                   <div className="text-left w-56 space-y-1">
                     <div>Notulis / Sekretaris Rapat,</div>
                     <div className="h-16"></div>
-                    <div className="font-bold underline uppercase">BUDI SANTOSO, S.Pd.SD</div>
-                    <div className="pt-0.5 text-zinc-700 font-normal">NIP. 19851210 200903 1 005</div>
+                    <div className="font-bold underline uppercase">{hadirMeta.notulisNama}</div>
+                    <div className="pt-0.5 text-zinc-700 font-normal">NIP. {hadirMeta.notulisNip}</div>
                   </div>
                   <div className="text-center w-64 space-y-1">
-                    <div>Sungai Buluh, 30 Mei 2026</div>
+                    <div>{hadirMeta.rapatPengesahanTanggal}</div>
                     <div className="font-bold">Kepala SDN 006 Sungai Buluh</div>
                     <div className="h-16"></div>
                     <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>

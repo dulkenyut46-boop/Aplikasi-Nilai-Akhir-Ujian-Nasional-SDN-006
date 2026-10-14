@@ -35,6 +35,8 @@ import {
   saveGuruRapatList,
   GuruRapat,
   DEFAULT_GURU_RAPAT,
+  loadHadirRapatMeta,
+  saveHadirRapatMeta,
 } from './graduationDocsState';
 import { EditGuruRapatModal } from './EditGuruRapatModal';
 
@@ -86,20 +88,13 @@ export const EditGraduationDocModal: React.FC<Props> = ({
       setGuruList(loadGuruRapatList());
 
       // Read stored hadir rapat metadata if available
-      try {
-        const storedHadir = localStorage.getItem('sdn006_hadir_rapat_meta');
-        if (storedHadir) {
-          const parsed = JSON.parse(storedHadir);
-          if (parsed.rapatTanggal) setRapatTanggal(parsed.rapatTanggal);
-          if (parsed.rapatJam) setRapatJam(parsed.rapatJam);
-          if (parsed.rapatTempat) setRapatTempat(parsed.rapatTempat);
-          if (parsed.rapatPengesahanTanggal) setRapatPengesahanTanggal(parsed.rapatPengesahanTanggal);
-          if (parsed.notulisNama) setNotulisNama(parsed.notulisNama);
-          if (parsed.notulisNip) setNotulisNip(parsed.notulisNip);
-        }
-      } catch (e) {
-        // ignore
-      }
+      const hadirData = loadHadirRapatMeta();
+      setRapatTanggal(hadirData.rapatTanggal);
+      setRapatJam(hadirData.rapatJam);
+      setRapatTempat(hadirData.rapatTempat);
+      setRapatPengesahanTanggal(hadirData.rapatPengesahanTanggal);
+      setNotulisNama(hadirData.notulisNama);
+      setNotulisNip(hadirData.notulisNip);
     }
   }, [isOpen, currentDocType]);
 
@@ -115,19 +110,14 @@ export const EditGraduationDocModal: React.FC<Props> = ({
     saveBeritaAcaraDocState(ba);
     saveSKKelulusanState(sk);
     saveGuruRapatList(guruList);
-
-    // Save hadir rapat metadata
-    localStorage.setItem(
-      'sdn006_hadir_rapat_meta',
-      JSON.stringify({
-        rapatTanggal,
-        rapatJam,
-        rapatTempat,
-        rapatPengesahanTanggal,
-        notulisNama,
-        notulisNip,
-      })
-    );
+    saveHadirRapatMeta({
+      rapatTanggal,
+      rapatJam,
+      rapatTempat,
+      rapatPengesahanTanggal,
+      notulisNama,
+      notulisNip,
+    });
 
     onDataSaved();
     if (showToast) {
