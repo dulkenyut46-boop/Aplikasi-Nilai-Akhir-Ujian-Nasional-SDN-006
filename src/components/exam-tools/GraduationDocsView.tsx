@@ -50,6 +50,7 @@ import {
   getFontCssFamily,
 } from './graduationDocsState';
 import { EditGuruRapatModal } from './EditGuruRapatModal';
+import { EditGraduationDocModal } from './EditGraduationDocModal';
 
 export type GraduationDocType = 'undangan' | 'ba-kelulusan' | 'hadir-rapat' | 'sk-kelulusan' | 'semua';
 export { DEFAULT_GURU_RAPAT as INITIAL_GURU_RAPAT };
@@ -74,6 +75,8 @@ export const GraduationDocsView: React.FC<Props> = ({
   const [activeDoc, setActiveDoc] = useState<GraduationDocType>(initialDoc);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isEditGuruModalOpen, setIsEditGuruModalOpen] = useState<boolean>(false);
+  const [isEditGradModalOpen, setIsEditGradModalOpen] = useState<boolean>(false);
+  const [gradModalDocType, setGradModalDocType] = useState<GraduationDocType>('undangan');
 
   useEffect(() => {
     onActiveDocChange?.(activeDoc);
@@ -748,6 +751,19 @@ export const GraduationDocsView: React.FC<Props> = ({
 
           <button
             type="button"
+            onClick={() => {
+              setGradModalDocType(activeDoc);
+              setIsEditGradModalOpen(true);
+            }}
+            className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
+            title="Buka menu lengkap ubah/edit data untuk semua naskah di Navigasi Lembar Kerja"
+          >
+            <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+            Ubah / Edit Data Lembar Kerja
+          </button>
+
+          <button
+            type="button"
             onClick={() => setIsEditing(!isEditing)}
             className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-bold transition-all ${
               isEditing
@@ -877,8 +893,21 @@ export const GraduationDocsView: React.FC<Props> = ({
                 {/* Searchable accessible text for exact matching */}
                 <span className="sr-only">{`${doc.title} (${doc.subtitle})`}</span>
               </div>
-              <div className="mt-3 pt-2.5 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between text-[11px]">
-                <span className="text-zinc-400 font-medium">Format Resmi A4</span>
+              <div className="mt-3 pt-2.5 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between text-[11px] gap-1">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDoc(doc.key as GraduationDocType);
+                    setGradModalDocType(doc.key as GraduationDocType);
+                    setIsEditGradModalOpen(true);
+                  }}
+                  className="inline-flex items-center gap-1 font-bold text-amber-700 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 hover:underline transition-colors py-0.5 px-1 rounded"
+                  title={`Ubah / Edit Data ${doc.title}`}
+                >
+                  <Edit3 className="h-3 w-3" />
+                  Ubah/Edit Data
+                </button>
                 <button
                   type="button"
                   onClick={(e) => {
@@ -886,7 +915,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     setActiveDoc(doc.key as GraduationDocType);
                     onOpenPrintPreview(doc.key as GraduationDocType);
                   }}
-                  className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-900 dark:text-emerald-400 hover:underline"
+                  className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300 hover:underline transition-colors py-0.5 px-1 rounded"
                   title={`Cetak ${doc.title} dengan Kop Surat`}
                 >
                   <Printer className="h-3 w-3" />
@@ -2168,6 +2197,32 @@ export const GraduationDocsView: React.FC<Props> = ({
         onClose={() => setIsEditGuruModalOpen(false)}
         guruList={guruList}
         onSave={handleUpdateGuruList}
+        showToast={showToast}
+      />
+
+      {/* Modal Dialog Ubah/Edit Data Semua Dokumen Lembar Kerja */}
+      <EditGraduationDocModal
+        isOpen={isEditGradModalOpen}
+        onClose={() => setIsEditGradModalOpen(false)}
+        currentDocType={gradModalDocType}
+        onDocTypeChange={(doc) => {
+          setGradModalDocType(doc);
+          setActiveDoc(doc);
+          onActiveDocChange?.(doc);
+        }}
+        onDataSaved={() => {
+          setUndanganState(loadUndanganDocState());
+          setBaState(loadBeritaAcaraDocState());
+          setSkState(loadSKKelulusanState());
+          setGuruList(loadGuruRapatList());
+          if (showToast) {
+            showToast(
+              'Data Berhasil Disimpan',
+              'Perubahan data berhasil disimpan dan diperbarui di lembar kerja.',
+              'success'
+            );
+          }
+        }}
         showToast={showToast}
       />
     </div>

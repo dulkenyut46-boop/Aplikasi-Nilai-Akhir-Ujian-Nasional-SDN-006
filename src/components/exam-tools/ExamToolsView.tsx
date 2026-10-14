@@ -36,6 +36,7 @@ import {
   Scale,
 } from 'lucide-react';
 import { GraduationDocsView, INITIAL_GURU_RAPAT, GraduationDocType } from './GraduationDocsView';
+import { EditGraduationDocModal } from './EditGraduationDocModal';
 import {
   loadGuruRapatList,
   loadSKKelulusanState,
@@ -77,6 +78,9 @@ export const ExamToolsView: React.FC = () => {
   const [selectedRoom, setSelectedRoom] = useState<'RUANG 1' | 'RUANG 2' | 'RUANG 3' | 'RUANG 4'>('RUANG 1');
   const [isPrintMenuOpen, setIsPrintMenuOpen] = useState(false);
   const [printDoc, setPrintDoc] = useState<ToolTab>('nilai');
+  const [isEditGradModalOpen, setIsEditGradModalOpen] = useState(false);
+  const [gradModalDocType, setGradModalDocType] = useState<GraduationDocType>('undangan');
+  const [, setLastUpdateTrigger] = useState<number>(Date.now());
 
   // State untuk Daftar Nilai Per Ruangan
   const [selectedSubjectKey, setSelectedSubjectKey] = useState<string>(subjects[0]?.key || 'bin');
@@ -1334,6 +1338,23 @@ export const ExamToolsView: React.FC = () => {
                 </select>
               </div>
             )}
+
+            {/* Menu Ubah/Edit Data Dokumen Lembar Kerja (Berlaku untuk Semua Dokumen Navigasi Lembar Kerja) */}
+            <button
+              type="button"
+              onClick={() => {
+                const targetDoc = ['undangan', 'ba-kelulusan', 'hadir-rapat', 'sk-kelulusan'].includes(printDoc)
+                  ? (printDoc as GraduationDocType)
+                  : 'undangan';
+                setGradModalDocType(targetDoc);
+                setIsEditGradModalOpen(true);
+              }}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-zinc-950 font-bold px-3 py-1.5 text-xs shadow-md transition-all cursor-pointer shrink-0"
+              title="Buka menu lengkap ubah/edit data nomor surat, tanggal rapat, nama guru/panitia, konsideran, atau naskah resmi"
+            >
+              <Edit3 className="h-3.5 w-3.5" />
+              <span>Ubah / Edit Data</span>
+            </button>
           </div>
         }
       >
@@ -2407,6 +2428,30 @@ export const ExamToolsView: React.FC = () => {
           })()}
         </div>
       </PrintPreviewModal>
+
+      {/* Modal Ubah/Edit Data Dokumen Kelulusan (Navigasi Lembar Kerja) */}
+      <EditGraduationDocModal
+        isOpen={isEditGradModalOpen}
+        onClose={() => setIsEditGradModalOpen(false)}
+        currentDocType={gradModalDocType}
+        onDocTypeChange={(doc) => {
+          setGradModalDocType(doc);
+          if (['undangan', 'ba-kelulusan', 'hadir-rapat', 'sk-kelulusan'].includes(printDoc)) {
+            setPrintDoc(doc as any);
+          }
+        }}
+        onDataSaved={() => {
+          setLastUpdateTrigger(Date.now());
+          if (showToast) {
+            showToast(
+              'Data Dokumen Diperbarui',
+              'Perubahan naskah dokumen kelulusan berhasil disimpan dan diterapkan pada lembar cetak.',
+              'success'
+            );
+          }
+        }}
+        showToast={showToast}
+      />
     </div>
   );
 };

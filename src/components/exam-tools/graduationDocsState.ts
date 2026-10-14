@@ -1,5 +1,7 @@
 import { SchoolProfile, Student } from '../../types';
 
+export type GraduationDocType = 'undangan' | 'ba-kelulusan' | 'hadir-rapat' | 'sk-kelulusan' | 'semua';
+
 export interface GuruRapat {
   id: string;
   no: number;
