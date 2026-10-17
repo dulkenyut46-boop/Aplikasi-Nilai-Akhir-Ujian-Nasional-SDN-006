@@ -29,9 +29,9 @@ export const KopSurat: React.FC<KopSuratProps> = ({
     kabupaten: schoolProfile?.kabupaten || 'Kuantan Singingi',
     provinsi: schoolProfile?.provinsi || 'Riau',
     kodePos: schoolProfile?.kodePos || '29563',
-    kontak: 'Telp: 0812-7654-3201',
-    email: 'sdn006sungaibuluh@gmail.com',
-    website: 'https://sdn006singingihilir.sch.id',
+    kontak: '',
+    email: '',
+    website: '',
     tipeGaris: 'ganda',
     showLogoKiri: true,
     logoKiri: getPresetLogoDataUrl('pemda_kuansing'),
@@ -120,11 +120,13 @@ export const KopSurat: React.FC<KopSuratProps> = ({
 
         {/* Text Kop Tengah */}
         <div className="flex-1 text-center px-1">
-          {/* Instansi Baris 1 */}
+          {/* Instansi Baris 1: PEMERINTAH KABUPATEN KUANTAN SINGINGI (Diperbesar Sesuai Halaman Tersedia) */}
           {cfg.instansiAtas && (
             <h4
-              className={`font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-200 print:text-black leading-tight ${
-                variant === 'compact' ? 'text-[10px] sm:text-[11px]' : 'text-xs sm:text-[13px]'
+              className={`font-black tracking-wider uppercase text-zinc-950 dark:text-zinc-50 print:text-black leading-tight ${
+                variant === 'compact'
+                  ? 'text-xs sm:text-sm md:text-[15px]'
+                  : 'text-sm sm:text-base md:text-lg lg:text-[21px]'
               }`}
             >
               {cfg.instansiAtas}
@@ -134,8 +136,8 @@ export const KopSurat: React.FC<KopSuratProps> = ({
           {/* Instansi Baris 2 (Dinas Pendidikan) */}
           {cfg.instansiTengah && (
             <h3
-              className={`font-extrabold tracking-wider uppercase text-zinc-900 dark:text-zinc-100 print:text-black leading-tight mt-0.5 ${
-                variant === 'compact' ? 'text-[11px] sm:text-xs' : 'text-[13px] sm:text-sm'
+              className={`font-extrabold tracking-wide uppercase text-zinc-900 dark:text-zinc-100 print:text-black leading-tight mt-0.5 ${
+                variant === 'compact' ? 'text-[10.5px] sm:text-[11.5px]' : 'text-xs sm:text-[13px] md:text-sm'
               }`}
             >
               {cfg.instansiTengah}
@@ -155,18 +157,18 @@ export const KopSurat: React.FC<KopSuratProps> = ({
 
           {/* Nama Satuan Pendidikan (Paling Menonjol) */}
           <h2
-            className={`font-black uppercase tracking-wide text-emerald-950 dark:text-emerald-300 print:text-black leading-tight my-1 ${
+            className={`font-black uppercase tracking-wide text-emerald-950 dark:text-emerald-300 print:text-black leading-tight my-0.5 ${
               variant === 'compact'
                 ? 'text-sm sm:text-base'
-                : 'text-base sm:text-lg md:text-[19px]'
+                : 'text-base sm:text-lg md:text-[19px] lg:text-[20px]'
             }`}
           >
             {cfg.namaSekolah}
           </h2>
 
-          {/* Alamat & Wilayah */}
+          {/* Alamat & Wilayah (Baris Penutup Kop Surat) */}
           <p
-            className={`text-zinc-600 dark:text-zinc-400 print:text-black font-sans leading-tight ${
+            className={`text-zinc-700 dark:text-zinc-300 print:text-black font-sans leading-tight mt-0.5 ${
               variant === 'compact' ? 'text-[9px] sm:text-[10px]' : 'text-[10.5px] sm:text-[11.5px]'
             }`}
           >
@@ -175,23 +177,6 @@ export const KopSurat: React.FC<KopSuratProps> = ({
             {cfg.kabupaten ? `, Kab. ${cfg.kabupaten}` : ''}
             {cfg.kodePos ? ` - Kode Pos: ${cfg.kodePos}` : ''}
           </p>
-
-          {/* Kontak, Email, Website */}
-          {(cfg.kontak || cfg.email || cfg.website) && (
-            <p
-              className={`text-zinc-500 dark:text-zinc-400 print:text-black leading-tight mt-0.5 ${
-                variant === 'compact' ? 'text-[8px] sm:text-[9px]' : 'text-[9.5px] sm:text-[10.5px]'
-              }`}
-            >
-              {[
-                cfg.kontak ? `${cfg.kontak}` : null,
-                cfg.email ? `Email: ${cfg.email}` : null,
-                cfg.website ? `Website: ${cfg.website.replace(/^https?:\/\//, '')}` : null,
-              ]
-                .filter(Boolean)
-                .join(' • ')}
-            </p>
-          )}
         </div>
 
         {/* Logo Kanan (Default: Tut Wuri Handayani) */}

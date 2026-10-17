@@ -138,13 +138,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const stored = localStorage.getItem(STORAGE_KEYS.SCHOOL);
       if (stored) {
         const parsed = JSON.parse(stored);
+        const resolvedKop = {
+          ...INITIAL_SCHOOL_PROFILE.kopSurat,
+          ...(parsed.kopSurat || {}),
+        };
+        if (resolvedKop.kontak && resolvedKop.kontak.includes('0812')) {
+          resolvedKop.kontak = '';
+          resolvedKop.email = '';
+          resolvedKop.website = '';
+        }
         return {
           ...INITIAL_SCHOOL_PROFILE,
           ...parsed,
-          kopSurat: {
-            ...INITIAL_SCHOOL_PROFILE.kopSurat,
-            ...(parsed.kopSurat || {}),
-          },
+          kopSurat: resolvedKop,
         };
       }
       return INITIAL_SCHOOL_PROFILE;
