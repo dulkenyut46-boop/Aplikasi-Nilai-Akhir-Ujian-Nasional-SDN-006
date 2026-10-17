@@ -256,6 +256,120 @@ export const ExamToolsView: React.FC = () => {
         </div>
       </div>
 
+      {/* Navigasi Menu Cetak Dokumen Ujian (5 Dokumen Utama) */}
+      <div className="rounded-2xl border border-zinc-200 bg-white p-4.5 dark:border-zinc-800 dark:bg-zinc-900 shadow-xs print:hidden space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 border-b border-zinc-100 dark:border-zinc-800">
+          <div className="flex items-center gap-2">
+            <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <span className="text-xs font-bold uppercase tracking-wide text-zinc-800 dark:text-zinc-200">
+              Navigasi Menu Cetak Dokumen Ujian
+            </span>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+              5 Dokumen Pokok
+            </span>
+          </div>
+          <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
+            Akses langsung pratinjau lembar A4 & cetak resmi berkop surat dinas
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {[
+            {
+              key: 'denah' as ToolTab,
+              title: 'Denah Ruang Ujian',
+              subtitle: 'Ruang 1 s.d. 4 (Tempat Duduk)',
+              icon: Grid3X3,
+              format: 'A4 Landscape',
+            },
+            {
+              key: 'hadir' as ToolTab,
+              title: 'Daftar Hadir Ujian',
+              subtitle: 'Presensi Siswa Ganjil/Genap',
+              icon: FileCheck2,
+              format: 'A4 Portrait',
+            },
+            {
+              key: 'pengawas' as ToolTab,
+              title: 'Pengawas TPU VI',
+              subtitle: 'Pengawasan Silang Antar-SD',
+              icon: ShieldCheck,
+              format: 'A4 Portrait',
+            },
+            {
+              key: 'panitia' as ToolTab,
+              title: 'Susunan Panitia',
+              subtitle: 'SK Panitia Pelaksana US',
+              icon: UserCheck,
+              format: 'A4 Portrait',
+            },
+            {
+              key: 'berita' as ToolTab,
+              title: 'Berita Acara',
+              subtitle: 'Pelaksanaan Ujian Resmi',
+              icon: FileCheck2,
+              format: 'A4 Portrait',
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+            const isTabActive = activeSubTab === item.key;
+            return (
+              <div
+                key={item.key}
+                onClick={() => setActiveSubTab(item.key)}
+                className={`flex flex-col justify-between p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                  isTabActive
+                    ? 'border-emerald-600 bg-emerald-50/80 shadow-xs ring-1 ring-emerald-500/30 dark:bg-emerald-950/30 dark:border-emerald-500'
+                    : 'border-zinc-200 bg-zinc-50/60 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-800/40 dark:hover:bg-zinc-800'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span
+                      className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
+                        isTabActive
+                          ? 'bg-emerald-700 text-white shadow-xs'
+                          : 'bg-zinc-200/80 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300'
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/80 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300">
+                      {item.format}
+                    </span>
+                  </div>
+                  <h4 className="font-extrabold text-xs text-zinc-900 dark:text-zinc-100 leading-snug">
+                    {item.title}
+                  </h4>
+                  <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-1">
+                    {item.subtitle}
+                  </p>
+                </div>
+
+                <div className="mt-3 pt-2 border-t border-zinc-200/80 dark:border-zinc-700/80 flex items-center justify-between gap-1">
+                  <span className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
+                    {isTabActive ? '● Aktif' : 'Pilih Tab'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveSubTab(item.key);
+                      openPrintPreview(item.key);
+                    }}
+                    className="inline-flex items-center gap-1 rounded-lg bg-emerald-700 px-2 py-1 text-[11px] font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                    title={`Buka Menu Cetak ${item.title}`}
+                  >
+                    <Printer className="h-3 w-3" />
+                    Cetak
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Sub Tabs */}
       <div className="flex overflow-x-auto gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3 print:hidden">
         {(
@@ -280,30 +394,54 @@ export const ExamToolsView: React.FC = () => {
           const Icon = tab.icon;
           const isActive = activeSubTab === tab.key;
           return (
-            <button
+            <div
               key={tab.key}
-              onClick={() => setActiveSubTab(tab.key)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
-                  ? 'bg-emerald-800 text-white shadow-sm ring-1 ring-emerald-500'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
+                  ? 'bg-emerald-800 text-white shadow-sm ring-1 ring-emerald-500 border-emerald-600'
+                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
-              <Icon className="h-4 w-4" />
-              <span>{tab.label}</span>
-              {tab.altLabel && <span className="sr-only">{tab.altLabel}</span>}
-              {tab.badge && (
-                <span
-                  className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md ${
-                    isActive
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
-                  }`}
-                >
-                  {tab.badge}
-                </span>
-              )}
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveSubTab(tab.key)}
+                className="flex items-center gap-2 pl-3 py-2 pr-1.5 text-xs font-bold transition-all"
+              >
+                <Icon className="h-4 w-4" />
+                <span>{tab.label}</span>
+                {tab.altLabel && <span className="sr-only">{tab.altLabel}</span>}
+                {tab.badge && (
+                  <span
+                    className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md ${
+                      isActive
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                    }`}
+                  >
+                    {tab.badge}
+                  </span>
+                )}
+              </button>
+
+              {/* Menu Cetak pada Tab Navigasi */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveSubTab(tab.key);
+                  openPrintPreview(tab.key === 'perangkat-kelulusan' ? activeGraduationDoc : tab.key);
+                }}
+                className={`mr-1.5 p-1 rounded-lg transition-all ${
+                  isActive
+                    ? 'bg-emerald-700 hover:bg-emerald-600 text-white shadow-xs'
+                    : 'text-zinc-400 hover:text-emerald-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-emerald-300'
+                }`}
+                title={`Cetak ${tab.label}`}
+                aria-label={`Menu Cetak ${tab.label}`}
+              >
+                <Printer className="h-3.5 w-3.5" />
+              </button>
+            </div>
           );
         })}
       </div>
@@ -337,6 +475,43 @@ export const ExamToolsView: React.FC = () => {
       {/* 1. DENAH RUANG INTERAKTIF */}
       {activeSubTab === 'denah' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-6">
+          {/* Action Toolbar Menu Cetak */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <Grid3X3 className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                  Denah Ruang Ujian ({selectedRoom})
+                </h4>
+                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                  {roomStudents.length} peserta terdaftar di {selectedRoom} • Siap cetak lembar format A4 landscape
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openPrintPreview('denah')}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                title={`Cetak Denah ${selectedRoom} Format A4 Landscape`}
+              >
+                <Printer className="h-4 w-4" />
+                Cetak Denah Ruang ({selectedRoom})
+              </button>
+              <button
+                type="button"
+                onClick={() => openPrintPreview()}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Buka menu cetak seluruh dokumen ujian"
+              >
+                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                Menu Cetak Lengkap
+              </button>
+            </div>
+          </div>
+
           <KopSurat schoolProfile={schoolProfile} variant="compact" />
           <div className="text-center border-b pb-4 border-zinc-200 dark:border-zinc-800">
             <h3 className="text-base font-extrabold uppercase text-zinc-900 dark:text-zinc-50">
@@ -626,6 +801,43 @@ export const ExamToolsView: React.FC = () => {
       {/* 3. DAFTAR HADIR PESERTA UJIAN */}
       {activeSubTab === 'hadir' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
+          {/* Action Toolbar Menu Cetak */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <FileCheck2 className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                  Daftar Hadir Peserta Ujian ({selectedRoom})
+                </h4>
+                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                  {roomStudents.length} peserta terdaftar di {selectedRoom} • Format presensi resmi kolom tanda tangan ganjil/genap
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openPrintPreview('hadir')}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                title={`Cetak Daftar Hadir ${selectedRoom} Format A4 Portrait`}
+              >
+                <Printer className="h-4 w-4" />
+                Cetak Daftar Hadir ({selectedRoom})
+              </button>
+              <button
+                type="button"
+                onClick={() => openPrintPreview()}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Buka menu cetak seluruh dokumen ujian"
+              >
+                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                Menu Cetak Lengkap
+              </button>
+            </div>
+          </div>
+
           <KopSurat schoolProfile={schoolProfile} variant="compact" />
 
           <div className="text-center pb-2">
@@ -1088,14 +1300,39 @@ export const ExamToolsView: React.FC = () => {
       {/* 5. DAFTAR NAMA PENGAWAS TPU VI */}
       {activeSubTab === 'pengawas' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
-                Daftar Pengawas Ruang TPU VI Singingi Hilir
-              </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
-                Sistem pengawasan silang antar-sekolah dasar se-Kecamatan Singingi Hilir
-              </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
+                  Daftar Pengawas Ruang TPU VI Singingi Hilir
+                </h3>
+                <p className="text-xs text-zinc-500 mt-0.5">
+                  Sistem pengawasan silang antar-sekolah dasar se-Kecamatan Singingi Hilir ({supervisors.length} Pengawas)
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 print:hidden w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openPrintPreview('pengawas')}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Cetak Daftar Pengawas TPU VI Format A4 Portrait"
+              >
+                <Printer className="h-4 w-4" />
+                Cetak Pengawas TPU VI
+              </button>
+              <button
+                type="button"
+                onClick={() => openPrintPreview()}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Buka menu cetak seluruh dokumen ujian"
+              >
+                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                Menu Cetak Lengkap
+              </button>
             </div>
           </div>
 
@@ -1135,13 +1372,40 @@ export const ExamToolsView: React.FC = () => {
       {/* 5. SUSUNAN PANITIA UJIAN */}
       {activeSubTab === 'panitia' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
-          <div>
-            <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
-              Susunan Panitia Ujian Sekolah SDN 006 Sungai Buluh
-            </h3>
-            <p className="text-xs text-zinc-500 mt-0.5">
-              Berdasarkan Keputusan Kepala Sekolah SDN 006 Sungai Buluh No. 421.2/SDN-006/KP/2026
-            </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <UserCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
+                  Susunan Panitia Ujian Sekolah SDN 006 Sungai Buluh
+                </h3>
+                <p className="text-xs text-zinc-500 mt-0.5">
+                  Berdasarkan Keputusan Kepala Sekolah SDN 006 Sungai Buluh No. 421.2/SDN-006/KP/2026 ({committee.length} Panitia)
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 print:hidden w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openPrintPreview('panitia')}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Cetak Susunan Panitia Ujian Format A4 Portrait"
+              >
+                <Printer className="h-4 w-4" />
+                Cetak Susunan Panitia
+              </button>
+              <button
+                type="button"
+                onClick={() => openPrintPreview()}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Buka menu cetak seluruh dokumen ujian"
+              >
+                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                Menu Cetak Lengkap
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1170,8 +1434,46 @@ export const ExamToolsView: React.FC = () => {
 
       {/* 6. BERITA ACARA PELAKSANAAN */}
       {activeSubTab === 'berita' && (
-        <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-6 max-w-4xl mx-auto">
-          <KopSurat schoolProfile={schoolProfile} />
+        <div className="space-y-4 max-w-4xl mx-auto">
+          {/* Action Toolbar Menu Cetak */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <FileCheck2 className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                  Berita Acara Pelaksanaan Ujian Nasional / Sekolah
+                </h4>
+                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                  Dokumen naskah resmi pelaksanaan ujian berkop sekolah dan pengesahan pimpinan
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openPrintPreview('berita')}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Cetak Berita Acara Pelaksanaan Format A4 Portrait"
+              >
+                <Printer className="h-4 w-4" />
+                Cetak Berita Acara Pelaksanaan
+              </button>
+              <button
+                type="button"
+                onClick={() => openPrintPreview()}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                title="Buka menu cetak seluruh dokumen ujian"
+              >
+                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                Menu Cetak Lengkap
+              </button>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-6">
+            <KopSurat schoolProfile={schoolProfile} />
 
           <div className="text-center space-y-1">
             <h3 className="text-base font-extrabold text-zinc-900 dark:text-zinc-50">
@@ -1223,6 +1525,7 @@ export const ExamToolsView: React.FC = () => {
               <p className="font-mono text-zinc-500">NIP. {schoolProfile.nipKetuaPanitia}</p>
             </div>
           </div>
+        </div>
         </div>
       )}
 

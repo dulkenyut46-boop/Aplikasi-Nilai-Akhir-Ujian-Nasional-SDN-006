@@ -131,18 +131,40 @@ export const DiplomaManagementView: React.FC = () => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.key;
           return (
-            <button
+            <div
               key={tab.key}
-              onClick={() => setActiveTab(tab.key as TabKey)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
-                  ? 'bg-emerald-800 text-white shadow-sm'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
+                  ? 'bg-emerald-800 text-white shadow-sm border-emerald-600'
+                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
-              <Icon className="h-4 w-4" />
-              {tab.label}
-            </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab(tab.key as TabKey)}
+                className="flex items-center gap-2 pl-3.5 py-2 pr-1.5 text-xs font-bold transition-all text-left"
+              >
+                <Icon className="h-4 w-4" />
+                <span>{tab.label}</span>
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveTab(tab.key as TabKey);
+                  handlePrintDocument(tab.key as TabKey);
+                }}
+                className={`mr-1.5 p-1 rounded-lg transition-all ${
+                  isActive
+                    ? 'bg-emerald-700 hover:bg-emerald-600 text-white shadow-xs'
+                    : 'text-zinc-400 hover:text-emerald-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-emerald-300'
+                }`}
+                title={`Cetak ${tab.label}`}
+                aria-label={`Menu Cetak ${tab.label}`}
+              >
+                <Printer className="h-3.5 w-3.5" />
+              </button>
+            </div>
           );
         })}
       </div>
