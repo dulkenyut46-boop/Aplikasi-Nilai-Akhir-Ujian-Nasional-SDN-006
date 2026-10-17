@@ -65,6 +65,13 @@ interface AppContextType {
   updateSupervisor: (id: string, data: Partial<Supervisor>) => void;
   addSupervisor: (data: Omit<Supervisor, 'id'>) => void;
   deleteSupervisor: (id: string) => void;
+  setSupervisorsList: (list: Supervisor[]) => void;
+  resetSupervisorsToDefault: () => void;
+  updateCommitteeMember: (id: string, data: Partial<CommitteeMember>) => void;
+  addCommitteeMember: (data: Omit<CommitteeMember, 'id'>) => void;
+  deleteCommitteeMember: (id: string) => void;
+  setCommitteeList: (list: CommitteeMember[]) => void;
+  resetCommitteeToDefault: () => void;
   updateDiplomaRecord: (index: number, data: Partial<DiplomaRecord>) => void;
   
   // Photo management
@@ -155,7 +162,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   });
 
-  const [committee] = useState<CommitteeMember[]>(() => {
+  const [committee, setCommittee] = useState<CommitteeMember[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.COMMITTEE);
       return stored ? JSON.parse(stored) : INITIAL_COMMITTEE;
@@ -163,6 +170,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return INITIAL_COMMITTEE;
     }
   });
+
+  // Persist committee
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(committee));
+  }, [committee]);
 
   const [diplomaRecords, setDiplomaRecords] = useState<DiplomaRecord[]>(() => {
     try {
@@ -352,6 +364,46 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     showToast('Pengawas Dihapus', 'Data pengawas telah dihapus.', 'info');
   };
 
+  const setSupervisorsList = (list: Supervisor[]) => {
+    setSupervisors(list);
+    showToast('Pengawas Disimpan', `${list.length} pengawas TPU VI berhasil disimpan.`, 'success');
+  };
+
+  const resetSupervisorsToDefault = () => {
+    setSupervisors(INITIAL_SUPERVISORS);
+    localStorage.removeItem(STORAGE_KEYS.SUPERVISORS);
+    showToast('Reset Pengawas', 'Daftar pengawas dikembalikan ke data awal TPU VI.', 'info');
+  };
+
+  const updateCommitteeMember = (id: string, data: Partial<CommitteeMember>) => {
+    setCommittee((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, ...data } : c))
+    );
+    showToast('Panitia Diperbarui', 'Data susunan panitia ujian berhasil diperbarui.', 'success');
+  };
+
+  const addCommitteeMember = (data: Omit<CommitteeMember, 'id'>) => {
+    const id = `com-${Date.now()}`;
+    setCommittee((prev) => [...prev, { ...data, id }]);
+    showToast('Panitia Ditambahkan', `${data.nama} telah ditambahkan ke susunan panitia.`, 'success');
+  };
+
+  const deleteCommitteeMember = (id: string) => {
+    setCommittee((prev) => prev.filter((c) => c.id !== id));
+    showToast('Panitia Dihapus', 'Data anggota panitia telah dihapus.', 'info');
+  };
+
+  const setCommitteeList = (list: CommitteeMember[]) => {
+    setCommittee(list);
+    showToast('Panitia Disimpan', `${list.length} anggota susunan panitia berhasil diperbarui.`, 'success');
+  };
+
+  const resetCommitteeToDefault = () => {
+    setCommittee(INITIAL_COMMITTEE);
+    localStorage.removeItem(STORAGE_KEYS.COMMITTEE);
+    showToast('Reset Panitia', 'Susunan panitia dikembalikan ke SK awal.', 'info');
+  };
+
   const updateDiplomaRecord = (index: number, data: Partial<DiplomaRecord>) => {
     setDiplomaRecords((prev) => {
       const copy = [...prev];
@@ -508,11 +560,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setStudents(INITIAL_STUDENTS);
     setSchoolProfile(INITIAL_SCHOOL_PROFILE);
     setSupervisors(INITIAL_SUPERVISORS);
+    setCommittee(INITIAL_COMMITTEE);
     setDiplomaRecords(INITIAL_DIPLOMA_RECORDS);
     setSubjects(SUBJECT_LIST);
     localStorage.removeItem(STORAGE_KEYS.STUDENTS);
     localStorage.removeItem(STORAGE_KEYS.SCHOOL);
     localStorage.removeItem(STORAGE_KEYS.SUPERVISORS);
+    localStorage.removeItem(STORAGE_KEYS.COMMITTEE);
     localStorage.removeItem(STORAGE_KEYS.DIPLOMA);
     localStorage.removeItem(STORAGE_KEYS.SUBJECTS);
     showToast('Data Direset', 'Semua data telah dikembalikan ke standar awal SDN 006 Sungai Buluh.', 'info');
@@ -1360,6 +1414,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateSupervisor,
         addSupervisor,
         deleteSupervisor,
+        setSupervisorsList,
+        resetSupervisorsToDefault,
+        updateCommitteeMember,
+        addCommitteeMember,
+        deleteCommitteeMember,
+        setCommitteeList,
+        resetCommitteeToDefault,
         updateDiplomaRecord,
         updateStudentPhoto,
         batchUpdateStudentPhotos,

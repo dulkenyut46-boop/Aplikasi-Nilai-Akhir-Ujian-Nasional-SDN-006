@@ -37,6 +37,20 @@ import {
 } from 'lucide-react';
 import { GraduationDocsView, INITIAL_GURU_RAPAT, GraduationDocType } from './GraduationDocsView';
 import { EditGraduationDocModal } from './EditGraduationDocModal';
+import { EditPengawasModal } from './EditPengawasModal';
+import { EditPanitiaModal } from './EditPanitiaModal';
+import { EditBeritaAcaraPelaksanaanModal } from './EditBeritaAcaraPelaksanaanModal';
+import {
+  BeritaAcaraPelaksanaanState,
+  TpuLeaderState,
+  PanitiaMetaState,
+  loadBeritaAcaraPelaksanaanState,
+  saveBeritaAcaraPelaksanaanState,
+  loadTpuLeaderState,
+  saveTpuLeaderState,
+  loadPanitiaMetaState,
+  savePanitiaMetaState,
+} from './examAdminState';
 import {
   loadGuruRapatList,
   loadSKKelulusanState,
@@ -57,6 +71,13 @@ export const ExamToolsView: React.FC = () => {
     updateStudentUSScore,
     showToast,
     setActiveTab,
+    setSupervisorsList,
+    resetSupervisorsToDefault,
+    updateCommitteeMember,
+    addCommitteeMember,
+    deleteCommitteeMember,
+    setCommitteeList,
+    resetCommitteeToDefault,
   } = useApp();
 
   type ToolTab =
@@ -82,6 +103,30 @@ export const ExamToolsView: React.FC = () => {
   const [isEditGradModalOpen, setIsEditGradModalOpen] = useState(false);
   const [gradModalDocType, setGradModalDocType] = useState<GraduationDocType>('undangan');
   const [, setLastUpdateTrigger] = useState<number>(Date.now());
+
+  // Edit Modals State for Pengawas, Panitia, and Berita Acara
+  const [isEditPengawasOpen, setIsEditPengawasOpen] = useState(false);
+  const [isEditPanitiaOpen, setIsEditPanitiaOpen] = useState(false);
+  const [isEditBeritaPelaksanaanOpen, setIsEditBeritaPelaksanaanOpen] = useState(false);
+
+  const [tpuLeader, setTpuLeader] = useState<TpuLeaderState>(loadTpuLeaderState);
+  const [panitiaMeta, setPanitiaMeta] = useState<PanitiaMetaState>(loadPanitiaMetaState);
+  const [beritaAcaraState, setBeritaAcaraState] = useState<BeritaAcaraPelaksanaanState>(loadBeritaAcaraPelaksanaanState);
+
+  const handleSaveTpuLeader = (newLeader: TpuLeaderState) => {
+    setTpuLeader(newLeader);
+    saveTpuLeaderState(newLeader);
+  };
+
+  const handleSavePanitiaMeta = (newMeta: PanitiaMetaState) => {
+    setPanitiaMeta(newMeta);
+    savePanitiaMetaState(newMeta);
+  };
+
+  const handleSaveBeritaAcaraState = (newState: BeritaAcaraPelaksanaanState) => {
+    setBeritaAcaraState(newState);
+    saveBeritaAcaraPelaksanaanState(newState);
+  };
 
   // State untuk Daftar Nilai Per Ruangan
   const [selectedSubjectKey, setSelectedSubjectKey] = useState<string>(subjects[0]?.key || 'bin');
@@ -256,21 +301,50 @@ export const ExamToolsView: React.FC = () => {
         </div>
       </div>
 
-      {/* Navigasi Menu Cetak Dokumen Ujian (5 Dokumen Utama) */}
+      {/* Navigasi Menu Cetak & Edit Dokumen Ujian (5 Dokumen Utama) */}
       <div className="rounded-2xl border border-zinc-200 bg-white p-4.5 dark:border-zinc-800 dark:bg-zinc-900 shadow-xs print:hidden space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
             <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-xs font-bold uppercase tracking-wide text-zinc-800 dark:text-zinc-200">
-              Navigasi Menu Cetak Dokumen Ujian
+              Navigasi Menu Cetak & Edit Dokumen Ujian
             </span>
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
               5 Dokumen Pokok
             </span>
           </div>
-          <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
-            Akses langsung pratinjau lembar A4 & cetak resmi berkop surat dinas
-          </span>
+          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 mr-1">
+              Menu Edit Cepat:
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsEditPengawasOpen(true)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700 text-[11px] font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 transition-colors cursor-pointer"
+              title="Buka menu edit Pengawas TPU VI"
+            >
+              <Edit3 className="h-3 w-3 text-amber-700 dark:text-amber-300" />
+              Pengawas TPU VI
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsEditPanitiaOpen(true)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700 text-[11px] font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 transition-colors cursor-pointer"
+              title="Buka menu edit Susunan Panitia"
+            >
+              <Edit3 className="h-3 w-3 text-amber-700 dark:text-amber-300" />
+              Susunan Panitia
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsEditBeritaPelaksanaanOpen(true)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700 text-[11px] font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 transition-colors cursor-pointer"
+              title="Buka menu edit Berita Acara Pelaksanaan"
+            >
+              <Edit3 className="h-3 w-3 text-amber-700 dark:text-amber-300" />
+              Berita Acara
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -281,6 +355,7 @@ export const ExamToolsView: React.FC = () => {
               subtitle: 'Ruang 1 s.d. 4 (Tempat Duduk)',
               icon: Grid3X3,
               format: 'A4 Landscape',
+              canEdit: false,
             },
             {
               key: 'hadir' as ToolTab,
@@ -288,6 +363,7 @@ export const ExamToolsView: React.FC = () => {
               subtitle: 'Presensi Siswa Ganjil/Genap',
               icon: FileCheck2,
               format: 'A4 Portrait',
+              canEdit: false,
             },
             {
               key: 'pengawas' as ToolTab,
@@ -295,6 +371,9 @@ export const ExamToolsView: React.FC = () => {
               subtitle: 'Pengawasan Silang Antar-SD',
               icon: ShieldCheck,
               format: 'A4 Portrait',
+              canEdit: true,
+              editAction: () => setIsEditPengawasOpen(true),
+              editTitle: 'Edit Pengawas TPU VI',
             },
             {
               key: 'panitia' as ToolTab,
@@ -302,6 +381,9 @@ export const ExamToolsView: React.FC = () => {
               subtitle: 'SK Panitia Pelaksana US',
               icon: UserCheck,
               format: 'A4 Portrait',
+              canEdit: true,
+              editAction: () => setIsEditPanitiaOpen(true),
+              editTitle: 'Edit Susunan Panitia',
             },
             {
               key: 'berita' as ToolTab,
@@ -309,6 +391,9 @@ export const ExamToolsView: React.FC = () => {
               subtitle: 'Pelaksanaan Ujian Resmi',
               icon: FileCheck2,
               format: 'A4 Portrait',
+              canEdit: true,
+              editAction: () => setIsEditBeritaPelaksanaanOpen(true),
+              editTitle: 'Edit Berita Acara Pelaksanaan',
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -347,9 +432,26 @@ export const ExamToolsView: React.FC = () => {
                 </div>
 
                 <div className="mt-3 pt-2 border-t border-zinc-200/80 dark:border-zinc-700/80 flex items-center justify-between gap-1">
-                  <span className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
-                    {isTabActive ? '● Aktif' : 'Pilih Tab'}
-                  </span>
+                  <div className="flex items-center gap-1">
+                    {item.canEdit ? (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          item.editAction?.();
+                        }}
+                        className="inline-flex items-center gap-1 rounded-lg border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/50 px-2 py-1 text-[11px] font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 transition-colors cursor-pointer"
+                        title={item.editTitle}
+                      >
+                        <Edit3 className="h-3 w-3 text-amber-700 dark:text-amber-300" />
+                        Edit
+                      </button>
+                    ) : (
+                      <span className="text-[10px] font-bold text-zinc-400">
+                        {isTabActive ? '● Aktif' : 'Pilih'}
+                      </span>
+                    )}
+                  </div>
                   <button
                     type="button"
                     onClick={(e) => {
@@ -379,9 +481,9 @@ export const ExamToolsView: React.FC = () => {
             { key: 'kartu', label: 'Kartu Peserta UN', icon: Users },
             { key: 'hadir', label: 'Daftar Hadir Ujian', icon: FileCheck2 },
             { key: 'nilai', label: 'Daftar Nilai (Per Ruangan)', icon: FileSpreadsheet },
-            { key: 'pengawas', label: 'Pengawas TPU VI', icon: ShieldCheck },
-            { key: 'panitia', label: 'Susunan Panitia', icon: UserCheck },
-            { key: 'berita', label: 'Berita Acara Pelaksanaan', icon: FileCheck2 },
+            { key: 'pengawas', label: 'Pengawas TPU VI', icon: ShieldCheck, hasEdit: true },
+            { key: 'panitia', label: 'Susunan Panitia', icon: UserCheck, hasEdit: true },
+            { key: 'berita', label: 'Berita Acara Pelaksanaan', icon: FileCheck2, hasEdit: true },
             // Perangkat Kelulusan (Tersusun 1 tab saja: Undangan Rapat diganti Perangkat Kelulusan)
             {
               key: 'perangkat-kelulusan',
@@ -389,7 +491,7 @@ export const ExamToolsView: React.FC = () => {
               altLabel: 'Perangkat Kelululusan',
               icon: Mail,
             },
-          ] as { key: ToolTab; label: string; altLabel?: string; icon: React.ElementType; badge?: string }[]
+          ] as { key: ToolTab; label: string; altLabel?: string; icon: React.ElementType; badge?: string; hasEdit?: boolean }[]
         ).map((tab) => {
           const Icon = tab.icon;
           const isActive = activeSubTab === tab.key;
@@ -423,6 +525,62 @@ export const ExamToolsView: React.FC = () => {
                 )}
               </button>
 
+              {/* Menu Edit pada Tab Navigasi untuk Pengawas, Panitia, dan Berita Acara */}
+              {tab.key === 'pengawas' && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsEditPengawasOpen(true);
+                  }}
+                  className={`p-1 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
+                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                  }`}
+                  title="Menu Edit Pengawas TPU VI"
+                  aria-label="Menu Edit Pengawas TPU VI"
+                >
+                  <Edit3 className="h-3.5 w-3.5" />
+                </button>
+              )}
+              {tab.key === 'panitia' && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsEditPanitiaOpen(true);
+                  }}
+                  className={`p-1 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
+                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                  }`}
+                  title="Menu Edit Susunan Panitia"
+                  aria-label="Menu Edit Susunan Panitia"
+                >
+                  <Edit3 className="h-3.5 w-3.5" />
+                </button>
+              )}
+              {tab.key === 'berita' && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsEditBeritaPelaksanaanOpen(true);
+                  }}
+                  className={`p-1 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
+                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                  }`}
+                  title="Menu Edit Berita Acara Pelaksanaan"
+                  aria-label="Menu Edit Berita Acara Pelaksanaan"
+                >
+                  <Edit3 className="h-3.5 w-3.5" />
+                </button>
+              )}
+
               {/* Menu Cetak pada Tab Navigasi */}
               <button
                 type="button"
@@ -446,8 +604,8 @@ export const ExamToolsView: React.FC = () => {
         })}
       </div>
 
-      {/* Room Selector if viewing Denah, Label Meja, Kartu, Hadir, or Nilai */}
-      {['denah', 'label-meja', 'kartu', 'hadir', 'nilai'].includes(activeSubTab) && (
+      {/* Room Selector if viewing Denah, Label Meja, Kartu, Hadir, Nilai, or Berita */}
+      {['denah', 'label-meja', 'kartu', 'hadir', 'nilai', 'berita'].includes(activeSubTab) && (
         <div className="flex items-center justify-between bg-zinc-50 dark:bg-zinc-800/60 p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 print:hidden">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Pilih Ruangan:</span>
@@ -1317,6 +1475,15 @@ export const ExamToolsView: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2 print:hidden w-full sm:w-auto">
               <button
                 type="button"
+                onClick={() => setIsEditPengawasOpen(true)}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3.5 py-2 text-xs font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors cursor-pointer w-full sm:w-auto shadow-xs"
+                title="Buka menu edit pengawas ruang TPU VI dan identitas Ketua TPU"
+              >
+                <Edit3 className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                Edit Pengawas TPU VI
+              </button>
+              <button
+                type="button"
                 onClick={() => openPrintPreview('pengawas')}
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Cetak Daftar Pengawas TPU VI Format A4 Portrait"
@@ -1366,6 +1533,31 @@ export const ExamToolsView: React.FC = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Info Pengesahan Ketua TPU VI */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 text-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">
+                <UserCheck className="h-4 w-4" />
+              </div>
+              <div>
+                <span className="font-bold text-zinc-800 dark:text-zinc-200 block">
+                  {tpuLeader.jabatanTpu}: {tpuLeader.namaKetuaTpu}
+                </span>
+                <span className="font-mono text-zinc-500 text-[11px]">
+                  NIP. {tpuLeader.nipKetuaTpu} • Wilayah {tpuLeader.kecamatanTpu}
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsEditPengawasOpen(true)}
+              className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:underline cursor-pointer"
+            >
+              <Edit3 className="h-3.5 w-3.5" />
+              Edit Data Pengawas & Ketua TPU
+            </button>
+          </div>
         </div>
       )}
 
@@ -1382,11 +1574,20 @@ export const ExamToolsView: React.FC = () => {
                   Susunan Panitia Ujian Sekolah SDN 006 Sungai Buluh
                 </h3>
                 <p className="text-xs text-zinc-500 mt-0.5">
-                  Berdasarkan Keputusan Kepala Sekolah SDN 006 Sungai Buluh No. 421.2/SDN-006/KP/2026 ({committee.length} Panitia)
+                  Berdasarkan {panitiaMeta.keteranganSk} No. {panitiaMeta.nomorSk} tanggal {panitiaMeta.tanggalSk} ({committee.length} Panitia)
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2 print:hidden w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => setIsEditPanitiaOpen(true)}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3.5 py-2 text-xs font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors cursor-pointer w-full sm:w-auto shadow-xs"
+                title="Buka menu edit susunan panitia ujian dan dasar SK penetapan"
+              >
+                <Edit3 className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                Edit Susunan Panitia
+              </button>
               <button
                 type="button"
                 onClick={() => openPrintPreview('panitia')}
@@ -1412,7 +1613,7 @@ export const ExamToolsView: React.FC = () => {
             {committee.map((c) => (
               <div
                 key={c.id}
-                className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-2"
+                className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-2 hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <Badge variant="emerald" size="sm">
@@ -1435,7 +1636,7 @@ export const ExamToolsView: React.FC = () => {
       {/* 6. BERITA ACARA PELAKSANAAN */}
       {activeSubTab === 'berita' && (
         <div className="space-y-4 max-w-4xl mx-auto">
-          {/* Action Toolbar Menu Cetak */}
+          {/* Action Toolbar Menu Cetak & Edit */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
             <div className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
@@ -1451,6 +1652,15 @@ export const ExamToolsView: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => setIsEditBeritaPelaksanaanOpen(true)}
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3.5 py-2 text-xs font-bold text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors cursor-pointer w-full sm:w-auto shadow-xs"
+                title="Buka menu edit isi berita acara pelaksanaan ujian"
+              >
+                <Edit3 className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                Edit Berita Acara
+              </button>
               <button
                 type="button"
                 onClick={() => openPrintPreview('berita')}
@@ -1475,57 +1685,165 @@ export const ExamToolsView: React.FC = () => {
           <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-6">
             <KopSurat schoolProfile={schoolProfile} />
 
-          <div className="text-center space-y-1">
-            <h3 className="text-base font-extrabold text-zinc-900 dark:text-zinc-50">
-              BERITA ACARA PELAKSANAAN UJIAN NASIONAL / SEKOLAH
-            </h3>
-            <p className="text-xs text-zinc-500 font-semibold">
-              {schoolProfile.namaSekolah} • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
-            </p>
-          </div>
-
-          <div className="space-y-4 text-xs leading-relaxed text-zinc-800 dark:text-zinc-200">
-            <p>
-              Pada hari ini, <b>Senin</b> tanggal <b>18 Mei 2026</b>, bertempat di <b>SD Negeri 006 Sungai Buluh</b>,
-              Kecamatan Singingi Hilir, Kabupaten Kuantan Singingi, telah diselenggarakan Ujian Nasional / Sekolah
-              untuk mata pelajaran sebagaimana tertuang dalam jadwal resmi.
-            </p>
-
-            <div className="rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-4 border border-zinc-200 dark:border-zinc-700 space-y-1.5 font-medium">
-              <div>1. Jumlah Peserta Terdaftar : <b>{students.length} orang</b></div>
-              <div>2. Jumlah Peserta Hadir : <b>{students.length} orang</b></div>
-              <div>3. Jumlah Peserta Tidak Hadir : <b>0 orang</b></div>
-              <div>4. Jumlah Ruangan Digunakan : <b>4 Ruang (Ruang 1 s.d. Ruang 4)</b></div>
-              <div>5. Kondisi Sampul Soal : <b>Dalam keadaan tersegel dan baik</b></div>
+            <div className="text-center space-y-0.5">
+              <h3 className="text-base font-extrabold uppercase tracking-wide text-zinc-900 dark:text-zinc-50">
+                BERITA ACARA
+              </h3>
+              <h4 className="text-sm font-extrabold uppercase tracking-wide text-zinc-900 dark:text-zinc-100">
+                PELAKSANAAN UJIAN SEKOLAH (US)
+              </h4>
+              <h4 className="text-sm font-extrabold uppercase tracking-wide text-zinc-900 dark:text-zinc-100">
+                TAHUN PELAJARAN {beritaAcaraState.tahunPelajaran || schoolProfile.tahunPelajaran}
+              </h4>
             </div>
 
-            <p>
-              Pelaksanaan ujian berjalan dengan tertib, aman, dan lancar tanpa terjadi kendala teknis yang berarti.
-              Berita acara ini dibuat dengan sesungguhnya untuk dapat dipergunakan sebagaimana mestinya.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 pt-8 text-xs">
-            <div>
-              <p className="text-zinc-500">Mengetahui,</p>
-              <p className="font-bold text-zinc-800 dark:text-zinc-200">Kepala Sekolah SDN 006,</p>
-              <div className="h-16"></div>
-              <p className="font-bold underline text-zinc-900 dark:text-zinc-100">
-                {schoolProfile.kepalaSekolah}
+            <div className="pt-2 space-y-4 text-xs text-zinc-800 dark:text-zinc-200 leading-relaxed">
+              <p>
+                Pada hari ini <span className="font-bold underline px-1">{beritaAcaraState.hari || '...................'}</span>{' '}
+                tanggal <span className="font-bold underline px-1">{beritaAcaraState.tanggal || '..........'}</span>{' '}
+                bulan <span className="font-bold underline px-1">{beritaAcaraState.bulan || '...................'}</span>{' '}
+                tahun <span className="font-bold underline px-1">{beritaAcaraState.tahun || '...................'}</span>
               </p>
-              <p className="pt-0.5 text-zinc-600 dark:text-zinc-400 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-zinc-500">Sungai Buluh, 18 Mei 2026</p>
-              <p className="font-bold text-zinc-800 dark:text-zinc-200">Ketua Panitia Ujian,</p>
-              <div className="h-16"></div>
-              <p className="font-bold underline text-zinc-900 dark:text-zinc-100">
-                {schoolProfile.ketuaPanitia}
+
+              <div className="space-y-3 pl-0 sm:pl-1">
+                {/* Poin a */}
+                <div className="flex items-start">
+                  <span className="font-bold mr-2 shrink-0">a.</span>
+                  <div className="flex-1 space-y-1.5">
+                    <p>
+                      Telah diselenggarakan Ujian Sekolah (US) pada pukul{' '}
+                      <span className="font-mono font-bold underline px-1">{beritaAcaraState.waktuMulai || '..........'}</span> s/d{' '}
+                      <span className="font-mono font-bold underline px-1">{beritaAcaraState.waktuSelesai || '..........'}</span>
+                    </p>
+
+                    <div className="pl-4 space-y-1 text-xs">
+                      <div className="grid grid-cols-12 gap-1">
+                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Pada Sekolah</span>
+                        <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.padaSekolah || schoolProfile.namaSekolah}</span>
+                      </div>
+                      <div className="grid grid-cols-12 gap-1">
+                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Ruang</span>
+                        <span className="col-span-7 sm:col-span-8 font-bold">: {selectedRoom || beritaAcaraState.ruang || 'RUANG 1'}</span>
+                      </div>
+                      <div className="grid grid-cols-12 gap-1">
+                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta seharusnya</span>
+                        <span className="col-span-7 sm:col-span-8 font-bold">: {roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya} orang</span>
+                      </div>
+                      <div className="grid grid-cols-12 gap-1">
+                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta yang tidak hadir</span>
+                        <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.jumlahPesertaTidakHadir || 0} orang</span>
+                      </div>
+                      <div className="grid grid-cols-12 gap-1">
+                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta yang hadir</span>
+                        <span className="col-span-7 sm:col-span-8 font-bold">: {Math.max(0, (roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya) - (beritaAcaraState.jumlahPesertaTidakHadir || 0))} orang</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Poin b */}
+                <div className="flex items-start pt-1">
+                  <span className="font-bold mr-2 shrink-0">b.</span>
+                  <div className="flex-1 space-y-1.5">
+                    <p>
+                      Telah dibuka sampul soal Ujian Sekolah (US) untuk mata pelajaran
+                    </p>
+                    <p className="font-bold text-center underline uppercase py-1 tracking-wide text-zinc-900 dark:text-zinc-100">
+                      {currentSubject?.name || beritaAcaraState.mataPelajaran || 'Bahasa Indonesia'}
+                    </p>
+                    <p>
+                      Di ruang kelas dengan saksi oleh para peserta Ujian Sekolah (US) dan berisi lembar soal{' '}
+                      <span className="font-bold underline px-1">{beritaAcaraState.lembarSoalEksamplar || roomStudents.length}</span> eksamplar,
+                      lembar hasil kerja sebanyak{' '}
+                      <span className="font-bold underline px-1">{beritaAcaraState.lembarHasilKerjaEksamplar || roomStudents.length}</span> eksamplar.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Poin c */}
+                <div className="flex items-start pt-1">
+                  <span className="font-bold mr-2 shrink-0">c.</span>
+                  <div className="flex-1 space-y-1.5">
+                    <p>Catatan selama Ujian Sekolah (US) berlangsung :</p>
+                    <div className="pl-4 space-y-1.5 font-medium">
+                      <p className="border-b border-dotted border-zinc-400 dark:border-zinc-600 pb-0.5">
+                        {beritaAcaraState.catatan1 || 'Pelaksanaan Ujian Sekolah (US) berlangsung dengan tertib, aman, dan lancar.'}
+                      </p>
+                      <p className="border-b border-dotted border-zinc-400 dark:border-zinc-600 pb-0.5">
+                        {beritaAcaraState.catatan2 || 'Seluruh peserta ujian mematuhi tata tertib dan hadir lengkap.'}
+                      </p>
+                      {beritaAcaraState.catatan3 && (
+                        <p className="border-b border-dotted border-zinc-400 dark:border-zinc-600 pb-0.5">
+                          {beritaAcaraState.catatan3}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="pt-2">
+                Berita acara ini di buat dengan sesungguhnya.
               </p>
-              <p className="font-mono text-zinc-500">NIP. {schoolProfile.nipKetuaPanitia}</p>
+            </div>
+
+            {/* Tanda Tangan Sesuai Dokumen Berita Acara PDF */}
+            <div className="pt-6 text-xs border-t border-zinc-200 dark:border-zinc-700">
+              <div className="flex justify-end">
+                <div className="w-full max-w-md space-y-2">
+                  <p className="text-center font-semibold text-zinc-800 dark:text-zinc-200">
+                    Yang membuat berita acara :
+                  </p>
+                  <div className="flex justify-between items-center font-bold px-2 pt-1 text-zinc-900 dark:text-zinc-100">
+                    <span>Pengawas</span>
+                    <span className="pr-12">TTD</span>
+                  </div>
+
+                  {/* 1. Pengawas 1 */}
+                  <div className="pt-3 flex justify-between items-center">
+                    <div className="space-y-0.5">
+                      <div className="flex">
+                        <span className="w-16 text-zinc-500">1. Nama</span>
+                        <span className="font-bold uppercase text-zinc-900 dark:text-zinc-100">
+                          : {roomSupervisors[0]?.nama || beritaAcaraState.pengawas1Nama || '.....................................'}
+                        </span>
+                      </div>
+                      <div className="flex">
+                        <span className="w-16 pl-4 text-zinc-500">NIP</span>
+                        <span className="font-mono text-zinc-700 dark:text-zinc-300">
+                          : {roomSupervisors[0]?.nip || beritaAcaraState.pengawas1Nip || '.....................................'}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-36 text-right pr-6 font-mono text-zinc-400">
+                      .........................
+                    </div>
+                  </div>
+
+                  {/* 2. Pengawas 2 */}
+                  <div className="pt-4 flex justify-between items-center">
+                    <div className="space-y-0.5">
+                      <div className="flex">
+                        <span className="w-16 text-zinc-500">2. Nama</span>
+                        <span className="font-bold uppercase text-zinc-900 dark:text-zinc-100">
+                          : {roomSupervisors[1]?.nama || beritaAcaraState.pengawas2Nama || '.....................................'}
+                        </span>
+                      </div>
+                      <div className="flex">
+                        <span className="w-16 pl-4 text-zinc-500">NIP</span>
+                        <span className="font-mono text-zinc-700 dark:text-zinc-300">
+                          : {roomSupervisors[1]?.nip || beritaAcaraState.pengawas2Nip || '.....................................'}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-36 text-right pr-6 font-mono text-zinc-400">
+                      .........................
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       )}
 
@@ -1643,21 +1961,37 @@ export const ExamToolsView: React.FC = () => {
               </div>
             )}
 
-            {/* Menu Ubah/Edit Data Dokumen Lembar Kerja (Berlaku untuk Semua Dokumen Navigasi Lembar Kerja) */}
+            {/* Menu Ubah/Edit Data Dokumen Lembar Kerja */}
             <button
               type="button"
               onClick={() => {
-                const targetDoc = ['undangan', 'ba-kelulusan', 'hadir-rapat', 'sk-kelulusan'].includes(printDoc)
-                  ? (printDoc as GraduationDocType)
-                  : 'undangan';
-                setGradModalDocType(targetDoc);
-                setIsEditGradModalOpen(true);
+                if (printDoc === 'pengawas') {
+                  setIsEditPengawasOpen(true);
+                } else if (printDoc === 'panitia') {
+                  setIsEditPanitiaOpen(true);
+                } else if (printDoc === 'berita') {
+                  setIsEditBeritaPelaksanaanOpen(true);
+                } else {
+                  const targetDoc = ['undangan', 'ba-kelulusan', 'hadir-rapat', 'sk-kelulusan'].includes(printDoc)
+                    ? (printDoc as GraduationDocType)
+                    : 'undangan';
+                  setGradModalDocType(targetDoc);
+                  setIsEditGradModalOpen(true);
+                }
               }}
               className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-zinc-950 font-bold px-3 py-1.5 text-xs shadow-md transition-all cursor-pointer shrink-0"
-              title="Buka menu lengkap ubah/edit data nomor surat, tanggal rapat, nama guru/panitia, konsideran, atau naskah resmi"
+              title="Buka menu lengkap ubah/edit data dokumen ini"
             >
               <Edit3 className="h-3.5 w-3.5" />
-              <span>Ubah / Edit Data</span>
+              <span>
+                {printDoc === 'pengawas'
+                  ? 'Edit Pengawas TPU VI'
+                  : printDoc === 'panitia'
+                  ? 'Edit Susunan Panitia'
+                  : printDoc === 'berita'
+                  ? 'Edit Berita Acara'
+                  : 'Ubah / Edit Data'}
+              </span>
             </button>
           </div>
         }
@@ -2100,55 +2434,168 @@ export const ExamToolsView: React.FC = () => {
           )}
 
           {/* ========================================================
-              6. PRINTABLE BERITA ACARA
+              6. PRINTABLE BERITA ACARA (SESUAI FILE BERITA ACARA.PDF)
              ======================================================== */}
           {printDoc === 'berita' && (
-            <div className="space-y-6">
+            <div className="space-y-5 text-black">
               <KopSurat schoolProfile={schoolProfile} />
-              <div className="text-center space-y-1">
-                <h3 className="text-base font-extrabold uppercase underline text-black">
-                  BERITA ACARA PELAKSANAAN UJIAN SEKOLAH / UJIAN NASIONAL
+
+              <div className="text-center space-y-0.5 pt-1">
+                <h3 className="text-base font-extrabold uppercase tracking-wide text-black">
+                  BERITA ACARA
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
-                  {schoolProfile.namaSekolah} • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+                <h4 className="text-sm font-extrabold uppercase tracking-wide text-black">
+                  PELAKSANAAN UJIAN SEKOLAH (US)
+                </h4>
+                <h4 className="text-sm font-extrabold uppercase tracking-wide text-black">
+                  TAHUN PELAJARAN {beritaAcaraState.tahunPelajaran || schoolProfile.tahunPelajaran}
+                </h4>
+              </div>
+
+              <div className="pt-3 space-y-3.5 text-xs leading-relaxed text-black">
+                <p>
+                  Pada hari ini <span className="font-bold underline px-1">{beritaAcaraState.hari || '...................'}</span>{' '}
+                  tanggal <span className="font-bold underline px-1">{beritaAcaraState.tanggal || '..........'}</span>{' '}
+                  bulan <span className="font-bold underline px-1">{beritaAcaraState.bulan || '...................'}</span>{' '}
+                  tahun <span className="font-bold underline px-1">{beritaAcaraState.tahun || '...................'}</span>
+                </p>
+
+                <div className="space-y-3">
+                  {/* Poin a */}
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2 shrink-0">a.</span>
+                    <div className="flex-1 space-y-1.5">
+                      <p>
+                        Telah diselenggarakan Ujian Sekolah (US) pada pukul{' '}
+                        <span className="font-mono font-bold underline px-1">{beritaAcaraState.waktuMulai || '..........'}</span> s/d{' '}
+                        <span className="font-mono font-bold underline px-1">{beritaAcaraState.waktuSelesai || '..........'}</span>
+                      </p>
+
+                      <div className="pl-4 space-y-1 text-xs">
+                        <div className="grid grid-cols-12 gap-1">
+                          <span className="col-span-5 sm:col-span-4">Pada Sekolah</span>
+                          <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.padaSekolah || schoolProfile.namaSekolah}</span>
+                        </div>
+                        <div className="grid grid-cols-12 gap-1">
+                          <span className="col-span-5 sm:col-span-4">Ruang</span>
+                          <span className="col-span-7 sm:col-span-8 font-bold">: {selectedRoom || beritaAcaraState.ruang || 'RUANG 1'}</span>
+                        </div>
+                        <div className="grid grid-cols-12 gap-1">
+                          <span className="col-span-5 sm:col-span-4">Jumlah Peserta seharusnya</span>
+                          <span className="col-span-7 sm:col-span-8 font-bold">: {roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya} orang</span>
+                        </div>
+                        <div className="grid grid-cols-12 gap-1">
+                          <span className="col-span-5 sm:col-span-4">Jumlah Peserta yang tidak hadir</span>
+                          <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.jumlahPesertaTidakHadir || 0} orang</span>
+                        </div>
+                        <div className="grid grid-cols-12 gap-1">
+                          <span className="col-span-5 sm:col-span-4">Jumlah Peserta yang hadir</span>
+                          <span className="col-span-7 sm:col-span-8 font-bold">: {Math.max(0, (roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya) - (beritaAcaraState.jumlahPesertaTidakHadir || 0))} orang</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Poin b */}
+                  <div className="flex items-start pt-1">
+                    <span className="font-bold mr-2 shrink-0">b.</span>
+                    <div className="flex-1 space-y-1.5">
+                      <p>
+                        Telah dibuka sampul soal Ujian Sekolah (US) untuk mata pelajaran
+                      </p>
+                      <p className="font-bold text-center underline uppercase py-1 tracking-wide text-black">
+                        {currentSubject?.name || beritaAcaraState.mataPelajaran || 'Bahasa Indonesia'}
+                      </p>
+                      <p>
+                        Di ruang kelas dengan saksi oleh para peserta Ujian Sekolah (US) dan berisi lembar soal{' '}
+                        <span className="font-bold underline px-1">{beritaAcaraState.lembarSoalEksamplar || roomStudents.length}</span> eksamplar,
+                        lembar hasil kerja sebanyak{' '}
+                        <span className="font-bold underline px-1">{beritaAcaraState.lembarHasilKerjaEksamplar || roomStudents.length}</span> eksamplar.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Poin c */}
+                  <div className="flex items-start pt-1">
+                    <span className="font-bold mr-2 shrink-0">c.</span>
+                    <div className="flex-1 space-y-1.5">
+                      <p>Catatan selama Ujian Sekolah (US) berlangsung :</p>
+                      <div className="pl-4 space-y-1.5 font-medium">
+                        <p className="border-b border-dotted border-black pb-0.5">
+                          {beritaAcaraState.catatan1 || 'Pelaksanaan Ujian Sekolah (US) berlangsung dengan tertib, aman, dan lancar.'}
+                        </p>
+                        <p className="border-b border-dotted border-black pb-0.5">
+                          {beritaAcaraState.catatan2 || 'Seluruh peserta ujian mematuhi tata tertib dan hadir lengkap.'}
+                        </p>
+                        {beritaAcaraState.catatan3 && (
+                          <p className="border-b border-dotted border-black pb-0.5">
+                            {beritaAcaraState.catatan3}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="pt-2">
+                  Berita acara ini di buat dengan sesungguhnya.
                 </p>
               </div>
 
-              <div className="space-y-3 text-xs leading-relaxed text-black">
-                <p>
-                  Pada hari ini, <b>Senin</b> tanggal <b>18 Mei 2026</b>, bertempat di <b>SD Negeri 006 Sungai Buluh</b>,
-                  Kecamatan Singingi Hilir, Kabupaten Kuantan Singingi, telah diselenggarakan Ujian Nasional / Sekolah
-                  untuk mata pelajaran sebagaimana tertuang dalam jadwal resmi.
-                </p>
+              {/* Tanda Tangan Sesuai Dokumen Berita Acara PDF */}
+              <div className="pt-8 text-xs break-inside-avoid">
+                <div className="flex justify-end">
+                  <div className="w-full max-w-md space-y-2">
+                    <p className="text-center font-semibold text-black">
+                      Yang membuat berita acara :
+                    </p>
+                    <div className="flex justify-between items-center font-bold px-2 pt-1 text-black">
+                      <span>Pengawas</span>
+                      <span className="pr-12">TTD</span>
+                    </div>
 
-                <div className="rounded border border-black p-3.5 space-y-1.5 font-medium bg-zinc-50">
-                  <div>1. Jumlah Peserta Terdaftar : <b>{students.length} orang</b></div>
-                  <div>2. Jumlah Peserta Hadir : <b>{students.length} orang</b></div>
-                  <div>3. Jumlah Peserta Tidak Hadir : <b>0 orang</b></div>
-                  <div>4. Jumlah Ruangan Digunakan : <b>4 Ruang (Ruang 1 s.d. Ruang 4)</b></div>
-                  <div>5. Keadaan Sampul Soal : <b>Dalam keadaan tersegel dan baik</b></div>
-                  <div>6. Catatan Pelaksanaan : <b>Berjalan tertib, aman, dan lancar tanpa kendala teknis</b></div>
-                </div>
+                    {/* 1. Pengawas 1 */}
+                    <div className="pt-4 flex justify-between items-center">
+                      <div className="space-y-0.5">
+                        <div className="flex">
+                          <span className="w-16">1. Nama</span>
+                          <span className="font-bold uppercase text-black">
+                            : {roomSupervisors[0]?.nama || beritaAcaraState.pengawas1Nama || '.....................................'}
+                          </span>
+                        </div>
+                        <div className="flex">
+                          <span className="w-16 pl-4">NIP</span>
+                          <span className="font-mono text-zinc-800">
+                            : {roomSupervisors[0]?.nip || beritaAcaraState.pengawas1Nip || '.....................................'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-36 text-right pr-6 font-mono text-zinc-500">
+                        .........................
+                      </div>
+                    </div>
 
-                <p>
-                  Demikian Berita Acara ini dibuat dengan sesungguhnya untuk dapat dipergunakan sebagaimana mestinya.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 pt-8 text-xs break-inside-avoid">
-                <div>
-                  <p className="font-semibold text-zinc-800">Mengetahui,</p>
-                  <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
-                  <div className="h-16"></div>
-                  <p className="font-bold underline text-black">{schoolProfile.kepalaSekolah}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, 18 Mei 2026</p>
-                  <p className="font-bold text-black">Ketua Panitia Ujian,</p>
-                  <div className="h-16"></div>
-                  <p className="font-bold underline text-black">{schoolProfile.ketuaPanitia}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKetuaPanitia}</p>
+                    {/* 2. Pengawas 2 */}
+                    <div className="pt-5 flex justify-between items-center">
+                      <div className="space-y-0.5">
+                        <div className="flex">
+                          <span className="w-16">2. Nama</span>
+                          <span className="font-bold uppercase text-black">
+                            : {roomSupervisors[1]?.nama || beritaAcaraState.pengawas2Nama || '.....................................'}
+                          </span>
+                        </div>
+                        <div className="flex">
+                          <span className="w-16 pl-4">NIP</span>
+                          <span className="font-mono text-zinc-800">
+                            : {roomSupervisors[1]?.nip || beritaAcaraState.pengawas2Nip || '.....................................'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-36 text-right pr-6 font-mono text-zinc-500">
+                        .........................
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2196,10 +2643,10 @@ export const ExamToolsView: React.FC = () => {
 
               <div className="grid grid-cols-2 pt-6 text-xs break-inside-avoid">
                 <div>
-                  <p className="font-semibold text-zinc-800">Ketua TPU VI Singingi Hilir,</p>
+                  <p className="font-semibold text-zinc-800">{tpuLeader.jabatanTpu},</p>
                   <div className="h-16"></div>
-                  <p className="font-bold underline text-black">SUPRIADI, M.Pd.</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. 19720412 199603 1 003</p>
+                  <p className="font-bold underline text-black">{tpuLeader.namaKetuaTpu}</p>
+                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {tpuLeader.nipKetuaTpu}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
@@ -2223,7 +2670,7 @@ export const ExamToolsView: React.FC = () => {
                   SUSUNAN PANITIA UJIAN SEKOLAH / UJIAN NASIONAL
                 </h3>
                 <p className="text-xs font-bold text-zinc-700">
-                  {schoolProfile.namaSekolah} • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+                  {schoolProfile.namaSekolah} • Berdasarkan {panitiaMeta.keteranganSk} No. {panitiaMeta.nomorSk}
                 </p>
               </div>
 
@@ -2254,11 +2701,15 @@ export const ExamToolsView: React.FC = () => {
                 <div>
                   <p className="font-semibold text-zinc-800">Ketua Panitia Ujian,</p>
                   <div className="h-16"></div>
-                  <p className="font-bold underline text-black">{schoolProfile.ketuaPanitia}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKetuaPanitia}</p>
+                  <p className="font-bold underline text-black">
+                    {committee.find((c) => c.jabatan.toLowerCase().includes('ketua'))?.nama || schoolProfile.ketuaPanitia}
+                  </p>
+                  <p className="pt-0.5 text-zinc-700 font-normal">
+                    NIP. {committee.find((c) => c.jabatan.toLowerCase().includes('ketua'))?.nip || schoolProfile.nipKetuaPanitia}
+                  </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
+                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {panitiaMeta.tanggalSk || schoolProfile.tanggalKelulusan}</p>
                   <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{schoolProfile.kepalaSekolah}</p>
@@ -2755,6 +3206,53 @@ export const ExamToolsView: React.FC = () => {
             );
           }
         }}
+        showToast={showToast}
+      />
+
+      {/* Modal Edit Pengawas TPU VI */}
+      <EditPengawasModal
+        isOpen={isEditPengawasOpen}
+        onClose={() => setIsEditPengawasOpen(false)}
+        supervisors={supervisors}
+        onSave={(updatedList) => {
+          setSupervisorsList(updatedList);
+          setLastUpdateTrigger(Date.now());
+        }}
+        tpuLeader={tpuLeader}
+        onSaveLeader={handleSaveTpuLeader}
+        onResetDefault={resetSupervisorsToDefault}
+        showToast={showToast}
+      />
+
+      {/* Modal Edit Susunan Panitia */}
+      <EditPanitiaModal
+        isOpen={isEditPanitiaOpen}
+        onClose={() => setIsEditPanitiaOpen(false)}
+        committee={committee}
+        onSave={(updatedList) => {
+          setCommitteeList(updatedList);
+          setLastUpdateTrigger(Date.now());
+        }}
+        panitiaMeta={panitiaMeta}
+        onSaveMeta={handleSavePanitiaMeta}
+        onResetDefault={resetCommitteeToDefault}
+        showToast={showToast}
+      />
+
+      {/* Modal Edit Berita Acara Pelaksanaan Ujian */}
+      <EditBeritaAcaraPelaksanaanModal
+        isOpen={isEditBeritaPelaksanaanOpen}
+        onClose={() => setIsEditBeritaPelaksanaanOpen(false)}
+        data={beritaAcaraState}
+        onSave={(updated) => {
+          handleSaveBeritaAcaraState(updated);
+          setLastUpdateTrigger(Date.now());
+        }}
+        currentRoom={selectedRoom}
+        roomStudentsCount={roomStudents.length}
+        schoolName={schoolProfile.namaSekolah}
+        roomSupervisors={roomSupervisors}
+        subjectsList={subjects}
         showToast={showToast}
       />
     </div>
