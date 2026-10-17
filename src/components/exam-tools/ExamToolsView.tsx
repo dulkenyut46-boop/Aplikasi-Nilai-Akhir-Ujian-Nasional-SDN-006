@@ -1789,8 +1789,8 @@ export const ExamToolsView: React.FC = () => {
 
             {/* Tanda Tangan Sesuai Dokumen Berita Acara PDF */}
             <div className="pt-6 text-xs border-t border-zinc-200 dark:border-zinc-700">
-              <div className="flex justify-end">
-                <div className="w-full max-w-md space-y-2">
+              <div className="flex justify-center">
+                <div className="w-full max-w-md mx-auto space-y-2">
                   <p className="text-center font-semibold text-zinc-800 dark:text-zinc-200">
                     Yang membuat berita acara :
                   </p>
@@ -2544,8 +2544,8 @@ export const ExamToolsView: React.FC = () => {
 
               {/* Tanda Tangan Sesuai Dokumen Berita Acara PDF */}
               <div className="pt-8 text-xs break-inside-avoid">
-                <div className="flex justify-end">
-                  <div className="w-full max-w-md space-y-2">
+                <div className="flex justify-center">
+                  <div className="w-full max-w-md mx-auto space-y-2">
                     <p className="text-center font-semibold text-black">
                       Yang membuat berita acara :
                     </p>
