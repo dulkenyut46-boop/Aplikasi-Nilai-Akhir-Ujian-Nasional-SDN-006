@@ -58,6 +58,7 @@ export const DiplomaManagementView: React.FC = () => {
   );
   const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
   const [printSelectedDoc, setPrintSelectedDoc] = useState<TabKey>('skhu');
+  const [skPrintPart, setSkPrintPart] = useState<'all' | 'naskah' | 'lampiran'>('all');
 
   // Edit Modals and Metadata States
   const [isEditSerahTerimaOpen, setIsEditSerahTerimaOpen] = useState(false);
@@ -1046,6 +1047,22 @@ export const DiplomaManagementView: React.FC = () => {
               <option value="perpisahan">👥 Daftar Hadir Perpisahan</option>
             </select>
 
+            {/* Pilihan Bagian Cetak bila Dokumen SK Kelulusan dipilih */}
+            {printSelectedDoc === 'sk-kelulusan' && (
+              <div className="flex items-center gap-1.5 text-xs">
+                <span className="text-zinc-400 font-semibold hidden sm:inline">Bagian Cetak:</span>
+                <select
+                  value={skPrintPart}
+                  onChange={(e) => setSkPrintPart(e.target.value as any)}
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                >
+                  <option value="all">📑 Lengkap (Naskah Pokok + Lampiran Rekap)</option>
+                  <option value="naskah">📜 Naskah Pokok SK Saja (1 Halaman)</option>
+                  <option value="lampiran">📊 Lampiran Rekap Nilai Saja</option>
+                </select>
+              </div>
+            )}
+
             {/* Pilihan Siswa bila Dokumen Transkrip Nilai dipilih */}
             {printSelectedDoc === 'skhu' && (
               <div className="flex items-center gap-1.5 text-xs">
@@ -1205,138 +1222,158 @@ export const DiplomaManagementView: React.FC = () => {
           {/* 2. PRINTABLE SK KELULUSAN & LAMPIRAN */}
           {printSelectedDoc === 'sk-kelulusan' && (
             <div className="space-y-5 font-serif text-black leading-relaxed">
-              <KopSurat schoolProfile={schoolProfile} />
+              {/* Bagian Naskah Pokok SK Kelulusan (Ditampilkan jika pilihan 'all' atau 'naskah') */}
+              {skPrintPart !== 'lampiran' && (
+                <div className="space-y-4">
+                  <KopSurat schoolProfile={schoolProfile} />
 
-              <div className="text-center space-y-1 pt-1 pb-1 leading-snug">
-                <h3 className="text-sm font-extrabold uppercase tracking-widest">K E P U T U S A N</h3>
-                <h4 className="text-xs font-bold uppercase">KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH</h4>
-                <p className="font-mono font-bold text-xs">NOMOR : 422/KPTS/SDN-006/SB/VI/2026/041</p>
-                <div className="pt-1.5">
-                  <p className="text-xs font-bold uppercase tracking-widest">T E N T A N G</p>
-                  <p className="text-xs font-extrabold uppercase max-w-xl mx-auto">
-                    PENETAPAN KELULUSAN PESERTA DIDIK KELAS VI TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
-                  </p>
-                </div>
-                <div className="pt-1.5">
-                  <p className="text-xs font-bold uppercase tracking-wide">DENGAN RAHMAT TUHAN YANG MAHA ESA</p>
-                  <p className="text-xs font-bold uppercase">KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH,</p>
-                </div>
-              </div>
-
-              <div className="space-y-2 text-justify text-xs">
-                <div className="flex items-start">
-                  <div className="w-28 shrink-0 font-bold">Menimbang</div>
-                  <div className="w-4 shrink-0 font-bold">:</div>
-                  <div className="flex-1 space-y-1">
-                    <div className="flex items-start">
-                      <span className="w-5 shrink-0">a.</span>
-                      <span className="flex-1">
-                        Bahwa dalam rangka mengakhiri kegiatan proses pembelajaran bagi peserta didik Kelas VI Tahun Pelajaran {schoolProfile.tahunPelajaran}, perlu menetapkan kelulusan peserta didik;
-                      </span>
+                  <div className="text-center space-y-1 pt-1 pb-1 leading-snug">
+                    <h3 className="text-sm font-extrabold uppercase tracking-widest">K E P U T U S A N</h3>
+                    <h4 className="text-xs font-bold uppercase">KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH</h4>
+                    <p className="font-mono font-bold text-xs">NOMOR : 422/KPTS/SDN-006/SB/VI/2026/041</p>
+                    <div className="pt-1.5">
+                      <p className="text-xs font-bold uppercase tracking-widest">T E N T A N G</p>
+                      <p className="text-xs font-extrabold uppercase max-w-xl mx-auto">
+                        PENETAPAN KELULUSAN PESERTA DIDIK KELAS VI TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+                      </p>
                     </div>
-                    <div className="flex items-start">
-                      <span className="w-5 shrink-0">b.</span>
-                      <span className="flex-1">
-                        Bahwa peserta didik telah mengikuti seluruh proses pembelajaran dan Ujian Sekolah serta memenuhi kriteria kelulusan yang telah ditetapkan;
-                      </span>
-                    </div>
-                    <div className="flex items-start">
-                      <span className="w-5 shrink-0">c.</span>
-                      <span className="flex-1">
-                        Bahwa berdasarkan pertimbangan sebagaimana dimaksud pada huruf a dan huruf b, perlu menetapkan Keputusan Kepala Sekolah tentang Penetapan Kelulusan.
-                      </span>
+                    <div className="pt-1.5">
+                      <p className="text-xs font-bold uppercase tracking-wide">DENGAN RAHMAT TUHAN YANG MAHA ESA</p>
+                      <p className="text-xs font-bold uppercase">KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH,</p>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-start">
-                  <div className="w-28 shrink-0 font-bold">Mengingat</div>
-                  <div className="w-4 shrink-0 font-bold">:</div>
-                  <div className="flex-1 space-y-1">
-                    <div className="flex items-start"><span className="w-5 shrink-0">1.</span><span className="flex-1">UU No. 20 Tahun 2003 tentang Sistem Pendidikan Nasional;</span></div>
-                    <div className="flex items-start"><span className="w-5 shrink-0">2.</span><span className="flex-1">PP No. 4 Tahun 2022 tentang Standar Nasional Pendidikan;</span></div>
-                    <div className="flex items-start"><span className="w-5 shrink-0">3.</span><span className="flex-1">Permendikbudristek No. 21 Tahun 2022 tentang Standar Penilaian Pendidikan.</span></div>
+                  <div className="space-y-2 text-justify text-xs">
+                    <div className="flex items-start">
+                      <div className="w-28 shrink-0 font-bold">Menimbang</div>
+                      <div className="w-4 shrink-0 font-bold">:</div>
+                      <div className="flex-1 space-y-1">
+                        <div className="flex items-start">
+                          <span className="w-5 shrink-0">a.</span>
+                          <span className="flex-1">
+                            Bahwa dalam rangka mengakhiri kegiatan proses pembelajaran bagi peserta didik Kelas VI Tahun Pelajaran {schoolProfile.tahunPelajaran}, perlu menetapkan kelulusan peserta didik;
+                          </span>
+                        </div>
+                        <div className="flex items-start">
+                          <span className="w-5 shrink-0">b.</span>
+                          <span className="flex-1">
+                            Bahwa peserta didik telah mengikuti seluruh proses pembelajaran dan Ujian Sekolah serta memenuhi kriteria kelulusan yang telah ditetapkan;
+                          </span>
+                        </div>
+                        <div className="flex items-start">
+                          <span className="w-5 shrink-0">c.</span>
+                          <span className="flex-1">
+                            Bahwa berdasarkan pertimbangan sebagaimana dimaksud pada huruf a dan huruf b, perlu menetapkan Keputusan Kepala Sekolah tentang Penetapan Kelulusan.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start">
+                      <div className="w-28 shrink-0 font-bold">Mengingat</div>
+                      <div className="w-4 shrink-0 font-bold">:</div>
+                      <div className="flex-1 space-y-1">
+                        <div className="flex items-start"><span className="w-5 shrink-0">1.</span><span className="flex-1">UU No. 20 Tahun 2003 tentang Sistem Pendidikan Nasional;</span></div>
+                        <div className="flex items-start"><span className="w-5 shrink-0">2.</span><span className="flex-1">PP No. 4 Tahun 2022 tentang Standar Nasional Pendidikan;</span></div>
+                        <div className="flex items-start"><span className="w-5 shrink-0">3.</span><span className="flex-1">Permendikbudristek No. 21 Tahun 2022 tentang Standar Penilaian Pendidikan.</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-center font-bold pt-2 tracking-widest text-xs">M E M U T U S K A N :</div>
+
+                  <div className="space-y-1.5 text-xs text-justify">
+                    <div className="flex items-start">
+                      <div className="w-28 shrink-0 font-bold">Menetapkan</div>
+                      <div className="w-4 shrink-0 font-bold">:</div>
+                      <div className="flex-1 font-bold uppercase">
+                        KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH TENTANG PENETAPAN KELULUSAN PESERTA DIDIK KELAS VI TAHUN PELAJARAN {schoolProfile.tahunPelajaran}.
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-28 shrink-0 font-bold">KESATU</div>
+                      <div className="w-4 shrink-0 font-bold">:</div>
+                      <div className="flex-1">
+                        Nama-nama peserta didik Kelas VI Tahun Pelajaran {schoolProfile.tahunPelajaran} yang berjumlah {students.length} orang dinyatakan <b>LULUS (100%)</b> dari SD Negeri 006 Sungai Buluh;
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-28 shrink-0 font-bold">KEDUA</div>
+                      <div className="w-4 shrink-0 font-bold">:</div>
+                      <div className="flex-1">
+                        Peserta didik yang dinyatakan lulus berhak memperoleh Surat Keterangan Lulus (SKL) / Transkrip Nilai dan Ijazah;
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Titimangsa & Penandatangan Kepala Sekolah (Naskah Pokok SK) */}
+                  <div className="flex justify-end pt-4 break-inside-avoid print:break-inside-avoid text-xs">
+                    <div className="w-64 space-y-0.5 text-right">
+                      <div>Ditetapkan di : {schoolProfile.tempatCetak || 'Sungai Buluh'}</div>
+                      <div>Pada Tanggal : {schoolProfile.tanggalKelulusan || '30 Mei 2026'}</div>
+                      <div className="pt-1 font-bold">Kepala SD Negeri 006 Sungai Buluh,</div>
+                      <div className="h-16"></div>
+                      <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</div>
+                      <div className="pt-0.5 font-mono text-zinc-900 font-normal">NIP. {schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              <div className="text-center font-bold pt-2 tracking-widest text-xs">M E M U T U S K A N :</div>
+              {/* Bagian Lampiran Rekap Nilai (Ditampilkan jika pilihan 'all' atau 'lampiran') */}
+              {skPrintPart !== 'naskah' && (
+                <div className={`space-y-3 font-sans ${skPrintPart === 'all' ? 'pt-6 border-t-2 border-black mt-6 break-before-page' : ''}`}>
+                  {skPrintPart === 'lampiran' && <KopSurat schoolProfile={schoolProfile} />}
+                  <div className="text-center space-y-0.5">
+                    <p className="text-[11px] font-bold uppercase">LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH</p>
+                    <p className="font-mono text-[10px]">NOMOR : 422/KPTS/SDN-006/SB/VI/2026/041</p>
+                    <p className="text-xs font-bold uppercase">DAFTAR PESERTA DIDIK YANG DINYATAKAN LULUS & REKAP NILAI AKHIR</p>
+                  </div>
+                  <table className="w-full text-left text-[11px] border border-black border-collapse">
+                    <thead>
+                      <tr className="bg-zinc-100 font-bold border-b border-black">
+                        <th className="p-1 w-8 text-center border-r border-black">No</th>
+                        <th className="p-1 border-r border-black">No. Peserta</th>
+                        <th className="p-1 border-r border-black">NISN</th>
+                        <th className="p-1 border-r border-black">Nama Lengkap</th>
+                        <th className="p-1 text-center w-8 border-r border-black">L/P</th>
+                        <th className="p-1 text-center w-16 border-r border-black">Total NA</th>
+                        <th className="p-1 text-center w-16 border-r border-black">Rata NA</th>
+                        <th className="p-1 text-center w-16">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {students.map((s, idx) => {
+                        const totalNA = calculateStudentTotalFinalScore(s, schoolProfile, subjects);
+                        const avgNA = calculateStudentOverallFinalScore(s, schoolProfile, subjects);
+                        return (
+                          <tr key={s.id} className="border-b border-zinc-300 break-inside-avoid">
+                            <td className="p-1 text-center font-bold border-r border-black">{idx + 1}</td>
+                            <td className="p-1 font-mono border-r border-black">{s.noPeserta}</td>
+                            <td className="p-1 font-mono border-r border-black">{s.nisn}</td>
+                            <td className="p-1 font-bold uppercase border-r border-black">{s.nama}</td>
+                            <td className="p-1 text-center border-r border-black">{s.jenisKelamin}</td>
+                            <td className="p-1 text-center font-mono font-bold border-r border-black">{totalNA.toFixed(1)}</td>
+                            <td className="p-1 text-center font-mono font-bold border-r border-black">{avgNA.toFixed(2)}</td>
+                            <td className="p-1 text-center font-bold">LULUS</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
 
-              <div className="space-y-1.5 text-xs text-justify">
-                <div className="flex items-start">
-                  <div className="w-28 shrink-0 font-bold">Menetapkan</div>
-                  <div className="w-4 shrink-0 font-bold">:</div>
-                  <div className="flex-1 font-bold uppercase">
-                    KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH TENTANG PENETAPAN KELULUSAN PESERTA DIDIK KELAS VI TAHUN PELAJARAN {schoolProfile.tahunPelajaran}.
+                  {/* Titimangsa & Penandatangan Kepala Sekolah pada Lampiran Rekap Nilai */}
+                  <div className="flex justify-end pt-6 break-inside-avoid print:break-inside-avoid text-xs">
+                    <div className="w-64 space-y-1 text-center">
+                      <div>Sungai Buluh, {schoolProfile.tanggalKelulusan || '30 Mei 2026'}</div>
+                      <div className="font-bold">Kepala SD Negeri 006 Sungai Buluh</div>
+                      <div className="h-16"></div>
+                      <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</div>
+                      <div className="pt-0.5 font-mono text-zinc-900 font-normal">NIP. {schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}</div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="w-28 shrink-0 font-bold">KESATU</div>
-                  <div className="w-4 shrink-0 font-bold">:</div>
-                  <div className="flex-1">
-                    Nama-nama peserta didik Kelas VI Tahun Pelajaran {schoolProfile.tahunPelajaran} yang berjumlah {students.length} orang dinyatakan <b>LULUS (100%)</b> dari SD Negeri 006 Sungai Buluh;
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-28 shrink-0 font-bold">KEDUA</div>
-                  <div className="w-4 shrink-0 font-bold">:</div>
-                  <div className="flex-1">
-                    Peserta didik yang dinyatakan lulus berhak memperoleh Surat Keterangan Lulus (SKL) / Transkrip Nilai dan Ijazah;
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-end pt-4 break-inside-avoid text-xs">
-                <div className="w-64 space-y-0.5">
-                  <div>Ditetapkan di : {schoolProfile.tempatCetak || 'Sungai Buluh'}</div>
-                  <div>Pada Tanggal : {schoolProfile.tanggalKelulusan}</div>
-                  <div className="pt-1 font-bold">Kepala SD Negeri 006 Sungai Buluh,</div>
-                  <div className="h-16"></div>
-                  <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                  <div>NIP. {schoolProfile.nipKepalaSekolah}</div>
-                </div>
-              </div>
-
-              {/* Lampiran Rekap Nilai */}
-              <div className="pt-6 border-t-2 border-black mt-6 space-y-3 break-before-page font-sans">
-                <div className="text-center space-y-0.5">
-                  <p className="text-[11px] font-bold uppercase">LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH</p>
-                  <p className="font-mono text-[10px]">NOMOR : 422/KPTS/SDN-006/SB/VI/2026/041</p>
-                  <p className="text-xs font-bold uppercase">DAFTAR PESERTA DIDIK YANG DINYATAKAN LULUS & REKAP NILAI AKHIR</p>
-                </div>
-                <table className="w-full text-left text-[11px] border border-black border-collapse">
-                  <thead>
-                    <tr className="bg-zinc-100 font-bold border-b border-black">
-                      <th className="p-1 w-8 text-center border-r border-black">No</th>
-                      <th className="p-1 border-r border-black">No. Peserta</th>
-                      <th className="p-1 border-r border-black">NISN</th>
-                      <th className="p-1 border-r border-black">Nama Lengkap</th>
-                      <th className="p-1 text-center w-8 border-r border-black">L/P</th>
-                      <th className="p-1 text-center w-16 border-r border-black">Total NA</th>
-                      <th className="p-1 text-center w-16 border-r border-black">Rata NA</th>
-                      <th className="p-1 text-center w-16">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {students.map((s, idx) => {
-                      const totalNA = calculateStudentTotalFinalScore(s, schoolProfile, subjects);
-                      const avgNA = calculateStudentOverallFinalScore(s, schoolProfile, subjects);
-                      return (
-                        <tr key={s.id} className="border-b border-zinc-300 break-inside-avoid">
-                          <td className="p-1 text-center font-bold border-r border-black">{idx + 1}</td>
-                          <td className="p-1 font-mono border-r border-black">{s.noPeserta}</td>
-                          <td className="p-1 font-mono border-r border-black">{s.nisn}</td>
-                          <td className="p-1 font-bold uppercase border-r border-black">{s.nama}</td>
-                          <td className="p-1 text-center border-r border-black">{s.jenisKelamin}</td>
-                          <td className="p-1 text-center font-mono font-bold border-r border-black">{totalNA.toFixed(1)}</td>
-                          <td className="p-1 text-center font-mono font-bold border-r border-black">{avgNA.toFixed(2)}</td>
-                          <td className="p-1 text-center font-bold">LULUS</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+              )}
             </div>
           )}
 

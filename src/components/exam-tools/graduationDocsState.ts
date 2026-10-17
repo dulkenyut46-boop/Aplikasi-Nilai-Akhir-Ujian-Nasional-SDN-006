@@ -233,6 +233,10 @@ export interface SKKelulusanState {
   padaTanggal: string;
   showTembusan: boolean;
   showLampiran: boolean;
+  showTandaTangan?: boolean;
+  namaKepalaSekolah?: string;
+  nipKepalaSekolah?: string;
+  jabatanKepalaSekolah?: string;
   fontFamily: DocFontFamily;
   fontSize: DocFontSize;
   lineSpacing: DocLineSpacing;
@@ -280,6 +284,10 @@ export const DEFAULT_SK_KELULUSAN: SKKelulusanState = {
   padaTanggal: '30 Mei 2026',
   showTembusan: true,
   showLampiran: false,
+  showTandaTangan: true,
+  namaKepalaSekolah: 'WINARNI, S.Pd.SD',
+  nipKepalaSekolah: '19790301 200801 2 015',
+  jabatanKepalaSekolah: 'Kepala SD Negeri 006 Sungai Buluh',
   fontFamily: 'times',
   fontSize: '12pt',
   lineSpacing: '1.35',

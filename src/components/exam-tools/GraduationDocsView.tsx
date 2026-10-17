@@ -520,10 +520,10 @@ export const GraduationDocsView: React.FC<Props> = ({
       <div style="margin-top: 24pt; float: right; width: 280px; text-align: left; font-size: ${skState.fontSize};">
         <p style="margin: 0; text-indent: 0;">Ditetapkan di : ${skState.ditetapkanDi}</p>
         <p style="margin: 0; text-indent: 0;">Pada tanggal  : ${skState.padaTanggal}</p>
-        <p style="margin: 6pt 0 0 0; font-weight: bold; text-indent: 0;">Kepala SD Negeri 006 Sungai Buluh,</p>
+        <p style="margin: 6pt 0 0 0; font-weight: bold; text-indent: 0;">${skState.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh'},</p>
         <div style="height: 55pt;"></div>
-        <p style="margin: 0; font-weight: bold; text-decoration: underline; text-transform: uppercase; text-indent: 0;">${schoolProfile.kepalaSekolah}</p>
-        <p style="margin: 0; text-indent: 0;">NIP. ${schoolProfile.nipKepalaSekolah}</p>
+        <p style="margin: 0; font-weight: bold; text-decoration: underline; text-transform: uppercase; text-indent: 0;">${skState.namaKepalaSekolah || schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</p>
+        <p style="margin: 0; text-indent: 0;">NIP. ${skState.nipKepalaSekolah || schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}</p>
       </div>
       <div style="clear: both;"></div>
 
@@ -2112,10 +2112,10 @@ export const GraduationDocsView: React.FC<Props> = ({
                     <span className="col-span-2">Pada Tanggal</span>
                     <span className="col-span-3">: {skState.padaTanggal}</span>
                   </div>
-                  <div className="pt-2 font-bold">Kepala SD Negeri 006 Sungai Buluh,</div>
+                  <div className="pt-2 font-bold">{skState.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh,'}</div>
                   <div className="h-20"></div>
-                  <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                  <div className="pt-0.5 text-zinc-900 tracking-normal font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
+                  <div className="font-bold underline uppercase">{skState.namaKepalaSekolah || schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</div>
+                  <div className="pt-0.5 font-mono text-zinc-900 tracking-normal font-normal">NIP. {skState.nipKepalaSekolah || schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}</div>
                 </div>
               </div>
 
@@ -2185,13 +2185,13 @@ export const GraduationDocsView: React.FC<Props> = ({
 
                   {/* Pengesahan Titimangsa Lampiran */}
                   <div className="flex justify-end pt-4 break-inside-avoid">
-                    <div className="w-64 space-y-1 text-xs">
+                    <div className="w-64 space-y-1 text-xs text-center">
                       <div>Sungai Buluh, {skState.padaTanggal}</div>
-                      <div className="font-bold">Kepala SD Negeri 006 Sungai Buluh,</div>
+                      <div className="font-bold">{skState.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh'}</div>
                       <div className="h-16"></div>
-                      <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                      <div className="pt-0.5 text-zinc-900 tracking-normal font-normal">
-                        NIP. {schoolProfile.nipKepalaSekolah}
+                      <div className="font-bold underline uppercase">{skState.namaKepalaSekolah || schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</div>
+                      <div className="pt-0.5 font-mono text-zinc-900 tracking-normal font-normal">
+                        NIP. {skState.nipKepalaSekolah || schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}
                       </div>
                     </div>
                   </div>

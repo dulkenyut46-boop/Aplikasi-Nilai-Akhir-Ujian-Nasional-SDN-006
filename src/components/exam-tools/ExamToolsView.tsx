@@ -6,7 +6,11 @@ import { Badge } from '../common/Badge';
 import { KopSurat } from '../common/KopSurat';
 import { PrintPreviewModal } from '../common/PrintPreviewModal';
 import { getPresetLogoDataUrl } from '../../utils/kopSuratLogos';
-import { getGradePredicate } from '../../constants/subjects';
+import {
+  getGradePredicate,
+  calculateStudentTotalFinalScore,
+  calculateStudentOverallFinalScore,
+} from '../../constants/subjects';
 import {
   Layers,
   Printer,
@@ -3150,22 +3154,28 @@ export const ExamToolsView: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-end pt-8 break-inside-avoid">
-                  <div className="w-72 space-y-1 text-xs sm:text-[12px]">
-                    <div className="grid grid-cols-5">
-                      <span className="col-span-2">Ditetapkan di</span>
-                      <span className="col-span-3">: {currentSK.ditetapkanDi}</span>
+                {currentSK.showTandaTangan !== false && (
+                  <div className="flex justify-end pt-8 break-inside-avoid print:break-inside-avoid">
+                    <div className="w-72 space-y-1 text-xs sm:text-[12px]">
+                      <div className="grid grid-cols-5">
+                        <span className="col-span-2">Ditetapkan di</span>
+                        <span className="col-span-3">: {currentSK.ditetapkanDi || schoolProfile.tempatCetak || 'Sungai Buluh'}</span>
+                      </div>
+                      <div className="grid grid-cols-5">
+                        <span className="col-span-2">Pada Tanggal</span>
+                        <span className="col-span-3">: {currentSK.padaTanggal || schoolProfile.tanggalKelulusan || '30 Mei 2026'}</span>
+                      </div>
+                      <div className="pt-2 font-bold">{currentSK.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh,'}</div>
+                      <div className="h-20"></div>
+                      <div className="font-bold underline uppercase">
+                        {currentSK.namaKepalaSekolah || schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}
+                      </div>
+                      <div className="pt-0.5 font-mono text-zinc-900 font-normal">
+                        NIP. {currentSK.nipKepalaSekolah || schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}
+                      </div>
                     </div>
-                    <div className="grid grid-cols-5">
-                      <span className="col-span-2">Pada Tanggal</span>
-                      <span className="col-span-3">: {currentSK.padaTanggal}</span>
-                    </div>
-                    <div className="pt-2 font-bold">Kepala SD Negeri 006 Sungai Buluh,</div>
-                    <div className="h-20"></div>
-                    <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                    <div className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
                   </div>
-                </div>
+                )}
 
                 {currentSK.showTembusan && (
                   <div className="pt-6 border-t border-zinc-300 mt-6 text-[11px] break-inside-avoid">
@@ -3177,6 +3187,71 @@ export const ExamToolsView: React.FC = () => {
                       <li>Yang bersangkutan untuk diketahui;</li>
                       <li>Arsip Sekolah.</li>
                     </ol>
+                  </div>
+                )}
+
+                {/* Lampiran Rekap Nilai jika diaktifkan */}
+                {currentSK.showLampiran && (
+                  <div className="pt-8 border-t-2 border-black mt-8 space-y-3 break-before-page font-sans">
+                    <div className="text-center space-y-1">
+                      <p className="text-[11px] font-bold uppercase">
+                        LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH
+                      </p>
+                      <p className="font-mono text-[10px]">NOMOR : {currentSK.nomor}</p>
+                      <p className="text-xs font-extrabold uppercase">
+                        DAFTAR PESERTA DIDIK KELAS VI YANG DINYATAKAN LULUS & REKAPITULASI NILAI AKHIR
+                      </p>
+                      <p className="text-[10px] text-zinc-600">
+                        Tahun Pelajaran {schoolProfile.tahunPelajaran} • Bobot: {schoolProfile.bobotRapor}% Rata Rapor + {schoolProfile.bobotUS}% Ujian Sekolah • KKM: {schoolProfile.kkmKelulusan}
+                      </p>
+                    </div>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-[11px] border border-black border-collapse">
+                        <thead>
+                          <tr className="bg-zinc-100 font-bold border-b border-black">
+                            <th className="p-1.5 w-8 text-center border-r border-black">No</th>
+                            <th className="p-1.5 min-w-[100px] border-r border-black">No. Peserta</th>
+                            <th className="p-1.5 min-w-[80px] border-r border-black">NISN</th>
+                            <th className="p-1.5 min-w-[170px] border-r border-black">Nama Lengkap</th>
+                            <th className="p-1.5 text-center w-8 border-r border-black">L/P</th>
+                            <th className="p-1.5 text-center w-16 border-r border-black">Total NA</th>
+                            <th className="p-1.5 text-center w-16 border-r border-black">Rata NA</th>
+                            <th className="p-1.5 text-center w-16">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {students.map((s, idx) => {
+                            const totalNA = calculateStudentTotalFinalScore(s, schoolProfile, subjects);
+                            const avgNA = calculateStudentOverallFinalScore(s, schoolProfile, subjects);
+                            return (
+                              <tr key={s.id} className="border-b border-zinc-300 break-inside-avoid">
+                                <td className="p-1 text-center font-bold border-r border-black">{idx + 1}</td>
+                                <td className="p-1 font-mono border-r border-black">{s.noPeserta}</td>
+                                <td className="p-1 font-mono border-r border-black">{s.nisn}</td>
+                                <td className="p-1 font-bold uppercase border-r border-black">{s.nama}</td>
+                                <td className="p-1 text-center border-r border-black">{s.jenisKelamin}</td>
+                                <td className="p-1 text-center font-mono font-bold border-r border-black">{totalNA.toFixed(1)}</td>
+                                <td className="p-1 text-center font-mono font-bold text-emerald-800 border-r border-black">{avgNA.toFixed(2)}</td>
+                                <td className="p-1 text-center font-bold text-emerald-800">LULUS</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Pengesahan Titimangsa & Penandatangan Kepala Sekolah pada Lampiran */}
+                    <div className="flex justify-end pt-6 break-inside-avoid print:break-inside-avoid text-xs">
+                      <div className="w-64 space-y-1 text-center">
+                        <div>Sungai Buluh, {currentSK.padaTanggal || schoolProfile.tanggalKelulusan || '30 Mei 2026'}</div>
+                        <div className="font-bold">{currentSK.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh'}</div>
+                        <div className="h-16"></div>
+                        <div className="font-bold underline uppercase">{currentSK.namaKepalaSekolah || schoolProfile.kepalaSekolah || 'WINARNI, S.Pd.SD'}</div>
+                        <div className="pt-0.5 font-mono text-zinc-900 tracking-normal font-normal">
+                          NIP. {currentSK.nipKepalaSekolah || schoolProfile.nipKepalaSekolah || '19790301 200801 2 015'}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

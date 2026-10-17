@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { SUBJECT_LIST, calculateStudentOverallFinalScore, getGradePredicate, calculateSubjectFinalScore } from '../../constants/subjects';
+import { calculateStudentOverallFinalScore, getGradePredicate } from '../../constants/subjects';
 import { Badge } from '../common/Badge';
 import {
   Users,
@@ -8,15 +8,12 @@ import {
   CheckCircle2,
   TrendingUp,
   FileText,
-  School,
   Printer,
-  ChevronRight,
   Sparkles,
-  BarChart3,
-  Calendar,
-  Layers,
   ArrowUpRight,
 } from 'lucide-react';
+import { ExamScoreBarChart } from './ExamScoreBarChart';
+import { ExamScorePieChart } from './ExamScorePieChart';
 
 export const DashboardView: React.FC = () => {
   const { students, schoolProfile, setActiveTab, setSelectedStudentForSKHU } = useApp();
@@ -47,38 +44,10 @@ export const DashboardView: React.FC = () => {
       ? Math.min(...studentScores.map((s) => s.overallScore)).toFixed(2)
       : '0.00';
 
-  // Sort top 5 students
+  // Sort top 5 students for Leaderboard
   const topStudents = [...studentScores]
     .sort((a, b) => b.overallScore - a.overallScore)
     .slice(0, 5);
-
-  // Subject Averages
-  const subjectAverages = SUBJECT_LIST.map((sub) => {
-    const total = students.reduce((acc, s) => acc + calculateSubjectFinalScore(s, sub.key, schoolProfile), 0);
-    const avg = students.length > 0 ? Number((total / students.length).toFixed(2)) : 0;
-    return {
-      ...sub,
-      average: avg,
-    };
-  });
-
-  // Predicate Distribution
-  const predicateCounts = { A: 0, B: 0, C: 0, D: 0 };
-  studentScores.forEach((item) => {
-    const pred = getGradePredicate(item.overallScore);
-    if (pred.grade === 'A') predicateCounts.A++;
-    else if (pred.grade === 'B') predicateCounts.B++;
-    else if (pred.grade === 'C') predicateCounts.C++;
-    else predicateCounts.D++;
-  });
-
-  // Room Counts
-  const roomCounts = {
-    'RUANG 1': students.filter((s) => s.ruang === 'RUANG 1').length,
-    'RUANG 2': students.filter((s) => s.ruang === 'RUANG 2').length,
-    'RUANG 3': students.filter((s) => s.ruang === 'RUANG 3').length,
-    'RUANG 4': students.filter((s) => s.ruang === 'RUANG 4').length,
-  };
 
   return (
     <div className="space-y-6">
@@ -198,151 +167,13 @@ export const DashboardView: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Charts & Analytics Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Bar Chart Nilai per Mata Pelajaran (2 cols) */}
-        <div className="lg:col-span-2 rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
-            <div>
-              <div className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-emerald-600" />
-                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
-                  Rata-rata Nilai Akhir per Mata Pelajaran
-                </h3>
-              </div>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                Gabungan bobot {schoolProfile.bobotRapor}% Nilai Rapor + {schoolProfile.bobotUS}% Ujian Sekolah
-              </p>
-            </div>
-            <div className="flex items-center gap-3 text-xs">
-              <span className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <span className="h-3 w-3 rounded-xs bg-emerald-600"></span> Rata-rata Nilai
-              </span>
-              <span className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <span className="h-3 w-3 rounded-xs bg-amber-400"></span> Batas KKM
-              </span>
-            </div>
-          </div>
+      {/* Visualisasi Data: Grafik Batang & Diagram Lingkaran Nilai Ujian Siswa */}
+      <div className="space-y-6">
+        {/* 1. Grafik Batang Ringkasan Nilai Ujian Siswa */}
+        <ExamScoreBarChart students={students} schoolProfile={schoolProfile} />
 
-          {/* Bar Chart Visualization */}
-          <div className="space-y-3.5">
-            {subjectAverages.map((sub) => {
-              const percentage = Math.min(100, Math.max(0, sub.average));
-              return (
-                <div key={sub.key} className="space-y-1">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-zinc-800 dark:text-zinc-200 truncate max-w-[200px] sm:max-w-xs">
-                      {sub.name} <span className="text-zinc-400">({sub.code})</span>
-                    </span>
-                    <div className="flex items-center gap-3 font-mono">
-                      <span className="text-zinc-400 text-[11px]">KKM: {sub.kkm}</span>
-                      <span className="font-bold text-emerald-700 dark:text-emerald-400">
-                        {sub.average.toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="relative h-4 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                    {/* KKM Marker Line */}
-                    <div
-                      className="absolute top-0 bottom-0 w-0.5 bg-amber-500 z-10"
-                      style={{ left: `${sub.kkm}%` }}
-                      title={`KKM: ${sub.kkm}`}
-                    />
-                    {/* Score Bar */}
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right: Predikat & Pembagian Ruang */}
-        <div className="space-y-6">
-          {/* Predikat Kelulusan Card */}
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
-            <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 mb-1">
-              Distribusi Predikat Kelulusan
-            </h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
-              Klasifikasi nilai mutu akhir peserta didik
-            </p>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 dark:border-emerald-900/60 dark:bg-emerald-950/30">
-                <div className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">A (Sangat Baik)</div>
-                <div className="mt-1 text-2xl font-bold text-emerald-900 dark:text-emerald-100">
-                  {predicateCounts.A} <span className="text-xs font-normal">siswa</span>
-                </div>
-                <div className="text-[10px] text-emerald-700/80 dark:text-emerald-400">Rentang &ge; 90.00</div>
-              </div>
-
-              <div className="rounded-xl border border-blue-200 bg-blue-50/60 p-3 dark:border-blue-900/60 dark:bg-blue-950/30">
-                <div className="text-xs font-semibold text-blue-800 dark:text-blue-300">B (Baik)</div>
-                <div className="mt-1 text-2xl font-bold text-blue-900 dark:text-blue-100">
-                  {predicateCounts.B} <span className="text-xs font-normal">siswa</span>
-                </div>
-                <div className="text-[10px] text-blue-700/80 dark:text-blue-400">Rentang 80.00 - 89.99</div>
-              </div>
-
-              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-3 dark:border-amber-900/60 dark:bg-amber-950/30">
-                <div className="text-xs font-semibold text-amber-800 dark:text-amber-300">C (Cukup)</div>
-                <div className="mt-1 text-2xl font-bold text-amber-900 dark:text-amber-100">
-                  {predicateCounts.C} <span className="text-xs font-normal">siswa</span>
-                </div>
-                <div className="text-[10px] text-amber-700/80 dark:text-amber-400">Rentang 70.00 - 79.99</div>
-              </div>
-
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-800 dark:bg-zinc-800/50">
-                <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">D (Kurang)</div>
-                <div className="mt-1 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                  {predicateCounts.D} <span className="text-xs font-normal">siswa</span>
-                </div>
-                <div className="text-[10px] text-zinc-500">Rentang &lt; 70.00</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Distribusi Ruang Ujian Card */}
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
-                Distribusi Ruang Ujian
-              </h3>
-              <button
-                onClick={() => setActiveTab('exam-tools')}
-                className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 flex items-center gap-1"
-              >
-                Denah Ruang <ChevronRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
-
-            <div className="space-y-2.5">
-              {Object.entries(roomCounts).map(([room, count]) => (
-                <div
-                  key={room}
-                  className="flex items-center justify-between rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-3 border border-zinc-200 dark:border-zinc-700/60"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="h-7 w-7 rounded-lg bg-emerald-900 text-emerald-300 flex items-center justify-center font-bold text-xs">
-                      {room.replace('RUANG ', 'R')}
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{room}</div>
-                      <div className="text-[11px] text-zinc-500">8 Peserta (Kapasitas Penuh)</div>
-                    </div>
-                  </div>
-                  <Badge variant="emerald" size="sm">
-                    {count} Siswa
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* 2. Diagram Lingkaran Distribusi Predikat & Ruang Ujian */}
+        <ExamScorePieChart students={students} schoolProfile={schoolProfile} />
       </div>
 
       {/* Top 5 Siswa Berprestasi (Leaderboard) */}

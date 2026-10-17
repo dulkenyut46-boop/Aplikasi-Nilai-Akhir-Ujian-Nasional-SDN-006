@@ -849,6 +849,64 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                   </div>
                 </div>
 
+                {/* Form Penandatangan Kepala Sekolah */}
+                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-emerald-900 dark:text-emerald-300 flex items-center gap-1.5">
+                      <span>✍️ Pejabat Penandatangan SK (Kepala Sekolah)</span>
+                    </span>
+                    <label className="inline-flex items-center gap-2 cursor-pointer text-xs">
+                      <input
+                        type="checkbox"
+                        checked={sk.showTandaTangan !== false}
+                        onChange={(e) => setSk({ ...sk, showTandaTangan: e.target.checked })}
+                        className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                      />
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-200">
+                        Munculkan Penandatangan saat Mencetak
+                      </span>
+                    </label>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                        Jabatan Penandatangan:
+                      </label>
+                      <input
+                        type="text"
+                        value={sk.jabatanKepalaSekolah || 'Kepala SD Negeri 006 Sungai Buluh'}
+                        onChange={(e) => setSk({ ...sk, jabatanKepalaSekolah: e.target.value })}
+                        placeholder="Kepala SD Negeri 006 Sungai Buluh"
+                        className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2 text-zinc-900 dark:text-zinc-100 text-xs"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                        Nama Lengkap & Gelar:
+                      </label>
+                      <input
+                        type="text"
+                        value={sk.namaKepalaSekolah || 'WINARNI, S.Pd.SD'}
+                        onChange={(e) => setSk({ ...sk, namaKepalaSekolah: e.target.value })}
+                        placeholder="WINARNI, S.Pd.SD"
+                        className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2 font-bold uppercase text-zinc-900 dark:text-zinc-100 text-xs"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                        NIP Kepala Sekolah:
+                      </label>
+                      <input
+                        type="text"
+                        value={sk.nipKepalaSekolah || '19790301 200801 2 015'}
+                        onChange={(e) => setSk({ ...sk, nipKepalaSekolah: e.target.value })}
+                        placeholder="19790301 200801 2 015"
+                        className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2 font-mono text-zinc-900 dark:text-zinc-100 text-xs"
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex flex-wrap items-center gap-4 pt-1">
                   <label className="inline-flex items-center gap-2 cursor-pointer">
                     <input
