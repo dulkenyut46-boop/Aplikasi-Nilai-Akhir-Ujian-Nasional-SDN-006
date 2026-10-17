@@ -37,7 +37,7 @@ export const DEFAULT_GURU_RAPAT: GuruRapat[] = [
   { id: 'g-23', no: 23, nama: 'SUTRISNO', jabatan: 'Penjaga Sekolah / Keamanan', nip: '-', kehadiran: 'hadir' },
 ];
 
-export type DocFontFamily = 'times' | 'calibri' | 'arial' | 'bookman' | 'georgia';
+export type DocFontFamily = 'times' | 'bookman' | 'arial' | 'calibri' | 'georgia' | 'cambria' | 'garamond';
 export type DocFontSize = '10pt' | '11pt' | '12pt' | '13pt' | '14pt';
 export type DocLineSpacing = '1.0' | '1.15' | '1.35' | '1.5' | '2.0';
 
@@ -51,33 +51,45 @@ export interface FontOption {
 export const FONT_OPTIONS: FontOption[] = [
   {
     value: 'times',
-    label: 'Times New Roman (Baku Kedinasan)',
+    label: 'Times New Roman (Standar Baku Surat Dinas)',
     cssFamily: "'Times New Roman', Times, 'Liberation Serif', serif",
     wordFont: "'Times New Roman', Times, serif",
   },
   {
-    value: 'calibri',
-    label: 'Calibri (Default Microsoft Word)',
-    cssFamily: "Calibri, 'Candara', 'Segoe UI', system-ui, sans-serif",
-    wordFont: "Calibri, sans-serif",
-  },
-  {
-    value: 'arial',
-    label: 'Arial (Modern Sans-Serif)',
-    cssFamily: "Arial, 'Helvetica Neue', Helvetica, sans-serif",
-    wordFont: "Arial, Helvetica, sans-serif",
-  },
-  {
     value: 'bookman',
-    label: 'Bookman Old Style (Klasik Formal)',
+    label: 'Bookman Old Style (Klasik Formal / Format Ijazah)',
     cssFamily: "'Bookman Old Style', 'Bookman', 'URW Bookman', serif",
     wordFont: "'Bookman Old Style', 'Bookman', serif",
   },
   {
+    value: 'arial',
+    label: 'Arial (Modern Standar Kedinasan Digital)',
+    cssFamily: "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+    wordFont: "Arial, Helvetica, sans-serif",
+  },
+  {
+    value: 'calibri',
+    label: 'Calibri (Naskah Dinas Elektronik / Word)',
+    cssFamily: "Calibri, 'Candara', 'Segoe UI', system-ui, sans-serif",
+    wordFont: "Calibri, sans-serif",
+  },
+  {
+    value: 'cambria',
+    label: 'Cambria (Format Baku Kedinasan Modern)',
+    cssFamily: "Cambria, 'Georgia', serif",
+    wordFont: "Cambria, Georgia, serif",
+  },
+  {
     value: 'georgia',
-    label: 'Georgia (Serif Elegan)',
+    label: 'Georgia (Serif Elegan Resmi)',
     cssFamily: "Georgia, 'Cambria', serif",
     wordFont: "Georgia, serif",
+  },
+  {
+    value: 'garamond',
+    label: 'Garamond (Klasik Akademik Formal)',
+    cssFamily: "Garamond, 'EB Garamond', 'Georgia', serif",
+    wordFont: "Garamond, serif",
   },
 ];
 

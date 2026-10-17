@@ -38,6 +38,7 @@ import {
   FileText,
   FileSignature,
   Scale,
+  Type,
 } from 'lucide-react';
 import { GraduationDocsView, INITIAL_GURU_RAPAT, GraduationDocType } from './GraduationDocsView';
 import { EditGraduationDocModal } from './EditGraduationDocModal';
@@ -58,11 +59,14 @@ import {
 import {
   loadGuruRapatList,
   loadSKKelulusanState,
+  saveSKKelulusanState,
   loadUndanganDocState,
   loadBeritaAcaraDocState,
   loadHadirRapatMeta,
   getFontCssFamily,
   formatSignatureDots,
+  FONT_OPTIONS,
+  DocFontFamily,
 } from './graduationDocsState';
 
 export const ExamToolsView: React.FC = () => {
@@ -1964,6 +1968,35 @@ export const ExamToolsView: React.FC = () => {
                 </select>
               </div>
             )}
+
+            {/* Font Selector for SK Kelulusan */}
+            {printDoc === 'sk-kelulusan' && (() => {
+              const currentSK = loadSKKelulusanState();
+              return (
+                <div className="flex items-center gap-1.5 text-xs">
+                  <span className="text-zinc-400 font-semibold hidden sm:inline flex items-center gap-1">
+                    <Type className="h-3.5 w-3.5 text-emerald-400" />
+                    Font:
+                  </span>
+                  <select
+                    value={currentSK.fontFamily || 'times'}
+                    onChange={(e) => {
+                      const next = e.target.value as DocFontFamily;
+                      saveSKKelulusanState({ ...currentSK, fontFamily: next });
+                      setLastUpdateTrigger(Date.now());
+                    }}
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    aria-label="Pilih Jenis Font SK Kelulusan"
+                  >
+                    {FONT_OPTIONS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            })()}
 
             {/* Menu Ubah/Edit Data Dokumen Lembar Kerja */}
             <button

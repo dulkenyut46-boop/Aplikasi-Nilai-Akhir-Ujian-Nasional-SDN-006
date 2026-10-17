@@ -2135,7 +2135,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               {/* Opsi Lampiran SK Kelulusan */}
               {skState.showLampiran && (
-                <div className="pt-8 border-t-2 border-black mt-8 space-y-3 break-before-page">
+                <div className="pt-8 mt-8 space-y-3 break-before-page">
                   <div className="text-center space-y-1">
                     <p className="text-[11px] font-bold uppercase">
                       LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH

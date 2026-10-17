@@ -27,6 +27,7 @@ import {
   Clock,
   MapPin,
   CheckCircle2,
+  Type,
 } from 'lucide-react';
 import {
   SerahTerimaMeta,
@@ -36,6 +37,13 @@ import {
 } from './diplomaExtraState';
 import { EditSerahTerimaModal } from './EditSerahTerimaModal';
 import { EditPerpisahanModal } from './EditPerpisahanModal';
+import {
+  FONT_OPTIONS,
+  DocFontFamily,
+  getFontCssFamily,
+  loadSKKelulusanState,
+  saveSKKelulusanState,
+} from '../exam-tools/graduationDocsState';
 
 export const DiplomaManagementView: React.FC = () => {
   const {
@@ -59,6 +67,47 @@ export const DiplomaManagementView: React.FC = () => {
   const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
   const [printSelectedDoc, setPrintSelectedDoc] = useState<TabKey>('skhu');
   const [skPrintPart, setSkPrintPart] = useState<'all' | 'naskah' | 'lampiran'>('all');
+
+  // Pilihan Font dan Ukuran Font Resmi untuk SK Kelulusan
+  const [skFontFamily, setSkFontFamily] = useState<DocFontFamily>(() => {
+    try {
+      const sk = loadSKKelulusanState();
+      if (sk && sk.fontFamily) return sk.fontFamily;
+    } catch {}
+    return 'times';
+  });
+
+  const [skFontSize, setSkFontSize] = useState<string>(() => {
+    try {
+      const sk = loadSKKelulusanState();
+      if (sk && sk.fontSize) return sk.fontSize;
+    } catch {}
+    return '12pt';
+  });
+
+  const handleFontChange = (font: DocFontFamily) => {
+    setSkFontFamily(font);
+    try {
+      const current = loadSKKelulusanState();
+      saveSKKelulusanState({ ...current, fontFamily: font });
+      if (showToast) {
+        const found = FONT_OPTIONS.find((f) => f.value === font);
+        showToast('Jenis Font Diubah', `Font naskah SK berhasil diubah ke ${found?.label || font}.`, 'info');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleFontSizeChange = (size: string) => {
+    setSkFontSize(size);
+    try {
+      const current = loadSKKelulusanState();
+      saveSKKelulusanState({ ...current, fontSize: size as any });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   // Edit Modals and Metadata States
   const [isEditSerahTerimaOpen, setIsEditSerahTerimaOpen] = useState(false);
@@ -339,21 +388,69 @@ export const DiplomaManagementView: React.FC = () => {
       {/* 2. SURAT KEPUTUSAN KELULUSAN RESMI */}
       {activeTab === 'sk-kelulusan' && (
         <div className="space-y-4">
-          <div className="flex items-center justify-between bg-zinc-50 dark:bg-zinc-800/60 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 print:hidden">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 bg-zinc-50 dark:bg-zinc-800/60 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 print:hidden">
             <div>
-              <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Pratinjau Surat Keputusan (SK) Kelulusan</h4>
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                <span>Pratinjau Surat Keputusan (SK) Kelulusan</span>
+                <span className="rounded-md bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold">
+                  Resmi Kedinasan
+                </span>
+              </h4>
               <p className="text-xs text-zinc-500">Format resmi Keputusan Kepala Sekolah & Lampiran Rekapitulasi Nilai Akhir</p>
             </div>
-            <button
-              onClick={() => handlePrintDocument('sk-kelulusan')}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
-            >
-              <Printer className="h-4 w-4" />
-              Cetak SK Kelulusan
-            </button>
+
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Menu Ganti Font Dokumen Resmi */}
+              <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
+                <Type className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Pilih Font:</span>
+                <select
+                  value={skFontFamily}
+                  onChange={(e) => handleFontChange(e.target.value as DocFontFamily)}
+                  className="bg-transparent font-bold text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none cursor-pointer pr-1"
+                  aria-label="Pilih Jenis Huruf Dokumen Resmi"
+                >
+                  {FONT_OPTIONS.map((f) => (
+                    <option key={f.value} value={f.value} className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">
+                      {f.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Menu Pilihan Ukuran Font */}
+              <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 px-2.5 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
+                <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Ukuran:</span>
+                <select
+                  value={skFontSize}
+                  onChange={(e) => handleFontSizeChange(e.target.value)}
+                  className="bg-transparent font-bold text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none cursor-pointer"
+                  aria-label="Pilih Ukuran Huruf"
+                >
+                  <option value="11pt" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">11 pt</option>
+                  <option value="12pt" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">12 pt (Standar Baku)</option>
+                  <option value="13pt" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">13 pt</option>
+                  <option value="14pt" className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">14 pt</option>
+                </select>
+              </div>
+
+              <button
+                onClick={() => handlePrintDocument('sk-kelulusan')}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors shrink-0"
+              >
+                <Printer className="h-4 w-4" />
+                Cetak SK Kelulusan
+              </button>
+            </div>
           </div>
 
-          <div className="mx-auto max-w-4xl rounded-2xl border border-zinc-200 bg-white p-8 sm:p-12 shadow-md dark:border-zinc-800 dark:bg-zinc-900 space-y-6 text-xs text-zinc-900 dark:text-zinc-100 leading-relaxed font-serif print:border-none print:shadow-none print:p-0 print:m-0 print:max-w-none print:w-full">
+          <div
+            className="mx-auto max-w-4xl rounded-2xl border border-zinc-200 bg-white p-8 sm:p-12 shadow-md dark:border-zinc-800 dark:bg-zinc-900 space-y-6 text-zinc-900 dark:text-zinc-100 leading-relaxed print:border-none print:shadow-none print:p-0 print:m-0 print:max-w-none print:w-full transition-all"
+            style={{
+              fontFamily: getFontCssFamily(skFontFamily),
+              fontSize: skFontSize,
+            }}
+          >
             {/* Kop Surat Resmi SK Kelulusan */}
             <KopSurat schoolProfile={schoolProfile} />
 
@@ -541,7 +638,7 @@ export const DiplomaManagementView: React.FC = () => {
           </div>
 
           {/* LAMPIRAN RESMI SK KELULUSAN DENGAN REKAPITULASI NILAI AKHIR */}
-          <div className="pt-8 border-t-2 border-black dark:border-zinc-300 mt-8 space-y-3 break-before-page">
+          <div className="pt-8 mt-8 space-y-3 break-before-page">
             <div className="text-center space-y-1">
               <p className="text-[11px] font-bold uppercase">
                 LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH
@@ -1047,20 +1144,56 @@ export const DiplomaManagementView: React.FC = () => {
               <option value="perpisahan">👥 Daftar Hadir Perpisahan</option>
             </select>
 
-            {/* Pilihan Bagian Cetak bila Dokumen SK Kelulusan dipilih */}
+            {/* Pilihan Bagian Cetak & Pilihan Font bila Dokumen SK Kelulusan dipilih */}
             {printSelectedDoc === 'sk-kelulusan' && (
-              <div className="flex items-center gap-1.5 text-xs">
-                <span className="text-zinc-400 font-semibold hidden sm:inline">Bagian Cetak:</span>
-                <select
-                  value={skPrintPart}
-                  onChange={(e) => setSkPrintPart(e.target.value as any)}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
-                >
-                  <option value="all">📑 Lengkap (Naskah Pokok + Lampiran Rekap)</option>
-                  <option value="naskah">📜 Naskah Pokok SK Saja (1 Halaman)</option>
-                  <option value="lampiran">📊 Lampiran Rekap Nilai Saja</option>
-                </select>
-              </div>
+              <>
+                <div className="flex items-center gap-1.5 text-xs">
+                  <span className="text-zinc-400 font-semibold hidden sm:inline">Bagian:</span>
+                  <select
+                    value={skPrintPart}
+                    onChange={(e) => setSkPrintPart(e.target.value as any)}
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                  >
+                    <option value="all">📑 Lengkap (Naskah + Lampiran)</option>
+                    <option value="naskah">📜 Naskah Pokok Saja</option>
+                    <option value="lampiran">📊 Lampiran Rekap Saja</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-1 text-xs">
+                  <span className="text-zinc-400 font-semibold hidden md:inline flex items-center gap-1">
+                    <Type className="h-3.5 w-3.5 text-emerald-400" />
+                    Font:
+                  </span>
+                  <select
+                    value={skFontFamily}
+                    onChange={(e) => handleFontChange(e.target.value as DocFontFamily)}
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    aria-label="Pilih Jenis Font SK Kelulusan"
+                  >
+                    {FONT_OPTIONS.map((f) => (
+                      <option key={f.value} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-1 text-xs">
+                  <span className="text-zinc-400 font-semibold hidden lg:inline">Ukuran:</span>
+                  <select
+                    value={skFontSize}
+                    onChange={(e) => handleFontSizeChange(e.target.value)}
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    aria-label="Pilih Ukuran Huruf SK"
+                  >
+                    <option value="11pt">11 pt</option>
+                    <option value="12pt">12 pt (Baku)</option>
+                    <option value="13pt">13 pt</option>
+                    <option value="14pt">14 pt</option>
+                  </select>
+                </div>
+              </>
             )}
 
             {/* Pilihan Siswa bila Dokumen Transkrip Nilai dipilih */}
@@ -1221,7 +1354,13 @@ export const DiplomaManagementView: React.FC = () => {
 
           {/* 2. PRINTABLE SK KELULUSAN & LAMPIRAN */}
           {printSelectedDoc === 'sk-kelulusan' && (
-            <div className="space-y-5 font-serif text-black leading-relaxed">
+            <div
+              className="space-y-5 text-black leading-relaxed"
+              style={{
+                fontFamily: getFontCssFamily(skFontFamily),
+                fontSize: skFontSize,
+              }}
+            >
               {/* Bagian Naskah Pokok SK Kelulusan (Ditampilkan jika pilihan 'all' atau 'naskah') */}
               {skPrintPart !== 'lampiran' && (
                 <div className="space-y-4">
@@ -1322,7 +1461,7 @@ export const DiplomaManagementView: React.FC = () => {
 
               {/* Bagian Lampiran Rekap Nilai (Ditampilkan jika pilihan 'all' atau 'lampiran') */}
               {skPrintPart !== 'naskah' && (
-                <div className={`space-y-3 font-sans ${skPrintPart === 'all' ? 'pt-6 border-t-2 border-black mt-6 break-before-page' : ''}`}>
+                <div className={`space-y-3 ${skPrintPart === 'all' ? 'pt-6 mt-6 break-before-page' : ''}`}>
                   {skPrintPart === 'lampiran' && <KopSurat schoolProfile={schoolProfile} />}
                   <div className="text-center space-y-0.5">
                     <p className="text-[11px] font-bold uppercase">LAMPIRAN KEPUTUSAN KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH</p>
