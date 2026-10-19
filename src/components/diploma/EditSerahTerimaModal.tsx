@@ -13,6 +13,9 @@ import {
   Settings,
   ListOrdered,
   Sparkles,
+  Eraser,
+  CalendarOff,
+  UserX,
 } from 'lucide-react';
 import { Student, SchoolProfile } from '../../types';
 import {
@@ -59,7 +62,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
 
   // Batch tool states
   const [batchDate, setBatchDate] = useState('12 Juni 2026');
-  const [batchRecipientType, setBatchRecipientType] = useState<'ayah' | 'ibu' | 'sendiri'>('ayah');
+  const [batchRecipientType, setBatchRecipientType] = useState<'ayah' | 'ibu' | 'sendiri' | 'kosong'>('ayah');
 
   useEffect(() => {
     if (isOpen) {
@@ -71,8 +74,8 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
         namaAyah: s.namaAyah || '',
         namaIbu: s.namaIbu || '',
         noSeriIjazah: s.noSeriIjazah || '',
-        tanggalAmbilIjazah: s.tanggalAmbilIjazah || '12 Juni 2026',
-        penerimaIjazah: s.penerimaIjazah || `${s.namaAyah || 'Orang Tua'} (Orang Tua)`,
+        tanggalAmbilIjazah: typeof s.tanggalAmbilIjazah === 'string' ? s.tanggalAmbilIjazah : '12 Juni 2026',
+        penerimaIjazah: typeof s.penerimaIjazah === 'string' ? s.penerimaIjazah : `${s.namaAyah || 'Orang Tua'} (Orang Tua)`,
       }));
       setRows(initialRows);
       setSearch('');
@@ -102,7 +105,25 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
     );
   };
 
+  const handleClearAllDate = () => {
+    setRows((prev) =>
+      prev.map((r) => ({
+        ...r,
+        tanggalAmbilIjazah: '',
+      }))
+    );
+    showToast?.(
+      'Kolom Tanggal Dikosongkan',
+      'Seluruh kolom tanggal penyerahan berhasil dikosongkan (siap format cetak blanko fisik).',
+      'info'
+    );
+  };
+
   const handleApplyBatchRecipient = () => {
+    if (batchRecipientType === 'kosong') {
+      handleClearAllRecipient();
+      return;
+    }
     setRows((prev) =>
       prev.map((r) => {
         let recipient = '';
@@ -122,6 +143,35 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
     showToast?.(
       'Penerima Diperbarui',
       `Nama penerima ijazah disesuaikan berdasarkan data ${batchRecipientType.toUpperCase()}.`,
+      'info'
+    );
+  };
+
+  const handleClearAllRecipient = () => {
+    setRows((prev) =>
+      prev.map((r) => ({
+        ...r,
+        penerimaIjazah: '',
+      }))
+    );
+    showToast?.(
+      'Kolom Penerima Dikosongkan',
+      'Seluruh kolom nama penerima (wali/ortu) berhasil dikosongkan (siap format cetak blanko fisik).',
+      'info'
+    );
+  };
+
+  const handleClearAllDateAndRecipient = () => {
+    setRows((prev) =>
+      prev.map((r) => ({
+        ...r,
+        tanggalAmbilIjazah: '',
+        penerimaIjazah: '',
+      }))
+    );
+    showToast?.(
+      'Tanggal & Penerima Dikosongkan',
+      'Kolom tanggal penyerahan dan nama penerima telah dikosongkan semua (format blanko cetak fisik).',
       'info'
     );
   };
@@ -256,65 +306,107 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
             <div className="space-y-4">
               {/* Batch Actions Toolbar */}
               <div className="rounded-2xl border border-amber-300/80 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/20 p-4 space-y-3">
-                <div className="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-200 text-xs">
-                  <Sparkles className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-                  <span>Aksi Cepat Pengisian Serentak (Batch Update)</span>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-200 text-xs">
+                    <Sparkles className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                    <span>Aksi Cepat Pengisian & Pengosongan Serentak</span>
+                  </div>
+                  <span className="text-[11px] text-amber-800/80 dark:text-amber-300/80 font-medium hidden sm:inline">
+                    Pilihan untuk mengisi otomatis atau mengosongkan untuk format blanko fisik
+                  </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {/* Set Tanggal Serentak */}
-                  <div className="flex items-center gap-2 bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700">
-                    <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap">
-                      Tgl Ambil:
-                    </span>
-                    <input
-                      type="text"
-                      value={batchDate}
-                      onChange={(e) => setBatchDate(e.target.value)}
-                      className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-2.5 py-1 text-xs"
-                      placeholder="contoh: 12 Juni 2026"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleApplyBatchDate}
-                      className="rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1 text-xs whitespace-nowrap transition-colors"
-                    >
-                      Terapkan Semua
-                    </button>
+                  {/* Set / Kosongkan Tanggal Serentak */}
+                  <div className="bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap text-xs">
+                        Tgl Penyerahan:
+                      </span>
+                      <input
+                        type="text"
+                        value={batchDate}
+                        onChange={(e) => setBatchDate(e.target.value)}
+                        className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-2.5 py-1 text-xs"
+                        placeholder="contoh: 12 Juni 2026"
+                      />
+                    </div>
+                    <div className="flex items-center justify-end gap-1.5">
+                      <button
+                        type="button"
+                        onClick={handleClearAllDate}
+                        className="inline-flex items-center gap-1 rounded-lg border border-rose-300 dark:border-rose-900/60 bg-rose-50 dark:bg-rose-950/30 hover:bg-rose-100 dark:hover:bg-rose-900/50 text-rose-700 dark:text-rose-300 font-bold px-2.5 py-1 text-xs transition-colors cursor-pointer"
+                        title="Kosongkan seluruh kolom Tanggal Penyerahan untuk semua siswa"
+                      >
+                        <CalendarOff className="h-3.5 w-3.5" />
+                        <span>Kosongkan Semua</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleApplyBatchDate}
+                        className="rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1 text-xs whitespace-nowrap transition-colors cursor-pointer shadow-xs"
+                      >
+                        Terapkan Tanggal
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Set Penerima Berdasarkan Ayah / Ibu */}
-                  <div className="flex items-center gap-2 bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700">
-                    <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap">
-                      Penerima:
-                    </span>
-                    <select
-                      value={batchRecipientType}
-                      onChange={(e) => setBatchRecipientType(e.target.value as any)}
-                      className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-2 py-1 text-xs font-semibold"
-                    >
-                      <option value="ayah">Nama Ayah (Orang Tua)</option>
-                      <option value="ibu">Nama Ibu (Orang Tua)</option>
-                      <option value="sendiri">Nama Siswa Sendiri</option>
-                    </select>
-                    <button
-                      type="button"
-                      onClick={handleApplyBatchRecipient}
-                      className="rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1 text-xs whitespace-nowrap transition-colors"
-                    >
-                      Terapkan Semua
-                    </button>
+                  {/* Set / Kosongkan Penerima Berdasarkan Ayah / Ibu */}
+                  <div className="bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap text-xs">
+                        Penerima (Wali/Ortu):
+                      </span>
+                      <select
+                        value={batchRecipientType}
+                        onChange={(e) => setBatchRecipientType(e.target.value as any)}
+                        className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-2 py-1 text-xs font-semibold"
+                      >
+                        <option value="ayah">Nama Ayah (Orang Tua)</option>
+                        <option value="ibu">Nama Ibu (Orang Tua)</option>
+                        <option value="sendiri">Nama Siswa Sendiri</option>
+                        <option value="kosong">-- Kosongkan Kolom Penerima --</option>
+                      </select>
+                    </div>
+                    <div className="flex items-center justify-end gap-1.5">
+                      <button
+                        type="button"
+                        onClick={handleClearAllRecipient}
+                        className="inline-flex items-center gap-1 rounded-lg border border-rose-300 dark:border-rose-900/60 bg-rose-50 dark:bg-rose-950/30 hover:bg-rose-100 dark:hover:bg-rose-900/50 text-rose-700 dark:text-rose-300 font-bold px-2.5 py-1 text-xs transition-colors cursor-pointer"
+                        title="Kosongkan seluruh kolom Nama Penerima untuk semua siswa"
+                      >
+                        <UserX className="h-3.5 w-3.5" />
+                        <span>Kosongkan Semua</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleApplyBatchRecipient}
+                        className="rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1 text-xs whitespace-nowrap transition-colors cursor-pointer shadow-xs"
+                      >
+                        Terapkan Penerima
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex justify-end">
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-amber-200/70 dark:border-amber-900/40">
+                  <button
+                    type="button"
+                    onClick={handleClearAllDateAndRecipient}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-100 hover:bg-rose-200 dark:bg-rose-950/50 dark:hover:bg-rose-900/60 text-rose-800 dark:text-rose-200 border border-rose-300 dark:border-rose-800 transition-colors cursor-pointer shadow-xs"
+                    title="Kosongkan kolom Tanggal Penyerahan dan Nama Penerima sekaligus untuk semua siswa"
+                  >
+                    <Eraser className="h-3.5 w-3.5" />
+                    <span>Kosongkan Tgl & Penerima Sekaligus (Format Blanko Cetak)</span>
+                  </button>
+
                   <button
                     type="button"
                     onClick={handleMarkAllReceived}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline cursor-pointer"
                   >
                     <CheckCircle2 className="h-3.5 w-3.5" />
-                    Tandai seluruh 80 siswa: Status Pengambilan Lengkap
+                    <span>Isi Otomatis / Tandai Status Lengkap (80 Siswa)</span>
                   </button>
                 </div>
               </div>
@@ -340,8 +432,34 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                         <th className="p-2.5 w-10 text-center">No</th>
                         <th className="p-2.5 min-w-[200px]">Nama Siswa & NISN</th>
                         <th className="p-2.5 min-w-[170px]">No. Seri Ijazah</th>
-                        <th className="p-2.5 min-w-[140px]">Tgl Penyerahan</th>
-                        <th className="p-2.5 min-w-[200px]">Nama Penerima (Wali / Ortu)</th>
+                        <th className="p-2.5 min-w-[170px]">
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span>Tgl Penyerahan</span>
+                            <button
+                              type="button"
+                              onClick={handleClearAllDate}
+                              title="Kosongkan seluruh kolom Tanggal Penyerahan"
+                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                            >
+                              <CalendarOff className="h-2.5 w-2.5" />
+                              <span>Kosongkan Semua</span>
+                            </button>
+                          </div>
+                        </th>
+                        <th className="p-2.5 min-w-[230px]">
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span>Nama Penerima (Wali / Ortu)</span>
+                            <button
+                              type="button"
+                              onClick={handleClearAllRecipient}
+                              title="Kosongkan seluruh kolom Nama Penerima"
+                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                            >
+                              <UserX className="h-2.5 w-2.5" />
+                              <span>Kosongkan Semua</span>
+                            </button>
+                          </div>
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
@@ -367,26 +485,50 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                             />
                           </td>
                           <td className="p-2">
-                            <input
-                              type="text"
-                              value={r.tanggalAmbilIjazah}
-                              onChange={(e) =>
-                                handleRowChange(r.id, 'tanggalAmbilIjazah', e.target.value)
-                              }
-                              className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-1.5 text-xs font-medium"
-                              placeholder="12 Juni 2026"
-                            />
+                            <div className="relative flex items-center">
+                              <input
+                                type="text"
+                                value={r.tanggalAmbilIjazah}
+                                onChange={(e) =>
+                                  handleRowChange(r.id, 'tanggalAmbilIjazah', e.target.value)
+                                }
+                                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-1.5 pr-6 text-xs font-medium"
+                                placeholder="(Kosong / Blanko)"
+                              />
+                              {r.tanggalAmbilIjazah && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleRowChange(r.id, 'tanggalAmbilIjazah', '')}
+                                  title="Kosongkan tanggal baris ini"
+                                  className="absolute right-1.5 text-zinc-400 hover:text-rose-600 p-0.5 rounded cursor-pointer"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              )}
+                            </div>
                           </td>
                           <td className="p-2">
-                            <input
-                              type="text"
-                              value={r.penerimaIjazah}
-                              onChange={(e) =>
-                                handleRowChange(r.id, 'penerimaIjazah', e.target.value)
-                              }
-                              className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-1.5 text-xs font-medium"
-                              placeholder="Nama Orang Tua / Siswa"
-                            />
+                            <div className="relative flex items-center">
+                              <input
+                                type="text"
+                                value={r.penerimaIjazah}
+                                onChange={(e) =>
+                                  handleRowChange(r.id, 'penerimaIjazah', e.target.value)
+                                }
+                                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-1.5 pr-6 text-xs font-medium"
+                                placeholder="(Kosong / Wali)"
+                              />
+                              {r.penerimaIjazah && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleRowChange(r.id, 'penerimaIjazah', '')}
+                                  title="Kosongkan penerima baris ini"
+                                  className="absolute right-1.5 text-zinc-400 hover:text-rose-600 p-0.5 rounded cursor-pointer"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              )}
+                            </div>
                           </td>
                         </tr>
                       ))}

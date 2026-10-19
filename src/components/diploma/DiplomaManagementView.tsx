@@ -860,15 +860,37 @@ export const DiplomaManagementView: React.FC = () => {
                           {s.noSeriIjazah || '-'}
                         </td>
                         <td className="p-3 font-medium text-zinc-700 dark:text-zinc-300">
-                          {s.tanggalAmbilIjazah || serahTerimaMeta.titimangsaTanggal}
+                          {s.tanggalAmbilIjazah !== undefined ? (
+                            s.tanggalAmbilIjazah.trim() ? (
+                              s.tanggalAmbilIjazah
+                            ) : (
+                              <span className="text-zinc-400 italic text-[11px] font-normal">(Kosong / Blanko)</span>
+                            )
+                          ) : (
+                            serahTerimaMeta.titimangsaTanggal
+                          )}
                         </td>
                         <td className="p-3 font-semibold text-zinc-800 dark:text-zinc-200">
-                          {s.penerimaIjazah || `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}
+                          {s.penerimaIjazah !== undefined ? (
+                            s.penerimaIjazah.trim() ? (
+                              s.penerimaIjazah
+                            ) : (
+                              <span className="text-zinc-400 italic text-[11px] font-normal">(Kosong / Tulis Tangan)</span>
+                            )
+                          ) : (
+                            `${s.namaAyah || 'Orang Tua'} (Orang Tua)`
+                          )}
                         </td>
                         <td className="p-3 text-center">
-                          <Badge variant="emerald" size="sm">
-                            Sudah Diserahkan
-                          </Badge>
+                          {s.tanggalAmbilIjazah?.trim() || s.penerimaIjazah?.trim() ? (
+                            <Badge variant="emerald" size="sm">
+                              Sudah Diserahkan
+                            </Badge>
+                          ) : (
+                            <Badge variant="neutral" size="sm">
+                              Blanko Fisik
+                            </Badge>
+                          )}
                         </td>
                       </tr>
                     ))
@@ -1597,8 +1619,8 @@ export const DiplomaManagementView: React.FC = () => {
                       <td className="p-1.5 font-bold uppercase border-r border-black">{s.nama}</td>
                       <td className="p-1.5 font-mono border-r border-black">{s.nisn}</td>
                       <td className="p-1.5 font-mono border-r border-black">{s.noSeriIjazah || '-'}</td>
-                      <td className="p-1.5 border-r border-black">{s.tanggalAmbilIjazah || serahTerimaMeta.titimangsaTanggal}</td>
-                      <td className="p-1.5 border-r border-black">{s.penerimaIjazah || `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}</td>
+                      <td className="p-1.5 border-r border-black">{s.tanggalAmbilIjazah !== undefined ? s.tanggalAmbilIjazah : serahTerimaMeta.titimangsaTanggal}</td>
+                      <td className="p-1.5 border-r border-black">{s.penerimaIjazah !== undefined ? s.penerimaIjazah : `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}</td>
                       <td className="p-1.5 text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
                     </tr>
                   ))}
