@@ -39,7 +39,12 @@ import {
   FileSignature,
   Scale,
   Type,
+  Palette,
+  QrCode,
+  Scissors,
+  Stamp,
 } from 'lucide-react';
+import { KartuUjianCard, KartuTheme } from './KartuUjianCard';
 import { GraduationDocsView, INITIAL_GURU_RAPAT, GraduationDocType } from './GraduationDocsView';
 import { EditGraduationDocModal } from './EditGraduationDocModal';
 import { EditPengawasModal } from './EditPengawasModal';
@@ -138,6 +143,12 @@ export const ExamToolsView: React.FC = () => {
 
   // State untuk Daftar Nilai Per Ruangan
   const [selectedSubjectKey, setSelectedSubjectKey] = useState<string>(subjects[0]?.key || 'bin');
+
+  // State untuk Desain Kartu Ujian
+  const [kartuTheme, setKartuTheme] = useState<KartuTheme>('emerald');
+  const [kartuShowStamp, setKartuShowStamp] = useState<boolean>(true);
+  const [kartuShowBarcode, setKartuShowBarcode] = useState<boolean>(true);
+  const [kartuShowWatermark, setKartuShowWatermark] = useState<boolean>(true);
   const [namaPengoreksi1, setNamaPengoreksi1] = useState<string>('BUDI SANTOSO, S.Pd.SD');
   const [nipPengoreksi1, setNipPengoreksi1] = useState<string>('19851210 200903 1 005');
   const [namaPengoreksi2, setNamaPengoreksi2] = useState<string>('HERIYANTO, S.Pd.SD');
@@ -825,140 +836,218 @@ export const ExamToolsView: React.FC = () => {
         </div>
       )}
 
-      {/* 2. KARTU PESERTA UJIAN SIAP CETAK */}
+      {/* 2. KARTU PESERTA UJIAN SIAP CETAK DENGAN DESAIN RESMI BERKELAS */}
       {activeSubTab === 'kartu' && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800">
-            <span className="text-xs text-zinc-500">
-              Format Kartu Ujian Resmi: Standar DNT Dinas Pendidikan Kab. Kuantan Singingi
-            </span>
-            <button
-              onClick={() => handlePrint('Kartu Peserta')}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-800"
-            >
-              <Printer className="h-3.5 w-3.5" />
-              Cetak Kartu {selectedRoom}
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 print:grid-cols-2">
-            {roomStudents.map((s) => (
-              <div
-                key={s.id}
-                className="rounded-xl border-2 border-emerald-900/80 bg-white p-4 shadow-sm dark:bg-zinc-900 dark:border-emerald-600 space-y-3"
-              >
-                {/* Header Kop Kartu */}
-                <div className="flex items-center gap-2 border-b-2 border-emerald-900 pb-2 dark:border-emerald-500">
-                  {/* Logo Kiri Kartu */}
-                  <div className="h-10 w-10 shrink-0 flex items-center justify-center">
-                    <img
-                      src={
-                        schoolProfile.kopSurat?.logoKiri ||
-                        getPresetLogoDataUrl('pemda_kuansing')
-                      }
-                      alt="Logo Daerah"
-                      className="h-10 w-10 object-contain"
-                    />
-                  </div>
-                  <div className="flex-1 text-center px-1">
-                    <div className="text-[9px] font-bold tracking-wider text-zinc-700 dark:text-zinc-300 uppercase leading-tight">
-                      {schoolProfile.kopSurat?.instansiAtas || 'PEMERINTAH KABUPATEN KUANTAN SINGINGI'}
-                    </div>
-                    <div className="text-[11px] font-black text-emerald-950 dark:text-emerald-400 uppercase leading-tight">
-                      KARTU PESERTA UJIAN NASIONAL / US
-                    </div>
-                    <div className="text-[8.5px] font-semibold text-zinc-600 dark:text-zinc-400 leading-tight">
-                      {schoolProfile.namaSekolah} • TP {schoolProfile.tahunPelajaran}
-                    </div>
-                  </div>
-                  {/* Logo Kanan Kartu */}
-                  <div className="h-10 w-10 shrink-0 flex items-center justify-center">
-                    <img
-                      src={
-                        schoolProfile.kopSurat?.logoKanan ||
-                        getPresetLogoDataUrl('tutwuri')
-                      }
-                      alt="Logo Tut Wuri"
-                      className="h-10 w-10 object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Body Kartu */}
-                <div className="flex gap-3 text-xs">
-                  {/* Photo Frame */}
-                  <div className="relative flex flex-col items-center justify-center h-28 w-22 rounded-lg border-2 border-zinc-700 bg-zinc-100 p-0.5 text-center shrink-0 overflow-hidden shadow-xs dark:bg-zinc-800 dark:border-zinc-700">
-                    {s.foto ? (
-                      <>
-                        <img
-                          src={s.foto}
-                          alt={s.nama}
-                          className="h-full w-full object-cover rounded"
-                        />
-                        <div className="absolute bottom-1 right-1 rounded bg-black/60 px-1 text-[7px] font-bold text-amber-300">
-                          2x3 RESMI
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <span className="text-2xl">{s.jenisKelamin === 'L' ? '👦' : '👧'}</span>
-                        <span className="text-[8px] font-bold text-zinc-400 mt-1 uppercase">
-                          PAS FOTO 2x3
-                        </span>
-                        <span className="text-[7px] text-zinc-400">RESMI</span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Biodata */}
-                  <div className="flex-1 space-y-1 text-[11px]">
-                    <div className="grid grid-cols-3 gap-1">
-                      <span className="text-zinc-500">No. Peserta:</span>
-                      <span className="col-span-2 font-mono font-extrabold text-zinc-900 dark:text-zinc-100">
-                        {s.noPeserta}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-1">
-                      <span className="text-zinc-500">Nama:</span>
-                      <span className="col-span-2 font-bold uppercase text-zinc-900 dark:text-zinc-100">
-                        {s.nama}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-1">
-                      <span className="text-zinc-500">NISN / NIS:</span>
-                      <span className="col-span-2 font-mono text-zinc-700 dark:text-zinc-300">
-                        {s.nisn} / {s.nis}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-1">
-                      <span className="text-zinc-500">TTL:</span>
-                      <span className="col-span-2 text-zinc-700 dark:text-zinc-300">
-                        {s.tempatLahir}, {s.tanggalLahir}
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-1">
-                      <span className="text-zinc-500">Ruang / Meja:</span>
-                      <span className="col-span-2 font-bold text-emerald-800 dark:text-emerald-300">
-                        {s.ruang} (Meja #{s.noMeja})
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Footer Sign */}
-                <div className="flex items-center justify-between border-t border-zinc-200 dark:border-zinc-800 pt-2 text-[9px]">
-                  <div className="text-zinc-400">
-                    *Wajib dibawa saat ujian berlangsung
-                  </div>
-                  <div className="text-right">
-                    <div className="text-zinc-500">Kepala Sekolah,</div>
-                    <div className="font-bold text-zinc-800 dark:text-zinc-200 mt-4 underline">
-                      {schoolProfile.kepalaSekolah}
-                    </div>
-                    <div className="pt-0.5 text-zinc-500 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
-                  </div>
+        <div className="space-y-5">
+          {/* Customizer & Action Toolbar */}
+          <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-5 shadow-xs space-y-4 print:hidden">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+              <div className="flex items-start gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-emerald-700 text-white shadow-xs">
+                  <Palette className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-extrabold text-sm sm:text-base text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                    <span>Desain Kartu Peserta Ujian Sekolah / Asesmen Resmi</span>
+                    <span className="rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold">
+                      Standar DNT Kemdikbud
+                    </span>
+                  </h3>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                    Kartu ujian resmi dilengkapi pas foto 2x3, nomor DNT berformat resmi, barcode verifikasi digital, stempel sekolah, dan pengesahan kepala sekolah
+                  </p>
                 </div>
               </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => openPrintPreview('kartu')}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
+                  title="Buka Pratinjau Cetak Lembar A4 (2 Kartu Per Baris Siap Potong & Dilaminating)"
+                >
+                  <Printer className="h-4 w-4" />
+                  <span>Pratinjau & Cetak Kartu A4</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handlePrint('Kartu Peserta')}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-3.5 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer"
+                  title="Cetak langsung ke printer"
+                >
+                  <Printer className="h-3.5 w-3.5 text-zinc-500" />
+                  <span>Cetak Langsung</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Customization Options Bar */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              {/* 1. Theme Selector */}
+              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                    <Palette className="h-3.5 w-3.5 text-emerald-600" />
+                    <span>Gaya / Tema Desain</span>
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setKartuTheme('emerald')}
+                    className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
+                      kartuTheme === 'emerald'
+                        ? 'bg-emerald-700 text-white shadow-xs'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                    }`}
+                  >
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
+                    <span>Zamrud Madani</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setKartuTheme('blue')}
+                    className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
+                      kartuTheme === 'blue'
+                        ? 'bg-blue-800 text-white shadow-xs'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                    }`}
+                  >
+                    <span className="h-2 w-2 rounded-full bg-blue-400 shrink-0" />
+                    <span>Biru Formal</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setKartuTheme('gold')}
+                    className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
+                      kartuTheme === 'gold'
+                        ? 'bg-amber-800 text-white shadow-xs'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                    }`}
+                  >
+                    <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0" />
+                    <span>Elegan Emas</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setKartuTheme('monochrome')}
+                    className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
+                      kartuTheme === 'monochrome'
+                        ? 'bg-zinc-900 text-white shadow-xs'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                    }`}
+                  >
+                    <span className="h-2 w-2 rounded-full bg-zinc-400 shrink-0" />
+                    <span>Laser Hitam</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 2. Toggle Stempel Sekolah */}
+              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
+                <div>
+                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                    <Stamp className="h-3.5 w-3.5 text-indigo-600" />
+                    <span>Stempel Sekolah Digital</span>
+                  </span>
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Stempel dinas basah melingkar menimpa sudut pas foto dan tanda tangan
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setKartuShowStamp(!kartuShowStamp)}
+                  className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
+                    kartuShowStamp
+                      ? 'bg-indigo-700 text-white'
+                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
+                  }`}
+                >
+                  {kartuShowStamp ? '✓ Stempel Aktif' : '✗ Sembunyikan Stempel'}
+                </button>
+              </div>
+
+              {/* 3. Toggle Barcode Verifikasi */}
+              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
+                <div>
+                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                    <QrCode className="h-3.5 w-3.5 text-emerald-600" />
+                    <span>Barcode Otentikasi</span>
+                  </span>
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Barcode presisi DNT di bawah pas foto untuk verifikasi pengawas ujian
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setKartuShowBarcode(!kartuShowBarcode)}
+                  className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
+                    kartuShowBarcode
+                      ? 'bg-emerald-700 text-white'
+                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
+                  }`}
+                >
+                  {kartuShowBarcode ? '✓ Barcode Aktif' : '✗ Sembunyikan Barcode'}
+                </button>
+              </div>
+
+              {/* 4. Toggle Watermark Keamanan */}
+              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
+                <div>
+                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                    <ShieldCheck className="h-3.5 w-3.5 text-amber-600" />
+                    <span>Watermark Kertas Sekuriti</span>
+                  </span>
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Pola latar belakang resmi logo Tut Wuri Handayani transparan
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setKartuShowWatermark(!kartuShowWatermark)}
+                  className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
+                    kartuShowWatermark
+                      ? 'bg-amber-700 text-white'
+                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
+                  }`}
+                >
+                  {kartuShowWatermark ? '✓ Watermark Aktif' : '✗ Sembunyikan Watermark'}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Info Jumlah Siswa Terdaftar */}
+          <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 px-1 print:hidden">
+            <span className="font-semibold">
+              Menampilkan {roomStudents.length} Kartu Peserta Ujian di <b>{selectedRoom}</b>
+            </span>
+            <span className="text-[11px] text-zinc-400 flex items-center gap-1">
+              <Scissors className="h-3 w-3" />
+              Format cetak 2 kolom standar A4 siap potong & dilaminating
+            </span>
+          </div>
+
+          {/* Grid Kartu Ujian (Interactive View) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 print:grid-cols-2 print:gap-4">
+            {roomStudents.map((s, idx) => (
+              <React.Fragment key={s.id}>
+                <KartuUjianCard
+                  student={s}
+                  schoolProfile={schoolProfile}
+                  theme={kartuTheme}
+                  showStamp={kartuShowStamp}
+                  showBarcode={kartuShowBarcode}
+                  showWatermark={kartuShowWatermark}
+                />
+                {/* Print separator helper every 2 cards */}
+                {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
+                  <div className="hidden print:block col-span-2 text-center text-[8px] text-zinc-400 font-mono my-2 border-b border-dashed border-zinc-400">
+                    ✂ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -1951,6 +2040,38 @@ export const ExamToolsView: React.FC = () => {
               </div>
             )}
 
+            {/* Theme & Options for Kartu Ujian */}
+            {printDoc === 'kartu' && (
+              <div className="flex items-center gap-1.5 text-xs">
+                <span className="text-zinc-400 font-semibold hidden sm:inline flex items-center gap-1">
+                  <Palette className="h-3.5 w-3.5 text-emerald-400" />
+                  Tema:
+                </span>
+                <select
+                  value={kartuTheme}
+                  onChange={(e) => setKartuTheme(e.target.value as any)}
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                >
+                  <option value="emerald">🟢 Zamrud Madani</option>
+                  <option value="blue">🔵 Biru Formal</option>
+                  <option value="gold">🟡 Elegan Emas</option>
+                  <option value="monochrome">⚫ Laser Hitam</option>
+                </select>
+                <button
+                  type="button"
+                  onClick={() => setKartuShowStamp(!kartuShowStamp)}
+                  className={`px-2 py-1 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
+                    kartuShowStamp
+                      ? 'bg-indigo-900/60 border-indigo-700 text-indigo-200'
+                      : 'bg-zinc-800 border-zinc-700 text-zinc-400'
+                  }`}
+                  title="Tampilkan / Sembunyikan Stempel Sekolah"
+                >
+                  {kartuShowStamp ? '✓ Stempel' : '✗ Stempel'}
+                </button>
+              </div>
+            )}
+
             {/* Subject Selector when viewing Daftar Nilai */}
             {printDoc === 'nilai' && (
               <div className="flex items-center gap-1.5 text-xs">
@@ -2270,88 +2391,39 @@ export const ExamToolsView: React.FC = () => {
               3. PRINTABLE KARTU PESERTA
              ======================================================== */}
           {printDoc === 'kartu' && (
-            <div className="space-y-5">
-              <div className="text-center pb-2 border-b border-black">
-                <h3 className="text-sm font-extrabold uppercase text-black">
-                  LEMBAR CETAK KARTU PESERTA UJIAN NASIONAL ({selectedRoom})
-                </h3>
-                <p className="text-[11px] text-zinc-600">
-                  {schoolProfile.namaSekolah} • Cetak 2 Kartu Per Baris Siap Potong & Dilaminating
-                </p>
+            <div className="space-y-4">
+              <div className="text-center pb-2 border-b-2 border-black flex items-center justify-between">
+                <div className="text-left">
+                  <h3 className="text-sm font-black uppercase text-black">
+                    LEMBAR CETAK KARTU PESERTA UJIAN SEKOLAH ({selectedRoom})
+                  </h3>
+                  <p className="text-[11px] text-zinc-700">
+                    {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Standar DNT Dinas Pendidikan
+                  </p>
+                </div>
+                <div className="text-right text-[10px] font-mono text-zinc-600">
+                  {roomStudents.length} Peserta • Siap Potong & Dilaminating
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                {roomStudents.map((s) => (
-                  <div
-                    key={s.id}
-                    className="rounded-lg border-2 border-black p-3.5 space-y-2 bg-white break-inside-avoid"
-                  >
-                    {/* Kop Kartu */}
-                    <div className="flex items-center gap-2 border-b border-black pb-2">
-                      <img
-                        src={schoolProfile.kopSurat?.logoKiri || getPresetLogoDataUrl('kuansing')}
-                        alt="Logo"
-                        className="h-10 w-10 object-contain"
-                      />
-                      <div className="flex-1 text-center">
-                        <div className="text-[8px] font-bold uppercase text-zinc-700 leading-tight">
-                          {schoolProfile.kopSurat?.instansiAtas || 'PEMERINTAH KABUPATEN KUANTAN SINGINGI'}
-                        </div>
-                        <div className="text-[9px] font-extrabold uppercase leading-tight text-black">
-                          {schoolProfile.namaSekolah}
-                        </div>
-                        <div className="text-[8px] font-bold text-zinc-800">
-                          KARTU PESERTA UJIAN • TP {schoolProfile.tahunPelajaran}
-                        </div>
+                {roomStudents.map((s, idx) => (
+                  <React.Fragment key={s.id}>
+                    <KartuUjianCard
+                      student={s}
+                      schoolProfile={schoolProfile}
+                      theme={kartuTheme}
+                      showStamp={kartuShowStamp}
+                      showBarcode={kartuShowBarcode}
+                      showWatermark={kartuShowWatermark}
+                      isPrintVersion={true}
+                    />
+                    {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
+                      <div className="col-span-2 text-center text-[8px] text-zinc-500 font-mono my-1 border-b border-dashed border-zinc-400 print:border-black flex items-center justify-center">
+                        <span className="bg-white px-2 -mb-2">✂ Gunting di sini</span>
                       </div>
-                      <img
-                        src={schoolProfile.kopSurat?.logoKanan || getPresetLogoDataUrl('tutwuri')}
-                        alt="Logo"
-                        className="h-10 w-10 object-contain"
-                      />
-                    </div>
-
-                    {/* Badan Kartu */}
-                    <div className="flex gap-3 items-center pt-1 text-[11px]">
-                      <div className="h-24 w-18 shrink-0 overflow-hidden rounded border border-black bg-zinc-100 flex items-center justify-center">
-                        {s.foto ? (
-                          <img src={s.foto} alt={s.nama} className="h-full w-full object-cover" />
-                        ) : (
-                          <span className="text-2xl">{s.jenisKelamin === 'L' ? '👦' : '👧'}</span>
-                        )}
-                      </div>
-                      <div className="flex-1 space-y-0.5 min-w-0">
-                        <div>
-                          <span className="text-[9px] text-zinc-600 block">Nama Lengkap:</span>
-                          <span className="font-extrabold uppercase text-black truncate block">{s.nama}</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-1 text-[10px]">
-                          <div>
-                            <span className="text-zinc-600 block">No. Peserta:</span>
-                            <span className="font-mono font-bold text-black">{s.noPeserta}</span>
-                          </div>
-                          <div>
-                            <span className="text-zinc-600 block">NISN:</span>
-                            <span className="font-mono font-bold text-black">{s.nisn}</span>
-                          </div>
-                        </div>
-                        <div className="text-[10px]">
-                          <span className="text-zinc-600">Ruang / Meja: </span>
-                          <span className="font-bold text-black">{s.ruang} • Meja #{s.noMeja}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Footer Kartu */}
-                    <div className="flex items-center justify-between border-t border-black pt-1.5 text-[8px]">
-                      <span className="text-zinc-500">*Wajib dibawa saat ujian</span>
-                      <div className="text-right">
-                        <span>Kepala Sekolah,</span>
-                        <div className="font-bold text-black underline">{schoolProfile.kepalaSekolah}</div>
-                        <div className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
-                      </div>
-                    </div>
-                  </div>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
             </div>

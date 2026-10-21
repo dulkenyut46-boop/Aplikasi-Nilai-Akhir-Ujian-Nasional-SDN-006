@@ -25,6 +25,7 @@ import {
   X,
   ExternalLink,
 } from 'lucide-react';
+import { KartuUjianCard } from '../exam-tools/KartuUjianCard';
 
 export const StudentPhotoManagementView: React.FC = () => {
   const {
@@ -1074,69 +1075,15 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
         </p>
 
         {/* 1. Simulasi Kartu Ujian */}
-        <div className="rounded-2xl border-2 border-emerald-900/80 bg-white p-5 shadow-sm dark:bg-zinc-900 dark:border-emerald-600 space-y-3">
-          <div className="flex items-center gap-3 border-b-2 border-emerald-900 pb-2 dark:border-emerald-500">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-900 text-amber-300 font-bold text-lg">
-              SD
-            </div>
-            <div className="flex-1 text-center">
-              <div className="text-[10px] font-bold tracking-wider text-zinc-700 dark:text-zinc-300 uppercase">
-                PEMERINTAH KABUPATEN KUANTAN SINGINGI
-              </div>
-              <div className="text-xs font-extrabold text-emerald-950 dark:text-emerald-400 uppercase">
-                KARTU PESERTA UJIAN NASIONAL / US
-              </div>
-              <div className="text-[9px] font-semibold text-zinc-500">
-                SDN 006 SUNGAI BULUH • TP {schoolProfile.tahunPelajaran}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-4 text-xs items-center">
-            {/* Foto Frame Resmi */}
-            <div className="relative flex flex-col items-center justify-center h-28 w-22 rounded-lg border-2 border-zinc-800 bg-zinc-100 p-0.5 text-center shrink-0 overflow-hidden shadow-xs dark:bg-zinc-800">
-              {student.foto ? (
-                <img
-                  src={student.foto}
-                  alt={student.nama}
-                  className="h-full w-full object-cover rounded"
-                />
-              ) : (
-                <div className="p-1">
-                  <span className="text-2xl">{student.jenisKelamin === 'L' ? '👦' : '👧'}</span>
-                  <span className="text-[7px] font-bold text-zinc-400 block mt-1">PAS FOTO 2x3</span>
-                </div>
-              )}
-            </div>
-
-            {/* Biodata */}
-            <div className="flex-1 space-y-1.5 text-xs">
-              <div className="grid grid-cols-3 gap-1">
-                <span className="text-zinc-500 font-semibold">No. Peserta:</span>
-                <span className="col-span-2 font-mono font-black text-zinc-900 dark:text-zinc-100">
-                  {student.noPeserta}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-1">
-                <span className="text-zinc-500 font-semibold">Nama Siswa:</span>
-                <span className="col-span-2 font-extrabold uppercase text-zinc-900 dark:text-zinc-100">
-                  {student.nama}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-1">
-                <span className="text-zinc-500 font-semibold">NISN / NIS:</span>
-                <span className="col-span-2 font-mono text-zinc-700 dark:text-zinc-300">
-                  {student.nisn} / {student.nis}
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-1">
-                <span className="text-zinc-500 font-semibold">Ruang & Meja:</span>
-                <span className="col-span-2 font-bold text-emerald-800 dark:text-emerald-400">
-                  {student.ruang} • Meja #{student.noMeja}
-                </span>
-              </div>
-            </div>
-          </div>
+        <div className="max-w-lg mx-auto">
+          <KartuUjianCard
+            student={student}
+            schoolProfile={schoolProfile}
+            theme="emerald"
+            showStamp={true}
+            showBarcode={true}
+            showWatermark={true}
+          />
         </div>
 
         {/* 2. Simulasi Meja Denah */}
