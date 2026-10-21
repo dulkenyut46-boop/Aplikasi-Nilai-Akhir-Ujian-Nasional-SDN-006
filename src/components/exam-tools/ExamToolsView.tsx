@@ -891,19 +891,19 @@ export const ExamToolsView: React.FC = () => {
                   type="button"
                   onClick={() => openPrintPreview('kartu')}
                   className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
-                  title="Buka Pratinjau Cetak Lembar A4 (2 Kartu Per Baris Siap Potong & Dilaminating)"
+                  title="Buka Pratinjau Cetak Lembar A4 (Format 6 Kartu Per Lembar Siap Potong & Dilaminating)"
                 >
                   <Printer className="h-4 w-4" />
-                  <span>Pratinjau & Cetak Kartu A4</span>
+                  <span>Pratinjau & Cetak A4 (Muat 6 Kartu)</span>
                 </button>
                 <button
                   type="button"
-                  onClick={() => handlePrint('Kartu Peserta')}
+                  onClick={() => openPrintPreview('kartu')}
                   className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-3.5 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer"
-                  title="Cetak langsung ke printer"
+                  title="Buka lembar cetak 6 kartu per halaman untuk langsung dicetak"
                 >
                   <Printer className="h-3.5 w-3.5 text-zinc-500" />
-                  <span>Cetak Langsung</span>
+                  <span>Cetak Langsung (6/Lembar)</span>
                 </button>
               </div>
             </div>
@@ -1077,9 +1077,9 @@ export const ExamToolsView: React.FC = () => {
             <span className="font-semibold">
               Menampilkan {roomStudents.length} Kartu Peserta Ujian di <b>{selectedRoom}</b>
             </span>
-            <span className="text-[11px] text-zinc-400 flex items-center gap-1">
-              <Scissors className="h-3 w-3" />
-              Format cetak 2 kolom standar A4 siap potong & dilaminating
+            <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1.5">
+              <Scissors className="h-3.5 w-3.5" />
+              Format lembar cetak: isi 6 kartu per lembar A4 (2 kolom × 3 baris)
             </span>
           </div>
 
@@ -2456,47 +2456,99 @@ export const ExamToolsView: React.FC = () => {
           )}
 
           {/* ========================================================
-              3. PRINTABLE KARTU PESERTA
+              3. PRINTABLE KARTU PESERTA (STANDAR 6 KARTU / LEMBAR A4)
              ======================================================== */}
-          {printDoc === 'kartu' && (
-            <div className="space-y-4">
-              <div className="text-center pb-2 border-b-2 border-black flex items-center justify-between">
-                <div className="text-left">
-                  <h3 className="text-sm font-black uppercase text-black">
-                    LEMBAR CETAK KARTU PESERTA UJIAN SEKOLAH ({selectedRoom})
-                  </h3>
-                  <p className="text-[11px] text-zinc-700">
-                    {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Standar DNT Dinas Pendidikan
-                  </p>
-                </div>
-                <div className="text-right text-[10px] font-mono text-zinc-600">
-                  {roomStudents.length} Peserta • Siap Potong & Dilaminating
-                </div>
-              </div>
+          {printDoc === 'kartu' && (() => {
+            const CARDS_PER_PAGE = 6;
+            const kartuPages: Student[][] = [];
+            for (let i = 0; i < roomStudents.length; i += CARDS_PER_PAGE) {
+              kartuPages.push(roomStudents.slice(i, i + CARDS_PER_PAGE));
+            }
 
-              <div className="grid grid-cols-2 gap-4">
-                {roomStudents.map((s, idx) => (
-                  <React.Fragment key={s.id}>
-                    <KartuUjianCard
-                      student={s}
-                      schoolProfile={schoolProfile}
-                      theme={kartuTheme}
-                      showStamp={kartuShowStamp}
-                      showBarcode={kartuShowBarcode}
-                      showWatermark={kartuShowWatermark}
-                      isPrintVersion={true}
-                      ttdStempelConfig={ttdStempelConfig}
-                    />
-                    {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
-                      <div className="col-span-2 text-center text-[8px] text-zinc-500 font-mono my-1 border-b border-dashed border-zinc-400 print:border-black flex items-center justify-center">
-                        <span className="bg-white px-2 -mb-2">✂ Gunting di sini</span>
+            if (kartuPages.length === 0) {
+              return (
+                <div className="p-8 text-center text-zinc-500 font-medium">
+                  Tidak ada data peserta ujian di ruangan {selectedRoom}.
+                </div>
+              );
+            }
+
+            return (
+              <div className="space-y-6 print:space-y-0">
+                {kartuPages.map((pageStudents, pageIdx) => (
+                  <div
+                    key={pageIdx}
+                    className={`kartu-page-sheet bg-white text-black break-inside-avoid ${
+                      pageIdx < kartuPages.length - 1 ? 'break-after-page page-break-after-always' : ''
+                    } ${pageIdx > 0 ? 'pt-6 print:pt-0' : ''}`}
+                    style={{
+                      pageBreakAfter: pageIdx < kartuPages.length - 1 ? 'always' : 'auto',
+                      breakAfter: pageIdx < kartuPages.length - 1 ? 'page' : 'auto',
+                    }}
+                  >
+                    {/* Header Lembar Cetak */}
+                    <div className="pb-1 mb-1.5 border-b border-black flex items-center justify-between text-[10px]">
+                      <div className="text-left">
+                        <span className="font-black uppercase text-black text-xs block leading-tight">
+                          LEMBAR CETAK KARTU PESERTA UJIAN SEKOLAH ({selectedRoom})
+                        </span>
+                        <span className="text-[9px] text-zinc-600 print:text-black leading-tight">
+                          {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Standar 6 Kartu / Lembar A4
+                        </span>
                       </div>
-                    )}
-                  </React.Fragment>
+                      <div className="text-right font-mono text-[9px] text-zinc-600 print:text-black leading-tight">
+                        <span className="font-bold">Lembar {pageIdx + 1} dari {kartuPages.length}</span>
+                        <span className="block text-[8px] text-zinc-500 print:text-black">
+                          Peserta #{pageIdx * CARDS_PER_PAGE + 1} - #{Math.min((pageIdx + 1) * CARDS_PER_PAGE, roomStudents.length)} dari {roomStudents.length} Siswa
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Grid 2 Kolom x 3 Baris = 6 Kartu */}
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-2">
+                      {pageStudents.map((s) => (
+                        <KartuUjianCard
+                          key={s.id}
+                          student={s}
+                          schoolProfile={schoolProfile}
+                          theme={kartuTheme}
+                          showStamp={kartuShowStamp}
+                          showBarcode={kartuShowBarcode}
+                          showWatermark={kartuShowWatermark}
+                          isPrintVersion={true}
+                          ttdStempelConfig={ttdStempelConfig}
+                        />
+                      ))}
+                      {/* Blank placeholders if last page has fewer than 6 cards to maintain 2x3 grid */}
+                      {Array.from({ length: CARDS_PER_PAGE - pageStudents.length }).map((_, emptyIdx) => (
+                        <div
+                          key={`blank-${emptyIdx}`}
+                          className="rounded-xl border-2 border-dashed border-zinc-300 print:border-zinc-300 p-2 flex flex-col items-center justify-center text-center text-zinc-400 print:text-zinc-400 select-none bg-zinc-50/50 print:bg-transparent"
+                          style={{ height: '88mm', maxHeight: '88mm', minHeight: '88mm' }}
+                        >
+                          <span className="text-[10px] font-extrabold uppercase tracking-wider block">
+                            [ BLANKO KARTU CADANGAN ]
+                          </span>
+                          <span className="text-[8px] mt-0.5">
+                            {schoolProfile.namaSekolah} • US TP {schoolProfile.tahunPelajaran}
+                          </span>
+                          <span className="text-[7.5px] text-zinc-400 font-mono mt-1">
+                            Slot kartu cadangan / siswa susulan
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Sheet Footer Guide */}
+                    <div className="mt-1 pt-1 border-t border-dashed border-zinc-300 print:border-black flex items-center justify-between text-[7.5px] text-zinc-400 print:text-black font-mono">
+                      <span>✂ Garis potong presisi: 2 kolom × 3 baris = 6 kartu peserta per lembar A4</span>
+                      <span>Siap digunting & dilaminating</span>
+                    </div>
+                  </div>
                 ))}
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* ========================================================
               4. PRINTABLE DENAH RUANG

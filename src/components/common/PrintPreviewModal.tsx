@@ -195,8 +195,8 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
           }}
           className={`relative bg-white text-zinc-900 shadow-2xl transition-all print-modal-sheet print:shadow-none print:m-0 print:border-none ${
             orientation === 'landscape'
-              ? 'w-full max-w-[297mm] min-h-[210mm] p-6 sm:p-10 print-landscape-page'
-              : 'w-full max-w-[210mm] min-h-[297mm] p-6 sm:p-10'
+              ? 'w-full max-w-[297mm] min-h-[210mm] p-4 sm:p-6 print-landscape-page print:p-0'
+              : 'w-full max-w-[210mm] min-h-[297mm] p-4 sm:p-6 print:p-0'
           }`}
         >
           {/* Subtle Screen Page Border Guideline (Hidden on Print) */}

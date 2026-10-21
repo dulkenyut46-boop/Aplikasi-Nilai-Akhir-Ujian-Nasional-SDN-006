@@ -133,6 +133,12 @@
     page-break-inside: avoid !important;
   }
 
+  .break-after-page,
+  .page-break-after-always {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
   thead {
     display: table-header-group !important;
   }
@@ -163,9 +169,14 @@
     margin: 0 !important;
   }
 
+  .kartu-page-sheet {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
   @page {
     size: A4 portrait;
-    margin: 0.8cm 1cm;
+    margin: 0.6cm 0.8cm;
   }
 
   body.print-landscape @page,
@@ -175,6 +186,6 @@
 
   @page landscape {
     size: A4 landscape;
-    margin: 0.8cm 1cm;
+    margin: 0.6cm 0.8cm;
   }
 }
