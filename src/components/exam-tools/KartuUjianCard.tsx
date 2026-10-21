@@ -1,6 +1,10 @@
-import React from 'react';
 import { Student, SchoolProfile } from '../../types';
 import { getPresetLogoDataUrl } from '../../utils/kopSuratLogos';
+import {
+  KartuTtdStempelConfig,
+  DigitalSignatureStyle,
+  getDefaultKartuTtdStempel,
+} from './kartuTtdStempelState';
 
 export type KartuTheme = 'emerald' | 'blue' | 'gold' | 'monochrome';
 
@@ -12,6 +16,7 @@ export interface KartuUjianCardProps {
   showBarcode?: boolean;
   showWatermark?: boolean;
   isPrintVersion?: boolean;
+  ttdStempelConfig?: KartuTtdStempelConfig;
 }
 
 // Helper to generate crisp Code-128/39 simulated vector barcode
@@ -66,13 +71,36 @@ export const OfficialStampSvg: React.FC<{
   kabupaten: string;
   kecamatan?: string;
   className?: string;
-}> = ({ namaSekolah, kabupaten, kecamatan = 'SINGINGI HILIR', className = '' }) => {
+  textTop?: string;
+  textBottom?: string;
+  textCenter1?: string;
+  textCenter2?: string;
+  color?: string;
+}> = ({
+  namaSekolah,
+  kabupaten,
+  kecamatan = 'SINGINGI HILIR',
+  className = '',
+  textTop,
+  textBottom,
+  textCenter1,
+  textCenter2,
+  color,
+}) => {
+  const topText = textTop || `PEMERINTAH KAB. ${kabupaten.replace('KABUPATEN', '').trim() || 'KUANTAN SINGINGI'}`;
+  const bottomText = textBottom || `KORWIL KEC. ${kecamatan}`;
+  const center1 = textCenter1 || namaSekolah.replace('SEKOLAH DASAR NEGERI', 'SDN').replace('SD NEGERI', 'SDN');
+  const center2 = textCenter2 || 'CAP SEKOLAH';
+
   return (
     <div
       className={`pointer-events-none select-none relative ${className}`}
-      style={{ transform: 'rotate(-10deg)' }}
+      style={color ? { color } : undefined}
     >
-      <svg viewBox="0 0 160 160" className="w-24 h-24 text-indigo-700/85 print:text-indigo-900/90 drop-shadow-xs">
+      <svg
+        viewBox="0 0 160 160"
+        className={`w-24 h-24 ${color ? '' : 'text-indigo-700/85 print:text-indigo-900/90'} drop-shadow-xs`}
+      >
         {/* Outer and Inner Double Circle */}
         <circle cx="80" cy="80" r="76" fill="none" stroke="currentColor" strokeWidth="2.5" />
         <circle cx="80" cy="80" r="70" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3,1.5" />
@@ -86,7 +114,7 @@ export const OfficialStampSvg: React.FC<{
         />
         <text className="text-[7.8px] font-black tracking-[0.2em] uppercase" fill="currentColor">
           <textPath href="#stampArcTop" startOffset="50%" textAnchor="middle">
-            PEMERINTAH KAB. {kabupaten.replace('KABUPATEN', '').trim() || 'KUANTAN SINGINGI'}
+            {topText}
           </textPath>
         </text>
 
@@ -98,7 +126,7 @@ export const OfficialStampSvg: React.FC<{
         />
         <text className="text-[7.8px] font-black tracking-[0.2em] uppercase" fill="currentColor">
           <textPath href="#stampArcBottom" startOffset="50%" textAnchor="middle">
-            KORWIL KEC. {kecamatan}
+            {bottomText}
           </textPath>
         </text>
 
@@ -110,10 +138,10 @@ export const OfficialStampSvg: React.FC<{
         <g textAnchor="middle" className="uppercase font-black">
           <line x1="52" y1="67" x2="108" y2="67" stroke="currentColor" strokeWidth="1" />
           <text x="80" y="78" className="text-[8.5px] font-extrabold" fill="currentColor">
-            {namaSekolah.replace('SEKOLAH DASAR NEGERI', 'SDN').replace('SD NEGERI', 'SDN')}
+            {center1}
           </text>
           <text x="80" y="90" className="text-[7.5px] font-bold tracking-wider" fill="currentColor">
-            CAP SEKOLAH
+            {center2}
           </text>
           <line x1="52" y1="94" x2="108" y2="94" stroke="currentColor" strokeWidth="1" />
         </g>
@@ -122,19 +150,44 @@ export const OfficialStampSvg: React.FC<{
   );
 };
 
-// Signature Simulation Graphic
-export const SignatureGraphic: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg viewBox="0 0 120 40" className={`w-20 h-8 text-blue-900/90 print:text-black ${className}`}>
-    <path
-      d="M 10 28 C 22 15, 30 8, 38 22 C 45 35, 52 10, 65 18 C 75 25, 88 12, 105 24 M 32 20 Q 70 32 108 26"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+// Signature Simulation Graphic with selectable styles
+export const SignatureGraphic: React.FC<{
+  className?: string;
+  styleVariant?: DigitalSignatureStyle;
+}> = ({ className = '', styleVariant = 'formal' }) => {
+  return (
+    <svg viewBox="0 0 120 40" className={`w-20 h-8 text-blue-900/90 print:text-black ${className}`}>
+      {styleVariant === 'flowing' ? (
+        <path
+          d="M 12 30 C 20 8, 32 6, 40 28 C 48 38, 56 14, 70 12 C 84 10, 95 30, 110 18 M 15 24 L 98 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ) : styleVariant === 'script' ? (
+        <path
+          d="M 8 22 Q 25 12 42 26 Q 58 8 72 20 T 112 16 M 22 28 Q 65 38 102 30"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ) : (
+        <path
+          d="M 10 28 C 22 15, 30 8, 38 22 C 45 35, 52 10, 65 18 C 75 25, 88 12, 105 24 M 32 20 Q 70 32 108 26"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      )}
+    </svg>
+  );
+};
 
 export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
   student,
@@ -144,7 +197,13 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
   showBarcode = true,
   showWatermark = true,
   isPrintVersion = false,
+  ttdStempelConfig,
 }) => {
+  const config = ttdStempelConfig || getDefaultKartuTtdStempel(schoolProfile);
+  const shouldShowStamp = showStamp && config.showStamp;
+  const showPhotoStamp = shouldShowStamp && (config.stampPosition === 'foto' || config.stampPosition === 'both');
+  const showTtdStamp = shouldShowStamp && (config.stampPosition === 'ttd' || config.stampPosition === 'both');
+
   // Theme color styles
   const getThemeClasses = () => {
     switch (theme) {
@@ -304,14 +363,33 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
               )}
 
               {/* Stempel Sekolah Overlap di Pojok Foto (Autentikasi Fisik) */}
-              {showStamp && (
-                <div className="absolute -bottom-6 -right-6 z-20">
-                  <OfficialStampSvg
-                    namaSekolah={schoolProfile.namaSekolah}
-                    kabupaten={schoolProfile.kabupaten}
-                    kecamatan={schoolProfile.kecamatan}
-                    className="opacity-80 scale-75"
-                  />
+              {showPhotoStamp && (
+                <div
+                  className="absolute -bottom-6 -right-6 z-20 pointer-events-none select-none"
+                  style={{
+                    transform: `scale(${(config.stampScale / 100) * 0.75}) rotate(${config.stampRotation}deg) translate(${config.stampOffsetX}px, ${config.stampOffsetY}px)`,
+                    opacity: config.stampOpacity / 100,
+                  }}
+                >
+                  {config.stampType === 'upload' && config.uploadedStampImage ? (
+                    <img
+                      src={config.uploadedStampImage}
+                      alt="Stempel"
+                      className="w-24 h-24 object-contain print:brightness-90"
+                    />
+                  ) : (
+                    <OfficialStampSvg
+                      namaSekolah={schoolProfile.namaSekolah}
+                      kabupaten={schoolProfile.kabupaten}
+                      kecamatan={schoolProfile.kecamatan}
+                      textTop={config.stampTextTop}
+                      textBottom={config.stampTextBottom}
+                      textCenter1={config.stampTextCenter1}
+                      textCenter2={config.stampTextCenter2}
+                      color={config.stampColor}
+                      className="w-24 h-24"
+                    />
+                  )}
                 </div>
               )}
             </div>
@@ -408,33 +486,82 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
         </div>
 
         {/* Titimangsa & Tanda Tangan */}
-        <div className="text-right space-y-0.5 min-w-[125px]">
+        <div className="text-right space-y-0.5 min-w-[130px]">
           <div className="text-zinc-600 dark:text-zinc-400 print:text-black">
-            {schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan || '12 Mei 2026'}
+            {config.titimangsaTempat || schoolProfile.tempatCetak || 'Sungai Buluh'}, {config.titimangsaTanggal || schoolProfile.tanggalKelulusan || '12 Mei 2026'}
           </div>
           <div className="font-bold text-zinc-700 dark:text-zinc-300 print:text-black">
-            Kepala Sekolah,
+            {config.jabatanPenandatangan || 'Kepala Sekolah,'}
           </div>
 
           <div className="relative h-9 flex items-center justify-end">
-            <SignatureGraphic />
-            {showStamp && (
-              <div className="absolute right-8 top-[-8px]">
-                <OfficialStampSvg
-                  namaSekolah={schoolProfile.namaSekolah}
-                  kabupaten={schoolProfile.kabupaten}
-                  kecamatan={schoolProfile.kecamatan}
-                  className="opacity-70 scale-50"
-                />
+            {/* Stempel Overlap di TTD */}
+            {showTtdStamp && (
+              <div
+                className="absolute right-8 top-[-8px] pointer-events-none select-none z-10"
+                style={{
+                  transform: `scale(${(config.stampScale / 100) * 0.55}) rotate(${config.stampRotation}deg) translate(${config.stampOffsetX}px, ${config.stampOffsetY}px)`,
+                  opacity: config.stampOpacity / 100,
+                }}
+              >
+                {config.stampType === 'upload' && config.uploadedStampImage ? (
+                  <img
+                    src={config.uploadedStampImage}
+                    alt="Stempel"
+                    className="w-24 h-24 object-contain print:brightness-90"
+                  />
+                ) : (
+                  <OfficialStampSvg
+                    namaSekolah={schoolProfile.namaSekolah}
+                    kabupaten={schoolProfile.kabupaten}
+                    kecamatan={schoolProfile.kecamatan}
+                    textTop={config.stampTextTop}
+                    textBottom={config.stampTextBottom}
+                    textCenter1={config.stampTextCenter1}
+                    textCenter2={config.stampTextCenter2}
+                    color={config.stampColor}
+                    className="w-24 h-24"
+                  />
+                )}
               </div>
+            )}
+
+            {/* Tanda Tangan */}
+            {config.showSignature ? (
+              <div
+                className="relative z-20 flex items-center justify-end"
+                style={{
+                  transform: `scale(${config.signatureScale / 100}) translate(${config.signatureOffsetX}px, ${config.signatureOffsetY}px)`,
+                }}
+              >
+                {config.signatureType === 'upload' && config.uploadedSignatureImage ? (
+                  <img
+                    src={config.uploadedSignatureImage}
+                    alt="Tanda Tangan"
+                    className="h-8 max-w-[110px] object-contain print:brightness-90"
+                  />
+                ) : config.signatureType === 'draw' && config.drawnSignatureImage ? (
+                  <img
+                    src={config.drawnSignatureImage}
+                    alt="Tanda Tangan"
+                    className="h-8 max-w-[110px] object-contain print:brightness-90"
+                  />
+                ) : config.signatureType === 'digital' ? (
+                  <SignatureGraphic styleVariant={config.digitalSignatureStyle} />
+                ) : (
+                  <div className="h-7 w-20 border-b border-dashed border-zinc-400 print:border-black" />
+                )}
+              </div>
+            ) : (
+              <div className="h-7 w-20" />
             )}
           </div>
 
           <div className="font-black text-zinc-900 dark:text-zinc-100 underline uppercase tracking-tight text-[8.5px] print:text-black">
-            {schoolProfile.kepalaSekolah}
+            {config.namaPenandatangan || schoolProfile.kepalaSekolah}
           </div>
           <div className="text-zinc-600 dark:text-zinc-400 font-mono text-[7.5px] print:text-black">
-            NIP. {schoolProfile.nipKepalaSekolah}
+            NIP. {config.nipPenandatangan || schoolProfile.nipKepalaSekolah}
           </div>
         </div>
       </div>

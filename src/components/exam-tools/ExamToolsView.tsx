@@ -50,6 +50,12 @@ import { EditGraduationDocModal } from './EditGraduationDocModal';
 import { EditPengawasModal } from './EditPengawasModal';
 import { EditPanitiaModal } from './EditPanitiaModal';
 import { EditBeritaAcaraPelaksanaanModal } from './EditBeritaAcaraPelaksanaanModal';
+import { EditKartuTtdStempelModal } from './EditKartuTtdStempelModal';
+import {
+  KartuTtdStempelConfig,
+  loadKartuTtdStempelState,
+  saveKartuTtdStempelState,
+} from './kartuTtdStempelState';
 import {
   BeritaAcaraPelaksanaanState,
   TpuLeaderState,
@@ -149,6 +155,17 @@ export const ExamToolsView: React.FC = () => {
   const [kartuShowStamp, setKartuShowStamp] = useState<boolean>(true);
   const [kartuShowBarcode, setKartuShowBarcode] = useState<boolean>(true);
   const [kartuShowWatermark, setKartuShowWatermark] = useState<boolean>(true);
+  const [ttdStempelConfig, setTtdStempelConfig] = useState<KartuTtdStempelConfig>(() =>
+    loadKartuTtdStempelState(schoolProfile)
+  );
+  const [isEditTtdStempelOpen, setIsEditTtdStempelOpen] = useState<boolean>(false);
+
+  const handleSaveTtdStempel = (newConfig: KartuTtdStempelConfig) => {
+    setTtdStempelConfig(newConfig);
+    saveKartuTtdStempelState(newConfig);
+    setKartuShowStamp(newConfig.showStamp);
+  };
+
   const [namaPengoreksi1, setNamaPengoreksi1] = useState<string>('BUDI SANTOSO, S.Pd.SD');
   const [nipPengoreksi1, setNipPengoreksi1] = useState<string>('19851210 200903 1 005');
   const [namaPengoreksi2, setNamaPengoreksi2] = useState<string>('HERIYANTO, S.Pd.SD');
@@ -863,6 +880,15 @@ export const ExamToolsView: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
+                  onClick={() => setIsEditTtdStempelOpen(true)}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-300 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-900 dark:text-indigo-200 px-3.5 py-2 text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-95"
+                  title="Unggah dan edit gambar tanda tangan serta cap stempel sekolah"
+                >
+                  <FileSignature className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                  <span>Upload & Edit TTD / Stempel</span>
+                </button>
+                <button
+                  type="button"
                   onClick={() => openPrintPreview('kartu')}
                   className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
                   title="Buka Pratinjau Cetak Lembar A4 (2 Kartu Per Baris Siap Potong & Dilaminating)"
@@ -944,28 +970,56 @@ export const ExamToolsView: React.FC = () => {
                 </div>
               </div>
 
-              {/* 2. Toggle Stempel Sekolah */}
-              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
+              {/* 2. Pengesahan TTD & Stempel */}
+              <div className="p-3 rounded-xl border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/50 dark:bg-indigo-950/30 flex flex-col justify-between">
                 <div>
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <Stamp className="h-3.5 w-3.5 text-indigo-600" />
-                    <span>Stempel Sekolah Digital</span>
-                  </span>
-                  <p className="text-[10px] text-zinc-500 mt-1">
-                    Stempel dinas basah melingkar menimpa sudut pas foto dan tanda tangan
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
+                      <Stamp className="h-3.5 w-3.5 text-indigo-600" />
+                      <span>Pengesahan TTD & Stempel</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditTtdStempelOpen(true)}
+                      className="text-[10px] text-indigo-700 dark:text-indigo-400 font-bold hover:underline cursor-pointer"
+                    >
+                      Ubah / Edit
+                    </button>
+                  </div>
+                  <div className="text-[10px] text-zinc-600 dark:text-zinc-400 mt-1 space-y-0.5">
+                    <div className="truncate">
+                      <b>TTD:</b> {ttdStempelConfig.showSignature ? (ttdStempelConfig.signatureType === 'upload' ? 'Gambar Unggahan' : ttdStempelConfig.signatureType === 'draw' ? 'Goresan Kanvas' : ttdStempelConfig.signatureType === 'digital' ? 'Vektor Dinas' : 'Manual Basah') : 'Disembunyikan'}
+                    </div>
+                    <div className="truncate">
+                      <b>Cap:</b> {kartuShowStamp ? (ttdStempelConfig.stampType === 'upload' ? 'Scan Cap Asli' : 'Auto-SVG Melingkar') : 'Disembunyikan'}
+                    </div>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setKartuShowStamp(!kartuShowStamp)}
-                  className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
-                    kartuShowStamp
-                      ? 'bg-indigo-700 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
-                  }`}
-                >
-                  {kartuShowStamp ? '✓ Stempel Aktif' : '✗ Sembunyikan Stempel'}
-                </button>
+                <div className="flex gap-1.5 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsEditTtdStempelOpen(true)}
+                    className="flex-1 py-1.5 px-2 rounded-lg font-bold text-[10.5px] bg-indigo-700 hover:bg-indigo-800 text-white transition-colors cursor-pointer text-center shadow-xs"
+                  >
+                    ⚙️ Atur TTD & Cap
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = !kartuShowStamp;
+                      setKartuShowStamp(next);
+                      setTtdStempelConfig((prev) => ({ ...prev, showStamp: next }));
+                    }}
+                    className={`py-1.5 px-2.5 rounded-lg font-bold text-[10.5px] transition-colors cursor-pointer text-center ${
+                      kartuShowStamp
+                        ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-200'
+                        : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300'
+                    }`}
+                    title="Toggle cepat tampilkan/sembunyikan stempel"
+                  >
+                    {kartuShowStamp ? 'Cap ✓' : 'Cap ✗'}
+                  </button>
+                </div>
               </div>
 
               {/* 3. Toggle Barcode Verifikasi */}
@@ -1040,6 +1094,7 @@ export const ExamToolsView: React.FC = () => {
                   showStamp={kartuShowStamp}
                   showBarcode={kartuShowBarcode}
                   showWatermark={kartuShowWatermark}
+                  ttdStempelConfig={ttdStempelConfig}
                 />
                 {/* Print separator helper every 2 cards */}
                 {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
@@ -2059,7 +2114,20 @@ export const ExamToolsView: React.FC = () => {
                 </select>
                 <button
                   type="button"
-                  onClick={() => setKartuShowStamp(!kartuShowStamp)}
+                  onClick={() => setIsEditTtdStempelOpen(true)}
+                  className="px-2.5 py-1 rounded-lg text-xs font-bold border border-indigo-600 bg-indigo-900/60 hover:bg-indigo-800 text-indigo-200 transition-colors cursor-pointer flex items-center gap-1"
+                  title="Unggah dan edit tanda tangan serta stempel kartu ujian"
+                >
+                  <FileSignature className="h-3.5 w-3.5 text-indigo-300" />
+                  <span>Edit TTD & Stempel</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = !kartuShowStamp;
+                    setKartuShowStamp(next);
+                    setTtdStempelConfig((prev) => ({ ...prev, showStamp: next }));
+                  }}
                   className={`px-2 py-1 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
                     kartuShowStamp
                       ? 'bg-indigo-900/60 border-indigo-700 text-indigo-200'
@@ -2417,6 +2485,7 @@ export const ExamToolsView: React.FC = () => {
                       showBarcode={kartuShowBarcode}
                       showWatermark={kartuShowWatermark}
                       isPrintVersion={true}
+                      ttdStempelConfig={ttdStempelConfig}
                     />
                     {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
                       <div className="col-span-2 text-center text-[8px] text-zinc-500 font-mono my-1 border-b border-dashed border-zinc-400 print:border-black flex items-center justify-center">
@@ -3433,6 +3502,16 @@ export const ExamToolsView: React.FC = () => {
         schoolName={schoolProfile.namaSekolah}
         roomSupervisors={roomSupervisors}
         subjectsList={subjects}
+        showToast={showToast}
+      />
+
+      {/* Modal Edit & Upload Tanda Tangan & Stempel Kartu Ujian */}
+      <EditKartuTtdStempelModal
+        isOpen={isEditTtdStempelOpen}
+        onClose={() => setIsEditTtdStempelOpen(false)}
+        schoolProfile={schoolProfile}
+        initialConfig={ttdStempelConfig}
+        onSave={handleSaveTtdStempel}
         showToast={showToast}
       />
     </div>

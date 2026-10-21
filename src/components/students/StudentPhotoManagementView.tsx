@@ -26,6 +26,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { KartuUjianCard } from '../exam-tools/KartuUjianCard';
+import { loadKartuTtdStempelState } from '../exam-tools/kartuTtdStempelState';
 
 export const StudentPhotoManagementView: React.FC = () => {
   const {
@@ -1083,6 +1084,7 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
             showStamp={true}
             showBarcode={true}
             showWatermark={true}
+            ttdStempelConfig={loadKartuTtdStempelState(schoolProfile)}
           />
         </div>
 
