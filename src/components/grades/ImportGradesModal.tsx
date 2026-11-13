@@ -490,14 +490,14 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
     >
       <div className="space-y-5">
         {/* Top Control Bar: Category Selector & Template Actions */}
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-800/80 dark:bg-emerald-950/40 space-y-3">
+        <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 dark:border-sky-800/80 dark:bg-sky-950/40 space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-900 dark:text-emerald-200 flex items-center gap-2">
-                <FileSpreadsheet className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+              <h4 className="text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-200 flex items-center gap-2">
+                <FileSpreadsheet className="h-4 w-4 text-sky-700 dark:text-sky-400" />
                 Pilihan Jenis Nilai & Template
               </h4>
-              <p className="text-[11px] text-emerald-700/80 dark:text-emerald-300/80">
+              <p className="text-[11px] text-sky-700/80 dark:text-sky-300/80">
                 Tentukan target nilai yang akan diimpor atau unduh template Excel sesuai kebutuhan
               </p>
             </div>
@@ -506,7 +506,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
               <button
                 type="button"
                 onClick={() => downloadGradesExcelTemplate(category === 'us' ? 'us' : 'rapor', semester)}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-white px-3 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-700 dark:bg-zinc-900 dark:text-emerald-300 dark:hover:bg-zinc-800 transition-colors shadow-xs"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-white px-3 py-1.5 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-700 dark:bg-zinc-900 dark:text-sky-300 dark:hover:bg-zinc-800 transition-colors shadow-xs"
                 title="Unduh template Excel spesifik untuk semester / jenis nilai ini"
               >
                 <Download className="h-3.5 w-3.5" />
@@ -515,7 +515,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
               <button
                 type="button"
                 onClick={downloadMasterGradesWorkbook}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-800 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors shadow-sm"
                 title="Unduh 1 berkas Excel lengkap berisi seluruh Sheet S7 s.d S12 dan US"
               >
                 <Layers className="h-3.5 w-3.5" />
@@ -524,7 +524,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-emerald-200/60 dark:border-emerald-800/60">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-sky-200/60 dark:border-sky-800/60">
             {/* Target Category */}
             <div>
               <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
@@ -593,7 +593,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             onClick={() => setInputMode('upload')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
               inputMode === 'upload'
-                ? 'border-emerald-600 text-emerald-700 dark:text-emerald-400'
+                ? 'border-sky-600 text-sky-700 dark:text-sky-400'
                 : 'border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
             }`}
           >
@@ -605,7 +605,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             onClick={() => setInputMode('paste')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
               inputMode === 'paste'
-                ? 'border-emerald-600 text-emerald-700 dark:text-emerald-400'
+                ? 'border-sky-600 text-sky-700 dark:text-sky-400'
                 : 'border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
             }`}
           >
@@ -616,7 +616,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
 
         {/* Upload Mode Area */}
         {inputMode === 'upload' && (
-          <div className="rounded-2xl border-2 border-dashed border-zinc-300 bg-zinc-50/50 p-6 text-center hover:border-emerald-500 hover:bg-emerald-50/20 dark:border-zinc-700 dark:bg-zinc-800/40 transition-colors">
+          <div className="rounded-2xl border-2 border-dashed border-zinc-300 bg-zinc-50/50 p-6 text-center hover:border-sky-500 hover:bg-sky-50/20 dark:border-zinc-700 dark:bg-zinc-800/40 transition-colors">
             <input
               type="file"
               id="grade-excel-upload"
@@ -628,7 +628,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
               htmlFor="grade-excel-upload"
               className="cursor-pointer flex flex-col items-center justify-center space-y-2"
             >
-              <div className="rounded-2xl bg-emerald-100 p-3 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400">
+              <div className="rounded-2xl bg-sky-100 p-3 text-sky-700 dark:bg-sky-950 dark:text-sky-400">
                 <FileSpreadsheet className="h-8 w-8" />
               </div>
               <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
@@ -649,12 +649,12 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
               value={pastedText}
               onChange={(e) => setPastedText(e.target.value)}
               placeholder="Sorot baris tabel nilai di Microsoft Excel atau Google Sheets, tekan Ctrl+C (Copy), lalu klik di sini dan tekan Ctrl+V (Paste)..."
-              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+              className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
             />
             <button
               type="button"
               onClick={handleProcessPastedText}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-800 transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white hover:bg-sky-800 transition-colors shadow-sm"
             >
               <RefreshCw className="h-4 w-4" />
               Proses Teks Tabular
@@ -690,7 +690,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                   onClick={() => setFilterTab('all')}
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-md ${
                     filterTab === 'all'
-                      ? 'bg-emerald-700 text-white'
+                      ? 'bg-sky-700 text-white'
                       : 'text-zinc-600 dark:text-zinc-400'
                   }`}
                 >
@@ -701,7 +701,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                   onClick={() => setFilterTab('matched')}
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-md ${
                     filterTab === 'matched'
-                      ? 'bg-emerald-700 text-white'
+                      ? 'bg-sky-700 text-white'
                       : 'text-zinc-600 dark:text-zinc-400'
                   }`}
                 >
@@ -753,7 +753,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                       </td>
                       <td className="p-2.5">
                         {r.isMatched ? (
-                          <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold text-[11px]">
+                          <div className="flex items-center gap-1.5 text-sky-700 dark:text-sky-400 font-semibold text-[11px]">
                             <CheckCircle2 className="h-3.5 w-3.5" />
                             <span>{r.matchedStudentName}</span>
                           </div>
@@ -809,7 +809,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             className={`inline-flex items-center gap-2 rounded-xl px-5 py-2 text-xs font-bold text-white shadow-md transition-all ${
               parsedRows.length === 0 || matchedCount === 0
                 ? 'bg-zinc-400 cursor-not-allowed opacity-60'
-                : 'bg-emerald-700 hover:bg-emerald-800'
+                : 'bg-sky-700 hover:bg-sky-800'
             }`}
           >
             <CheckCircle2 className="h-4 w-4" />

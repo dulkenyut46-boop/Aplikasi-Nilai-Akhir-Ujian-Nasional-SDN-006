@@ -691,16 +691,16 @@ export const GraduationDocsView: React.FC<Props> = ({
   return (
     <div className="space-y-6">
       {/* Top Banner Kelulusan */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 rounded-3xl border border-emerald-200 bg-linear-to-r from-emerald-50 via-teal-50/50 to-white p-5 shadow-xs dark:border-emerald-900/40 dark:from-emerald-950/40 dark:via-zinc-900 dark:to-zinc-900 print:hidden">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 rounded-3xl border border-sky-200 bg-linear-to-r from-sky-50 via-blue-50/50 to-white p-5 shadow-xs dark:border-sky-900/40 dark:from-sky-950/40 dark:via-zinc-900 dark:to-zinc-900 print:hidden">
         <div>
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-700 text-white shadow-md">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-700 text-white shadow-md">
               <FileSignature className="h-5 w-5" />
             </span>
             <div>
               <h3 className="text-base font-extrabold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                 Administrasi Undangan & Dokumen Kelulusan Kelas 6
-                <span className="rounded-full bg-emerald-200/80 px-2.5 py-0.5 text-[10px] font-bold text-emerald-900 dark:bg-emerald-900/60 dark:text-emerald-200">
+                <span className="rounded-full bg-sky-200/80 px-2.5 py-0.5 text-[10px] font-bold text-sky-900 dark:bg-sky-900/60 dark:text-sky-200">
                   Format Baku Word & Cetak A4
                 </span>
               </h3>
@@ -741,9 +741,9 @@ export const GraduationDocsView: React.FC<Props> = ({
             <button
               type="button"
               onClick={() => setIsEditGuruModalOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-50 px-3.5 py-2 text-xs font-extrabold text-emerald-800 shadow-xs hover:bg-emerald-100 dark:bg-emerald-950/50 dark:border-emerald-700 dark:text-emerald-200 transition-all"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-sky-600 bg-sky-50 px-3.5 py-2 text-xs font-extrabold text-sky-800 shadow-xs hover:bg-sky-100 dark:bg-sky-950/50 dark:border-sky-700 dark:text-sky-200 transition-all"
             >
-              <Users className="h-4 w-4 text-emerald-700" />
+              <Users className="h-4 w-4 text-sky-700" />
               Menu Edit Nama Guru ({guruList.length})
             </button>
           )}
@@ -778,11 +778,11 @@ export const GraduationDocsView: React.FC<Props> = ({
             onClick={() => setIsEditing(!isEditing)}
             className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-bold transition-all ${
               isEditing
-                ? 'border-emerald-600 bg-emerald-600 text-white shadow-sm'
+                ? 'border-sky-600 bg-sky-600 text-white shadow-sm'
                 : 'border-zinc-300 bg-white text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
             }`}
           >
-            {isEditing ? <Check className="h-4 w-4" /> : <Edit3 className="h-4 w-4 text-emerald-600" />}
+            {isEditing ? <Check className="h-4 w-4" /> : <Edit3 className="h-4 w-4 text-sky-600" />}
             {isEditing ? 'Selesai Menyunting' : 'Sunting Data Dokumen'}
           </button>
 
@@ -799,7 +799,7 @@ export const GraduationDocsView: React.FC<Props> = ({
           <button
             type="button"
             onClick={() => onOpenPrintPreview(activeDoc)}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 active:scale-95 transition-all"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 active:scale-95 transition-all"
             title="Buka pratinjau lembar kertas A4 siap cetak dengan kop surat resmi"
           >
             <Printer className="h-4 w-4" />
@@ -865,7 +865,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               tabIndex={0}
               className={`p-4 rounded-2xl border text-left transition-all relative overflow-hidden flex flex-col justify-between cursor-pointer ${
                 isActive
-                  ? 'border-emerald-600 bg-emerald-50/90 shadow-md ring-2 ring-emerald-500/20 dark:bg-emerald-950/40 dark:border-emerald-500'
+                  ? 'border-sky-600 bg-sky-50/90 shadow-md ring-2 ring-sky-500/20 dark:bg-sky-950/40 dark:border-sky-500'
                   : 'border-zinc-200 bg-white hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/60'
               }`}
             >
@@ -873,20 +873,20 @@ export const GraduationDocsView: React.FC<Props> = ({
                 <span
                   className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
                     isActive
-                      ? 'bg-emerald-600 text-white shadow-xs'
+                      ? 'bg-sky-600 text-white shadow-xs'
                       : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   <Icon className="h-4.5 w-4.5" />
                 </span>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200">
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 dark:bg-sky-900/60 dark:text-sky-200">
                     Kop Surat ✓
                   </span>
                   <span
                     className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-bold ${
                       isActive
-                        ? 'bg-emerald-200/80 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-200'
+                        ? 'bg-sky-200/80 text-sky-900 dark:bg-sky-900 dark:text-sky-200'
                         : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400'
                     }`}
                   >
@@ -926,7 +926,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     setActiveDoc(doc.key as GraduationDocType);
                     onOpenPrintPreview(doc.key as GraduationDocType);
                   }}
-                  className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300 hover:underline transition-colors py-0.5 px-1 rounded"
+                  className="inline-flex items-center gap-1 font-bold text-sky-700 hover:text-sky-900 dark:text-sky-400 dark:hover:text-sky-300 hover:underline transition-colors py-0.5 px-1 rounded"
                   title={`Cetak ${doc.title} dengan Kop Surat`}
                 >
                   <Printer className="h-3 w-3" />
@@ -1106,7 +1106,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={undanganState.showTembusan}
                     onChange={(e) => handleUndanganFieldChange('showTembusan', e.target.checked)}
-                    className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Tembusan Surat di Bagian Bawah
@@ -1282,7 +1282,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={baState.showKop}
                     onChange={(e) => handleBAFieldChange('showKop', e.target.checked)}
-                    className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Sertakan Kop Surat SDN 006 di Bagian Atas
@@ -1293,7 +1293,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={baState.showNotulis}
                     onChange={(e) => handleBAFieldChange('showNotulis', e.target.checked)}
-                    className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Kolom Tanda Tangan Notulis (Format 2 Kolom Kedinasan)
@@ -1320,7 +1320,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   <button
                     type="button"
                     onClick={() => setIsEditGuruModalOpen(true)}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-1.5 font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-1.5 font-bold text-white shadow-xs hover:bg-sky-800 transition-colors"
                   >
                     <Users className="h-4 w-4" />
                     Buka Menu Edit Nama Guru ({guruList.length})
@@ -1422,7 +1422,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={skState.showTembusan}
                     onChange={(e) => handleSKFieldChange('showTembusan', e.target.checked)}
-                    className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Tembusan Surat (Dinas, Korwil, Komite, Arsip)
@@ -1433,7 +1433,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={skState.showLampiran}
                     onChange={(e) => handleSKFieldChange('showLampiran', e.target.checked)}
-                    className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Sertakan Lampiran Tabel 80 Siswa Lulus di Bawah SK
@@ -1448,7 +1448,7 @@ export const GraduationDocsView: React.FC<Props> = ({
       {/* Kontrol Toolbar Word Khusus Dokumen yang Aktif */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-zinc-200/90 dark:bg-zinc-800/90 px-4 py-2.5 rounded-2xl text-xs border border-zinc-300 dark:border-zinc-700 shadow-xs print:hidden">
         <div className="flex items-center gap-2 text-zinc-800 dark:text-zinc-200 font-bold">
-          <AlignJustify className="h-4 w-4 text-emerald-600" />
+          <AlignJustify className="h-4 w-4 text-sky-600" />
           <span>
             {activeDoc === 'undangan' && 'Naskah Surat Undangan Rapat (Format Baku Microsoft Word)'}
             {activeDoc === 'ba-kelulusan' && 'Naskah Berita Acara Kelulusan (Format Baku Microsoft Word)'}
@@ -1545,7 +1545,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setIsEditGuruModalOpen(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-1.5 font-bold text-white shadow-xs hover:bg-emerald-800 transition-all active:scale-95"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-1.5 font-bold text-white shadow-xs hover:bg-sky-800 transition-all active:scale-95"
               >
                 <Users className="h-3.5 w-3.5" />
                 Edit Nama ({guruList.length})
@@ -1557,7 +1557,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   onClick={() => setSignatureMode('manual')}
                   className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
                     signatureMode === 'manual'
-                      ? 'bg-emerald-700 text-white shadow-2xs'
+                      ? 'bg-sky-700 text-white shadow-2xs'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
                   }`}
                 >
@@ -1568,7 +1568,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   onClick={() => setSignatureMode('digital')}
                   className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
                     signatureMode === 'digital'
-                      ? 'bg-emerald-700 text-white shadow-2xs'
+                      ? 'bg-sky-700 text-white shadow-2xs'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
                   }`}
                 >
@@ -1606,7 +1606,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             className="inline-flex items-center gap-1.5 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-3.5 py-1.5 font-bold shadow-xs hover:opacity-90 transition-all active:scale-95"
             title="Cetak dokumen terpilih lengkap dengan kop surat resmi"
           >
-            <Printer className="h-3.5 w-3.5 text-emerald-400 dark:text-emerald-600" />
+            <Printer className="h-3.5 w-3.5 text-sky-400 dark:text-sky-600" />
             Cetak Dokumen Terpilih
           </button>
         </div>
@@ -1796,7 +1796,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   <div className="grid grid-cols-12">
                     <span className="col-span-1 font-bold">3.</span>
                     <span className="col-span-7">Jumlah Peserta Didik Dinyatakan LULUS</span>
-                    <span className="col-span-4 font-black text-emerald-900">: {baState.pesertaLulus} (delapan puluh) orang (100%)</span>
+                    <span className="col-span-4 font-black text-sky-900">: {baState.pesertaLulus} (delapan puluh) orang (100%)</span>
                   </div>
                   <div className="grid grid-cols-12">
                     <span className="col-span-1 font-bold">4.</span>
@@ -1923,14 +1923,14 @@ export const GraduationDocsView: React.FC<Props> = ({
                             <div className="grid grid-cols-2 gap-1 items-center h-full px-1 overflow-hidden">
                               <div className="text-left overflow-hidden whitespace-nowrap">
                                 {isOdd && (
-                                  <span className="text-[11px] italic font-serif text-emerald-900 inline-block truncate">
+                                  <span className="text-[11px] italic font-serif text-sky-900 inline-block truncate">
                                     ✍️ {g.nama.split(',')[0].replace(/(S\.Pd|M\.Pd|S\.Kom|S\.E|I\.)/g, '').trim()}
                                   </span>
                                 )}
                               </div>
                               <div className="text-left overflow-hidden whitespace-nowrap pl-1.5">
                                 {!isOdd && (
-                                  <span className="text-[11px] italic font-serif text-emerald-900 inline-block truncate">
+                                  <span className="text-[11px] italic font-serif text-sky-900 inline-block truncate">
                                     ✍️ {g.nama.split(',')[0].replace(/(S\.Pd|M\.Pd|S\.Kom|S\.E|I\.)/g, '').trim()}
                                   </span>
                                 )}
@@ -2174,8 +2174,8 @@ export const GraduationDocsView: React.FC<Props> = ({
                               <td className="p-1 font-bold uppercase border-r border-black">{s.nama}</td>
                               <td className="p-1 text-center border-r border-black">{s.jenisKelamin}</td>
                               <td className="p-1 text-center font-mono font-bold border-r border-black">{totalNA.toFixed(1)}</td>
-                              <td className="p-1 text-center font-mono font-bold text-emerald-800 border-r border-black">{avgNA.toFixed(2)}</td>
-                              <td className="p-1 text-center font-bold text-emerald-800">LULUS</td>
+                              <td className="p-1 text-center font-mono font-bold text-sky-800 border-r border-black">{avgNA.toFixed(2)}</td>
+                              <td className="p-1 text-center font-bold text-sky-800">LULUS</td>
                             </tr>
                           );
                         })}

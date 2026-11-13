@@ -50,9 +50,9 @@ export const StudentDetailModal: React.FC = () => {
     >
       <div className="space-y-6">
         {/* Top Header Card */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-emerald-900 to-zinc-900 p-5 text-white">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-sky-900 to-zinc-900 p-5 text-white">
           <div className="flex items-center gap-4">
-            <div className="flex h-18 w-14 items-center justify-center rounded-xl bg-emerald-800/80 text-white font-bold border-2 border-emerald-400/50 shadow-md overflow-hidden shrink-0">
+            <div className="flex h-18 w-14 items-center justify-center rounded-xl bg-sky-800/80 text-white font-bold border-2 border-sky-400/50 shadow-md overflow-hidden shrink-0">
               {s.foto ? (
                 <img src={s.foto} alt={s.nama} className="h-full w-full object-cover" />
               ) : (
@@ -62,11 +62,11 @@ export const StudentDetailModal: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-extrabold text-white">{s.nama}</h3>
-                <span className="rounded-md bg-emerald-500/30 px-2 py-0.5 text-xs font-semibold text-emerald-200">
+                <span className="rounded-md bg-sky-500/30 px-2 py-0.5 text-xs font-semibold text-sky-200">
                   {s.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}
                 </span>
               </div>
-              <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-emerald-200/90 font-mono">
+              <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-sky-200/90 font-mono">
                 <span>No. UN: {s.noPeserta}</span>
                 <span>•</span>
                 <span>NISN: {s.nisn}</span>
@@ -91,7 +91,7 @@ export const StudentDetailModal: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-2.5">
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 text-sm border-b pb-2 border-zinc-200 dark:border-zinc-700">
-              <User className="h-4 w-4 text-emerald-600" />
+              <User className="h-4 w-4 text-sky-600" />
               Biodata & Informasi Keluarga
             </h4>
             <div className="grid grid-cols-3 gap-2">
@@ -120,12 +120,12 @@ export const StudentDetailModal: React.FC = () => {
 
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-2.5">
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 text-sm border-b pb-2 border-zinc-200 dark:border-zinc-700">
-              <Layers className="h-4 w-4 text-emerald-600" />
+              <Layers className="h-4 w-4 text-sky-600" />
               Penempatan Ujian & Ijazah
             </h4>
             <div className="grid grid-cols-3 gap-2">
               <span className="text-zinc-500">Ruang Ujian:</span>
-              <span className="col-span-2 font-bold text-emerald-700 dark:text-emerald-400">
+              <span className="col-span-2 font-bold text-sky-700 dark:text-sky-400">
                 {s.ruang} (Meja #{s.noMeja})
               </span>
             </div>
@@ -137,13 +137,13 @@ export const StudentDetailModal: React.FC = () => {
             </div>
             <div className="grid grid-cols-3 gap-2">
               <span className="text-zinc-500">No. SK Kelulusan:</span>
-              <span className="col-span-2 font-mono font-medium text-emerald-800 dark:text-emerald-300">
+              <span className="col-span-2 font-mono font-medium text-sky-800 dark:text-sky-300">
                 {s.noSuratKelulusan || '-'}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <span className="text-zinc-500">No. SKHU / Transkrip:</span>
-              <span className="col-span-2 font-mono font-medium text-emerald-800 dark:text-emerald-300">
+              <span className="col-span-2 font-mono font-medium text-sky-800 dark:text-sky-300">
                 {s.noSuratTranskrip || '-'}
               </span>
             </div>
@@ -207,7 +207,7 @@ export const StudentDetailModal: React.FC = () => {
                       </td>
                       <td className="p-2.5 text-center font-mono">{rAvg}</td>
                       <td className="p-2.5 text-center font-mono">{usScore}</td>
-                      <td className="p-2.5 text-center font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                      <td className="p-2.5 text-center font-mono font-bold text-sky-700 dark:text-sky-400">
                         {na}
                       </td>
                       <td className="p-2.5 text-center">
@@ -238,7 +238,7 @@ export const StudentDetailModal: React.FC = () => {
                 setSelectedStudentForDetail(null);
                 setActiveTab('diploma');
               }}
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
             >
               <Printer className="h-4 w-4" />
               Cetak SKHU Siswa Ini

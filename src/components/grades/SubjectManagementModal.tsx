@@ -159,7 +159,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               }}
               className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
                 activeTab === 'list' && !editingSubject
-                  ? 'bg-emerald-800 text-white shadow-xs'
+                  ? 'bg-sky-800 text-white shadow-xs'
                   : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
               }`}
             >
@@ -175,11 +175,11 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               }}
               className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
                 activeTab === 'add'
-                  ? 'bg-emerald-800 text-white shadow-xs'
-                  : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-200 dark:border-emerald-800'
+                  ? 'bg-sky-800 text-white shadow-xs'
+                  : 'bg-sky-50 text-sky-800 hover:bg-sky-100 border border-sky-300 dark:bg-sky-950/40 dark:text-sky-200 dark:border-sky-800'
               }`}
             >
-              <Plus className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <Plus className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               Tambah Mapel Baru
             </button>
           </div>
@@ -202,7 +202,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               <p>
                 Daftar mata pelajaran yang digunakan dalam penilaian Ujian Sekolah, Kartu Ujian, Rekap Nilai, dan SKHU.
               </p>
-              <span className="font-semibold text-emerald-700 dark:text-emerald-400">
+              <span className="font-semibold text-sky-700 dark:text-sky-400">
                 {subjects.length} Mata Pelajaran Aktif
               </span>
             </div>
@@ -235,7 +235,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                             {idx + 1}
                           </td>
                           <td className="p-3">
-                            <span className="inline-block rounded-md bg-emerald-50 px-2 py-0.5 font-mono text-[11px] font-extrabold text-emerald-800 border border-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800">
+                            <span className="inline-block rounded-md bg-sky-50 px-2 py-0.5 font-mono text-[11px] font-extrabold text-sky-800 border border-sky-300 dark:bg-sky-950/50 dark:text-sky-300 dark:border-sky-800">
                               {sub.code}
                             </span>
                           </td>
@@ -251,7 +251,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                             {sub.kkm}
                           </td>
                           <td className="p-3 text-center">
-                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-sky-700 dark:text-sky-400">
                               <Check className="h-3 w-3" />
                               {gradedCount}/{students.length} Siswa
                             </span>
@@ -305,12 +305,12 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
         {/* TAB 2: TAMBAH MAPEL BARU */}
         {activeTab === 'add' && !editingSubject && (
           <form onSubmit={handleAddSubmit} className="space-y-4">
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/30">
-              <h3 className="font-bold text-sm text-emerald-950 dark:text-emerald-200 flex items-center gap-2">
-                <Plus className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <div className="rounded-xl border border-sky-200 bg-sky-50/60 p-4 dark:border-sky-900/60 dark:bg-sky-950/30">
+              <h3 className="font-bold text-sm text-sky-950 dark:text-sky-200 flex items-center gap-2">
+                <Plus className="h-4 w-4 text-sky-700 dark:text-sky-400" />
                 Formulir Tambah Mata Pelajaran Baru
               </h3>
-              <p className="mt-1 text-xs text-emerald-800/80 dark:text-emerald-300">
+              <p className="mt-1 text-xs text-sky-800/80 dark:text-sky-300">
                 Mata pelajaran baru akan otomatis dibuatkan kolom ujian teori dan praktik, serta diinisialisasi untuk seluruh {students.length} peserta ujian.
               </p>
             </div>
@@ -325,7 +325,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5 md:col-span-2">
                 <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <BookOpen className="h-3.5 w-3.5 text-emerald-600" />
+                  <BookOpen className="h-3.5 w-3.5 text-sky-600" />
                   Nama Mata Pelajaran <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -344,13 +344,13 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                       }
                     }
                   }}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <Hash className="h-3.5 w-3.5 text-emerald-600" />
+                  <Hash className="h-3.5 w-3.5 text-sky-600" />
                   Kode Singkat / Singkatan Mapel <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -360,7 +360,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   placeholder="Contoh: ARB, PLH, INF, TIK..."
                   value={newCode}
                   onChange={(e) => setNewCode(e.target.value.toUpperCase())}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold uppercase text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold uppercase text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
                   Digunakan untuk header kolom tabel dan kartu ujian (maksimal 10 karakter).
@@ -369,7 +369,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
 
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <Award className="h-3.5 w-3.5 text-emerald-600" />
+                  <Award className="h-3.5 w-3.5 text-sky-600" />
                   KKM (Kriteria Ketuntasan Minimal)
                 </label>
                 <input
@@ -378,7 +378,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   max={100}
                   value={newKkm}
                   onChange={(e) => setNewKkm(Number(e.target.value))}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
                   Standar ketuntasan kelulusan (biasanya antara 70 - 75).
@@ -395,7 +395,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   max={100}
                   value={newDefaultScore}
                   onChange={(e) => setNewDefaultScore(Number(e.target.value))}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
                   Nilai ini akan diisi secara otomatis untuk seluruh siswa agar tidak ada nilai kosong. Nilai dapat diedit kapan saja melalui menu nilai.
@@ -413,7 +413,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               </button>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
               >
                 <Plus className="h-4 w-4" />
                 Simpan & Tambahkan Mapel
@@ -463,7 +463,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   required
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 font-semibold"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 font-semibold"
                 />
               </div>
 
@@ -477,7 +477,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   maxLength={10}
                   value={editCode}
                   onChange={(e) => setEditCode(e.target.value.toUpperCase())}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold uppercase text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold uppercase text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -491,7 +491,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   max={100}
                   value={editKkm}
                   onChange={(e) => setEditKkm(Number(e.target.value))}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
             </div>

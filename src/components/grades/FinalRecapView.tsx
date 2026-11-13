@@ -125,10 +125,10 @@ export const FinalRecapView: React.FC = () => {
 
           <button
             onClick={() => setActiveTab('grades-template-import')}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Buka menu template dan impor nilai Excel"
           >
-            <FileSpreadsheet className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-700 dark:text-sky-400" />
             Template & Impor Nilai
           </button>
 
@@ -137,7 +137,7 @@ export const FinalRecapView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak buku ledger rekapitulasi nilai akhir dan peringkat"
           >
-            <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Menu Cetak Rekap Nilai
           </button>
 
@@ -145,7 +145,7 @@ export const FinalRecapView: React.FC = () => {
             onClick={exportToCSV}
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
-            <Download className="h-4 w-4 text-emerald-600" />
+            <Download className="h-4 w-4 text-sky-600" />
             Unduh Excel/CSV
           </button>
         </div>
@@ -160,7 +160,7 @@ export const FinalRecapView: React.FC = () => {
             placeholder="Cari Peserta Berdasarkan Nama / NISN / No UN..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           />
         </div>
 
@@ -196,7 +196,7 @@ export const FinalRecapView: React.FC = () => {
                 <th className="p-3 text-center min-w-[80px] bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200">
                   Total
                 </th>
-                <th className="p-3 text-center min-w-[85px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200">
+                <th className="p-3 text-center min-w-[85px] bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200">
                   Rata-Rata
                 </th>
                 <th className="p-3 text-center min-w-[70px]">Predikat</th>
@@ -253,7 +253,7 @@ export const FinalRecapView: React.FC = () => {
                             </span>
                           ) : (
                             <div className="text-[11px] leading-tight">
-                              <div className="font-bold text-emerald-700 dark:text-emerald-400">
+                              <div className="font-bold text-sky-700 dark:text-sky-400">
                                 {finalScore.toFixed(1)}
                               </div>
                               <div className="text-[9px] text-zinc-400">
@@ -271,7 +271,7 @@ export const FinalRecapView: React.FC = () => {
                     </td>
 
                     {/* Average NA */}
-                    <td className="p-3 text-center font-mono font-extrabold text-sm text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">
+                    <td className="p-3 text-center font-mono font-extrabold text-sm text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                       {item.avgNA.toFixed(2)}
                     </td>
 
@@ -294,7 +294,7 @@ export const FinalRecapView: React.FC = () => {
                           setSelectedStudentForSKHU(s);
                           setActiveTab('diploma');
                         }}
-                        className="rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300 transition-colors"
+                        className="rounded-lg bg-sky-50 px-2.5 py-1 text-xs font-semibold text-sky-700 hover:bg-sky-100 dark:bg-sky-950 dark:text-sky-300 transition-colors"
                         title="Buka Transkrip Nilai Siswa"
                       >
                         Transkrip
@@ -312,7 +312,7 @@ export const FinalRecapView: React.FC = () => {
                   Rata-Rata Nilai Sekolah:
                 </td>
                 {subjectStats.map((item) => (
-                  <td key={item.sub.key} className="p-3 text-center font-mono font-extrabold text-emerald-700 dark:text-emerald-400">
+                  <td key={item.sub.key} className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400">
                     {item.avg.toFixed(2)}
                   </td>
                 ))}
@@ -359,7 +359,7 @@ export const FinalRecapView: React.FC = () => {
                   onClick={() => setPrintFormat(fmt.key as any)}
                   className={`px-2.5 py-1 rounded-lg font-bold transition-colors ${
                     printFormat === fmt.key
-                      ? 'bg-emerald-700 text-white shadow-xs'
+                      ? 'bg-sky-700 text-white shadow-xs'
                       : 'hover:text-white hover:bg-zinc-700'
                   }`}
                 >
@@ -374,7 +374,7 @@ export const FinalRecapView: React.FC = () => {
               <select
                 value={printRoom}
                 onChange={(e) => setPrintRoom(e.target.value)}
-                className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
               >
                 <option value="ALL">Semua Ruangan</option>
                 <option value="RUANG 1">Ruang 1</option>

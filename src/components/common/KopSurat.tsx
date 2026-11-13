@@ -63,7 +63,7 @@ export const KopSurat: React.FC<KopSuratProps> = ({
       case 'modern':
         return (
           <div className="mt-3 space-y-0.5">
-            <div className="h-1 bg-gradient-to-r from-emerald-800 via-amber-500 to-emerald-800 rounded-full print:bg-black" />
+            <div className="h-1 bg-gradient-to-r from-sky-800 via-amber-500 to-sky-800 rounded-full print:bg-black" />
             <div className="h-0.5 bg-zinc-400 dark:bg-zinc-600 print:bg-black" />
           </div>
         );
@@ -157,7 +157,7 @@ export const KopSurat: React.FC<KopSuratProps> = ({
 
           {/* Nama Satuan Pendidikan (Paling Menonjol) */}
           <h2
-            className={`font-black uppercase tracking-wide text-emerald-950 dark:text-emerald-300 print:text-black leading-tight my-0.5 ${
+            className={`font-black uppercase tracking-wide text-sky-950 dark:text-sky-300 print:text-black leading-tight my-0.5 ${
               variant === 'compact'
                 ? 'text-sm sm:text-base'
                 : 'text-base sm:text-lg md:text-[19px] lg:text-[20px]'

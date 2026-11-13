@@ -169,7 +169,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="rounded-xl bg-emerald-100 p-2 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+            <div className="rounded-xl bg-sky-100 p-2 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
               <FileSpreadsheet className="h-5 w-5" />
             </div>
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
@@ -189,7 +189,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               setModalSemester('s12');
               setIsModalOpen(true);
             }}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/80 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/80 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/60 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
           >
             <Upload className="h-4 w-4" />
             Impor Berkas Excel (.xlsx)
@@ -198,7 +198,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
           <button
             type="button"
             onClick={downloadMasterGradesWorkbook}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <FolderDown className="h-4 w-4" />
             Unduh Master Workbook Lengkap
@@ -221,7 +221,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               onClick={() => setActiveTab(tab.key as TabKey)}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 isActive
-                  ? 'bg-emerald-800 text-white shadow-sm'
+                  ? 'bg-sky-800 text-white shadow-sm'
                   : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
               }`}
             >
@@ -236,13 +236,13 @@ export const GradesTemplateAndImportView: React.FC = () => {
       {activeTab === 'templates' && (
         <div className="space-y-6">
           {/* Information Callout */}
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/30 flex items-start gap-3">
-            <Info className="h-5 w-5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
-            <div className="text-xs text-emerald-950 dark:text-emerald-200 space-y-1">
+          <div className="rounded-2xl border border-sky-200 bg-sky-50/60 p-4 dark:border-sky-900/60 dark:bg-sky-950/30 flex items-start gap-3">
+            <Info className="h-5 w-5 text-sky-700 dark:text-sky-400 shrink-0 mt-0.5" />
+            <div className="text-xs text-sky-950 dark:text-sky-200 space-y-1">
               <p className="font-bold">
                 Format Template Excel telah disinkronkan dengan Data Peserta Didik (DNT) SDN 006 Sungai Buluh.
               </p>
-              <p className="text-emerald-800 dark:text-emerald-300">
+              <p className="text-sky-800 dark:text-sky-300">
                 Kolom No Peserta, NISN, Nama Siswa, dan Ruang telah terisi otomatis. Anda dapat mendistribusikan file ini ke Bapak/Ibu Guru Mata Pelajaran atau Wali Kelas untuk pengisian nilai secara offline.
               </p>
             </div>
@@ -253,11 +253,11 @@ export const GradesTemplateAndImportView: React.FC = () => {
             {templateList.map((tpl) => (
               <div
                 key={tpl.id}
-                className="flex flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all dark:border-zinc-800 dark:bg-zinc-900"
+                className="flex flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs hover:border-sky-500 hover:shadow-md transition-all dark:border-zinc-800 dark:bg-zinc-900"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
                       {tpl.format}
                     </span>
                     <span className="text-[11px] font-semibold text-zinc-400">
@@ -279,7 +279,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedPreviewTemplate(tpl.id)}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-300 transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-600 hover:text-sky-700 dark:text-zinc-400 dark:hover:text-sky-300 transition-colors"
                   >
                     <Eye className="h-3.5 w-3.5" />
                     Lihat Kolom
@@ -288,7 +288,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                   <button
                     type="button"
                     onClick={tpl.action}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-800 transition-colors shadow-xs"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors shadow-xs"
                   >
                     <Download className="h-3.5 w-3.5" />
                     Unduh .xlsx
@@ -303,7 +303,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                  <Eye className="h-4 w-4 text-emerald-600" />
+                  <Eye className="h-4 w-4 text-sky-600" />
                   Pratinjau Struktur Kolom Template Excel ({selectedPreviewTemplate.toUpperCase()})
                 </h3>
                 <p className="text-xs text-zinc-500 mt-0.5">
@@ -338,7 +338,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                       </>
                     ) : (
                       SUBJECT_LIST.map((sub) => (
-                        <th key={sub.key} className="p-3 text-center bg-emerald-50 dark:bg-emerald-950/30">
+                        <th key={sub.key} className="p-3 text-center bg-sky-50 dark:bg-sky-950/30">
                           {sub.code}
                           <div className="text-[9px] font-normal text-zinc-400">KKM {sub.kkm}</div>
                         </th>
@@ -350,7 +350,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                   {students.slice(0, 5).map((s, idx) => (
                     <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
                       <td className="p-3 text-center text-zinc-500 font-bold">{idx + 1}</td>
-                      <td className="p-3 text-emerald-700 dark:text-emerald-300 font-semibold">{s.noPeserta}</td>
+                      <td className="p-3 text-sky-700 dark:text-sky-300 font-semibold">{s.noPeserta}</td>
                       <td className="p-3 text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
                       <td className="p-3 font-sans font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
                       <td className="p-3 font-sans text-zinc-600 dark:text-zinc-400">{s.ruang}</td>
@@ -387,8 +387,8 @@ export const GradesTemplateAndImportView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Step 1 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-xs font-black">
+              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   1
                 </span>
                 Langkah 1: Unduh Template
@@ -402,7 +402,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveTab('templates')}
-                className="text-xs font-bold text-emerald-700 hover:underline dark:text-emerald-400"
+                className="text-xs font-bold text-sky-700 hover:underline dark:text-sky-400"
               >
                 Pilih Template Sekarang →
               </button>
@@ -410,8 +410,8 @@ export const GradesTemplateAndImportView: React.FC = () => {
 
             {/* Step 2 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-xs font-black">
+              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   2
                 </span>
                 Langkah 2: Isi Nilai Siswa
@@ -429,8 +429,8 @@ export const GradesTemplateAndImportView: React.FC = () => {
 
             {/* Step 3 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-xs font-black">
+              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   3
                 </span>
                 Langkah 3: Unggah Berkas
@@ -444,7 +444,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-800 transition-colors shadow-xs"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors shadow-xs"
               >
                 <Upload className="h-3.5 w-3.5" />
                 Mulai Impor Berkas
@@ -453,8 +453,8 @@ export const GradesTemplateAndImportView: React.FC = () => {
           </div>
 
           {/* Interactive Direct Import Trigger Banner */}
-          <div className="rounded-2xl border-2 border-dashed border-emerald-300 bg-emerald-50/50 p-8 text-center dark:border-emerald-800 dark:bg-emerald-950/20 space-y-3">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 shadow-sm">
+          <div className="rounded-2xl border-2 border-dashed border-sky-300 bg-sky-50/50 p-8 text-center dark:border-sky-800 dark:bg-sky-950/20 space-y-3">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200 shadow-sm">
               <Upload className="h-6 w-6" />
             </div>
             <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
@@ -467,7 +467,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
               >
                 <Upload className="h-4 w-4" />
                 Buka Menu Impor Nilai (.xlsx)
@@ -483,7 +483,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                <FileCheck className="h-5 w-5 text-emerald-600" />
+                <FileCheck className="h-5 w-5 text-sky-600" />
                 Matriks Kelengkapan Nilai Siswa (Data Readiness)
               </h3>
               <p className="text-xs text-zinc-500 mt-0.5">
@@ -498,7 +498,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                 placeholder="Cari Siswa..."
                 value={searchStudent}
                 onChange={(e) => setSearchStudent(e.target.value)}
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
               />
             </div>
           </div>
@@ -528,7 +528,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                     <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
                       <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
                       <td className="p-3 font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
-                      <td className="p-3 font-mono text-emerald-700 dark:text-emerald-400 font-semibold">{s.noPeserta}</td>
+                      <td className="p-3 font-mono text-sky-700 dark:text-sky-400 font-semibold">{s.noPeserta}</td>
                       
                       {/* S7 - S12 Checks */}
                       {(['s7', 's8', 's9', 's10', 's11', 's12'] as const).map((sem) => {
@@ -537,7 +537,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                         return (
                           <td key={sem} className="p-3 text-center">
                             {hasAll ? (
-                              <CheckCircle2 className="h-4 w-4 text-emerald-600 inline" />
+                              <CheckCircle2 className="h-4 w-4 text-sky-600 inline" />
                             ) : (
                               <AlertCircle className="h-4 w-4 text-amber-500 inline" />
                             )}
@@ -548,7 +548,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                       {/* US Check */}
                       <td className="p-3 text-center">
                         {check.usComplete ? (
-                          <CheckCircle2 className="h-4 w-4 text-emerald-600 inline" />
+                          <CheckCircle2 className="h-4 w-4 text-sky-600 inline" />
                         ) : (
                           <AlertCircle className="h-4 w-4 text-amber-500 inline" />
                         )}

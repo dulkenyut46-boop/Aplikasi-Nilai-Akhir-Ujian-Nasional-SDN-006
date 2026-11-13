@@ -179,22 +179,22 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
   const maxScale = 100;
 
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-5">
+    <div className="rounded-2xl border border-sky-200/80 bg-white/85 backdrop-blur-sm p-5 sm:p-6 shadow-xs dark:border-sky-900/60 dark:bg-slate-900/85 space-y-5">
       {/* Header & Controls */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-sky-100 dark:border-slate-800 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
               <BarChart3 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">
                 Grafik Batang: Ringkasan Nilai Ujian Siswa
-                <span className="rounded-full bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                <span className="rounded-full bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 text-[11px] font-semibold text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
                   {selectedRoom === 'ALL' ? 'Semua Ruang' : selectedRoom}
                 </span>
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Visualisasi komparasi rata-rata nilai kelas terhadap kriteria ketuntasan minimal (KKM)
               </p>
             </div>
@@ -204,14 +204,14 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
         {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-2.5">
           {/* View Mode Toggle */}
-          <div className="inline-flex rounded-xl bg-zinc-100 dark:bg-zinc-800 p-0.5 text-xs font-semibold">
+          <div className="inline-flex rounded-xl bg-sky-100/70 dark:bg-slate-800 p-0.5 text-xs font-semibold">
             <button
               type="button"
               onClick={() => setViewMode('subjects')}
               className={`rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer ${
                 viewMode === 'subjects'
-                  ? 'bg-white text-zinc-900 dark:bg-zinc-700 dark:text-white shadow-xs'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                  ? 'bg-white text-slate-900 dark:bg-slate-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
               }`}
             >
               Per Mata Pelajaran
@@ -221,8 +221,8 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
               onClick={() => setViewMode('rooms')}
               className={`rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer ${
                 viewMode === 'rooms'
-                  ? 'bg-white text-zinc-900 dark:bg-zinc-700 dark:text-white shadow-xs'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                  ? 'bg-white text-slate-900 dark:bg-slate-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
               }`}
             >
               Per Ruang Ujian
@@ -234,7 +234,7 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
             <select
               value={scoreMode}
               onChange={(e) => setScoreMode(e.target.value as ScoreMode)}
-              className="rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-800 dark:text-zinc-200 focus:border-emerald-500 focus:outline-none cursor-pointer"
+              className="rounded-xl border border-sky-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:border-sky-500 focus:outline-none cursor-pointer"
             >
               <option value="na">📊 Nilai Akhir (NA)</option>
               <option value="us">📝 Nilai Ujian Sekolah (US)</option>
@@ -248,7 +248,7 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
               <select
                 value={selectedRoom}
                 onChange={(e) => setSelectedRoom(e.target.value)}
-                className="rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-800 dark:text-zinc-200 focus:border-emerald-500 focus:outline-none cursor-pointer"
+                className="rounded-xl border border-sky-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:border-sky-500 focus:outline-none cursor-pointer"
               >
                 <option value="ALL">Semua Ruang ({students.length} Siswa)</option>
                 <option value="RUANG 1">Ruang 1 (8 Siswa)</option>
@@ -270,8 +270,8 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
               Basis Penilaian: <b className="text-zinc-800 dark:text-zinc-200">{scoreModeLabel}</b>
             </span>
             <div className="flex items-center gap-4 text-xs">
-              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <span className="h-3 w-3 rounded-xs bg-emerald-600" />
+              <span className="inline-flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+                <span className="h-3 w-3 rounded-xs bg-sky-500" />
                 Rata-rata Kelas
               </span>
               <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
@@ -330,8 +330,8 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
                     <span
                       className={`text-[10px] sm:text-[11px] font-mono font-bold mb-1 transition-all ${
                         isHovered
-                          ? 'text-emerald-700 dark:text-emerald-300 scale-110'
-                          : 'text-zinc-700 dark:text-zinc-300'
+                          ? 'text-sky-700 dark:text-sky-300 scale-110'
+                          : 'text-slate-700 dark:text-slate-300'
                       }`}
                     >
                       {sub.average.toFixed(1)}
@@ -340,15 +340,15 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
                     {/* Bar Frame with KKM Line Overlay */}
                     <div className="relative w-full max-w-[34px] sm:max-w-[42px] h-full flex items-end">
                       {/* Background Bar */}
-                      <div className="w-full h-full rounded-t-lg bg-zinc-100 dark:bg-zinc-800/60 flex items-end overflow-hidden">
+                      <div className="w-full h-full rounded-t-lg bg-sky-100/60 dark:bg-slate-800/60 flex items-end overflow-hidden">
                         {/* Actual Value Bar */}
                         <div
                           style={{ height: `${heightPercent}%` }}
                           className={`w-full rounded-t-lg transition-all duration-500 relative ${
                             isAboveKKM
                               ? isHovered
-                                ? 'bg-gradient-to-t from-emerald-700 via-emerald-600 to-emerald-400 shadow-md'
-                                : 'bg-gradient-to-t from-emerald-700 to-emerald-500'
+                                ? 'bg-gradient-to-t from-blue-600 via-sky-500 to-cyan-400 shadow-md'
+                                : 'bg-gradient-to-t from-blue-600 to-sky-400'
                               : 'bg-gradient-to-t from-rose-700 to-amber-500'
                           }`}
                         >
@@ -372,56 +372,56 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
                       <span
                         className={`block text-[11px] sm:text-xs font-bold transition-colors ${
                           isHovered
-                            ? 'text-emerald-600 dark:text-emerald-400 underline'
-                            : 'text-zinc-700 dark:text-zinc-300'
+                            ? 'text-sky-600 dark:text-sky-400 underline'
+                            : 'text-slate-700 dark:text-slate-300'
                         }`}
                       >
                         {sub.code}
                       </span>
-                      <span className="block text-[9px] text-zinc-400 font-mono">
+                      <span className="block text-[9px] text-slate-400 font-mono">
                         KKM {sub.kkm}
                       </span>
                     </div>
 
                     {/* Rich Floating Tooltip on Hover */}
                     {isHovered && (
-                      <div className="absolute bottom-full mb-3 z-50 w-52 sm:w-60 rounded-xl bg-zinc-950 p-3 text-white shadow-2xl border border-zinc-700 text-xs pointer-events-none animate-in fade-in zoom-in-95 duration-150">
-                        <div className="border-b border-zinc-800 pb-1.5 mb-1.5">
-                          <div className="font-bold text-emerald-400">{sub.name}</div>
-                          <div className="text-[10px] text-zinc-400 font-mono">Kode: {sub.code} • KKM: {sub.kkm}</div>
+                      <div className="absolute bottom-full mb-3 z-50 w-52 sm:w-60 rounded-xl bg-slate-950 p-3 text-white shadow-2xl border border-sky-800 text-xs pointer-events-none animate-in fade-in zoom-in-95 duration-150">
+                        <div className="border-b border-slate-800 pb-1.5 mb-1.5">
+                          <div className="font-bold text-sky-400">{sub.name}</div>
+                          <div className="text-[10px] text-slate-400 font-mono">Kode: {sub.code} • KKM: {sub.kkm}</div>
                         </div>
 
                         <div className="space-y-1 font-mono text-[11px]">
                           <div className="flex justify-between items-center">
-                            <span className="text-zinc-400">Rata-rata:</span>
-                            <span className="font-bold text-emerald-300 text-sm">
+                            <span className="text-slate-400">Rata-rata:</span>
+                            <span className="font-bold text-sky-300 text-sm">
                               {sub.average.toFixed(2)}
                             </span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-zinc-400">Selisih KKM:</span>
-                            <span className={`font-bold ${sub.average >= sub.kkm ? 'text-emerald-400' : 'text-rose-400'}`}>
+                            <span className="text-slate-400">Selisih KKM:</span>
+                            <span className={`font-bold ${sub.average >= sub.kkm ? 'text-sky-400' : 'text-rose-400'}`}>
                               {sub.average >= sub.kkm ? '+' : ''}
                               {(sub.average - sub.kkm).toFixed(2)}
                             </span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-zinc-400">Nilai Tertinggi:</span>
-                            <span className="font-bold text-zinc-100">{sub.highest}</span>
+                            <span className="text-slate-400">Nilai Tertinggi:</span>
+                            <span className="font-bold text-slate-100">{sub.highest}</span>
                           </div>
-                          <div className="text-[10px] text-zinc-400 truncate text-right">
+                          <div className="text-[10px] text-slate-400 truncate text-right">
                             {sub.highestStudent}
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-zinc-400">Nilai Terendah:</span>
-                            <span className="font-bold text-zinc-100">{sub.lowest}</span>
+                            <span className="text-slate-400">Nilai Terendah:</span>
+                            <span className="font-bold text-slate-100">{sub.lowest}</span>
                           </div>
-                          <div className="text-[10px] text-zinc-400 truncate text-right">
+                          <div className="text-[10px] text-slate-400 truncate text-right">
                             {sub.lowestStudent}
                           </div>
-                          <div className="border-t border-zinc-800 pt-1 flex justify-between items-center text-[10px]">
-                            <span className="text-zinc-400">Tingkat Tuntas:</span>
-                            <span className="font-bold text-emerald-400">
+                          <div className="border-t border-slate-800 pt-1 flex justify-between items-center text-[10px]">
+                            <span className="text-slate-400">Tingkat Tuntas:</span>
+                            <span className="font-bold text-sky-400">
                               {sub.passCount} / {filteredStudents.length} ({sub.passRate}%)
                             </span>
                           </div>
@@ -456,42 +456,42 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
                   key={r.room}
                   className={`rounded-xl border p-4.5 space-y-3 transition-all ${
                     isTop
-                      ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/40 dark:bg-emerald-950/20 shadow-xs'
-                      : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/40'
+                      ? 'border-sky-300 dark:border-sky-700 bg-sky-50/70 dark:bg-sky-950/30 shadow-xs'
+                      : 'border-sky-100 dark:border-slate-800 bg-sky-50/30 dark:bg-slate-800/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase">
+                      <span className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase">
                         {r.room}
                       </span>
-                      <div className="text-[11px] text-zinc-500">
+                      <div className="text-[11px] text-slate-500">
                         {r.studentCount} Peserta Ujian
                       </div>
                     </div>
                     {isTop && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 px-2 py-0.5 text-[10px] font-bold text-emerald-800 dark:text-emerald-300">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-sky-100 dark:bg-sky-900/60 px-2 py-0.5 text-[10px] font-bold text-sky-800 dark:text-sky-300">
                         <Award className="h-3 w-3" /> Tertinggi
                       </span>
                     )}
                   </div>
 
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-extrabold text-emerald-700 dark:text-emerald-400 font-mono">
+                    <span className="text-3xl font-extrabold text-sky-700 dark:text-sky-400 font-mono">
                       {r.average.toFixed(2)}
                     </span>
-                    <span className="text-xs text-zinc-500">/ 100</span>
+                    <span className="text-xs text-slate-500">/ 100</span>
                   </div>
 
                   {/* Horizontal Bar Progress */}
-                  <div className="h-3 w-full rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden">
+                  <div className="h-3 w-full rounded-full bg-sky-100 dark:bg-slate-700 overflow-hidden">
                     <div
                       style={{ width: `${heightPercent}%` }}
-                      className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400 transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-blue-600 to-sky-400 transition-all duration-500"
                     />
                   </div>
 
-                  <div className="flex justify-between items-center text-[11px] text-zinc-600 dark:text-zinc-400 font-mono border-t border-zinc-200 dark:border-zinc-700/60 pt-2">
+                  <div className="flex justify-between items-center text-[11px] text-slate-600 dark:text-slate-400 font-mono border-t border-sky-100 dark:border-slate-700/60 pt-2">
                     <span>Maks: <b>{r.highest}</b></span>
                     <span>Min: <b>{r.lowest}</b></span>
                     <span>Rentang: <b>{(r.highest - r.lowest).toFixed(2)}</b></span>
@@ -504,41 +504,41 @@ export const ExamScoreBarChart: React.FC<Props> = ({ students, schoolProfile }) 
       )}
 
       {/* Quick Summary Highlights Footer */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-zinc-100 dark:border-zinc-800 pt-4 text-xs">
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-3">
-          <div className="text-zinc-500 dark:text-zinc-400 text-[11px]">Rata-rata Keseluruhan</div>
-          <div className="text-lg font-bold text-emerald-700 dark:text-emerald-400 font-mono mt-0.5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-sky-100 dark:border-slate-800 pt-4 text-xs">
+        <div className="rounded-xl bg-sky-50/70 dark:bg-slate-800/60 p-3 border border-sky-100/80 dark:border-slate-700/50">
+          <div className="text-slate-500 dark:text-slate-400 text-[11px]">Rata-rata Keseluruhan</div>
+          <div className="text-lg font-bold text-sky-700 dark:text-sky-400 font-mono mt-0.5">
             {overallAverage}
           </div>
-          <div className="text-[10px] text-zinc-400">10 Mata Pelajaran</div>
+          <div className="text-[10px] text-slate-400">10 Mata Pelajaran</div>
         </div>
 
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-3">
-          <div className="text-zinc-500 dark:text-zinc-400 text-[11px]">Mapel Nilai Tertinggi</div>
-          <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100 font-mono mt-0.5 truncate">
+        <div className="rounded-xl bg-sky-50/70 dark:bg-slate-800/60 p-3 border border-sky-100/80 dark:border-slate-700/50">
+          <div className="text-slate-500 dark:text-slate-400 text-[11px]">Mapel Nilai Tertinggi</div>
+          <div className="text-lg font-bold text-slate-900 dark:text-slate-100 font-mono mt-0.5 truncate">
             {bestSubject ? `${bestSubject.average.toFixed(1)} (${bestSubject.code})` : '-'}
           </div>
-          <div className="text-[10px] text-zinc-400 truncate">
+          <div className="text-[10px] text-slate-400 truncate">
             {bestSubject?.name || '-'}
           </div>
         </div>
 
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-3">
-          <div className="text-zinc-500 dark:text-zinc-400 text-[11px]">Mapel Perlu Penguatan</div>
+        <div className="rounded-xl bg-sky-50/70 dark:bg-slate-800/60 p-3 border border-sky-100/80 dark:border-slate-700/50">
+          <div className="text-slate-500 dark:text-slate-400 text-[11px]">Mapel Perlu Penguatan</div>
           <div className="text-lg font-bold text-amber-700 dark:text-amber-400 font-mono mt-0.5 truncate">
             {lowestSubject ? `${lowestSubject.average.toFixed(1)} (${lowestSubject.code})` : '-'}
           </div>
-          <div className="text-[10px] text-zinc-400 truncate">
+          <div className="text-[10px] text-slate-400 truncate">
             {lowestSubject?.name || '-'}
           </div>
         </div>
 
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-800/60 p-3">
-          <div className="text-zinc-500 dark:text-zinc-400 text-[11px]">Ketuntasan Standar KKM</div>
-          <div className="text-lg font-bold text-emerald-700 dark:text-emerald-400 font-mono mt-0.5">
+        <div className="rounded-xl bg-sky-50/70 dark:bg-slate-800/60 p-3 border border-sky-100/80 dark:border-slate-700/50">
+          <div className="text-slate-500 dark:text-slate-400 text-[11px]">Ketuntasan Standar KKM</div>
+          <div className="text-lg font-bold text-sky-700 dark:text-sky-400 font-mono mt-0.5">
             100%
           </div>
-          <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+          <div className="text-[10px] text-sky-600 dark:text-sky-400 font-semibold">
             Semua mapel di atas KKM
           </div>
         </div>

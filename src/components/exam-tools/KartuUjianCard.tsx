@@ -7,11 +7,13 @@ import {
 } from './kartuTtdStempelState';
 
 export type KartuTheme = 'emerald' | 'blue' | 'gold' | 'monochrome';
+export type KartuLayout = 'modern' | 'classic';
 
 export interface KartuUjianCardProps {
   student: Student;
   schoolProfile: SchoolProfile;
   theme?: KartuTheme;
+  layout?: KartuLayout;
   showStamp?: boolean;
   showBarcode?: boolean;
   showWatermark?: boolean;
@@ -193,6 +195,7 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
   student,
   schoolProfile,
   theme = 'emerald',
+  layout = 'modern',
   showStamp = true,
   showBarcode = true,
   showWatermark = true,
@@ -216,6 +219,10 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
           subtleBadge: 'bg-blue-50 dark:bg-blue-950/60 text-blue-900 dark:text-blue-200 border-blue-200 dark:border-blue-800 print:bg-zinc-100 print:border-black print:text-black',
           innerBorder: 'border-blue-200/80 dark:border-blue-900/50 print:border-zinc-300',
           sealColor: 'text-blue-900/85',
+          classicOuter: 'border-blue-950 dark:border-blue-700 print:border-black',
+          classicInner: 'border-blue-900/40 dark:border-blue-800 print:border-black',
+          classicTitleBg: 'bg-blue-50/90 dark:bg-blue-950/40 text-blue-950 dark:text-blue-100 border-blue-900/40 print:bg-zinc-100 print:text-black print:border-black',
+          classicHighlight: 'text-blue-950 dark:text-blue-300 print:text-black',
         };
       case 'gold':
         return {
@@ -226,6 +233,10 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
           subtleBadge: 'bg-amber-50 dark:bg-amber-950/60 text-amber-900 dark:text-amber-200 border-amber-200 dark:border-amber-800 print:bg-zinc-100 print:border-black print:text-black',
           innerBorder: 'border-amber-200/80 dark:border-amber-900/50 print:border-zinc-300',
           sealColor: 'text-amber-900/85',
+          classicOuter: 'border-amber-950 dark:border-amber-700 print:border-black',
+          classicInner: 'border-amber-800/45 dark:border-amber-800 print:border-black',
+          classicTitleBg: 'bg-amber-50/90 dark:bg-amber-950/40 text-amber-950 dark:text-amber-100 border-amber-800/40 print:bg-zinc-100 print:text-black print:border-black',
+          classicHighlight: 'text-amber-950 dark:text-amber-300 print:text-black',
         };
       case 'monochrome':
         return {
@@ -236,6 +247,10 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
           subtleBadge: 'bg-zinc-100 text-black border-black print:bg-zinc-100 print:border-black print:text-black',
           innerBorder: 'border-black print:border-black',
           sealColor: 'text-black',
+          classicOuter: 'border-black print:border-black',
+          classicInner: 'border-black/70 print:border-black',
+          classicTitleBg: 'bg-zinc-100 text-black border-black print:bg-zinc-100 print:text-black print:border-black',
+          classicHighlight: 'text-black print:text-black',
         };
       case 'emerald':
       default:
@@ -247,6 +262,10 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
           subtleBadge: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 border-emerald-200 dark:border-emerald-800 print:bg-zinc-100 print:border-black print:text-black',
           innerBorder: 'border-emerald-200/80 dark:border-emerald-900/50 print:border-zinc-300',
           sealColor: 'text-emerald-900/85',
+          classicOuter: 'border-zinc-900 dark:border-emerald-700 print:border-black',
+          classicInner: 'border-emerald-900/40 dark:border-emerald-800 print:border-black',
+          classicTitleBg: 'bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-100 border-emerald-900/35 print:bg-zinc-100 print:text-black print:border-black',
+          classicHighlight: 'text-emerald-950 dark:text-emerald-300 print:text-black',
         };
     }
   };
@@ -254,6 +273,280 @@ export const KartuUjianCard: React.FC<KartuUjianCardProps> = ({
   const colors = getThemeClasses();
   const logoKiri = schoolProfile.kopSurat?.logoKiri || getPresetLogoDataUrl('pemda_kuansing');
   const logoKanan = schoolProfile.kopSurat?.logoKanan || getPresetLogoDataUrl('tutwuri');
+
+  // =========================================================================
+  // CLASSIC OFFICIAL LAYOUT (FORMAL KEDINASAN / TRADISIONAL DNT)
+  // =========================================================================
+  if (layout === 'classic') {
+    return (
+      <div
+        className={`relative rounded-none border-2 ${colors.classicOuter} bg-white dark:bg-zinc-900 shadow-sm overflow-hidden break-inside-avoid print:shadow-none print:bg-white text-zinc-950 dark:text-zinc-100 flex flex-col justify-between select-none transition-all ${
+          isPrintVersion ? 'h-[88mm] max-h-[88mm] min-h-[88mm] print:h-[88mm] print:max-h-[88mm] print:min-h-[88mm]' : 'min-h-[345px]'
+        }`}
+        style={isPrintVersion ? { height: '88mm', maxHeight: '88mm', minHeight: '88mm' } : { minHeight: '345px' }}
+      >
+        {/* Classic Double Inner Frame Border */}
+        <div className={`absolute inset-[3px] border ${colors.classicInner} pointer-events-none z-0`} />
+
+        {/* Subtle Watermark */}
+        {showWatermark && (
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-[0.035] dark:opacity-[0.05] print:opacity-[0.035] overflow-hidden z-0">
+            <img
+              src={logoKanan}
+              alt="Watermark"
+              className="w-52 h-52 object-contain grayscale"
+            />
+          </div>
+        )}
+
+        <div className="relative z-10 flex-1 flex flex-col">
+          {/* 1. Classic Kop Surat Header (Clean Paper + Double Border) */}
+          <div className={`${isPrintVersion ? 'px-2.5 pt-1.5 pb-1' : 'px-3.5 pt-2.5 pb-2'} border-b-[3px] border-double border-zinc-900 dark:border-zinc-500 print:border-black bg-white dark:bg-zinc-900 print:bg-white`}>
+            <div className="flex items-center gap-2">
+              <img
+                src={logoKiri}
+                alt="Logo Daerah"
+                className={`${isPrintVersion ? 'h-7 w-7' : 'h-9 w-9'} object-contain shrink-0`}
+              />
+              <div className="flex-1 text-center font-serif min-w-0">
+                <div className={`${isPrintVersion ? 'text-[6.5px]' : 'text-[8px]'} font-bold uppercase tracking-wider leading-tight truncate text-zinc-800 dark:text-zinc-200 print:text-black`}>
+                  {schoolProfile.kopSurat?.instansiAtas || 'PEMERINTAH KABUPATEN KUANTAN SINGINGI'}
+                </div>
+                <div className={`${isPrintVersion ? 'text-[6px]' : 'text-[7.5px]'} font-semibold uppercase tracking-wide leading-tight truncate text-zinc-700 dark:text-zinc-300 print:text-black`}>
+                  {schoolProfile.kopSurat?.instansiTengah || 'DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA'}
+                </div>
+                <div className={`${isPrintVersion ? 'text-[9.5px]' : 'text-[11.5px]'} font-black uppercase tracking-wide leading-tight truncate text-black dark:text-white print:text-black`}>
+                  {schoolProfile.namaSekolah}
+                </div>
+                <div className={`${isPrintVersion ? 'text-[6px]' : 'text-[7px]'} font-sans text-zinc-600 dark:text-zinc-400 print:text-black leading-tight truncate`}>
+                  {schoolProfile.alamat} • NPSN: {schoolProfile.npsn || '10403612'}
+                </div>
+              </div>
+              <img
+                src={logoKanan}
+                alt="Logo Tut Wuri"
+                className={`${isPrintVersion ? 'h-7 w-7' : 'h-9 w-9'} object-contain shrink-0`}
+              />
+            </div>
+          </div>
+
+          {/* 2. Formal Document Title Strip */}
+          <div className={`${colors.classicTitleBg} border-b ${isPrintVersion ? 'py-0.5 px-2.5' : 'py-1 px-3.5'} text-center`}>
+            <div className={`${isPrintVersion ? 'text-[8px]' : 'text-[9.5px]'} font-serif font-black tracking-widest uppercase underline decoration-1 underline-offset-2`}>
+              KARTU TANDA PESERTA UJIAN SEKOLAH
+            </div>
+            <div className={`${isPrintVersion ? 'text-[6.5px]' : 'text-[7.5px]'} font-bold tracking-wider uppercase opacity-90`}>
+              TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
+            </div>
+          </div>
+
+          {/* 3. Body Klasik: Pas Foto 2x3 + Tabel Biodata Garis Titik Dua */}
+          <div className={`${isPrintVersion ? 'px-2.5 py-1.5 gap-2.5' : 'px-3.5 py-3 gap-3.5'} flex items-start flex-1`}>
+            {/* Kolom Foto 2x3 + Barcode Klasik */}
+            <div className={`flex flex-col items-center shrink-0 ${isPrintVersion ? 'w-16 space-y-1' : 'w-22 sm:w-24 space-y-1.5'}`}>
+              <div className={`relative ${isPrintVersion ? 'h-[76px] w-15' : 'h-28 w-21'} border border-zinc-900 dark:border-zinc-400 bg-white dark:bg-zinc-800 p-0.5 overflow-hidden print:border-black flex flex-col items-center justify-center`}>
+                {student.foto ? (
+                  <img
+                    src={student.foto}
+                    alt={student.nama}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="h-full w-full border border-dashed border-zinc-400 flex flex-col items-center justify-center p-1 text-center text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800/50">
+                    <span className={`${isPrintVersion ? 'text-[6.5px]' : 'text-[8px]'} font-serif font-bold uppercase`}>
+                      PAS FOTO
+                    </span>
+                    <span className={`${isPrintVersion ? 'text-[6px]' : 'text-[7px]'} font-mono`}>
+                      2 x 3 cm
+                    </span>
+                  </div>
+                )}
+
+                {/* Stempel Overlap di Pojok Foto */}
+                {showPhotoStamp && (
+                  <div
+                    className="absolute -bottom-6 -right-6 z-20 pointer-events-none select-none"
+                    style={{
+                      transform: `scale(${isPrintVersion ? (config.stampScale / 100) * 0.56 : (config.stampScale / 100) * 0.72}) rotate(${config.stampRotation}deg) translate(${config.stampOffsetX}px, ${config.stampOffsetY}px)`,
+                      opacity: config.stampOpacity / 100,
+                    }}
+                  >
+                    {config.stampType === 'upload' && config.uploadedStampImage ? (
+                      <img
+                        src={config.uploadedStampImage}
+                        alt="Stempel"
+                        className="w-24 h-24 object-contain print:brightness-90"
+                      />
+                    ) : (
+                      <OfficialStampSvg
+                        namaSekolah={schoolProfile.namaSekolah}
+                        kabupaten={schoolProfile.kabupaten}
+                        kecamatan={schoolProfile.kecamatan}
+                        textTop={config.stampTextTop}
+                        textBottom={config.stampTextBottom}
+                        textCenter1={config.stampTextCenter1}
+                        textCenter2={config.stampTextCenter2}
+                        color={config.stampColor}
+                        className="w-24 h-24"
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {showBarcode && (
+                <div className="w-full flex flex-col items-center">
+                  {renderBarcodeSvg(student.noPeserta, isPrintVersion)}
+                </div>
+              )}
+            </div>
+
+            {/* Tabel Biodata Formal (Alignment Titik Dua Presisi) */}
+            <div className="flex-1 min-w-0">
+              <table className={`w-full border-collapse ${isPrintVersion ? 'text-[8.5px]' : 'text-[10.5px]'} leading-snug`}>
+                <tbody>
+                  <tr className="border-b border-dotted border-zinc-300 dark:border-zinc-700 print:border-zinc-400">
+                    <td className={`${isPrintVersion ? 'w-[66px] py-0.5' : 'w-[88px] py-1'} font-semibold text-zinc-700 dark:text-zinc-300 print:text-black align-top whitespace-nowrap`}>
+                      No. Peserta
+                    </td>
+                    <td className="w-2.5 text-center align-top font-bold">:</td>
+                    <td className={`${isPrintVersion ? 'py-0.5 text-[10px]' : 'py-1 text-[12px]'} font-mono font-black tracking-wider ${colors.classicHighlight} align-top`}>
+                      {student.noPeserta}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-dotted border-zinc-300 dark:border-zinc-700 print:border-zinc-400">
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-semibold text-zinc-700 dark:text-zinc-300 print:text-black align-top whitespace-nowrap`}>
+                      Nama Peserta
+                    </td>
+                    <td className="text-center align-top font-bold">:</td>
+                    <td className={`${isPrintVersion ? 'py-0.5 text-[9.5px]' : 'py-1 text-[11px]'} font-extrabold uppercase text-black dark:text-white print:text-black align-top truncate max-w-[160px]`}>
+                      {student.nama}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-dotted border-zinc-300 dark:border-zinc-700 print:border-zinc-400">
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-semibold text-zinc-700 dark:text-zinc-300 print:text-black align-top whitespace-nowrap`}>
+                      NISN / NIS
+                    </td>
+                    <td className="text-center align-top font-bold">:</td>
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-mono font-bold text-zinc-900 dark:text-zinc-100 print:text-black align-top`}>
+                      {student.nisn} / {student.nis || '-'}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-dotted border-zinc-300 dark:border-zinc-700 print:border-zinc-400">
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-semibold text-zinc-700 dark:text-zinc-300 print:text-black align-top whitespace-nowrap`}>
+                      Tempat, Tgl Lahir
+                    </td>
+                    <td className="text-center align-top font-bold">:</td>
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-medium text-zinc-800 dark:text-zinc-200 print:text-black align-top truncate max-w-[160px]`}>
+                      {student.tempatLahir}, {student.tanggalLahir}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-semibold text-zinc-700 dark:text-zinc-300 print:text-black align-top whitespace-nowrap`}>
+                      Ruang / Meja
+                    </td>
+                    <td className="text-center align-top font-bold">:</td>
+                    <td className={`${isPrintVersion ? 'py-0.5' : 'py-1'} font-extrabold uppercase text-zinc-950 dark:text-zinc-50 print:text-black align-top`}>
+                      {student.ruang} <span className="font-normal text-zinc-500">|</span> No. Meja {String(student.noMeja).padStart(2, '0')}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Footer Klasik (Catatan & Pengesahan Kepala Sekolah) */}
+        <div className={`relative z-10 border-t border-zinc-800 dark:border-zinc-600 print:border-black ${isPrintVersion ? 'px-2.5 py-1' : 'px-3.5 py-2'} bg-zinc-50/40 dark:bg-zinc-900 print:bg-transparent flex items-end justify-between`}>
+          <div className={`space-y-0.5 ${isPrintVersion ? 'max-w-[48%] text-[6px]' : 'max-w-[52%] text-[7.5px]'} text-zinc-600 dark:text-zinc-400 print:text-black leading-tight font-serif`}>
+            <div className="font-bold italic underline">Perhatian:</div>
+            <div>1. Kartu ini wajib dibawa setiap mengikuti ujian.</div>
+            <div>2. Letakkan kartu di sudut kanan atas meja peserta.</div>
+          </div>
+
+          <div className={`text-right space-y-0.5 ${isPrintVersion ? 'min-w-[115px]' : 'min-w-[135px]'}`}>
+            <div className={`text-zinc-700 dark:text-zinc-300 ${isPrintVersion ? 'text-[6.5px]' : 'text-[8px]'} print:text-black leading-none`}>
+              {config.titimangsaTempat || schoolProfile.tempatCetak || 'Sungai Buluh'}, {config.titimangsaTanggal || schoolProfile.tanggalKelulusan || '12 Mei 2026'}
+            </div>
+            <div className={`font-bold text-zinc-800 dark:text-zinc-200 ${isPrintVersion ? 'text-[7px]' : 'text-[8px]'} print:text-black leading-none`}>
+              {config.jabatanPenandatangan || 'Kepala Sekolah,'}
+            </div>
+
+            <div className={`relative ${isPrintVersion ? 'h-5' : 'h-8'} flex items-center justify-end`}>
+              {showTtdStamp && (
+                <div
+                  className={`absolute ${isPrintVersion ? 'right-6 top-[-9px]' : 'right-8 top-[-8px]'} pointer-events-none select-none z-10`}
+                  style={{
+                    transform: `scale(${isPrintVersion ? (config.stampScale / 100) * 0.42 : (config.stampScale / 100) * 0.55}) rotate(${config.stampRotation}deg) translate(${config.stampOffsetX}px, ${config.stampOffsetY}px)`,
+                    opacity: config.stampOpacity / 100,
+                  }}
+                >
+                  {config.stampType === 'upload' && config.uploadedStampImage ? (
+                    <img
+                      src={config.uploadedStampImage}
+                      alt="Stempel"
+                      className="w-24 h-24 object-contain print:brightness-90"
+                    />
+                  ) : (
+                    <OfficialStampSvg
+                      namaSekolah={schoolProfile.namaSekolah}
+                      kabupaten={schoolProfile.kabupaten}
+                      kecamatan={schoolProfile.kecamatan}
+                      textTop={config.stampTextTop}
+                      textBottom={config.stampTextBottom}
+                      textCenter1={config.stampTextCenter1}
+                      textCenter2={config.stampTextCenter2}
+                      color={config.stampColor}
+                      className="w-24 h-24"
+                    />
+                  )}
+                </div>
+              )}
+
+              {config.showSignature ? (
+                <div
+                  className="relative z-20 flex items-center justify-end"
+                  style={{
+                    transform: `scale(${isPrintVersion ? (config.signatureScale / 100) * 0.78 : config.signatureScale / 100}) translate(${config.signatureOffsetX}px, ${config.signatureOffsetY}px)`,
+                  }}
+                >
+                  {config.signatureType === 'upload' && config.uploadedSignatureImage ? (
+                    <img
+                      src={config.uploadedSignatureImage}
+                      alt="Tanda Tangan"
+                      className={`${isPrintVersion ? 'h-5 max-w-[85px]' : 'h-8 max-w-[110px]'} object-contain print:brightness-90`}
+                    />
+                  ) : config.signatureType === 'draw' && config.drawnSignatureImage ? (
+                    <img
+                      src={config.drawnSignatureImage}
+                      alt="Tanda Tangan"
+                      className={`${isPrintVersion ? 'h-5 max-w-[85px]' : 'h-8 max-w-[110px]'} object-contain print:brightness-90`}
+                    />
+                  ) : config.signatureType === 'digital' ? (
+                    <SignatureGraphic
+                      className={isPrintVersion ? 'w-14 h-5' : 'w-20 h-8'}
+                      styleVariant={config.digitalSignatureStyle}
+                    />
+                  ) : (
+                    <div className={`${isPrintVersion ? 'h-4 w-16' : 'h-7 w-20'} border-b border-dashed border-zinc-400 print:border-black`} />
+                  )}
+                </div>
+              ) : (
+                <div className={isPrintVersion ? 'h-4 w-16' : 'h-7 w-20'} />
+              )}
+            </div>
+
+            <div className={`font-bold text-black dark:text-zinc-100 underline uppercase tracking-tight ${isPrintVersion ? 'text-[7.5px]' : 'text-[8.5px]'} print:text-black leading-tight`}>
+              {config.namaPenandatangan || schoolProfile.kepalaSekolah}
+            </div>
+            <div className={`text-zinc-600 dark:text-zinc-400 font-mono ${isPrintVersion ? 'text-[6.5px]' : 'text-[7.5px]'} print:text-black leading-tight`}>
+              NIP. {config.nipPenandatangan || schoolProfile.nipKepalaSekolah}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

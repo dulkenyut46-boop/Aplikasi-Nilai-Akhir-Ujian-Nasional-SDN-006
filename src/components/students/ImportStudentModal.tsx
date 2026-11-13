@@ -339,19 +339,19 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
     >
       <div className="space-y-6">
         {/* Step 1: Download Templates Action Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border-2 border-emerald-500/40 bg-emerald-50/70 p-4.5 dark:border-emerald-800 dark:bg-emerald-950/30">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border-2 border-sky-500/40 bg-sky-50/70 p-4.5 dark:border-sky-800 dark:bg-sky-950/30">
           <div className="flex items-start gap-3">
-            <div className="rounded-xl bg-emerald-700 p-2.5 text-white shadow-xs shrink-0">
+            <div className="rounded-xl bg-sky-700 p-2.5 text-white shadow-xs shrink-0">
               <FileSpreadsheet className="h-6 w-6 text-amber-300" />
             </div>
             <div>
-              <h4 className="text-sm font-extrabold text-emerald-950 dark:text-emerald-100 flex items-center gap-2">
+              <h4 className="text-sm font-extrabold text-sky-950 dark:text-sky-100 flex items-center gap-2">
                 1. Unduh Template Berkas Contoh
-                <span className="text-[10px] bg-emerald-200 text-emerald-900 dark:bg-emerald-800 dark:text-emerald-200 font-bold px-2 py-0.5 rounded-full">
+                <span className="text-[10px] bg-sky-200 text-sky-900 dark:bg-sky-800 dark:text-sky-200 font-bold px-2 py-0.5 rounded-full">
                   Resmi SDN 006
                 </span>
               </h4>
-              <p className="text-xs text-emerald-800/80 dark:text-emerald-300/80 mt-0.5">
+              <p className="text-xs text-sky-800/80 dark:text-sky-300/80 mt-0.5">
                 Pilih format <b>.xlsx (Excel)</b> atau <b>.csv</b> lengkap dengan baris contoh dan petunjuk pengisian validasi.
               </p>
             </div>
@@ -361,7 +361,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
             <button
               type="button"
               onClick={downloadStudentExcelTemplate}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
               title="Unduh berkas Excel .xlsx"
             >
               <FileSpreadsheet className="h-4 w-4 text-amber-300" />
@@ -370,7 +370,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
             <button
               type="button"
               onClick={downloadStudentCSVTemplate}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-semibold text-emerald-800 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-sky-600 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-semibold text-sky-800 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors"
               title="Unduh berkas .csv"
             >
               <Download className="h-3.5 w-3.5" />
@@ -412,13 +412,13 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
           </div>
 
           {inputMode === 'upload' ? (
-            <label className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/40 p-8 text-center cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/20 transition-all group">
-              <div className="rounded-2xl bg-emerald-100 dark:bg-emerald-950/70 p-3 text-emerald-700 dark:text-emerald-400 mb-3 group-hover:scale-110 transition-transform">
+            <label className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/40 p-8 text-center cursor-pointer hover:border-sky-500 hover:bg-sky-50/20 transition-all group">
+              <div className="rounded-2xl bg-sky-100 dark:bg-sky-950/70 p-3 text-sky-700 dark:text-sky-400 mb-3 group-hover:scale-110 transition-transform">
                 <Upload className="h-7 w-7" />
               </div>
               <span className="text-sm font-extrabold text-zinc-800 dark:text-zinc-100">
                 {fileName ? (
-                  <span className="text-emerald-700 dark:text-emerald-400 font-mono">
+                  <span className="text-sky-700 dark:text-sky-400 font-mono">
                     Berkas Terpilih: {fileName}
                   </span>
                 ) : (
@@ -441,7 +441,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
               value={pastedText}
               onChange={(e) => handlePasteChange(e.target.value)}
               placeholder={`Salin data tabel dari Excel lalu tempel di sini...\nNo Peserta\tNISN\tNIS\tNama Peserta\tL/P\tTempat Lahir\tTanggal Lahir\tNama Ayah\tNama Ibu\tPekerjaan Ortu\tAlamat\tRuang Ujian\tNomor Meja\tMelanjutkan Ke`}
-              className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 p-3.5 font-mono text-xs text-zinc-900 dark:text-zinc-100 focus:border-emerald-600 focus:outline-none"
+              className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 p-3.5 font-mono text-xs text-zinc-900 dark:text-zinc-100 focus:border-sky-600 focus:outline-none"
             />
           )}
         </div>
@@ -455,7 +455,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                 <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
                   Hasil Validasi:
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-md">
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-2 py-0.5 rounded-md">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   {validCount} Baris Valid
                 </span>
@@ -537,7 +537,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                         <td className="p-2.5 text-center font-bold text-zinc-500">{res.rowIndex}</td>
                         <td className="p-2.5">
                           {res.isValid ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-emerald-400">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-700 dark:text-sky-400">
                               <CheckCircle2 className="h-3.5 w-3.5" /> Valid
                             </span>
                           ) : (
@@ -547,7 +547,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                           )}
                         </td>
                         <td className="p-2.5 font-bold text-zinc-900 dark:text-zinc-100">{s.nama || '-'}</td>
-                        <td className="p-2.5 font-mono text-emerald-800 dark:text-emerald-300">{s.noPeserta}</td>
+                        <td className="p-2.5 font-mono text-sky-800 dark:text-sky-300">{s.noPeserta}</td>
                         <td className="p-2.5 font-mono text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
                         <td className="p-2.5 text-center font-bold">{s.jenisKelamin}</td>
                         <td className="p-2.5 text-zinc-600 dark:text-zinc-400">
@@ -600,7 +600,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                     value="append"
                     checked={importMode === 'append'}
                     onChange={() => setImportMode('append')}
-                    className="text-emerald-600"
+                    className="text-sky-600"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tambahkan ke Data Saat Ini (Append)
@@ -613,7 +613,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                     value="replace"
                     checked={importMode === 'replace'}
                     onChange={() => setImportMode('replace')}
-                    className="text-emerald-600"
+                    className="text-sky-600"
                   />
                   <span className="font-semibold text-rose-700 dark:text-rose-400">
                     Gantikan Seluruh Data Siswa (Replace)
@@ -638,7 +638,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
             type="button"
             disabled={validCount === 0 || isLoading}
             onClick={handleExecuteImport}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-emerald-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-sky-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             <span>Proses Impor ({validCount} Siswa Valid)</span>
             <ArrowRight className="h-4 w-4" />

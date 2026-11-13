@@ -175,7 +175,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Pas Foto Peserta Ujian */}
         <div className="rounded-xl border border-zinc-200 bg-zinc-50/70 p-3.5 dark:border-zinc-700 dark:bg-zinc-800/50 flex flex-col sm:flex-row items-center gap-4">
-          <div className="relative h-24 w-18 overflow-hidden rounded-lg border-2 border-emerald-600 bg-white shadow-xs shrink-0 flex items-center justify-center dark:bg-zinc-900">
+          <div className="relative h-24 w-18 overflow-hidden rounded-lg border-2 border-sky-600 bg-white shadow-xs shrink-0 flex items-center justify-center dark:bg-zinc-900">
             {foto ? (
               <img src={foto} alt="Pas Foto" className="h-full w-full object-cover" />
             ) : (
@@ -194,7 +194,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               Digunakan pada Kartu Peserta Ujian, Denah Meja Ruangan, dan Surat Keterangan Hasil Ujian (SKHU).
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 justify-center sm:justify-start">
-              <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-800 transition-colors">
+              <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors">
                 <Upload className="h-3.5 w-3.5" />
                 Unggah Berkas Gambar
                 <input
@@ -210,7 +210,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
                 onClick={() => setFoto(generateStudentPhotoSvg(nama || 'SISWA BARU', jenisKelamin, 1))}
                 className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
               >
-                <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+                <Sparkles className="h-3.5 w-3.5 text-sky-600" />
                 Gunakan Avatar Resmi
               </button>
 
@@ -239,7 +239,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={nama}
               onChange={(e) => setNama(e.target.value)}
               placeholder="Contoh: AHMAD MAULANA"
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm font-semibold uppercase text-zinc-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm font-semibold uppercase text-zinc-900 focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-600/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -253,7 +253,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={noPeserta}
               onChange={(e) => setNoPeserta(e.target.value)}
               placeholder="04-006-001-8"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -267,7 +267,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={nisn}
               onChange={(e) => setNisn(e.target.value)}
               placeholder="0123456789"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -280,7 +280,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={nis}
               onChange={(e) => setNis(e.target.value)}
               placeholder="2019001"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -291,7 +291,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
             <select
               value={jenisKelamin}
               onChange={(e) => setJenisKelamin(e.target.value as 'L' | 'P')}
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             >
               <option value="L">Laki-laki (L)</option>
               <option value="P">Perempuan (P)</option>
@@ -307,7 +307,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={tempatLahir}
               onChange={(e) => setTempatLahir(e.target.value)}
               placeholder="Sungai Buluh"
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -319,7 +319,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               type="date"
               value={tanggalLahir}
               onChange={(e) => setTanggalLahir(e.target.value)}
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -332,7 +332,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={namaAyah}
               onChange={(e) => setNamaAyah(e.target.value)}
               placeholder="Nama Ayah"
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -345,7 +345,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={namaIbu}
               onChange={(e) => setNamaIbu(e.target.value)}
               placeholder="Nama Ibu"
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -356,7 +356,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
             <select
               value={ruang}
               onChange={(e) => setRuang(e.target.value as any)}
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             >
               <option value="RUANG 1">RUANG 1</option>
               <option value="RUANG 2">RUANG 2</option>
@@ -375,7 +375,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               max={20}
               value={noMeja}
               onChange={(e) => setNoMeja(Number(e.target.value))}
-              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -388,7 +388,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={noSeriIjazah}
               onChange={(e) => setNoSeriIjazah(e.target.value)}
               placeholder="DN-09/D-SD/26/0014501"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -401,7 +401,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={noSuratKelulusan}
               onChange={(e) => setNoSuratKelulusan(e.target.value)}
               placeholder="421.2/SDN-06/SK-LULUS/2026/001"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -414,7 +414,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               value={noSuratTranskrip}
               onChange={(e) => setNoSuratTranskrip(e.target.value)}
               placeholder="421.2/SDN-06/SKHU/2026/001"
-              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-sm text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
         </div>
@@ -429,7 +429,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </button>
           <button
             type="submit"
-            className="rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             {studentToEdit ? 'Simpan Perubahan' : 'Tambahkan Peserta'}
           </button>

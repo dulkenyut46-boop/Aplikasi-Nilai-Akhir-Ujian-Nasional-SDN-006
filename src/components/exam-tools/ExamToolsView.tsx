@@ -43,8 +43,9 @@ import {
   QrCode,
   Scissors,
   Stamp,
+  LayoutTemplate,
 } from 'lucide-react';
-import { KartuUjianCard, KartuTheme } from './KartuUjianCard';
+import { KartuUjianCard, KartuTheme, KartuLayout } from './KartuUjianCard';
 import { GraduationDocsView, INITIAL_GURU_RAPAT, GraduationDocType } from './GraduationDocsView';
 import { EditGraduationDocModal } from './EditGraduationDocModal';
 import { EditPengawasModal } from './EditPengawasModal';
@@ -152,6 +153,22 @@ export const ExamToolsView: React.FC = () => {
 
   // State untuk Desain Kartu Ujian
   const [kartuTheme, setKartuTheme] = useState<KartuTheme>('emerald');
+  const [kartuLayout, setKartuLayout] = useState<KartuLayout>(() => {
+    try {
+      const saved = localStorage.getItem('sdn006_kartu_ujian_layout_v1');
+      return saved === 'classic' ? 'classic' : 'modern';
+    } catch {
+      return 'modern';
+    }
+  });
+  const handleChangeKartuLayout = (nextLayout: KartuLayout) => {
+    setKartuLayout(nextLayout);
+    try {
+      localStorage.setItem('sdn006_kartu_ujian_layout_v1', nextLayout);
+    } catch {
+      // ignore storage errors
+    }
+  };
   const [kartuShowStamp, setKartuShowStamp] = useState<boolean>(true);
   const [kartuShowBarcode, setKartuShowBarcode] = useState<boolean>(true);
   const [kartuShowWatermark, setKartuShowWatermark] = useState<boolean>(true);
@@ -291,7 +308,7 @@ export const ExamToolsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4 print:hidden">
         <div>
           <div className="flex items-center gap-2">
-            <Layers className="h-5 w-5 text-emerald-600" />
+            <Layers className="h-5 w-5 text-sky-600" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Perangkat Ujian, Denah Ruang & Panitia Pengawas
             </h2>
@@ -304,7 +321,7 @@ export const ExamToolsView: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setActiveTab('student-photos')}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/80 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-200 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/80 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-700 dark:bg-sky-950/40 dark:text-sky-200 transition-colors"
           >
             <Camera className="h-4 w-4" />
             Kelola Foto Siswa
@@ -314,12 +331,12 @@ export const ExamToolsView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak seluruh dokumen perangkat & ruang ujian"
           >
-            <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Menu Cetak Perangkat & Ruang
           </button>
           <button
             onClick={() => openPrintPreview(activeSubTab === 'perangkat-kelulusan' ? activeGraduationDoc : activeSubTab)}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <Printer className="h-4 w-4" />
             Cetak Dokumen Terpilih ({
@@ -341,11 +358,11 @@ export const ExamToolsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-4.5 dark:border-zinc-800 dark:bg-zinc-900 shadow-xs print:hidden space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
-            <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             <span className="text-xs font-bold uppercase tracking-wide text-zinc-800 dark:text-zinc-200">
               Navigasi Menu Cetak & Edit Dokumen Ujian
             </span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
               5 Dokumen Pokok
             </span>
           </div>
@@ -440,7 +457,7 @@ export const ExamToolsView: React.FC = () => {
                 onClick={() => setActiveSubTab(item.key)}
                 className={`flex flex-col justify-between p-3 rounded-xl border text-left transition-all cursor-pointer ${
                   isTabActive
-                    ? 'border-emerald-600 bg-emerald-50/80 shadow-xs ring-1 ring-emerald-500/30 dark:bg-emerald-950/30 dark:border-emerald-500'
+                    ? 'border-sky-600 bg-sky-50/80 shadow-xs ring-1 ring-sky-500/30 dark:bg-sky-950/30 dark:border-sky-500'
                     : 'border-zinc-200 bg-zinc-50/60 hover:bg-zinc-100/80 dark:border-zinc-800 dark:bg-zinc-800/40 dark:hover:bg-zinc-800'
                 }`}
               >
@@ -449,7 +466,7 @@ export const ExamToolsView: React.FC = () => {
                     <span
                       className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
                         isTabActive
-                          ? 'bg-emerald-700 text-white shadow-xs'
+                          ? 'bg-sky-700 text-white shadow-xs'
                           : 'bg-zinc-200/80 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300'
                       }`}
                     >
@@ -495,7 +512,7 @@ export const ExamToolsView: React.FC = () => {
                       setActiveSubTab(item.key);
                       openPrintPreview(item.key);
                     }}
-                    className="inline-flex items-center gap-1 rounded-lg bg-emerald-700 px-2 py-1 text-[11px] font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 rounded-lg bg-sky-700 px-2 py-1 text-[11px] font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer"
                     title={`Buka Menu Cetak ${item.title}`}
                   >
                     <Printer className="h-3 w-3" />
@@ -536,7 +553,7 @@ export const ExamToolsView: React.FC = () => {
               key={tab.key}
               className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
-                  ? 'bg-emerald-800 text-white shadow-sm ring-1 ring-emerald-500 border-emerald-600'
+                  ? 'bg-sky-800 text-white shadow-sm ring-1 ring-sky-500 border-sky-600'
                   : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
@@ -552,8 +569,8 @@ export const ExamToolsView: React.FC = () => {
                   <span
                     className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md ${
                       isActive
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                        ? 'bg-sky-600 text-white'
+                        : 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300'
                     }`}
                   >
                     {tab.badge}
@@ -627,8 +644,8 @@ export const ExamToolsView: React.FC = () => {
                 }}
                 className={`mr-1.5 p-1 rounded-lg transition-all ${
                   isActive
-                    ? 'bg-emerald-700 hover:bg-emerald-600 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-emerald-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-emerald-300'
+                    ? 'bg-sky-700 hover:bg-sky-600 text-white shadow-xs'
+                    : 'text-zinc-400 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
                 }`}
                 title={`Cetak ${tab.label}`}
                 aria-label={`Menu Cetak ${tab.label}`}
@@ -651,7 +668,7 @@ export const ExamToolsView: React.FC = () => {
                 onClick={() => setSelectedRoom(r)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                   selectedRoom === r
-                    ? 'bg-emerald-700 text-white'
+                    ? 'bg-sky-700 text-white'
                     : 'bg-white dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-600'
                 }`}
               >
@@ -670,16 +687,16 @@ export const ExamToolsView: React.FC = () => {
       {activeSubTab === 'denah' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-6">
           {/* Action Toolbar Menu Cetak */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-sky-50/80 dark:bg-sky-950/40 rounded-2xl border border-sky-200 dark:border-sky-800 print:hidden">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                 <Grid3X3 className="h-5 w-5" />
               </div>
               <div>
-                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Denah Ruang Ujian ({selectedRoom})
                 </h4>
-                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                <p className="text-[11px] text-sky-700 dark:text-sky-300">
                   {roomStudents.length} peserta terdaftar di {selectedRoom} • Siap cetak lembar format A4 landscape
                 </p>
               </div>
@@ -688,7 +705,7 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview('denah')}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title={`Cetak Denah ${selectedRoom} Format A4 Landscape`}
               >
                 <Printer className="h-4 w-4" />
@@ -697,10 +714,10 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview()}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-600" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -718,11 +735,11 @@ export const ExamToolsView: React.FC = () => {
 
           {/* Front / Board Teacher Table */}
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-md rounded-xl bg-emerald-950 p-3 text-center text-white shadow-md border border-emerald-700">
+            <div className="w-full max-w-md rounded-xl bg-sky-950 p-3 text-center text-white shadow-md border border-sky-700">
               <span className="text-xs font-bold uppercase tracking-widest text-amber-300">
                 PAPAN TULIS & MEJA PENGAWAS UJIAN
               </span>
-              <div className="mt-1 flex items-center justify-center gap-4 text-[11px] text-emerald-200">
+              <div className="mt-1 flex items-center justify-center gap-4 text-[11px] text-sky-200">
                 {roomSupervisors.map((sup, idx) => (
                   <span key={sup.id}>
                     Pengawas {idx + 1}: <b>{sup.nama}</b>
@@ -740,9 +757,9 @@ export const ExamToolsView: React.FC = () => {
             {roomStudents.map((s) => (
               <div
                 key={s.id}
-                className="flex flex-col justify-between rounded-xl border-2 border-emerald-600/60 bg-emerald-50/40 p-3 shadow-xs dark:border-emerald-800 dark:bg-emerald-950/20 text-center hover:scale-[1.02] transition-transform"
+                className="flex flex-col justify-between rounded-xl border-2 border-sky-600/60 bg-sky-50/40 p-3 shadow-xs dark:border-sky-800 dark:bg-sky-950/20 text-center hover:scale-[1.02] transition-transform"
               >
-                <div className="flex items-center justify-between border-b border-emerald-200 dark:border-emerald-800 pb-1.5 mb-2">
+                <div className="flex items-center justify-between border-b border-sky-200 dark:border-sky-800 pb-1.5 mb-2">
                   <span className="text-[10px] font-bold text-zinc-500">MEJA #{s.noMeja}</span>
                   <span
                     className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded ${
@@ -756,7 +773,7 @@ export const ExamToolsView: React.FC = () => {
                 </div>
 
                 <div className="my-2 flex flex-col items-center">
-                  <div className="h-12 w-9 rounded-lg overflow-hidden border border-emerald-700/60 shadow-2xs mb-1.5 bg-white dark:bg-zinc-800 flex items-center justify-center">
+                  <div className="h-12 w-9 rounded-lg overflow-hidden border border-sky-700/60 shadow-2xs mb-1.5 bg-white dark:bg-zinc-800 flex items-center justify-center">
                     {s.foto ? (
                       <img src={s.foto} alt={s.nama} className="h-full w-full object-cover" />
                     ) : (
@@ -766,13 +783,13 @@ export const ExamToolsView: React.FC = () => {
                   <div className="font-extrabold text-xs text-zinc-900 dark:text-zinc-100 uppercase truncate max-w-[140px]" title={s.nama}>
                     {s.nama}
                   </div>
-                  <div className="text-[10px] font-mono text-emerald-800 dark:text-emerald-300 font-semibold mt-0.5">
+                  <div className="text-[10px] font-mono text-sky-800 dark:text-sky-300 font-semibold mt-0.5">
                     {s.noPeserta}
                   </div>
                   <div className="text-[9px] text-zinc-400">NISN: {s.nisn}</div>
                 </div>
 
-                <div className="border-t border-emerald-200 dark:border-emerald-800 pt-1 text-[9px] text-zinc-500 font-medium">
+                <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-500 font-medium">
                   SDN 006 Sungai Buluh
                 </div>
               </div>
@@ -799,7 +816,7 @@ export const ExamToolsView: React.FC = () => {
             </div>
             <button
               onClick={() => handlePrint(`Label Meja ${selectedRoom}`)}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800"
             >
               <Printer className="h-3.5 w-3.5" />
               Cetak Semua Label Meja {selectedRoom}
@@ -810,20 +827,20 @@ export const ExamToolsView: React.FC = () => {
             {roomStudents.map((s) => (
               <div
                 key={s.id}
-                className="rounded-xl border-2 border-dashed border-emerald-800 bg-white p-3.5 shadow-xs dark:bg-zinc-900 dark:border-emerald-600 flex flex-col justify-between text-center relative overflow-hidden"
+                className="rounded-xl border-2 border-dashed border-sky-800 bg-white p-3.5 shadow-xs dark:bg-zinc-900 dark:border-sky-600 flex flex-col justify-between text-center relative overflow-hidden"
               >
                 {/* Header Kop Mini */}
                 <div className="border-b border-zinc-300 dark:border-zinc-700 pb-1.5 mb-2">
                   <div className="text-[8.5px] font-bold uppercase text-zinc-500">
                     {schoolProfile.namaSekolah} • TP {schoolProfile.tahunPelajaran}
                   </div>
-                  <div className="text-[10px] font-black uppercase text-emerald-950 dark:text-emerald-400">
+                  <div className="text-[10px] font-black uppercase text-sky-950 dark:text-sky-400">
                     LABEL MEJA UJIAN RESMI
                   </div>
                 </div>
 
                 {/* Big Desk Number Badge */}
-                <div className="my-1 py-1 rounded-lg bg-emerald-900 text-white font-black text-xl tracking-wider">
+                <div className="my-1 py-1 rounded-lg bg-sky-900 text-white font-black text-xl tracking-wider">
                   MEJA #{s.noMeja.toString().padStart(2, '0')}
                 </div>
 
@@ -838,7 +855,7 @@ export const ExamToolsView: React.FC = () => {
                   </div>
                   <div className="min-w-0 text-[10px] leading-tight space-y-0.5">
                     <p className="font-extrabold uppercase text-zinc-900 dark:text-zinc-50 truncate">{s.nama}</p>
-                    <p className="font-mono font-bold text-emerald-800 dark:text-emerald-400">{s.noPeserta}</p>
+                    <p className="font-mono font-bold text-sky-800 dark:text-sky-400">{s.noPeserta}</p>
                     <p className="text-zinc-500">NISN: {s.nisn}</p>
                     <p className="font-semibold text-zinc-700 dark:text-zinc-300">{s.ruang}</p>
                   </div>
@@ -860,13 +877,13 @@ export const ExamToolsView: React.FC = () => {
           <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 sm:p-5 shadow-xs space-y-4 print:hidden">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
               <div className="flex items-start gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-emerald-700 text-white shadow-xs">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sky-700 text-white shadow-xs">
                   <Palette className="h-5 w-5" />
                 </span>
                 <div>
                   <h3 className="font-extrabold text-sm sm:text-base text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                     <span>Desain Kartu Peserta Ujian Sekolah / Asesmen Resmi</span>
-                    <span className="rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold">
+                    <span className="rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 px-2 py-0.5 text-[10px] font-bold">
                       Standar DNT Kemdikbud
                     </span>
                   </h3>
@@ -890,7 +907,7 @@ export const ExamToolsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => openPrintPreview('kartu')}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 hover:bg-sky-800 active:scale-95 px-4 py-2 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
                   title="Buka Pratinjau Cetak Lembar A4 (Format 6 Kartu Per Lembar Siap Potong & Dilaminating)"
                 >
                   <Printer className="h-4 w-4" />
@@ -908,13 +925,57 @@ export const ExamToolsView: React.FC = () => {
               </div>
             </div>
 
+            {/* Model Tata Letak Kartu (Classic vs Modern) */}
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-start sm:items-center gap-2.5">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950/70 text-sky-700 dark:text-sky-300">
+                  <LayoutTemplate className="h-4 w-4" />
+                </span>
+                <div>
+                  <span className="font-bold text-xs text-zinc-800 dark:text-zinc-200 block">
+                    Model Tata Letak Kartu Cetak (Layout Desain)
+                  </span>
+                  <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                    Pilih tampilan <b>Modern</b> (kop gradien & blok warna) atau <b>Klasik</b> (format surat resmi kedinasan bergaris ganda & tabel titik dua)
+                  </span>
+                </div>
+              </div>
+
+              <div className="inline-flex rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-1 shrink-0 shadow-xs">
+                <button
+                  type="button"
+                  onClick={() => handleChangeKartuLayout('modern')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    kartuLayout === 'modern'
+                      ? 'bg-sky-700 text-white shadow-xs'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                  }`}
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  <span>Desain Modern</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleChangeKartuLayout('classic')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    kartuLayout === 'classic'
+                      ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-xs'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                  }`}
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>Desain Klasik</span>
+                </button>
+              </div>
+            </div>
+
             {/* Customization Options Bar */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
               {/* 1. Theme Selector */}
               <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <Palette className="h-3.5 w-3.5 text-emerald-600" />
+                    <Palette className="h-3.5 w-3.5 text-sky-600" />
                     <span>Gaya / Tema Desain</span>
                   </span>
                 </div>
@@ -1026,7 +1087,7 @@ export const ExamToolsView: React.FC = () => {
               <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
                 <div>
                   <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <QrCode className="h-3.5 w-3.5 text-emerald-600" />
+                    <QrCode className="h-3.5 w-3.5 text-sky-600" />
                     <span>Barcode Otentikasi</span>
                   </span>
                   <p className="text-[10px] text-zinc-500 mt-1">
@@ -1038,7 +1099,7 @@ export const ExamToolsView: React.FC = () => {
                   onClick={() => setKartuShowBarcode(!kartuShowBarcode)}
                   className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
                     kartuShowBarcode
-                      ? 'bg-emerald-700 text-white'
+                      ? 'bg-sky-700 text-white'
                       : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
                   }`}
                 >
@@ -1077,7 +1138,7 @@ export const ExamToolsView: React.FC = () => {
             <span className="font-semibold">
               Menampilkan {roomStudents.length} Kartu Peserta Ujian di <b>{selectedRoom}</b>
             </span>
-            <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1.5">
+            <span className="text-[11px] text-sky-700 dark:text-sky-400 font-bold flex items-center gap-1.5">
               <Scissors className="h-3.5 w-3.5" />
               Format lembar cetak: isi 6 kartu per lembar A4 (2 kolom × 3 baris)
             </span>
@@ -1091,6 +1152,7 @@ export const ExamToolsView: React.FC = () => {
                   student={s}
                   schoolProfile={schoolProfile}
                   theme={kartuTheme}
+                  layout={kartuLayout}
                   showStamp={kartuShowStamp}
                   showBarcode={kartuShowBarcode}
                   showWatermark={kartuShowWatermark}
@@ -1112,16 +1174,16 @@ export const ExamToolsView: React.FC = () => {
       {activeSubTab === 'hadir' && (
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
           {/* Action Toolbar Menu Cetak */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-sky-50/80 dark:bg-sky-950/40 rounded-2xl border border-sky-200 dark:border-sky-800 print:hidden">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                 <FileCheck2 className="h-5 w-5" />
               </div>
               <div>
-                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Daftar Hadir Peserta Ujian ({selectedRoom})
                 </h4>
-                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                <p className="text-[11px] text-sky-700 dark:text-sky-300">
                   {roomStudents.length} peserta terdaftar di {selectedRoom} • Format presensi resmi kolom tanda tangan ganjil/genap
                 </p>
               </div>
@@ -1130,7 +1192,7 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview('hadir')}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title={`Cetak Daftar Hadir ${selectedRoom} Format A4 Portrait`}
               >
                 <Printer className="h-4 w-4" />
@@ -1139,10 +1201,10 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview()}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-600" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1193,7 +1255,7 @@ export const ExamToolsView: React.FC = () => {
                     <td className="p-2 border-r border-zinc-200 dark:border-zinc-800">
                       {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-400">{idx + 1}. .........</span> : ''}
                     </td>
-                    <td className="p-2 text-center text-[10px] text-emerald-700 font-bold">
+                    <td className="p-2 text-center text-[10px] text-sky-700 font-bold">
                       Hadir
                     </td>
                   </tr>
@@ -1231,7 +1293,7 @@ export const ExamToolsView: React.FC = () => {
           <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4 print:hidden">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-zinc-200 dark:border-zinc-800 pb-3">
               <div className="flex items-center gap-2">
-                <FileSpreadsheet className="h-5 w-5 text-emerald-600" />
+                <FileSpreadsheet className="h-5 w-5 text-sky-600" />
                 <div>
                   <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wider">
                     Format Isian Daftar Nilai Per Ruangan ({selectedRoom})
@@ -1259,7 +1321,7 @@ export const ExamToolsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyRawToFinal}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-700 dark:bg-sky-950/40 dark:text-sky-300 transition-colors"
                   title="Salin semua Nilai Asli ke Nilai Jadi di ruangan ini"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
@@ -1278,7 +1340,7 @@ export const ExamToolsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => openPrintPreview('nilai')}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
                 >
                   <Printer className="h-3.5 w-3.5" />
                   Pratinjau & Cetak Lembar Nilai Ruangan
@@ -1295,7 +1357,7 @@ export const ExamToolsView: React.FC = () => {
                 <select
                   value={selectedSubjectKey}
                   onChange={(e) => setSelectedSubjectKey(e.target.value)}
-                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-bold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 >
                   {subjects.map((sub) => (
                     <option key={sub.key} value={sub.key}>
@@ -1314,7 +1376,7 @@ export const ExamToolsView: React.FC = () => {
                   value={hariTanggal}
                   onChange={(e) => setHariTanggal(e.target.value)}
                   placeholder="Senin, 18 Mei 2026"
-                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-medium text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-medium text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -1327,14 +1389,14 @@ export const ExamToolsView: React.FC = () => {
                   value={namaPengoreksi1}
                   onChange={(e) => setNamaPengoreksi1(e.target.value)}
                   placeholder="Nama Pengoreksi I"
-                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <input
                   type="text"
                   value={nipPengoreksi1}
                   onChange={(e) => setNipPengoreksi1(e.target.value)}
                   placeholder="NIP Pengoreksi I"
-                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                 />
               </div>
 
@@ -1347,14 +1409,14 @@ export const ExamToolsView: React.FC = () => {
                   value={namaPengoreksi2}
                   onChange={(e) => setNamaPengoreksi2(e.target.value)}
                   placeholder="Nama Pengoreksi II"
-                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3 py-2 font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <input
                   type="text"
                   value={nipPengoreksi2}
                   onChange={(e) => setNipPengoreksi2(e.target.value)}
                   placeholder="NIP Pengoreksi II"
-                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                 />
               </div>
             </div>
@@ -1393,7 +1455,7 @@ export const ExamToolsView: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     <span className="font-bold text-zinc-600 dark:text-zinc-400">Ruang Ujian</span>
-                    <span className="col-span-2 font-extrabold text-emerald-800 dark:text-emerald-400">
+                    <span className="col-span-2 font-extrabold text-sky-800 dark:text-sky-400">
                       : {selectedRoom}
                     </span>
                   </div>
@@ -1435,7 +1497,7 @@ export const ExamToolsView: React.FC = () => {
                     <th className="p-2 text-center min-w-[105px] border-r border-zinc-300 dark:border-zinc-700 bg-zinc-200/60 dark:bg-zinc-700/60">
                       Nilai Asli
                     </th>
-                    <th className="p-2 text-center min-w-[105px] border-r border-zinc-300 dark:border-zinc-700 bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-950 dark:text-emerald-200">
+                    <th className="p-2 text-center min-w-[105px] border-r border-zinc-300 dark:border-zinc-700 bg-sky-100/70 dark:bg-sky-950/60 text-sky-950 dark:text-sky-200">
                       Nilai Jadi
                     </th>
                     <th className="p-2 text-center w-16 border-r border-zinc-300 dark:border-zinc-700">Pred</th>
@@ -1479,7 +1541,7 @@ export const ExamToolsView: React.FC = () => {
                               step={0.5}
                               value={rawVal}
                               onChange={(e) => handleScoreChange(s.id, 'tulis', parseFloat(e.target.value))}
-                              className="w-20 rounded-lg border border-zinc-300 px-2 py-1 text-center font-mono font-bold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100"
+                              className="w-20 rounded-lg border border-zinc-300 px-2 py-1 text-center font-mono font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100"
                             />
                           ) : (
                             <span className="font-mono font-bold text-zinc-800 dark:text-zinc-200">
@@ -1489,7 +1551,7 @@ export const ExamToolsView: React.FC = () => {
                         </td>
 
                         {/* Nilai Jadi (Final Converted Score) */}
-                        <td className="p-1.5 text-center bg-emerald-50/50 dark:bg-emerald-950/20 border-r border-zinc-200 dark:border-zinc-800">
+                        <td className="p-1.5 text-center bg-sky-50/50 dark:bg-sky-950/20 border-r border-zinc-200 dark:border-zinc-800">
                           {isEditingScores ? (
                             <input
                               type="number"
@@ -1498,10 +1560,10 @@ export const ExamToolsView: React.FC = () => {
                               step={0.1}
                               value={finalVal}
                               onChange={(e) => handleScoreChange(s.id, 'akhir', parseFloat(e.target.value))}
-                              className="w-20 rounded-lg border border-emerald-400 bg-emerald-50 px-2 py-1 text-center font-mono font-extrabold text-emerald-900 focus:border-emerald-600 focus:outline-none dark:border-emerald-700 dark:bg-zinc-800 dark:text-emerald-300"
+                              className="w-20 rounded-lg border border-sky-400 bg-sky-50 px-2 py-1 text-center font-mono font-extrabold text-sky-900 focus:border-sky-600 focus:outline-none dark:border-sky-700 dark:bg-zinc-800 dark:text-sky-300"
                             />
                           ) : (
-                            <span className="font-mono font-extrabold text-emerald-800 dark:text-emerald-300 text-sm">
+                            <span className="font-mono font-extrabold text-sky-800 dark:text-sky-300 text-sm">
                               {finalVal.toFixed(1)}
                             </span>
                           )}
@@ -1517,7 +1579,7 @@ export const ExamToolsView: React.FC = () => {
                         {/* Status Kelulusan / Ketuntasan */}
                         <td className="p-2 text-center border-r border-zinc-200 dark:border-zinc-800">
                           {isPassed ? (
-                            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200">
+                            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-900/60 dark:text-sky-200">
                               TUNTAS
                             </span>
                           ) : (
@@ -1546,9 +1608,9 @@ export const ExamToolsView: React.FC = () => {
                 <span className="text-[10px] font-bold text-zinc-500 uppercase block">Rata-rata Nilai Asli</span>
                 <span className="text-sm font-mono font-bold text-zinc-900 dark:text-zinc-100">{avgTulis}</span>
               </div>
-              <div className="rounded-xl border border-emerald-300 bg-emerald-50/60 p-2.5 dark:border-emerald-800 dark:bg-emerald-950/30">
-                <span className="text-[10px] font-bold text-emerald-800 dark:text-emerald-300 uppercase block">Rata-rata Nilai Jadi</span>
-                <span className="text-sm font-mono font-black text-emerald-900 dark:text-emerald-200">{avgAkhir}</span>
+              <div className="rounded-xl border border-sky-300 bg-sky-50/60 p-2.5 dark:border-sky-800 dark:bg-sky-950/30">
+                <span className="text-[10px] font-bold text-sky-800 dark:text-sky-300 uppercase block">Rata-rata Nilai Jadi</span>
+                <span className="text-sm font-mono font-black text-sky-900 dark:text-sky-200">{avgAkhir}</span>
               </div>
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-2.5 dark:border-zinc-700 dark:bg-zinc-800/40">
                 <span className="text-[10px] font-bold text-zinc-500 uppercase block">Nilai Tertinggi (Maks)</span>
@@ -1558,9 +1620,9 @@ export const ExamToolsView: React.FC = () => {
                 <span className="text-[10px] font-bold text-zinc-500 uppercase block">Nilai Terendah (Min)</span>
                 <span className="text-sm font-mono font-bold text-amber-700 dark:text-amber-400">{minAkhir}</span>
               </div>
-              <div className="col-span-2 sm:col-span-1 rounded-xl border border-emerald-300 bg-emerald-50/60 p-2.5 dark:border-emerald-800 dark:bg-emerald-950/30">
-                <span className="text-[10px] font-bold text-emerald-800 dark:text-emerald-300 uppercase block">Ketuntasan Ruangan</span>
-                <span className="text-sm font-mono font-extrabold text-emerald-900 dark:text-emerald-200">
+              <div className="col-span-2 sm:col-span-1 rounded-xl border border-sky-300 bg-sky-50/60 p-2.5 dark:border-sky-800 dark:bg-sky-950/30">
+                <span className="text-[10px] font-bold text-sky-800 dark:text-sky-300 uppercase block">Ketuntasan Ruangan</span>
+                <span className="text-sm font-mono font-extrabold text-sky-900 dark:text-sky-200">
                   {passedPercentage}% ({passedCount}/{roomStudents.length})
                 </span>
               </div>
@@ -1612,7 +1674,7 @@ export const ExamToolsView: React.FC = () => {
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-zinc-200 dark:border-zinc-800">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <div>
@@ -1637,7 +1699,7 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview('pengawas')}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Cetak Daftar Pengawas TPU VI Format A4 Portrait"
               >
                 <Printer className="h-4 w-4" />
@@ -1649,7 +1711,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-600" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1689,7 +1751,7 @@ export const ExamToolsView: React.FC = () => {
           {/* Info Pengesahan Ketua TPU VI */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 text-xs">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 font-bold">
                 <UserCheck className="h-4 w-4" />
               </div>
               <div>
@@ -1704,7 +1766,7 @@ export const ExamToolsView: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsEditPengawasOpen(true)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:underline cursor-pointer"
+              className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 dark:text-sky-300 hover:underline cursor-pointer"
             >
               <Edit3 className="h-3.5 w-3.5" />
               Edit Data Pengawas & Ketua TPU
@@ -1718,7 +1780,7 @@ export const ExamToolsView: React.FC = () => {
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-zinc-200 dark:border-zinc-800">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                 <UserCheck className="h-5 w-5" />
               </div>
               <div>
@@ -1743,7 +1805,7 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview('panitia')}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Cetak Susunan Panitia Ujian Format A4 Portrait"
               >
                 <Printer className="h-4 w-4" />
@@ -1755,7 +1817,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-600" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1765,7 +1827,7 @@ export const ExamToolsView: React.FC = () => {
             {committee.map((c) => (
               <div
                 key={c.id}
-                className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-2 hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors"
+                className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-2 hover:border-sky-300 dark:hover:border-sky-700 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <Badge variant="emerald" size="sm">
@@ -1789,16 +1851,16 @@ export const ExamToolsView: React.FC = () => {
       {activeSubTab === 'berita' && (
         <div className="space-y-4 max-w-4xl mx-auto">
           {/* Action Toolbar Menu Cetak & Edit */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800 print:hidden">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 bg-sky-50/80 dark:bg-sky-950/40 rounded-2xl border border-sky-200 dark:border-sky-800 print:hidden">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                 <FileCheck2 className="h-5 w-5" />
               </div>
               <div>
-                <h4 className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-100">
+                <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Berita Acara Pelaksanaan Ujian Nasional / Sekolah
                 </h4>
-                <p className="text-[11px] text-emerald-700 dark:text-emerald-300">
+                <p className="text-[11px] text-sky-700 dark:text-sky-300">
                   Dokumen naskah resmi pelaksanaan ujian berkop sekolah dan pengesahan pimpinan
                 </p>
               </div>
@@ -1816,7 +1878,7 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview('berita')}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Cetak Berita Acara Pelaksanaan Format A4 Portrait"
               >
                 <Printer className="h-4 w-4" />
@@ -1825,10 +1887,10 @@ export const ExamToolsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openPrintPreview()}
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-emerald-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-600" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -2058,7 +2120,7 @@ export const ExamToolsView: React.FC = () => {
             <select
               value={printDoc}
               onChange={(e) => setPrintDoc(e.target.value as any)}
-              className="rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-bold text-zinc-100 focus:border-emerald-500 focus:outline-none"
+              className="rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-bold text-zinc-100 focus:border-sky-500 focus:outline-none"
             >
               <optgroup label="Perangkat Operasional Ujian">
                 <option value="nilai">📄 Daftar Nilai Hasil Koreksi</option>
@@ -2085,7 +2147,7 @@ export const ExamToolsView: React.FC = () => {
                 <select
                   value={selectedRoom}
                   onChange={(e) => setSelectedRoom(e.target.value as any)}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                 >
                   <option value="RUANG 1">Ruang 1</option>
                   <option value="RUANG 2">Ruang 2</option>
@@ -2097,15 +2159,41 @@ export const ExamToolsView: React.FC = () => {
 
             {/* Theme & Options for Kartu Ujian */}
             {printDoc === 'kartu' && (
-              <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                <div className="inline-flex rounded-xl border border-zinc-700 bg-zinc-800 p-0.5">
+                  <button
+                    type="button"
+                    onClick={() => handleChangeKartuLayout('modern')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                      kartuLayout === 'modern'
+                        ? 'bg-sky-600 text-white'
+                        : 'text-zinc-300 hover:text-white'
+                    }`}
+                    title="Gunakan Tata Letak Kartu Modern"
+                  >
+                    Modern
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleChangeKartuLayout('classic')}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                      kartuLayout === 'classic'
+                        ? 'bg-zinc-100 text-zinc-900'
+                        : 'text-zinc-300 hover:text-white'
+                    }`}
+                    title="Gunakan Tata Letak Kartu Klasik Resmi"
+                  >
+                    Klasik
+                  </button>
+                </div>
                 <span className="text-zinc-400 font-semibold hidden sm:inline flex items-center gap-1">
-                  <Palette className="h-3.5 w-3.5 text-emerald-400" />
+                  <Palette className="h-3.5 w-3.5 text-sky-400" />
                   Tema:
                 </span>
                 <select
                   value={kartuTheme}
                   onChange={(e) => setKartuTheme(e.target.value as any)}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                 >
                   <option value="emerald">🟢 Zamrud Madani</option>
                   <option value="blue">🔵 Biru Formal</option>
@@ -2147,7 +2235,7 @@ export const ExamToolsView: React.FC = () => {
                 <select
                   value={selectedSubjectKey}
                   onChange={(e) => setSelectedSubjectKey(e.target.value)}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none max-w-[150px] truncate"
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none max-w-[150px] truncate"
                 >
                   {subjects.map((sub) => (
                     <option key={sub.key} value={sub.key}>
@@ -2164,7 +2252,7 @@ export const ExamToolsView: React.FC = () => {
               return (
                 <div className="flex items-center gap-1.5 text-xs">
                   <span className="text-zinc-400 font-semibold hidden sm:inline flex items-center gap-1">
-                    <Type className="h-3.5 w-3.5 text-emerald-400" />
+                    <Type className="h-3.5 w-3.5 text-sky-400" />
                     Font:
                   </span>
                   <select
@@ -2174,7 +2262,7 @@ export const ExamToolsView: React.FC = () => {
                       saveSKKelulusanState({ ...currentSK, fontFamily: next });
                       setLastUpdateTrigger(Date.now());
                     }}
-                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                     aria-label="Pilih Jenis Font SK Kelulusan"
                   >
                     {FONT_OPTIONS.map((f) => (
@@ -2493,7 +2581,7 @@ export const ExamToolsView: React.FC = () => {
                           LEMBAR CETAK KARTU PESERTA UJIAN SEKOLAH ({selectedRoom})
                         </span>
                         <span className="text-[9px] text-zinc-600 print:text-black leading-tight">
-                          {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Standar 6 Kartu / Lembar A4
+                          {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Model {kartuLayout === 'classic' ? 'Klasik Resmi' : 'Modern'} • 6 Kartu / Lembar A4
                         </span>
                       </div>
                       <div className="text-right font-mono text-[9px] text-zinc-600 print:text-black leading-tight">
@@ -2512,6 +2600,7 @@ export const ExamToolsView: React.FC = () => {
                           student={s}
                           schoolProfile={schoolProfile}
                           theme={kartuTheme}
+                          layout={kartuLayout}
                           showStamp={kartuShowStamp}
                           showBarcode={kartuShowBarcode}
                           showWatermark={kartuShowWatermark}
@@ -3103,7 +3192,7 @@ export const ExamToolsView: React.FC = () => {
                     <div className="grid grid-cols-12">
                       <span className="col-span-1 font-bold">3.</span>
                       <span className="col-span-7">Jumlah Peserta Didik Dinyatakan LULUS</span>
-                      <span className="col-span-4 font-black text-emerald-900">: {currentBA.pesertaLulus} (delapan puluh) orang (100%)</span>
+                      <span className="col-span-4 font-black text-sky-900">: {currentBA.pesertaLulus} (delapan puluh) orang (100%)</span>
                     </div>
                     <div className="grid grid-cols-12">
                       <span className="col-span-1 font-bold">4.</span>
@@ -3457,8 +3546,8 @@ export const ExamToolsView: React.FC = () => {
                                 <td className="p-1 font-bold uppercase border-r border-black">{s.nama}</td>
                                 <td className="p-1 text-center border-r border-black">{s.jenisKelamin}</td>
                                 <td className="p-1 text-center font-mono font-bold border-r border-black">{totalNA.toFixed(1)}</td>
-                                <td className="p-1 text-center font-mono font-bold text-emerald-800 border-r border-black">{avgNA.toFixed(2)}</td>
-                                <td className="p-1 text-center font-bold text-emerald-800">LULUS</td>
+                                <td className="p-1 text-center font-mono font-bold text-sky-800 border-r border-black">{avgNA.toFixed(2)}</td>
+                                <td className="p-1 text-center font-bold text-sky-800">LULUS</td>
                               </tr>
                             );
                           })}

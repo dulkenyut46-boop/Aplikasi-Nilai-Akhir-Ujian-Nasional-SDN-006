@@ -192,7 +192,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             onClick={() => setActiveSubTab('kehadiran')}
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'kehadiran'
-                ? 'bg-emerald-700 text-white shadow-xs'
+                ? 'bg-sky-700 text-white shadow-xs'
                 : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
@@ -204,7 +204,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             onClick={() => setActiveSubTab('acara')}
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'acara'
-                ? 'bg-emerald-700 text-white shadow-xs'
+                ? 'bg-sky-700 text-white shadow-xs'
                 : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
@@ -220,14 +220,14 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
               {/* Quick Actions & Search */}
               <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl border border-amber-300/80 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/20">
                 <div className="flex items-center gap-2">
-                  <UserCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+                  <UserCheck className="h-4 w-4 text-sky-700 dark:text-sky-400" />
                   <span className="font-bold text-amber-900 dark:text-amber-200">
                     Aksi Presensi Cepat:
                   </span>
                   <button
                     type="button"
                     onClick={handleMarkAllPresent}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1.5 shadow-xs transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1.5 shadow-xs transition-colors"
                   >
                     <Check className="h-3.5 w-3.5" />
                     Tandai Semua Siswa & Wali Hadir
@@ -294,7 +294,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                               }
                               className={`rounded-lg border px-2 py-1 text-xs font-bold ${
                                 r.kehadiranSiswa === 'Hadir'
-                                  ? 'border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                                  ? 'border-sky-500 bg-sky-50 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
                                   : 'border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                               }`}
                             >
@@ -312,7 +312,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                               }
                               className={`rounded-lg border px-2 py-1 text-xs font-bold ${
                                 r.kehadiranWali === 'Hadir'
-                                  ? 'border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                                  ? 'border-sky-500 bg-sky-50 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
                                   : 'border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                               }`}
                             >
@@ -342,8 +342,8 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
 
           {activeSubTab === 'acara' && (
             <div className="space-y-4">
-              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-semibold text-[11px] flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+              <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
                 <span>
                   Informasi Jadwal Acara Perpisahan, Tempat, dan Titimangsa Lembar Presensi
                 </span>
@@ -487,7 +487,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             <button
               type="button"
               onClick={handleSaveAndClose}
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 px-5 py-2 text-xs font-bold text-white shadow-md transition-all"
+              className="inline-flex items-center gap-2 rounded-xl bg-sky-700 hover:bg-sky-800 active:scale-95 px-5 py-2 text-xs font-bold text-white shadow-md transition-all"
             >
               <Save className="h-4 w-4" />
               Simpan Perubahan

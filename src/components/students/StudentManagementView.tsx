@@ -121,7 +121,7 @@ export const StudentManagementView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div>
           <div className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-emerald-600" />
+            <Users className="h-5 w-5 text-sky-600" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Data Pokok Peserta Ujian Nasional (Data PD)
             </h2>
@@ -134,10 +134,10 @@ export const StudentManagementView: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={() => setActiveTab('student-photos')}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors"
             title="Kelola pas foto resmi siswa untuk denah, kartu ujian, dan ijazah"
           >
-            <Camera className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <Camera className="h-4 w-4 text-sky-700 dark:text-sky-400" />
             Foto Siswa ({students.filter((s) => Boolean(s.foto)).length}/{students.length})
           </button>
           <button
@@ -145,15 +145,15 @@ export const StudentManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
             title="Unduh format template Excel (.xlsx) untuk data siswa"
           >
-            <FileSpreadsheet className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Template Excel (.xlsx)
           </button>
           <button
             onClick={() => setIsImportModalOpen(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors"
             title="Impor data siswa dari berkas Excel (.xlsx) / CSV"
           >
-            <Upload className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <Upload className="h-4 w-4 text-sky-700 dark:text-sky-400" />
             Impor Data Siswa
           </button>
           <button
@@ -161,14 +161,14 @@ export const StudentManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak daftar peserta ujian (DNT, Biodata, Presensi)"
           >
-            <Printer className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Menu Cetak Peserta
           </button>
           <button
             onClick={exportToCSV}
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
           >
-            <Download className="h-4 w-4 text-emerald-600" />
+            <Download className="h-4 w-4 text-sky-600" />
             Ekspor CSV
           </button>
           <button
@@ -176,7 +176,7 @@ export const StudentManagementView: React.FC = () => {
               setStudentToEdit(null);
               setIsModalOpen(true);
             }}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <UserPlus className="h-4 w-4" />
             Tambah Peserta Baru
@@ -197,7 +197,7 @@ export const StudentManagementView: React.FC = () => {
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           />
         </div>
 
@@ -209,7 +209,7 @@ export const StudentManagementView: React.FC = () => {
               setSelectedRoom(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="ALL">Semua Ruang (R1 - R4)</option>
             <option value="RUANG 1">RUANG 1</option>
@@ -227,7 +227,7 @@ export const StudentManagementView: React.FC = () => {
               setSelectedGender(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="ALL">Semua Jenis Kelamin</option>
             <option value="L">Laki-laki (L)</option>
@@ -240,7 +240,7 @@ export const StudentManagementView: React.FC = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 px-3 text-xs font-semibold text-zinc-800 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="meja">Urutkan: Ruang & Nomor Meja</option>
             <option value="nama">Urutkan: Nama Siswa (A - Z)</option>
@@ -297,7 +297,7 @@ export const StudentManagementView: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setSelectedStudentForDetail(s)}
-                              className="font-bold text-zinc-900 dark:text-zinc-100 hover:text-emerald-700 dark:hover:text-emerald-400 text-left transition-colors"
+                              className="font-bold text-zinc-900 dark:text-zinc-100 hover:text-sky-700 dark:hover:text-sky-400 text-left transition-colors"
                             >
                               {s.nama}
                             </button>
@@ -306,7 +306,7 @@ export const StudentManagementView: React.FC = () => {
                         </div>
                       </td>
                       <td className="p-3.5 font-mono text-zinc-700 dark:text-zinc-300">
-                        <div className="font-semibold text-emerald-800 dark:text-emerald-300">
+                        <div className="font-semibold text-sky-800 dark:text-sky-300">
                           {s.noPeserta}
                         </div>
                         <div className="text-[10px] text-zinc-400">NISN: {s.nisn}</div>
@@ -328,7 +328,7 @@ export const StudentManagementView: React.FC = () => {
                       </td>
                       <td className="p-3.5">
                         <div className="font-semibold text-zinc-800 dark:text-zinc-200">{s.ruang}</div>
-                        <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">
+                        <div className="text-[11px] text-sky-600 dark:text-sky-400 font-bold">
                           Meja #{s.noMeja}
                         </div>
                       </td>
@@ -351,7 +351,7 @@ export const StudentManagementView: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => setSelectedStudentForDetail(s)}
-                            className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 hover:text-emerald-700 dark:hover:bg-zinc-800 dark:hover:text-emerald-400 transition-colors"
+                            className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 hover:text-sky-700 dark:hover:bg-zinc-800 dark:hover:text-sky-400 transition-colors"
                             title="Lihat Profil Lengkap"
                           >
                             <Eye className="h-4 w-4" />
@@ -452,7 +452,7 @@ export const StudentManagementView: React.FC = () => {
                   onClick={() => setPrintFormat(fmt.key as any)}
                   className={`px-2.5 py-1 rounded-lg font-bold transition-colors ${
                     printFormat === fmt.key
-                      ? 'bg-emerald-700 text-white shadow-xs'
+                      ? 'bg-sky-700 text-white shadow-xs'
                       : 'hover:text-white hover:bg-zinc-700'
                   }`}
                 >
@@ -467,7 +467,7 @@ export const StudentManagementView: React.FC = () => {
               <select
                 value={printRoom}
                 onChange={(e) => setPrintRoom(e.target.value)}
-                className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
               >
                 <option value="ALL">Semua Ruangan</option>
                 <option value="RUANG 1">Ruang 1</option>

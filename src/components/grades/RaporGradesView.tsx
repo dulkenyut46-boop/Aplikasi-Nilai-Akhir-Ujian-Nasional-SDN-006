@@ -49,7 +49,7 @@ export const RaporGradesView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-emerald-600" />
+            <BookOpen className="h-5 w-5 text-sky-600" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Pengolahan Nilai Rapor Semester 7 s.d. 12 (K13)
             </h2>
@@ -71,17 +71,17 @@ export const RaporGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
             title="Unduh format template Excel (.xlsx) untuk semester ini"
           >
-            <FileSpreadsheet className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Template Excel (.xlsx)
           </button>
 
           <button
             type="button"
             onClick={() => setIsImportModalOpen(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Impor nilai rapor dari berkas Excel (.xlsx)"
           >
-            <Upload className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <Upload className="h-4 w-4 text-sky-700 dark:text-sky-400" />
             Impor Nilai Rapor
           </button>
 
@@ -89,7 +89,7 @@ export const RaporGradesView: React.FC = () => {
             onClick={() => {
               showToast('Kalkulasi Selesai', 'Rata-rata seluruh rapor telah disinkronkan ke rekap.', 'success');
             }}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <Calculator className="h-4 w-4" />
             Sinkronkan Rata-Rata
@@ -107,14 +107,14 @@ export const RaporGradesView: React.FC = () => {
               onClick={() => setSelectedSemester(sem.key as SemesterKey)}
               className={`flex flex-col shrink-0 px-4 py-2.5 rounded-xl border text-left transition-all ${
                 isActive
-                  ? 'border-emerald-600 bg-emerald-800 text-white shadow-md'
+                  ? 'border-sky-600 bg-sky-800 text-white shadow-md'
                   : 'border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800'
               }`}
             >
               <span className="text-xs font-bold leading-tight">{sem.label}</span>
               <span
                 className={`text-[10px] ${
-                  isActive ? 'text-emerald-200' : 'text-zinc-400'
+                  isActive ? 'text-sky-200' : 'text-zinc-400'
                 }`}
               >
                 {sem.desc}
@@ -133,7 +133,7 @@ export const RaporGradesView: React.FC = () => {
             placeholder="Cari Nama Peserta atau No Ujian..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           />
         </div>
 
@@ -165,7 +165,7 @@ export const RaporGradesView: React.FC = () => {
                     <div className="text-[10px] text-zinc-400 font-normal">KKM {sub.kkm}</div>
                   </th>
                 ))}
-                <th className="p-3 text-center min-w-[90px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200">
+                <th className="p-3 text-center min-w-[90px] bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200">
                   Rata-Rata
                 </th>
               </tr>
@@ -216,7 +216,7 @@ export const RaporGradesView: React.FC = () => {
                                   e.target.value
                                 )
                               }
-                              className="w-16 rounded-lg border border-zinc-200 bg-white px-2 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                              className="w-16 rounded-lg border border-zinc-200 bg-white px-2 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                             />
                           </td>
                         );
@@ -224,7 +224,7 @@ export const RaporGradesView: React.FC = () => {
                     })}
 
                     {/* Row Average */}
-                    <td className="p-3 text-center font-mono font-extrabold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">
+                    <td className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                       {overallRaporAvg.toFixed(2)}
                     </td>
                   </tr>

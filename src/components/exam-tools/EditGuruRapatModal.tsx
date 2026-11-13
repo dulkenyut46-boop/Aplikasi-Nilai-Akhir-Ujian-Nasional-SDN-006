@@ -129,15 +129,15 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-5">
       <div className="flex h-full max-h-[90vh] w-full max-w-4xl flex-col rounded-3xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header Modal */}
-        <div className="flex items-center justify-between border-b border-zinc-200 bg-linear-to-r from-emerald-50 via-teal-50/50 to-white px-6 py-4 dark:border-zinc-800 dark:from-emerald-950/40 dark:via-zinc-900 dark:to-zinc-900">
+        <div className="flex items-center justify-between border-b border-zinc-200 bg-linear-to-r from-sky-50 via-blue-50/50 to-white px-6 py-4 dark:border-zinc-800 dark:from-sky-950/40 dark:via-zinc-900 dark:to-zinc-900">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-700 text-white shadow-md">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-700 text-white shadow-md">
               <Users className="h-5 w-5" />
             </span>
             <div>
               <h3 className="text-base font-extrabold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                 Menu Edit & Kelola Nama Peserta Rapat
-                <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200">
+                <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-bold text-sky-800 dark:bg-sky-900/60 dark:text-sky-200">
                   {items.length} Peserta
                 </span>
               </h3>
@@ -164,7 +164,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
               placeholder="Cari nama atau jabatan..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-zinc-300 bg-white py-1.5 pl-9 pr-3 text-xs text-zinc-900 placeholder-zinc-400 focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-300 bg-white py-1.5 pl-9 pr-3 text-xs text-zinc-900 placeholder-zinc-400 focus:border-sky-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -172,7 +172,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
             <button
               type="button"
               onClick={handleAddNew}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors"
             >
               <Plus className="h-4 w-4" />
               Tambah Baris Nama
@@ -213,7 +213,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                 return (
                   <div
                     key={item.id}
-                    className="group flex flex-col sm:flex-row sm:items-center gap-2.5 rounded-2xl border border-zinc-200 bg-white p-3 hover:border-emerald-300 hover:bg-emerald-50/20 dark:border-zinc-800 dark:bg-zinc-800/80 dark:hover:border-zinc-700 transition-all shadow-2xs"
+                    className="group flex flex-col sm:flex-row sm:items-center gap-2.5 rounded-2xl border border-zinc-200 bg-white p-3 hover:border-sky-300 hover:bg-sky-50/20 dark:border-zinc-800 dark:bg-zinc-800/80 dark:hover:border-zinc-700 transition-all shadow-2xs"
                   >
                     {/* Index & Reorder Controls */}
                     <div className="flex items-center gap-1 min-w-[70px]">
@@ -225,7 +225,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                           type="button"
                           disabled={realIndex === 0}
                           onClick={() => handleMoveUp(realIndex)}
-                          className="text-zinc-400 hover:text-emerald-600 disabled:opacity-20 p-0.5"
+                          className="text-zinc-400 hover:text-sky-600 disabled:opacity-20 p-0.5"
                           title="Pindahkan ke atas"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
@@ -234,7 +234,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                           type="button"
                           disabled={realIndex === items.length - 1}
                           onClick={() => handleMoveDown(realIndex)}
-                          className="text-zinc-400 hover:text-emerald-600 disabled:opacity-20 p-0.5"
+                          className="text-zinc-400 hover:text-sky-600 disabled:opacity-20 p-0.5"
                           title="Pindahkan ke bawah"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
@@ -252,7 +252,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                         value={item.nama}
                         onChange={(e) => handleItemChange(realIndex, 'nama', e.target.value)}
                         placeholder="Contoh: HENRI SAPUTRA, S.Pd"
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-bold uppercase text-zinc-900 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-bold uppercase text-zinc-900 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                       />
                     </div>
 
@@ -266,7 +266,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                         value={item.jabatan}
                         onChange={(e) => handleItemChange(realIndex, 'jabatan', e.target.value)}
                         placeholder="Contoh: Guru Kelas 6A / Anggota"
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs text-zinc-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs text-zinc-800 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
                       />
                     </div>
 
@@ -304,7 +304,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
             <button
               type="button"
               onClick={handleSaveAndClose}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-all active:scale-95"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-all active:scale-95"
             >
               <Check className="h-4 w-4" />
               Simpan & Terapkan

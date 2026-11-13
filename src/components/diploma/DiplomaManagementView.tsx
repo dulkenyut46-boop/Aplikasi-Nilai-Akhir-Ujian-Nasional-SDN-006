@@ -147,7 +147,7 @@ export const DiplomaManagementView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4 print:hidden">
         <div>
           <div className="flex items-center gap-2">
-            <GraduationCap className="h-5 w-5 text-emerald-600" />
+            <GraduationCap className="h-5 w-5 text-sky-600" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Penerbitan Transkrip Nilai, SK Kelulusan & Pengelolaan Ijazah
             </h2>
@@ -160,7 +160,7 @@ export const DiplomaManagementView: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => handlePrintDocument(activeTab)}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <Printer className="h-4 w-4" />
             Cetak Dokumen Terpilih
@@ -185,7 +185,7 @@ export const DiplomaManagementView: React.FC = () => {
               key={tab.key}
               className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
-                  ? 'bg-emerald-800 text-white shadow-sm border-emerald-600'
+                  ? 'bg-sky-800 text-white shadow-sm border-sky-600'
                   : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
@@ -206,8 +206,8 @@ export const DiplomaManagementView: React.FC = () => {
                 }}
                 className={`mr-1.5 p-1 rounded-lg transition-all ${
                   isActive
-                    ? 'bg-emerald-700 hover:bg-emerald-600 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-emerald-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-emerald-300'
+                    ? 'bg-sky-700 hover:bg-sky-600 text-white shadow-xs'
+                    : 'text-zinc-400 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
                 }`}
                 title={`Cetak ${tab.label}`}
                 aria-label={`Menu Cetak ${tab.label}`}
@@ -247,7 +247,7 @@ export const DiplomaManagementView: React.FC = () => {
               </div>
               <button
                 onClick={() => handlePrintDocument('skhu')}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors shrink-0"
               >
                 <Printer className="h-4 w-4" />
                 Cetak Transkrip Ini
@@ -339,7 +339,7 @@ export const DiplomaManagementView: React.FC = () => {
                         <td className="p-2.5 font-medium text-zinc-900 dark:text-zinc-100 border-r border-zinc-200 dark:border-zinc-700">
                           {sub.name}
                         </td>
-                        <td className="p-2.5 text-center font-mono font-bold text-emerald-800 dark:text-emerald-400">
+                        <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-400">
                           {na.toFixed(2)}
                         </td>
                       </tr>
@@ -351,7 +351,7 @@ export const DiplomaManagementView: React.FC = () => {
                     <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
                       Jumlah / Total Nilai :
                     </td>
-                    <td className="p-2.5 text-center font-mono font-bold text-emerald-800 dark:text-emerald-300">
+                    <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-300">
                       {calculateStudentTotalFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
                     </td>
                   </tr>
@@ -359,7 +359,7 @@ export const DiplomaManagementView: React.FC = () => {
                     <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
                       Rata-Rata Nilai :
                     </td>
-                    <td className="p-2.5 text-center font-mono font-extrabold text-sm text-emerald-800 dark:text-emerald-300">
+                    <td className="p-2.5 text-center font-mono font-extrabold text-sm text-sky-800 dark:text-sky-300">
                       {calculateStudentOverallFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
                     </td>
                   </tr>
@@ -392,7 +392,7 @@ export const DiplomaManagementView: React.FC = () => {
             <div>
               <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                 <span>Pratinjau Surat Keputusan (SK) Kelulusan</span>
-                <span className="rounded-md bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold">
+                <span className="rounded-md bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 px-2 py-0.5 text-[10px] font-bold">
                   Resmi Kedinasan
                 </span>
               </h4>
@@ -402,7 +402,7 @@ export const DiplomaManagementView: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Menu Ganti Font Dokumen Resmi */}
               <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
-                <Type className="h-4 w-4 text-emerald-600 shrink-0" />
+                <Type className="h-4 w-4 text-sky-600 shrink-0" />
                 <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Pilih Font:</span>
                 <select
                   value={skFontFamily}
@@ -436,7 +436,7 @@ export const DiplomaManagementView: React.FC = () => {
 
               <button
                 onClick={() => handlePrintDocument('sk-kelulusan')}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors shrink-0"
               >
                 <Printer className="h-4 w-4" />
                 Cetak SK Kelulusan
@@ -466,7 +466,7 @@ export const DiplomaManagementView: React.FC = () => {
             </p>
             <div className="pt-2">
               <p className="text-xs font-bold uppercase tracking-widest">T E N T A N G</p>
-              <p className="text-xs sm:text-sm font-extrabold uppercase text-emerald-900 dark:text-emerald-400 max-w-xl mx-auto">
+              <p className="text-xs sm:text-sm font-extrabold uppercase text-sky-900 dark:text-sky-400 max-w-xl mx-auto">
                 PENETAPAN KELULUSAN PESERTA DIDIK KELAS VI TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
               </p>
             </div>
@@ -680,8 +680,8 @@ export const DiplomaManagementView: React.FC = () => {
                         <td className="p-1 font-bold uppercase border-r border-black dark:border-zinc-600">{s.nama}</td>
                         <td className="p-1 text-center border-r border-black dark:border-zinc-600">{s.jenisKelamin}</td>
                         <td className="p-1 text-center font-mono font-bold border-r border-black dark:border-zinc-600">{totalNA.toFixed(1)}</td>
-                        <td className="p-1 text-center font-mono font-bold text-emerald-800 dark:text-emerald-400 border-r border-black dark:border-zinc-600">{avgNA.toFixed(2)}</td>
-                        <td className="p-1 text-center font-bold text-emerald-800 dark:text-emerald-400">LULUS</td>
+                        <td className="p-1 text-center font-mono font-bold text-sky-800 dark:text-sky-400 border-r border-black dark:border-zinc-600">{avgNA.toFixed(2)}</td>
+                        <td className="p-1 text-center font-bold text-sky-800 dark:text-sky-400">LULUS</td>
                       </tr>
                     );
                   })}
@@ -720,7 +720,7 @@ export const DiplomaManagementView: React.FC = () => {
             </div>
             <button
               onClick={() => handlePrintDocument('blangko')}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors"
             >
               <Printer className="h-4 w-4" />
               Cetak Laporan Ini
@@ -743,7 +743,7 @@ export const DiplomaManagementView: React.FC = () => {
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 {diplomaRecords.map((rec, idx) => (
                   <tr key={idx} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                    <td className="p-3 font-bold text-emerald-800 dark:text-emerald-400">
+                    <td className="p-3 font-bold text-sky-800 dark:text-sky-400">
                       {rec.tahunPelajaran}
                     </td>
                     <td className="p-3 text-center font-mono font-bold">{rec.jumlahDiterima} lbr</td>
@@ -782,7 +782,7 @@ export const DiplomaManagementView: React.FC = () => {
               <div>
                 <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                   <span>{serahTerimaMeta.judul}</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300">
                     {deliveredCount}/{students.length} Diserahkan
                   </span>
                 </h3>
@@ -804,7 +804,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handlePrintDocument('serah-terima')}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer"
                 >
                   <Printer className="h-4 w-4" />
                   Cetak Buku Serah Terima
@@ -856,7 +856,7 @@ export const DiplomaManagementView: React.FC = () => {
                           <div className="font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</div>
                           <div className="text-[10px] text-zinc-400 font-mono">NISN: {s.nisn}</div>
                         </td>
-                        <td className="p-3 font-mono font-semibold text-emerald-800 dark:text-emerald-400">
+                        <td className="p-3 font-mono font-semibold text-sky-800 dark:text-sky-400">
                           {s.noSeriIjazah || '-'}
                         </td>
                         <td className="p-3 font-medium text-zinc-700 dark:text-zinc-300">
@@ -922,7 +922,7 @@ export const DiplomaManagementView: React.FC = () => {
             </div>
             <button
               onClick={() => handlePrintDocument('register')}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors"
             >
               <Printer className="h-4 w-4" />
               Cetak Buku Register
@@ -950,7 +950,7 @@ export const DiplomaManagementView: React.FC = () => {
                     <td className="p-3 font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
                     <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">{s.noPeserta}</td>
                     <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
-                    <td className="p-3 font-mono font-bold text-emerald-800 dark:text-emerald-300">
+                    <td className="p-3 font-mono font-bold text-sky-800 dark:text-sky-300">
                       {s.noSeriIjazah || '-'}
                     </td>
                     <td className="p-3 font-mono text-zinc-700 dark:text-zinc-300">
@@ -994,7 +994,7 @@ export const DiplomaManagementView: React.FC = () => {
               <div>
                 <h3 className="text-base font-extrabold uppercase text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                   <span>{perpisahanMeta.judul}</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300">
                     {students.length} Siswa & Wali
                   </span>
                 </h3>
@@ -1015,7 +1015,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handlePrintDocument('perpisahan')}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors cursor-pointer"
                 >
                   <Printer className="h-4 w-4" />
                   Cetak Daftar Hadir Ini
@@ -1026,21 +1026,21 @@ export const DiplomaManagementView: React.FC = () => {
             {/* Event Metadata Banner */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-750 text-xs">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-emerald-600 shrink-0" />
+                <Calendar className="h-4 w-4 text-sky-600 shrink-0" />
                 <div>
                   <span className="text-[10px] text-zinc-400 block font-semibold">Hari / Tanggal Acara:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.hariTanggal}</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-emerald-600 shrink-0" />
+                <Clock className="h-4 w-4 text-sky-600 shrink-0" />
                 <div>
                   <span className="text-[10px] text-zinc-400 block font-semibold">Waktu Pelaksanaan:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.waktu}</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                <MapPin className="h-4 w-4 text-sky-600 shrink-0" />
                 <div className="min-w-0">
                   <span className="text-[10px] text-zinc-400 block font-semibold">Tempat Acara:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100 truncate block">{perpisahanMeta.tempat}</span>
@@ -1111,7 +1111,7 @@ export const DiplomaManagementView: React.FC = () => {
                             <span
                               className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
                                 statusSiswa === 'Hadir' && statusWali === 'Hadir'
-                                  ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                                  ? 'bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
                                   : 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300'
                               }`}
                             >
@@ -1156,7 +1156,7 @@ export const DiplomaManagementView: React.FC = () => {
             <select
               value={printSelectedDoc}
               onChange={(e) => setPrintSelectedDoc(e.target.value as TabKey)}
-              className="rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-bold text-zinc-100 focus:border-emerald-500 focus:outline-none"
+              className="rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-bold text-zinc-100 focus:border-sky-500 focus:outline-none"
             >
               <option value="skhu">📄 Transkrip Nilai (SKHU Siswa)</option>
               <option value="sk-kelulusan">⚖️ SK Kelulusan & Lampiran Rekap Nilai</option>
@@ -1174,7 +1174,7 @@ export const DiplomaManagementView: React.FC = () => {
                   <select
                     value={skPrintPart}
                     onChange={(e) => setSkPrintPart(e.target.value as any)}
-                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                   >
                     <option value="all">📑 Lengkap (Naskah + Lampiran)</option>
                     <option value="naskah">📜 Naskah Pokok Saja</option>
@@ -1184,13 +1184,13 @@ export const DiplomaManagementView: React.FC = () => {
 
                 <div className="flex items-center gap-1 text-xs">
                   <span className="text-zinc-400 font-semibold hidden md:inline flex items-center gap-1">
-                    <Type className="h-3.5 w-3.5 text-emerald-400" />
+                    <Type className="h-3.5 w-3.5 text-sky-400" />
                     Font:
                   </span>
                   <select
                     value={skFontFamily}
                     onChange={(e) => handleFontChange(e.target.value as DocFontFamily)}
-                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                     aria-label="Pilih Jenis Font SK Kelulusan"
                   >
                     {FONT_OPTIONS.map((f) => (
@@ -1206,7 +1206,7 @@ export const DiplomaManagementView: React.FC = () => {
                   <select
                     value={skFontSize}
                     onChange={(e) => handleFontSizeChange(e.target.value)}
-                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-xl border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none"
                     aria-label="Pilih Ukuran Huruf SK"
                   >
                     <option value="11pt">11 pt</option>
@@ -1225,7 +1225,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <select
                   value={selectedStudentId}
                   onChange={(e) => setSelectedStudentId(e.target.value)}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-emerald-500 focus:outline-none max-w-[200px] truncate"
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 focus:border-sky-500 focus:outline-none max-w-[200px] truncate"
                 >
                   {students.map((s) => (
                     <option key={s.id} value={s.id}>

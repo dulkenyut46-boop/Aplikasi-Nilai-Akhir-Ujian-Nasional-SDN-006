@@ -184,7 +184,7 @@ export const SettingsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Settings className="h-5 w-5 text-emerald-600" />
+            <Settings className="h-5 w-5 text-sky-600" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Pengaturan Identitas Sekolah & Kop Surat Resmi
             </h2>
@@ -206,7 +206,7 @@ export const SettingsView: React.FC = () => {
           </button>
           <button
             onClick={handleSave}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <Save className="h-4 w-4" />
             Simpan Semua Pengaturan
@@ -230,9 +230,9 @@ export const SettingsView: React.FC = () => {
             onClick={() => setActiveSection(sec.key as any)}
             className={`px-3.5 py-1.5 rounded-xl transition-all shrink-0 font-bold ${
               activeSection === sec.key
-                ? 'bg-emerald-800 text-white shadow-xs'
+                ? 'bg-sky-800 text-white shadow-xs'
                 : sec.highlight
-                ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-700'
+                ? 'bg-sky-50 text-sky-800 border border-sky-300 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-700'
                 : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
             }`}
           >
@@ -246,16 +246,16 @@ export const SettingsView: React.FC = () => {
             CARD 1: PENGATURAN KOP SURAT RESMI & EDIT LOGO KANAN-KIRI
            ======================================================== */}
         {(activeSection === 'all' || activeSection === 'kop') && (
-          <div className="rounded-2xl border-2 border-emerald-600/30 bg-white p-6 shadow-sm dark:border-emerald-500/20 dark:bg-zinc-900 space-y-6">
+          <div className="rounded-2xl border-2 border-sky-600/30 bg-white p-6 shadow-sm dark:border-sky-500/20 dark:bg-zinc-900 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-zinc-200 dark:border-zinc-800 pb-3">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
                   <FileText className="h-4.5 w-4.5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-extrabold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-2">
                     Pengaturan Kop Surat Resmi & Edit Logo (Kanan & Kiri)
-                    <span className="rounded-md bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-normal">
+                    <span className="rounded-md bg-sky-700 text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-normal">
                       Standar Dinas
                     </span>
                   </h3>
@@ -281,7 +281,7 @@ export const SettingsView: React.FC = () => {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-extrabold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
-                  <Eye className="h-4 w-4 text-emerald-600" />
+                  <Eye className="h-4 w-4 text-sky-600" />
                   Pratinjau Langsung (Live Preview Kop Surat):
                 </span>
                 <div className="flex items-center gap-2 text-[11px]">
@@ -336,7 +336,7 @@ export const SettingsView: React.FC = () => {
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50/70 p-5 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-4">
                 <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-700 pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700 text-white text-xs font-bold">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-700 text-white text-xs font-bold">
                       1
                     </span>
                     <h4 className="font-extrabold text-xs uppercase text-zinc-900 dark:text-zinc-100 tracking-wide">
@@ -351,7 +351,7 @@ export const SettingsView: React.FC = () => {
                       onChange={(e) => handleKopChange('showLogoKiri', e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                    <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-600"></div>
                     <span className="ml-2 text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
                       {currentKop.showLogoKiri ? 'Tampil' : 'Sembunyi'}
                     </span>
@@ -385,7 +385,7 @@ export const SettingsView: React.FC = () => {
                     <div>
                       <div className="flex justify-between text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 mb-1">
                         <span>Ukuran Logo:</span>
-                        <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                        <span className="font-mono font-bold text-sky-700 dark:text-sky-400">
                           {currentKop.logoKiriSize || 76} px
                         </span>
                       </div>
@@ -396,7 +396,7 @@ export const SettingsView: React.FC = () => {
                         step={2}
                         value={currentKop.logoKiriSize || 76}
                         onChange={(e) => handleKopChange('logoKiriSize', Number(e.target.value))}
-                        className="w-full accent-emerald-600 cursor-pointer"
+                        className="w-full accent-sky-600 cursor-pointer"
                       />
                     </div>
                   </div>
@@ -415,8 +415,8 @@ export const SettingsView: React.FC = () => {
                         onClick={() => handleSelectPresetLogo('kiri', p.id)}
                         className={`flex items-center gap-2 p-2 rounded-xl text-left border transition-all ${
                           currentKop.logoKiriPreset === p.id
-                            ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-emerald-300'
+                            ? 'border-sky-600 bg-sky-50 dark:bg-sky-950/40 text-sky-950 dark:text-sky-200 font-bold shadow-xs'
+                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-sky-300'
                         }`}
                       >
                         <img
@@ -449,7 +449,7 @@ export const SettingsView: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => leftLogoInputRef.current?.click()}
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-700 dark:text-emerald-300 transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-600 bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:bg-sky-950/40 dark:border-sky-700 dark:text-sky-300 transition-colors"
                     >
                       <Upload className="h-3.5 w-3.5" />
                       Unggah File Logo Kiri
@@ -472,7 +472,7 @@ export const SettingsView: React.FC = () => {
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50/70 p-5 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-4">
                 <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-700 pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700 text-white text-xs font-bold">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-700 text-white text-xs font-bold">
                       2
                     </span>
                     <h4 className="font-extrabold text-xs uppercase text-zinc-900 dark:text-zinc-100 tracking-wide">
@@ -487,7 +487,7 @@ export const SettingsView: React.FC = () => {
                       onChange={(e) => handleKopChange('showLogoKanan', e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                    <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-600"></div>
                     <span className="ml-2 text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
                       {currentKop.showLogoKanan ? 'Tampil' : 'Sembunyi'}
                     </span>
@@ -521,7 +521,7 @@ export const SettingsView: React.FC = () => {
                     <div>
                       <div className="flex justify-between text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 mb-1">
                         <span>Ukuran Logo:</span>
-                        <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                        <span className="font-mono font-bold text-sky-700 dark:text-sky-400">
                           {currentKop.logoKananSize || 76} px
                         </span>
                       </div>
@@ -532,7 +532,7 @@ export const SettingsView: React.FC = () => {
                         step={2}
                         value={currentKop.logoKananSize || 76}
                         onChange={(e) => handleKopChange('logoKananSize', Number(e.target.value))}
-                        className="w-full accent-emerald-600 cursor-pointer"
+                        className="w-full accent-sky-600 cursor-pointer"
                       />
                     </div>
                   </div>
@@ -551,8 +551,8 @@ export const SettingsView: React.FC = () => {
                         onClick={() => handleSelectPresetLogo('kanan', p.id)}
                         className={`flex items-center gap-2 p-2 rounded-xl text-left border transition-all ${
                           currentKop.logoKananPreset === p.id
-                            ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-emerald-300'
+                            ? 'border-sky-600 bg-sky-50 dark:bg-sky-950/40 text-sky-950 dark:text-sky-200 font-bold shadow-xs'
+                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-sky-300'
                         }`}
                       >
                         <img
@@ -585,7 +585,7 @@ export const SettingsView: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => rightLogoInputRef.current?.click()}
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-700 dark:text-emerald-300 transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-600 bg-sky-50 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:bg-sky-950/40 dark:border-sky-700 dark:text-sky-300 transition-colors"
                     >
                       <Upload className="h-3.5 w-3.5" />
                       Unggah File Logo Kanan
@@ -606,7 +606,7 @@ export const SettingsView: React.FC = () => {
             {/* FORM TEKS & GARIS KOP SURAT */}
             <div className="space-y-4 pt-2">
               <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700 text-white text-xs font-bold">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-700 text-white text-xs font-bold">
                   3
                 </span>
                 <h4 className="font-extrabold text-xs uppercase text-zinc-900 dark:text-zinc-100 tracking-wide">
@@ -624,7 +624,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.instansiAtas}
                     onChange={(e) => handleKopChange('instansiAtas', e.target.value)}
                     placeholder="PEMERINTAH KABUPATEN KUANTAN SINGINGI"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-medium text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-medium text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                   <span className="text-[10px] text-zinc-400">Contoh: PEMERINTAH KABUPATEN KUANTAN SINGINGI</span>
                 </div>
@@ -638,7 +638,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.instansiTengah}
                     onChange={(e) => handleKopChange('instansiTengah', e.target.value)}
                     placeholder="DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                   <span className="text-[10px] text-zinc-400">Contoh: DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA</span>
                 </div>
@@ -652,7 +652,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.instansiBawah || ''}
                     onChange={(e) => handleKopChange('instansiBawah', e.target.value)}
                     placeholder="KOORDINATOR WILAYAH KECAMATAN SINGINGI HILIR"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                   <span className="text-[10px] text-zinc-400">Kosongkan jika tidak diperlukan</span>
                 </div>
@@ -666,7 +666,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.namaSekolah}
                     onChange={(e) => handleKopChange('namaSekolah', e.target.value)}
                     placeholder="SEKOLAH DASAR NEGERI 006 SUNGAI BULUH"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-extrabold text-emerald-950 dark:text-emerald-300 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-extrabold text-sky-950 dark:text-sky-300 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800"
                   />
                 </div>
 
@@ -677,7 +677,7 @@ export const SettingsView: React.FC = () => {
                   <select
                     value={currentKop.tipeGaris}
                     onChange={(e) => handleKopChange('tipeGaris', e.target.value as any)}
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   >
                     <option value="ganda">Garis Ganda Resmi (Tebal Atas, Tipis Bawah - Standar Naskah Dinas)</option>
                     <option value="tebal">Garis Tebal Tunggal (3px Solid)</option>
@@ -695,7 +695,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.alamat}
                     onChange={(e) => handleKopChange('alamat', e.target.value)}
                     placeholder="Jl. Poros Desa Sungai Buluh, RT 04 / RW 02"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 </div>
 
@@ -708,7 +708,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.kodePos}
                     onChange={(e) => handleKopChange('kodePos', e.target.value)}
                     placeholder="29563"
-                    className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 </div>
 
@@ -721,7 +721,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.kontak || ''}
                     onChange={(e) => handleKopChange('kontak', e.target.value)}
                     placeholder="Telp: 0812-7654-3201"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 </div>
 
@@ -734,7 +734,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.email || ''}
                     onChange={(e) => handleKopChange('email', e.target.value)}
                     placeholder="sdn006sungaibuluh@gmail.com"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 </div>
 
@@ -747,7 +747,7 @@ export const SettingsView: React.FC = () => {
                     value={currentKop.website || ''}
                     onChange={(e) => handleKopChange('website', e.target.value)}
                     placeholder="https://sdn006singingihilir.sch.id"
-                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 </div>
               </div>
@@ -761,7 +761,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'identitas') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <Building className="h-4 w-4 text-emerald-600" />
+              <Building className="h-4 w-4 text-sky-600" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Identitas Satuan Pendidikan & Data Sekolah
               </h3>
@@ -777,7 +777,7 @@ export const SettingsView: React.FC = () => {
                   name="namaSekolah"
                   value={formData.namaSekolah}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -790,7 +790,7 @@ export const SettingsView: React.FC = () => {
                   name="npsn"
                   value={formData.npsn}
                   onChange={handleChange}
-                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -803,7 +803,7 @@ export const SettingsView: React.FC = () => {
                   name="nss"
                   value={formData.nss}
                   onChange={handleChange}
-                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -816,7 +816,7 @@ export const SettingsView: React.FC = () => {
                   name="akreditasi"
                   value={formData.akreditasi}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -829,7 +829,7 @@ export const SettingsView: React.FC = () => {
                   name="tahunPelajaran"
                   value={formData.tahunPelajaran}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -842,7 +842,7 @@ export const SettingsView: React.FC = () => {
                   name="alamat"
                   value={formData.alamat}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -855,7 +855,7 @@ export const SettingsView: React.FC = () => {
                   name="desa"
                   value={formData.desa}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -868,7 +868,7 @@ export const SettingsView: React.FC = () => {
                   name="kecamatan"
                   value={formData.kecamatan}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -881,7 +881,7 @@ export const SettingsView: React.FC = () => {
                   name="kabupaten"
                   value={formData.kabupaten}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -894,7 +894,7 @@ export const SettingsView: React.FC = () => {
                   name="provinsi"
                   value={formData.provinsi}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -908,7 +908,7 @@ export const SettingsView: React.FC = () => {
                   value={formData.tanggalKelulusan}
                   onChange={handleChange}
                   placeholder="10 Juni 2026"
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
             </div>
@@ -921,7 +921,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'pejabat') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <School className="h-4 w-4 text-emerald-600" />
+              <School className="h-4 w-4 text-sky-600" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Pejabat Penandatangan SKHU & Ijazah
               </h3>
@@ -937,7 +937,7 @@ export const SettingsView: React.FC = () => {
                   name="kepalaSekolah"
                   value={formData.kepalaSekolah}
                   onChange={handleChange}
-                  className="w-full font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -950,7 +950,7 @@ export const SettingsView: React.FC = () => {
                   name="nipKepalaSekolah"
                   value={formData.nipKepalaSekolah}
                   onChange={handleChange}
-                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -963,7 +963,7 @@ export const SettingsView: React.FC = () => {
                   name="ketuaPanitia"
                   value={formData.ketuaPanitia}
                   onChange={handleChange}
-                  className="w-full font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
 
@@ -976,7 +976,7 @@ export const SettingsView: React.FC = () => {
                   name="nipKetuaPanitia"
                   value={formData.nipKetuaPanitia}
                   onChange={handleChange}
-                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
               </div>
             </div>
@@ -989,7 +989,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'bobot') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <Sliders className="h-4 w-4 text-emerald-600" />
+              <Sliders className="h-4 w-4 text-sky-600" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Formula Bobot Nilai Akhir & KKM Kelulusan
               </h3>
@@ -1007,7 +1007,7 @@ export const SettingsView: React.FC = () => {
                   name="bobotRapor"
                   value={formData.bobotRapor}
                   onChange={handleChange}
-                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <span className="text-[10px] text-zinc-500">Standar Nasional: 60%</span>
               </div>
@@ -1023,7 +1023,7 @@ export const SettingsView: React.FC = () => {
                   name="bobotUS"
                   value={formData.bobotUS}
                   onChange={handleChange}
-                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <span className="text-[10px] text-zinc-500">Standar Nasional: 40%</span>
               </div>
@@ -1040,7 +1040,7 @@ export const SettingsView: React.FC = () => {
                   name="kkmKelulusan"
                   value={formData.kkmKelulusan}
                   onChange={handleChange}
-                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
                 <span className="text-[10px] text-zinc-500">Nilai Akhir &ge; KKM dinyatakan Lulus</span>
               </div>
@@ -1081,7 +1081,7 @@ export const SettingsView: React.FC = () => {
                 <p className="text-zinc-500 text-[11px]">
                   Muat kembali file cadangan JSON yang pernah diunduh sebelumnya.
                 </p>
-                <label className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-700 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-800 transition-colors cursor-pointer">
+                <label className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-sky-700 px-3 py-2 text-xs font-bold text-white hover:bg-sky-800 transition-colors cursor-pointer">
                   <Upload className="h-4 w-4" />
                   <span>Pilih Berkas JSON</span>
                   <input

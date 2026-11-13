@@ -238,13 +238,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
            ======================================================== */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/80">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
               <FileSignature className="h-5 w-5" />
             </span>
             <div>
               <h2 className="text-base font-extrabold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                 <span>Edit & Unggah Tanda Tangan & Stempel Kartu Ujian</span>
-                <span className="rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold">
+                <span className="rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 px-2 py-0.5 text-[10px] font-bold">
                   Standar DNT Resmi
                 </span>
               </h2>
@@ -272,14 +272,14 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             onClick={() => setActiveTab('ttd')}
             className={`flex items-center gap-2 px-4 py-2.5 font-bold rounded-t-xl transition-all border-b-2 ${
               activeTab === 'ttd'
-                ? 'bg-white dark:bg-zinc-900 text-emerald-700 dark:text-emerald-400 border-emerald-600 shadow-xs'
+                ? 'bg-white dark:bg-zinc-900 text-sky-700 dark:text-sky-400 border-sky-600 shadow-xs'
                 : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
             <PenTool className="h-4 w-4" />
             <span>Tanda Tangan Pengesahan</span>
             {config.showSignature ? (
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="h-2 w-2 rounded-full bg-sky-500" />
             ) : (
               <span className="h-2 w-2 rounded-full bg-zinc-400" />
             )}
@@ -329,7 +329,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Toggle Aktif / Nonaktif */}
               <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850">
                 <div className="flex items-center gap-2.5">
-                  <div className={`p-2 rounded-lg ${config.showSignature ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700'}`}>
+                  <div className={`p-2 rounded-lg ${config.showSignature ? 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300' : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700'}`}>
                     {config.showSignature ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                   </div>
                   <div>
@@ -346,7 +346,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                   onClick={() => setConfig({ ...config, showSignature: !config.showSignature })}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                     config.showSignature
-                      ? 'bg-emerald-700 text-white'
+                      ? 'bg-sky-700 text-white'
                       : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300'
                   }`}
                 >
@@ -366,13 +366,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     onClick={() => setConfig({ ...config, signatureType: 'upload' })}
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'upload'
-                        ? 'border-emerald-600 bg-emerald-50/60 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200'
+                        ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
-                      <Upload className="h-4 w-4 text-emerald-600" />
-                      {config.signatureType === 'upload' && <Check className="h-3.5 w-3.5 text-emerald-600" />}
+                      <Upload className="h-4 w-4 text-sky-600" />
+                      {config.signatureType === 'upload' && <Check className="h-3.5 w-3.5 text-sky-600" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Unggah Gambar</span>
@@ -386,13 +386,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     onClick={() => setConfig({ ...config, signatureType: 'draw' })}
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'draw'
-                        ? 'border-emerald-600 bg-emerald-50/60 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200'
+                        ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
                       <PenTool className="h-4 w-4 text-blue-600" />
-                      {config.signatureType === 'draw' && <Check className="h-3.5 w-3.5 text-emerald-600" />}
+                      {config.signatureType === 'draw' && <Check className="h-3.5 w-3.5 text-sky-600" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Gores / Gambar</span>
@@ -406,13 +406,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     onClick={() => setConfig({ ...config, signatureType: 'digital' })}
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'digital'
-                        ? 'border-emerald-600 bg-emerald-50/60 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200'
+                        ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
                       <Sparkles className="h-4 w-4 text-amber-600" />
-                      {config.signatureType === 'digital' && <Check className="h-3.5 w-3.5 text-emerald-600" />}
+                      {config.signatureType === 'digital' && <Check className="h-3.5 w-3.5 text-sky-600" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Standar Vektor</span>
@@ -426,13 +426,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     onClick={() => setConfig({ ...config, signatureType: 'manual' })}
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'manual'
-                        ? 'border-emerald-600 bg-emerald-50/60 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200'
+                        ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
                       <FileSignature className="h-4 w-4 text-zinc-600" />
-                      {config.signatureType === 'manual' && <Check className="h-3.5 w-3.5 text-emerald-600" />}
+                      {config.signatureType === 'manual' && <Check className="h-3.5 w-3.5 text-sky-600" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Kosongkan (Manual)</span>
@@ -447,7 +447,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                      <Upload className="h-4 w-4 text-emerald-600" />
+                      <Upload className="h-4 w-4 text-sky-600" />
                       <span>Unggah Berkas Gambar Tanda Tangan (PNG / JPG)</span>
                     </span>
                     <input
@@ -460,7 +460,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     <button
                       type="button"
                       onClick={() => fileInputTtdRef.current?.click()}
-                      className="px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="px-3.5 py-1.5 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                       <Upload className="h-3.5 w-3.5" />
                       <span>{config.uploadedSignatureImage ? 'Ganti Berkas TTD' : 'Pilih Berkas TTD'}</span>
@@ -477,7 +477,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                         />
                       </div>
                       <div className="flex-1 text-xs">
-                        <span className="font-bold text-emerald-700 dark:text-emerald-400 block">
+                        <span className="font-bold text-sky-700 dark:text-sky-400 block">
                           ✓ Gambar Tanda Tangan Aktif
                         </span>
                         <span className="text-[11px] text-zinc-500 block mt-0.5">
@@ -496,7 +496,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                   ) : (
                     <div
                       onClick={() => fileInputTtdRef.current?.click()}
-                      className="border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl p-5 text-center cursor-pointer hover:border-emerald-500 transition-colors"
+                      className="border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl p-5 text-center cursor-pointer hover:border-sky-500 transition-colors"
                     >
                       <Upload className="h-8 w-8 text-zinc-400 mx-auto mb-1.5" />
                       <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 block">
@@ -523,7 +523,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                           type="button"
                           onClick={() => setDrawPenColor('#002b80')}
                           className={`w-5 h-5 rounded-md border ${
-                            drawPenColor === '#002b80' ? 'ring-2 ring-emerald-500 scale-105' : ''
+                            drawPenColor === '#002b80' ? 'ring-2 ring-sky-500 scale-105' : ''
                           }`}
                           style={{ backgroundColor: '#002b80' }}
                           title="Biru Tinta Dinas"
@@ -532,7 +532,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                           type="button"
                           onClick={() => setDrawPenColor('#111827')}
                           className={`w-5 h-5 rounded-md border ${
-                            drawPenColor === '#111827' ? 'ring-2 ring-emerald-500 scale-105' : ''
+                            drawPenColor === '#111827' ? 'ring-2 ring-sky-500 scale-105' : ''
                           }`}
                           style={{ backgroundColor: '#111827' }}
                           title="Hitam Tinta Basah"
@@ -582,7 +582,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onClick={() => setConfig({ ...config, digitalSignatureStyle: 'formal' })}
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'formal'
-                          ? 'border-emerald-600 bg-white dark:bg-zinc-800 text-emerald-900 dark:text-emerald-300 font-bold shadow-xs'
+                          ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
                           : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
@@ -599,7 +599,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onClick={() => setConfig({ ...config, digitalSignatureStyle: 'flowing' })}
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'flowing'
-                          ? 'border-emerald-600 bg-white dark:bg-zinc-800 text-emerald-900 dark:text-emerald-300 font-bold shadow-xs'
+                          ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
                           : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
@@ -616,7 +616,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onClick={() => setConfig({ ...config, digitalSignatureStyle: 'script' })}
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'script'
-                          ? 'border-emerald-600 bg-white dark:bg-zinc-800 text-emerald-900 dark:text-emerald-300 font-bold shadow-xs'
+                          ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
                           : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
@@ -634,7 +634,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Slider Penyesuaian Ukuran & Posisi TTD */}
               <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                 <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                  <Sliders className="h-4 w-4 text-emerald-600" />
+                  <Sliders className="h-4 w-4 text-sky-600" />
                   <span>Penyesuaian Skala Ukuran & Posisi Tanda Tangan:</span>
                 </span>
 
@@ -652,7 +652,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       step={5}
                       value={config.signatureScale}
                       onChange={(e) => setConfig({ ...config, signatureScale: Number(e.target.value) })}
-                      className="w-full accent-emerald-600"
+                      className="w-full accent-sky-600"
                     />
                   </div>
 
@@ -669,7 +669,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       step={2}
                       value={config.signatureOffsetX}
                       onChange={(e) => setConfig({ ...config, signatureOffsetX: Number(e.target.value) })}
-                      className="w-full accent-emerald-600"
+                      className="w-full accent-sky-600"
                     />
                   </div>
 
@@ -686,7 +686,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       step={2}
                       value={config.signatureOffsetY}
                       onChange={(e) => setConfig({ ...config, signatureOffsetY: Number(e.target.value) })}
-                      className="w-full accent-emerald-600"
+                      className="w-full accent-sky-600"
                     />
                   </div>
                 </div>
@@ -767,7 +767,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
                     }`}
                   >
-                    <div className="h-10 w-10 shrink-0 rounded-lg bg-emerald-100 dark:bg-emerald-900/60 flex items-center justify-center text-emerald-700">
+                    <div className="h-10 w-10 shrink-0 rounded-lg bg-sky-100 dark:bg-sky-900/60 flex items-center justify-center text-sky-700">
                       <Upload className="h-5 w-5" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -1145,13 +1145,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
           {/* ========================================================
               LIVE PREVIEW BOX (PRATINJAU LANGSUNG)
              ======================================================== */}
-          <div className="rounded-2xl border-2 border-emerald-600/70 bg-emerald-50/40 dark:bg-emerald-950/20 p-4 space-y-3">
+          <div className="rounded-2xl border-2 border-sky-600/70 bg-sky-50/40 dark:bg-sky-950/20 p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-extrabold text-xs text-emerald-900 dark:text-emerald-300 flex items-center gap-1.5">
+              <span className="font-extrabold text-xs text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
                 <Eye className="h-4 w-4" />
                 <span>Pratinjau Langsung Hasil Pengesahan Kartu Ujian</span>
               </span>
-              <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-mono">
+              <span className="text-[10px] text-sky-700 dark:text-sky-400 font-mono">
                 Live Interactive Preview
               </span>
             </div>
@@ -1196,7 +1196,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     Sudut Pas Foto 2x3
                   </span>
                   {config.showStamp && (config.stampPosition === 'foto' || config.stampPosition === 'both') ? (
-                    <span className="text-emerald-700 font-semibold text-[10px]">
+                    <span className="text-sky-700 font-semibold text-[10px]">
                       ✓ Dilengkapi cap autentikasi basah
                     </span>
                   ) : (
@@ -1320,7 +1320,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={handleSave}
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-sky-700 hover:bg-sky-800 active:scale-95 text-xs font-bold text-white shadow-xs transition-all cursor-pointer"
             >
               <Check className="h-4 w-4" />
               <span>Simpan & Terapkan ke Seluruh Kartu</span>

@@ -83,7 +83,7 @@ export const StudentPhotoManagementView: React.FC = () => {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
               <Camera className="h-5 w-5" />
             </div>
             <div>
@@ -102,7 +102,7 @@ export const StudentPhotoManagementView: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsBatchModalOpen(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 transition-colors"
           >
             <Upload className="h-4 w-4" />
             Unggah Foto Massal (Batch)
@@ -111,10 +111,10 @@ export const StudentPhotoManagementView: React.FC = () => {
           <button
             type="button"
             onClick={applyDefaultOfficialAvatars}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200 dark:hover:bg-emerald-900/50 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/40 dark:text-sky-200 dark:hover:bg-sky-900/50 transition-colors"
             title="Pasang pas foto avatar resmi seragam SD otomatis untuk seluruh siswa"
           >
-            <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <Sparkles className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Pasang Avatar Resmi Otomatis
           </button>
 
@@ -139,7 +139,7 @@ export const StudentPhotoManagementView: React.FC = () => {
         <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-zinc-500 uppercase">Kelengkapan Foto</span>
-            <span className="text-xs font-extrabold text-emerald-700 dark:text-emerald-400">
+            <span className="text-xs font-extrabold text-sky-700 dark:text-sky-400">
               {photoPercent}%
             </span>
           </div>
@@ -153,7 +153,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             {/* Progress bar */}
             <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
               <div
-                className="h-full bg-emerald-600 transition-all duration-500"
+                className="h-full bg-sky-600 transition-all duration-500"
                 style={{ width: `${photoPercent}%` }}
               />
             </div>
@@ -163,19 +163,19 @@ export const StudentPhotoManagementView: React.FC = () => {
         {/* Integration Card 1: Denah Ruang */}
         <div
           onClick={() => setActiveTab('exam-tools')}
-          className="cursor-pointer rounded-2xl border border-emerald-200 bg-emerald-50/40 p-4 shadow-xs hover:border-emerald-400 dark:border-emerald-800/60 dark:bg-emerald-950/20 transition-all group"
+          className="cursor-pointer rounded-2xl border border-sky-200 bg-sky-50/40 p-4 shadow-xs hover:border-sky-400 dark:border-sky-800/60 dark:bg-sky-950/20 transition-all group"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase flex items-center gap-1.5">
+            <span className="text-xs font-bold text-sky-800 dark:text-sky-300 uppercase flex items-center gap-1.5">
               <Layers className="h-3.5 w-3.5" />
               Denah Ruang Ujian
             </span>
-            <ExternalLink className="h-3.5 w-3.5 text-emerald-600 opacity-60 group-hover:opacity-100" />
+            <ExternalLink className="h-3.5 w-3.5 text-sky-600 opacity-60 group-hover:opacity-100" />
           </div>
-          <p className="mt-2 text-xs font-medium text-emerald-950 dark:text-emerald-200">
+          <p className="mt-2 text-xs font-medium text-sky-950 dark:text-sky-200">
             Foto siswa otomatis tampil di meja peserta Ruang 1 s.d 4
           </p>
-          <div className="mt-2 text-[11px] font-bold text-emerald-700 dark:text-emerald-400">
+          <div className="mt-2 text-[11px] font-bold text-sky-700 dark:text-sky-400">
             Buka Denah Ruang →
           </div>
         </div>
@@ -232,7 +232,7 @@ export const StudentPhotoManagementView: React.FC = () => {
               placeholder="Cari nama, NISN, no peserta..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 pl-9 pr-3 py-1.5 text-xs text-zinc-900 focus:border-emerald-600 focus:bg-white focus:outline-hidden dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 pl-9 pr-3 py-1.5 text-xs text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-hidden dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
             {search && (
               <button
@@ -287,7 +287,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             onClick={() => setViewMode('grid')}
             className={`p-1.5 rounded-lg text-xs font-bold transition-colors ${
               viewMode === 'grid'
-                ? 'bg-white dark:bg-zinc-700 text-emerald-800 dark:text-emerald-300 shadow-xs'
+                ? 'bg-white dark:bg-zinc-700 text-sky-800 dark:text-sky-300 shadow-xs'
                 : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400'
             }`}
             title="Tampilan Galeri Pas Foto"
@@ -299,7 +299,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             onClick={() => setViewMode('table')}
             className={`p-1.5 rounded-lg text-xs font-bold transition-colors ${
               viewMode === 'table'
-                ? 'bg-white dark:bg-zinc-700 text-emerald-800 dark:text-emerald-300 shadow-xs'
+                ? 'bg-white dark:bg-zinc-700 text-sky-800 dark:text-sky-300 shadow-xs'
                 : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400'
             }`}
             title="Tampilan Tabel Ringkas"
@@ -328,7 +328,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             return (
               <div
                 key={s.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-3 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all dark:border-zinc-800 dark:bg-zinc-900"
+                className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-3 shadow-xs hover:border-sky-500 hover:shadow-md transition-all dark:border-zinc-800 dark:bg-zinc-900"
               >
                 {/* Top Badges */}
                 <div className="flex items-center justify-between gap-1 mb-2">
@@ -368,7 +368,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setSingleUploadStudent(s)}
-                          className="w-full inline-flex items-center justify-center gap-1 rounded-lg bg-emerald-600 px-2 py-1 text-[10px] font-bold text-white hover:bg-emerald-700 transition-colors"
+                          className="w-full inline-flex items-center justify-center gap-1 rounded-lg bg-sky-600 px-2 py-1 text-[10px] font-bold text-white hover:bg-sky-700 transition-colors"
                         >
                           <Camera className="h-3 w-3" />
                           Ganti
@@ -394,7 +394,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setSingleUploadStudent(s)}
-                        className="mt-2 inline-flex items-center gap-1 rounded-lg bg-emerald-700 px-2 py-1 text-[10px] font-bold text-white hover:bg-emerald-800 transition-colors"
+                        className="mt-2 inline-flex items-center gap-1 rounded-lg bg-sky-700 px-2 py-1 text-[10px] font-bold text-white hover:bg-sky-800 transition-colors"
                       >
                         <Camera className="h-3 w-3" />
                         Tambah
@@ -408,7 +408,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                   <div className="text-xs font-black text-zinc-900 dark:text-zinc-50 uppercase truncate" title={s.nama}>
                     {s.nama}
                   </div>
-                  <div className="text-[10px] font-mono font-bold text-emerald-800 dark:text-emerald-400 truncate">
+                  <div className="text-[10px] font-mono font-bold text-sky-800 dark:text-sky-400 truncate">
                     {s.noPeserta}
                   </div>
                   <div className="text-[9px] text-zinc-400">NISN: {s.nisn}</div>
@@ -417,7 +417,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                 {/* Footer Quick Status Button */}
                 <div className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-[10px]">
                   {hasPhoto ? (
-                    <span className="inline-flex items-center gap-1 font-bold text-emerald-600 dark:text-emerald-400">
+                    <span className="inline-flex items-center gap-1 font-bold text-sky-600 dark:text-sky-400">
                       <CheckCircle2 className="h-3 w-3" />
                       Ada Foto
                     </span>
@@ -430,7 +430,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSingleUploadStudent(s)}
-                    className="font-bold text-zinc-500 hover:text-emerald-700 dark:hover:text-emerald-300"
+                    className="font-bold text-zinc-500 hover:text-sky-700 dark:hover:text-sky-300"
                   >
                     Edit
                   </button>
@@ -479,7 +479,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                           {s.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}
                         </div>
                       </td>
-                      <td className="p-3 font-mono font-bold text-emerald-800 dark:text-emerald-400">
+                      <td className="p-3 font-mono font-bold text-sky-800 dark:text-sky-400">
                         {s.noPeserta}
                       </td>
                       <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">
@@ -490,7 +490,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                       </td>
                       <td className="p-3 text-center">
                         {hasPhoto ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-800 dark:bg-sky-950/60 dark:text-sky-300">
                             <CheckCircle2 className="h-3 w-3" />
                             Ada Foto
                           </span>
@@ -506,7 +506,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => setSingleUploadStudent(s)}
-                            className="rounded-lg bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300"
+                            className="rounded-lg bg-sky-50 px-2.5 py-1 text-[11px] font-bold text-sky-800 hover:bg-sky-100 dark:bg-sky-950/60 dark:text-sky-300"
                           >
                             {hasPhoto ? 'Ganti' : 'Unggah'}
                           </button>
@@ -656,7 +656,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   active
-                    ? 'bg-emerald-800 text-white'
+                    ? 'bg-sky-800 text-white'
                     : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
                 }`}
               >
@@ -674,7 +674,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
             <span className="text-[10px] font-bold text-zinc-500 uppercase mb-1.5">
               Pratinjau Pas Foto (3x4)
             </span>
-            <div className="relative aspect-[3/4] w-32 overflow-hidden rounded-xl border-2 border-emerald-600 shadow-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-32 overflow-hidden rounded-xl border-2 border-sky-600 shadow-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
               {photoUrl ? (
                 <img
                   src={photoUrl}
@@ -707,9 +707,9 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
-                className="cursor-pointer rounded-2xl border-2 border-dashed border-emerald-400 bg-emerald-50/30 p-6 text-center hover:bg-emerald-50/60 dark:border-emerald-700 dark:bg-emerald-950/20 transition-colors"
+                className="cursor-pointer rounded-2xl border-2 border-dashed border-sky-400 bg-sky-50/30 p-6 text-center hover:bg-sky-50/60 dark:border-sky-700 dark:bg-sky-950/20 transition-colors"
               >
-                <Upload className="mx-auto h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+                <Upload className="mx-auto h-8 w-8 text-sky-600 dark:text-sky-400" />
                 <p className="mt-2 text-xs font-bold text-zinc-800 dark:text-zinc-200">
                   Klik untuk memilih foto atau seret berkas ke sini
                 </p>
@@ -740,8 +740,8 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                         onClick={() => setPhotoUrl(presetSvg)}
                         className={`cursor-pointer rounded-xl border-2 p-1 overflow-hidden transition-all text-center ${
                           photoUrl === presetSvg
-                            ? 'border-emerald-600 ring-2 ring-emerald-500/40'
-                            : 'border-zinc-200 hover:border-emerald-400 dark:border-zinc-700'
+                            ? 'border-sky-600 ring-2 ring-sky-500/40'
+                            : 'border-zinc-200 hover:border-sky-400 dark:border-zinc-700'
                         }`}
                       >
                         <img
@@ -791,7 +791,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
           <button
             type="button"
             onClick={() => onSave(photoUrl || null)}
-            className="rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800"
+            className="rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800"
           >
             Simpan Foto Siswa
           </button>
@@ -928,9 +928,9 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
             e.preventDefault();
             handleFiles(e.dataTransfer.files);
           }}
-          className="cursor-pointer rounded-2xl border-2 border-dashed border-emerald-400 bg-emerald-50/40 p-6 text-center hover:bg-emerald-50/70 dark:border-emerald-700 dark:bg-emerald-950/20 transition-colors"
+          className="cursor-pointer rounded-2xl border-2 border-dashed border-sky-400 bg-sky-50/40 p-6 text-center hover:bg-sky-50/70 dark:border-sky-700 dark:bg-sky-950/20 transition-colors"
         >
-          <Upload className="mx-auto h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+          <Upload className="mx-auto h-8 w-8 text-sky-600 dark:text-sky-400" />
           <h4 className="mt-2 text-sm font-bold text-zinc-900 dark:text-zinc-100">
             Pilih atau Seret Sekaligus Seluruh Foto Siswa ke Sini
           </h4>
@@ -992,10 +992,10 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
                   <div className="flex items-center gap-2">
                     {item.matchedStudent ? (
                       <div className="text-right">
-                        <div className="font-extrabold text-emerald-800 dark:text-emerald-400 uppercase">
+                        <div className="font-extrabold text-sky-800 dark:text-sky-400 uppercase">
                           {item.matchedStudent.nama}
                         </div>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-600">
                           <CheckCircle2 className="h-3 w-3" />
                           Cocok via {item.matchReason}
                         </span>
@@ -1036,7 +1036,7 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
             type="button"
             disabled={validMatchesCount === 0}
             onClick={handleApply}
-            className="rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50 transition-colors"
+            className="rounded-xl bg-sky-700 px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-sky-800 disabled:opacity-50 transition-colors"
           >
             Terapkan {validMatchesCount} Foto Siswa
           </button>
@@ -1081,6 +1081,7 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
             student={student}
             schoolProfile={schoolProfile}
             theme="emerald"
+            layout={localStorage.getItem('sdn006_kartu_ujian_layout_v1') === 'classic' ? 'classic' : 'modern'}
             showStamp={true}
             showBarcode={true}
             showWatermark={true}
@@ -1093,14 +1094,14 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
           <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 block mb-2">
             Simulasi Kartu Meja Pada Denah Ruang:
           </span>
-          <div className="flex flex-col items-center justify-between rounded-xl border-2 border-emerald-600 bg-emerald-50/50 p-4 text-center max-w-xs mx-auto shadow-xs dark:bg-emerald-950/20">
-            <div className="flex items-center justify-between w-full border-b border-emerald-200 dark:border-emerald-800 pb-1 mb-2">
+          <div className="flex flex-col items-center justify-between rounded-xl border-2 border-sky-600 bg-sky-50/50 p-4 text-center max-w-xs mx-auto shadow-xs dark:bg-sky-950/20">
+            <div className="flex items-center justify-between w-full border-b border-sky-200 dark:border-sky-800 pb-1 mb-2">
               <span className="text-[10px] font-bold text-zinc-500">MEJA #{student.noMeja}</span>
-              <span className="text-[9px] font-bold text-emerald-700">{student.ruang}</span>
+              <span className="text-[9px] font-bold text-sky-700">{student.ruang}</span>
             </div>
 
             <div className="my-1 flex flex-col items-center">
-              <div className="h-16 w-14 rounded-lg overflow-hidden border-2 border-emerald-700 shadow-xs mb-1.5 bg-white">
+              <div className="h-16 w-14 rounded-lg overflow-hidden border-2 border-sky-700 shadow-xs mb-1.5 bg-white">
                 {student.foto ? (
                   <img src={student.foto} alt={student.nama} className="h-full w-full object-cover" />
                 ) : (
@@ -1112,12 +1113,12 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
               <div className="font-black text-xs text-zinc-900 dark:text-zinc-100 uppercase">
                 {student.nama}
               </div>
-              <div className="text-[10px] font-mono text-emerald-800 dark:text-emerald-300 font-bold">
+              <div className="text-[10px] font-mono text-sky-800 dark:text-sky-300 font-bold">
                 {student.noPeserta}
               </div>
             </div>
 
-            <div className="border-t border-emerald-200 dark:border-emerald-800 pt-1 text-[9px] text-zinc-500 font-medium w-full">
+            <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-500 font-medium w-full">
               SDN 006 SUNGAI BULUH
             </div>
           </div>
@@ -1128,7 +1129,7 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
           <button
             type="button"
             onClick={onEditPhoto}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50 px-4 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100"
           >
             <Camera className="h-3.5 w-3.5" />
             Ganti Foto Siswa Ini

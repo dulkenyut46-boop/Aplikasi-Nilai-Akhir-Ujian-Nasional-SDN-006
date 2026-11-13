@@ -200,7 +200,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                   onClick={() => handleTabChange(tab.key as GraduationDocType)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                     isActive
-                      ? 'bg-emerald-700 text-white shadow-sm ring-1 ring-emerald-500'
+                      ? 'bg-sky-700 text-white shadow-sm ring-1 ring-sky-500'
                       : 'bg-white text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
                   }`}
                 >
@@ -218,8 +218,8 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                ======================================================== */}
             {activeTab === 'undangan' && (
               <div className="space-y-4">
-                <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
                   <span>
                     Formulir Naskah Surat Undangan Rapat Dewan Guru & Tendik (Halaman 1 Navigasi Lembar Kerja)
                   </span>
@@ -400,7 +400,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={undangan.showTembusan}
                       onChange={(e) => setUndangan({ ...undangan, showTembusan: e.target.checked })}
-                      className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Sertakan Catatan Tembusan Surat di Bagian Bawah
@@ -415,8 +415,8 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                ======================================================== */}
             {activeTab === 'ba-kelulusan' && (
               <div className="space-y-4">
-                <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
                   <span>
                     Formulir Berita Acara Rapat Musyawarah Dewan Guru (Halaman 2 Navigasi Lembar Kerja)
                   </span>
@@ -504,7 +504,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="number"
                       value={ba.pesertaLulus}
                       onChange={(e) => setBa({ ...ba, pesertaLulus: Number(e.target.value) })}
-                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-emerald-700 dark:text-emerald-400"
+                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-sky-700 dark:text-sky-400"
                     />
                   </div>
                   <div>
@@ -597,7 +597,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={ba.showNotulis}
                       onChange={(e) => setBa({ ...ba, showNotulis: e.target.checked })}
-                      className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Tampilkan Kolom Tanda Tangan Notulis / Sekretaris Rapat
@@ -612,9 +612,9 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                ======================================================== */}
             {activeTab === 'hadir-rapat' && (
               <div className="space-y-4">
-                <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-semibold text-[11px] flex items-center justify-between gap-2">
+                <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
                     <span>
                       Daftar Hadir Dewan Guru & Tenaga Kependidikan ({guruList.length} Guru/Tendik)
                     </span>
@@ -622,7 +622,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                   <button
                     type="button"
                     onClick={() => setIsEditGuruModalOpen(true)}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-3 py-1 text-xs shadow-xs transition-colors shrink-0"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1 text-xs shadow-xs transition-colors shrink-0"
                   >
                     <Users className="h-3.5 w-3.5" />
                     Kelola Nama & NIP Guru
@@ -710,7 +710,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     <button
                       type="button"
                       onClick={() => setIsEditGuruModalOpen(true)}
-                      className="text-emerald-700 dark:text-emerald-400 font-bold hover:underline"
+                      className="text-sky-700 dark:text-sky-400 font-bold hover:underline"
                     >
                       Buka Pengelola Seluruh Guru &rarr;
                     </button>
@@ -742,8 +742,8 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                ======================================================== */}
             {activeTab === 'sk-kelulusan' && (
               <div className="space-y-4">
-                <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
                   <span>
                     Formulir Surat Keputusan (SK) Kelulusan Kepala Sekolah (Halaman 4 Navigasi Lembar Kerja)
                   </span>
@@ -850,9 +850,9 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 {/* Form Penandatangan Kepala Sekolah */}
-                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-4 space-y-3">
+                <div className="rounded-2xl border border-sky-200 dark:border-sky-800/60 bg-sky-50/50 dark:bg-sky-950/20 p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-emerald-900 dark:text-emerald-300 flex items-center gap-1.5">
+                    <span className="font-bold text-sky-900 dark:text-sky-300 flex items-center gap-1.5">
                       <span>✍️ Pejabat Penandatangan SK (Kepala Sekolah)</span>
                     </span>
                     <label className="inline-flex items-center gap-2 cursor-pointer text-xs">
@@ -860,7 +860,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                         type="checkbox"
                         checked={sk.showTandaTangan !== false}
                         onChange={(e) => setSk({ ...sk, showTandaTangan: e.target.checked })}
-                        className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                        className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                       />
                       <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                         Munculkan Penandatangan saat Mencetak
@@ -913,7 +913,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={sk.showTembusan}
                       onChange={(e) => setSk({ ...sk, showTembusan: e.target.checked })}
-                      className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Tampilkan Tembusan Surat (Dinas, Korwil, Komite, Arsip)
@@ -924,7 +924,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={sk.showLampiran}
                       onChange={(e) => setSk({ ...sk, showLampiran: e.target.checked })}
-                      className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Sertakan Lampiran Tabel 80 Siswa Lulus di Halaman Berikutnya
@@ -957,7 +957,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={handleSaveAll}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold shadow-md active:scale-95 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-extrabold shadow-md active:scale-95 transition-all"
               >
                 <Save className="h-4 w-4" />
                 <span>Simpan & Terapkan Perubahan</span>

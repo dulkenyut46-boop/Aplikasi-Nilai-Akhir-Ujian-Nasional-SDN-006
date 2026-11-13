@@ -152,9 +152,9 @@ export const EditPanitiaModal: React.FC<Props> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
       <div className="flex flex-col w-full max-w-4xl max-h-[92vh] rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-5 py-4 bg-emerald-50/60 dark:bg-emerald-950/30">
+        <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-5 py-4 bg-sky-50/60 dark:bg-sky-950/30">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
               <UserCheck className="h-5 w-5" />
             </div>
             <div>
@@ -162,7 +162,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                 <h3 className="font-bold text-zinc-900 dark:text-zinc-50 text-base">
                   Edit Susunan Panitia Ujian Sekolah
                 </h3>
-                <span className="rounded-full bg-emerald-100 dark:bg-emerald-900/60 px-2.5 py-0.5 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                <span className="rounded-full bg-sky-100 dark:bg-sky-900/60 px-2.5 py-0.5 text-xs font-bold text-sky-800 dark:text-sky-300">
                   {items.length} Panitia
                 </span>
               </div>
@@ -188,7 +188,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
               onClick={() => setActiveSection('anggota')}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-colors cursor-pointer ${
                 activeSection === 'anggota'
-                  ? 'bg-emerald-700 text-white shadow-xs'
+                  ? 'bg-sky-700 text-white shadow-xs'
                   : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`}
             >
@@ -199,7 +199,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
               onClick={() => setActiveSection('sk')}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-colors cursor-pointer ${
                 activeSection === 'sk'
-                  ? 'bg-emerald-700 text-white shadow-xs'
+                  ? 'bg-sky-700 text-white shadow-xs'
                   : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`}
             >
@@ -216,13 +216,13 @@ export const EditPanitiaModal: React.FC<Props> = ({
                   placeholder="Cari nama / jabatan..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-44 sm:w-56 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 pl-8 pr-3 py-1.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-44 sm:w-56 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 pl-8 pr-3 py-1.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                 />
               </div>
               <button
                 type="button"
                 onClick={handleAddNew}
-                className="inline-flex items-center gap-1 rounded-xl bg-emerald-700 hover:bg-emerald-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-xl bg-sky-700 hover:bg-sky-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs cursor-pointer"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Tambah Panitia
@@ -245,11 +245,11 @@ export const EditPanitiaModal: React.FC<Props> = ({
                   return (
                     <div
                       key={item.id}
-                      className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3.5 bg-zinc-50/50 dark:bg-zinc-800/40 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all space-y-3"
+                      className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3.5 bg-zinc-50/50 dark:bg-zinc-800/40 hover:border-sky-300 dark:hover:border-sky-700 transition-all space-y-3"
                     >
                       <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-zinc-700/60 pb-2">
                         <div className="flex items-center gap-2">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-black">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 text-xs font-black">
                             {originalIndex + 1}
                           </span>
                           <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
@@ -299,7 +299,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             value={item.jabatan}
                             onChange={(e) => handleItemChange(item.id, 'jabatan', e.target.value)}
                             placeholder="Contoh: Ketua Pelaksana"
-                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                           />
                         </div>
 
@@ -312,7 +312,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             value={item.nama}
                             onChange={(e) => handleItemChange(item.id, 'nama', e.target.value)}
                             placeholder="Contoh: HENRI SAPUTRA, S.Pd"
-                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                           />
                         </div>
 
@@ -325,7 +325,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             value={item.nip}
                             onChange={(e) => handleItemChange(item.id, 'nip', e.target.value)}
                             placeholder="19820415 200801 1 008"
-                            className="w-full font-mono rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                            className="w-full font-mono rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                           />
                         </div>
 
@@ -338,7 +338,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             value={item.tugas}
                             onChange={(e) => handleItemChange(item.id, 'tugas', e.target.value)}
                             placeholder="Jelaskan ruang lingkup tugas panitia bersangkutan..."
-                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"
+                            className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500 resize-none"
                           />
                         </div>
                       </div>
@@ -357,7 +357,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
             /* Tab Dasar SK */
             <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-4 max-w-xl mx-auto">
               <div className="flex items-center gap-3 border-b border-zinc-200 dark:border-zinc-700 pb-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-700 text-white shadow-xs">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-700 text-white shadow-xs">
                   <FileText className="h-5 w-5" />
                 </div>
                 <div>
@@ -380,7 +380,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                     value={meta.nomorSk}
                     onChange={(e) => setMeta({ ...meta, nomorSk: e.target.value })}
                     placeholder="Contoh: 421.2/SDN-006/KP/2026"
-                    className="w-full font-mono rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full font-mono rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
@@ -393,7 +393,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                     value={meta.tanggalSk}
                     onChange={(e) => setMeta({ ...meta, tanggalSk: e.target.value })}
                     placeholder="Contoh: 02 Mei 2026"
-                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
@@ -406,7 +406,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                     value={meta.tahunPelajaran}
                     onChange={(e) => setMeta({ ...meta, tahunPelajaran: e.target.value })}
                     placeholder="2025/2026"
-                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
@@ -419,7 +419,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                     value={meta.keteranganSk}
                     onChange={(e) => setMeta({ ...meta, keteranganSk: e.target.value })}
                     placeholder="Keputusan Kepala Sekolah tentang Pembentukan Panitia Ujian Sekolah..."
-                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"
+                    className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500 resize-none"
                   />
                 </div>
               </div>
@@ -449,7 +449,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={handleSaveAll}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 px-5 py-2 text-xs font-bold text-white shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 hover:bg-sky-800 px-5 py-2 text-xs font-bold text-white shadow-xs cursor-pointer"
             >
               <Save className="h-4 w-4" />
               Simpan Perubahan

@@ -48,7 +48,14 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-100/70 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50 flex">
+    <div className="min-h-screen app-blue-atmosphere relative text-slate-900 antialiased dark:text-slate-50 flex print:bg-white">
+      {/* Subtle Light-Blue Atmospheric Nuance Orbs */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden z-0 print:hidden" aria-hidden="true">
+        <div className="absolute -top-28 right-8 h-96 w-96 rounded-full bg-sky-300/30 blur-3xl dark:bg-sky-500/10" />
+        <div className="absolute top-1/3 left-1/3 h-80 w-80 rounded-full bg-cyan-200/30 blur-3xl dark:bg-cyan-500/10" />
+        <div className="absolute -bottom-24 left-1/4 h-96 w-96 rounded-full bg-blue-300/25 blur-3xl dark:bg-blue-500/10" />
+      </div>
+
       {/* Responsive Sidebar */}
       <Sidebar
         collapsed={collapsed}
@@ -59,7 +66,7 @@ const MainLayout: React.FC = () => {
 
       {/* Main Content Area */}
       <div
-        className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ease-in-out main-content-layout print:pl-0 print:m-0 ${
+        className={`relative z-10 flex-1 flex flex-col min-w-0 transition-all duration-300 ease-in-out main-content-layout print:pl-0 print:m-0 ${
           collapsed ? 'lg:pl-20' : 'lg:pl-72'
         }`}
       >
@@ -75,7 +82,7 @@ const MainLayout: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-zinc-200 bg-white/60 py-4 px-6 text-center text-xs text-zinc-500 backdrop-blur-xs dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400 print:hidden">
+        <footer className="border-t border-sky-200/80 bg-white/70 py-4 px-6 text-center text-xs text-slate-600 backdrop-blur-md dark:border-sky-900/60 dark:bg-slate-900/70 dark:text-slate-400 print:hidden">
           <p>
             © {new Date().getFullYear()} Aplikasi Rekap Nilai Akhir Ujian Nasional • <b>SDN 006 Sungai Buluh</b>, Kecamatan Singingi Hilir, Kabupaten Kuantan Singingi, Riau
           </p>

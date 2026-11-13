@@ -102,7 +102,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-700 bg-zinc-900 px-4 py-3 text-white shadow-md shrink-0 print:hidden z-10">
         {/* Title & Document Badge */}
         <div className="flex items-center gap-3 min-w-0">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white shrink-0 shadow-xs">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-600 text-white shrink-0 shadow-xs">
             <Printer className="h-5 w-5" />
           </div>
           <div className="min-w-0">
@@ -128,7 +128,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
             className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-200 hover:bg-zinc-750 hover:text-white transition-colors"
             title="Ubah Orientasi Kertas (Portrait / Landscape)"
           >
-            <RotateCw className="h-3.5 w-3.5 text-emerald-400" />
+            <RotateCw className="h-3.5 w-3.5 text-sky-400" />
             <span>{orientation === 'portrait' ? 'Portrait (Tegak)' : 'Landscape (Mendatar)'}</span>
           </button>
 
@@ -167,7 +167,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
           <button
             type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-lg hover:bg-emerald-500 active:scale-95 transition-all"
+            className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-4 py-2 text-xs font-bold text-white shadow-lg hover:bg-sky-500 active:scale-95 transition-all"
             title="Cetak Dokumen Sekarang (Ctrl+P)"
           >
             <Printer className="h-4 w-4" />
@@ -201,7 +201,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
         >
           {/* Subtle Screen Page Border Guideline (Hidden on Print) */}
           <div className="absolute top-2 right-3 text-[10px] font-mono text-zinc-400 uppercase select-none print:hidden flex items-center gap-1">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span className="inline-block w-2 h-2 rounded-full bg-sky-500"></span>
             Simulasi Kertas {paperSize} {orientation === 'landscape' ? 'Mendatar' : 'Tegak'}
           </div>
 

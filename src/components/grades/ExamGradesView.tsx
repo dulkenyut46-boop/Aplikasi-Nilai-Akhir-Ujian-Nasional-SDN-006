@@ -121,7 +121,7 @@ export const ExamGradesView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <FileSpreadsheet className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            <FileSpreadsheet className="h-5 w-5 text-sky-600 dark:text-sky-400" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Nilai Ujian Sekolah (N_US) Teori & Praktik
             </h2>
@@ -147,10 +147,10 @@ export const ExamGradesView: React.FC = () => {
           <button
             type="button"
             onClick={openAddSubject}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3.5 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200 dark:hover:bg-emerald-900/60 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Tambah mata pelajaran ujian baru"
           >
-            <Plus className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+            <Plus className="h-4 w-4 text-sky-700 dark:text-sky-400" />
             Tambah Mapel
           </button>
 
@@ -160,7 +160,7 @@ export const ExamGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
             title="Unduh format template Excel (.xlsx) untuk Nilai Ujian Sekolah"
           >
-            <FileSpreadsheet className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Template Excel
           </button>
 
@@ -178,7 +178,7 @@ export const ExamGradesView: React.FC = () => {
             onClick={() => {
               showToast('Perhitungan Ujian Selesai', 'Seluruh nilai ujian sekolah telah disimpan dan diverifikasi.', 'success');
             }}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-emerald-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-4 py-2 text-xs font-bold text-white shadow-md hover:bg-sky-800 transition-colors"
           >
             <CheckCircle className="h-4 w-4" />
             Simpan & Verifikasi
@@ -211,7 +211,7 @@ export const ExamGradesView: React.FC = () => {
               onClick={() => setActiveSubject('ALL')}
               className={`shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeSubject === 'ALL'
-                  ? 'bg-emerald-800 text-white shadow-md'
+                  ? 'bg-sky-800 text-white shadow-md'
                   : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
               }`}
             >
@@ -227,7 +227,7 @@ export const ExamGradesView: React.FC = () => {
                     onClick={() => setActiveSubject(sub.key)}
                     className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                       isActive
-                        ? 'bg-emerald-800 text-white shadow-md'
+                        ? 'bg-sky-800 text-white shadow-md'
                         : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                     }`}
                   >
@@ -242,7 +242,7 @@ export const ExamGradesView: React.FC = () => {
             <button
               type="button"
               onClick={openAddSubject}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-dashed border-emerald-400 bg-emerald-50/70 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 transition-colors"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-dashed border-sky-400 bg-sky-50/70 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-700 dark:bg-sky-950/40 dark:text-sky-300 transition-colors"
               title="Tambah Mata Pelajaran Baru"
             >
               <Plus className="h-3.5 w-3.5" />
@@ -278,9 +278,9 @@ export const ExamGradesView: React.FC = () => {
 
       {/* SINGLE SUBJECT DETAILS BANNER (when a specific subject is selected) */}
       {activeSubject !== 'ALL' && currentSubjectInfo && (
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
+        <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 dark:border-sky-900/60 dark:bg-sky-950/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-700 text-white font-mono font-extrabold text-sm shadow-xs">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-700 text-white font-mono font-extrabold text-sm shadow-xs">
               {currentSubjectInfo.code}
             </div>
             <div>
@@ -288,7 +288,7 @@ export const ExamGradesView: React.FC = () => {
                 <h3 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
                   {currentSubjectInfo.name}
                 </h3>
-                <span className="rounded-md bg-emerald-100 px-2 py-0.5 font-mono text-[11px] font-bold text-emerald-800 dark:bg-emerald-900/80 dark:text-emerald-200">
+                <span className="rounded-md bg-sky-100 px-2 py-0.5 font-mono text-[11px] font-bold text-sky-800 dark:bg-sky-900/80 dark:text-sky-200">
                   KKM: {currentSubjectInfo.kkm}
                 </span>
               </div>
@@ -344,7 +344,7 @@ export const ExamGradesView: React.FC = () => {
               placeholder="Cari Peserta Ujian berdasarkan nama atau No. Peserta..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 py-2 pl-9 pr-3 text-xs text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
             />
           </div>
 
@@ -366,7 +366,7 @@ export const ExamGradesView: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-zinc-600 dark:text-zinc-400 flex items-center gap-1.5">
-                <MoveHorizontal className="h-4 w-4 text-emerald-600" />
+                <MoveHorizontal className="h-4 w-4 text-sky-600" />
                 Scroll Kolom Mapel:
               </span>
 
@@ -435,7 +435,7 @@ export const ExamGradesView: React.FC = () => {
                   </th>
 
                   {/* Frozen Column 2: Nama Peserta */}
-                  <th className="p-3 min-w-[210px] sticky left-12 bg-zinc-50 dark:bg-zinc-800 z-30 border-r-2 border-emerald-600/40 dark:border-emerald-500/40 shadow-[4px_0_6px_-2px_rgba(0,0,0,0.06)]">
+                  <th className="p-3 min-w-[210px] sticky left-12 bg-zinc-50 dark:bg-zinc-800 z-30 border-r-2 border-sky-600/40 dark:border-sky-500/40 shadow-[4px_0_6px_-2px_rgba(0,0,0,0.06)]">
                     Nama Peserta Ujian
                   </th>
 
@@ -453,7 +453,7 @@ export const ExamGradesView: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setActiveSubject(sub.key)}
-                          className="font-mono font-extrabold text-xs text-emerald-800 dark:text-emerald-300 hover:underline"
+                          className="font-mono font-extrabold text-xs text-sky-800 dark:text-sky-300 hover:underline"
                           title={`Klik untuk membuka penilaian detail mapel ${sub.name}`}
                         >
                           {sub.code}
@@ -469,7 +469,7 @@ export const ExamGradesView: React.FC = () => {
                   ))}
 
                   {/* Final Calculation Columns */}
-                  <th className="p-3 text-center min-w-[100px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 border-l-2 border-emerald-300 dark:border-emerald-800 font-extrabold">
+                  <th className="p-3 text-center min-w-[100px] bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200 border-l-2 border-sky-300 dark:border-sky-800 font-extrabold">
                     Rata-rata US
                   </th>
                 </tr>
@@ -496,7 +496,7 @@ export const ExamGradesView: React.FC = () => {
                         </td>
 
                         {/* Frozen Column 2 */}
-                        <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100 sticky left-12 bg-white dark:bg-zinc-900 z-20 border-r-2 border-emerald-600/40 dark:border-emerald-500/40 shadow-[4px_0_6px_-2px_rgba(0,0,0,0.06)] truncate max-w-[210px]">
+                        <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100 sticky left-12 bg-white dark:bg-zinc-900 z-20 border-r-2 border-sky-600/40 dark:border-sky-500/40 shadow-[4px_0_6px_-2px_rgba(0,0,0,0.06)] truncate max-w-[210px]">
                           <div className="truncate font-bold">{s.nama}</div>
                           <div className="text-[10px] font-mono text-zinc-400">
                             {s.noPeserta}
@@ -527,7 +527,7 @@ export const ExamGradesView: React.FC = () => {
                                   onChange={(e) =>
                                     handleMatrixScoreChange(s.id, sub.key, e.target.value)
                                   }
-                                  className="w-16 rounded-md border border-zinc-200 bg-white dark:bg-zinc-800 px-1.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 focus:border-emerald-600 focus:outline-none"
+                                  className="w-16 rounded-md border border-zinc-200 bg-white dark:bg-zinc-800 px-1.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 focus:border-sky-600 focus:outline-none"
                                 />
                               ) : (
                                 <span
@@ -545,7 +545,7 @@ export const ExamGradesView: React.FC = () => {
                         })}
 
                         {/* Overall Average */}
-                        <td className="p-3 text-center font-mono font-extrabold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20 border-l-2 border-emerald-300 dark:border-emerald-800">
+                        <td className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20 border-l-2 border-sky-300 dark:border-sky-800">
                           {overallUSAvg.toFixed(2)}
                         </td>
                       </tr>
@@ -568,7 +568,7 @@ export const ExamGradesView: React.FC = () => {
                   <th className="p-3 text-center min-w-[130px]">
                     Nilai Praktik
                   </th>
-                  <th className="p-3 text-center min-w-[130px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200">
+                  <th className="p-3 text-center min-w-[130px] bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200">
                     Nilai Akhir US (50% T + 50% P)
                   </th>
                 </tr>
@@ -605,7 +605,7 @@ export const ExamGradesView: React.FC = () => {
                           onChange={(e) =>
                             handleScoreChange(s.id, activeSubject, 'tulis', e.target.value)
                           }
-                          className="w-20 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                          className="w-20 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                         />
                       </td>
                       <td className="p-2 text-center">
@@ -619,10 +619,10 @@ export const ExamGradesView: React.FC = () => {
                           onChange={(e) =>
                             handleScoreChange(s.id, activeSubject, 'praktik', e.target.value)
                           }
-                          className="w-28 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-emerald-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 placeholder:text-[10px]"
+                          className="w-28 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 placeholder:text-[10px]"
                         />
                       </td>
-                      <td className="p-3 text-center font-mono font-bold text-sm text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">
+                      <td className="p-3 text-center font-mono font-bold text-sm text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                         {finalUS.toFixed(2)}
                       </td>
                     </tr>
