@@ -258,7 +258,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   {rows.length} Siswa
                 </span>
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Kelola tanggal pengambilan, nomor seri ijazah, nama penerima orang tua, serta naskah pengesahan
               </p>
             </div>
@@ -266,7 +266,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-2 text-zinc-900 hover:text-zinc-600 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -280,7 +280,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'siswa'
                 ? 'bg-sky-700 text-white shadow-xs'
-                : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
             <Users className="h-4 w-4" />
@@ -292,7 +292,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'naskah'
                 ? 'bg-sky-700 text-white shadow-xs'
-                : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
             <Settings className="h-4 w-4" />
@@ -308,7 +308,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
               <div className="rounded-2xl border border-amber-300/80 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/20 p-4 space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-200 text-xs">
-                    <Sparkles className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                    <Sparkles className="h-4 w-4 text-amber-800 dark:text-amber-400" />
                     <span>Aksi Cepat Pengisian & Pengosongan Serentak</span>
                   </div>
                   <span className="text-[11px] text-amber-800/80 dark:text-amber-300/80 font-medium hidden sm:inline">
@@ -320,7 +320,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   {/* Set / Kosongkan Tanggal Serentak */}
                   <div className="bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 space-y-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap text-xs">
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-300 whitespace-nowrap text-xs">
                         Tgl Penyerahan:
                       </span>
                       <input
@@ -354,7 +354,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   {/* Set / Kosongkan Penerima Berdasarkan Ayah / Ibu */}
                   <div className="bg-white dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 space-y-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-zinc-600 dark:text-zinc-300 whitespace-nowrap text-xs">
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-300 whitespace-nowrap text-xs">
                         Penerima (Wali/Ortu):
                       </span>
                       <select
@@ -403,7 +403,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   <button
                     type="button"
                     onClick={handleMarkAllReceived}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 dark:text-sky-400 hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-900 dark:text-sky-400 hover:underline cursor-pointer"
                   >
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     <span>Isi Otomatis / Tandai Status Lengkap (80 Siswa)</span>
@@ -413,7 +413,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
 
               {/* Search Bar */}
               <div className="relative">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-900" />
                 <input
                   type="text"
                   value={search}
@@ -427,7 +427,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
               <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-xs">
                 <div className="max-h-[380px] overflow-y-auto">
                   <table className="w-full text-left text-xs border-collapse">
-                    <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
+                    <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
                       <tr>
                         <th className="p-2.5 w-10 text-center">No</th>
                         <th className="p-2.5 min-w-[200px]">Nama Siswa & NISN</th>
@@ -439,7 +439,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                               type="button"
                               onClick={handleClearAllDate}
                               title="Kosongkan seluruh kolom Tanggal Penyerahan"
-                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-800 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
                             >
                               <CalendarOff className="h-2.5 w-2.5" />
                               <span>Kosongkan Semua</span>
@@ -453,7 +453,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                               type="button"
                               onClick={handleClearAllRecipient}
                               title="Kosongkan seluruh kolom Nama Penerima"
-                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                              className="inline-flex items-center gap-0.5 text-[10px] font-bold text-rose-800 dark:text-rose-400 hover:text-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
                             >
                               <UserX className="h-2.5 w-2.5" />
                               <span>Kosongkan Semua</span>
@@ -468,12 +468,12 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                           key={r.id}
                           className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
                         >
-                          <td className="p-2 text-center font-bold font-mono text-zinc-500">
+                          <td className="p-2 text-center font-bold font-mono text-zinc-900">
                             {idx + 1}
                           </td>
                           <td className="p-2">
                             <div className="font-bold text-zinc-900 dark:text-zinc-100">{r.nama}</div>
-                            <div className="text-[10px] text-zinc-400 font-mono">NISN: {r.nisn}</div>
+                            <div className="text-[10px] text-zinc-900 font-mono">NISN: {r.nisn}</div>
                           </td>
                           <td className="p-2">
                             <input
@@ -500,7 +500,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                                   type="button"
                                   onClick={() => handleRowChange(r.id, 'tanggalAmbilIjazah', '')}
                                   title="Kosongkan tanggal baris ini"
-                                  className="absolute right-1.5 text-zinc-400 hover:text-rose-600 p-0.5 rounded cursor-pointer"
+                                  className="absolute right-1.5 text-zinc-900 hover:text-rose-600 p-0.5 rounded cursor-pointer"
                                 >
                                   <X className="h-3 w-3" />
                                 </button>
@@ -523,7 +523,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                                   type="button"
                                   onClick={() => handleRowChange(r.id, 'penerimaIjazah', '')}
                                   title="Kosongkan penerima baris ini"
-                                  className="absolute right-1.5 text-zinc-400 hover:text-rose-600 p-0.5 rounded cursor-pointer"
+                                  className="absolute right-1.5 text-zinc-900 hover:text-rose-600 p-0.5 rounded cursor-pointer"
                                 >
                                   <X className="h-3 w-3" />
                                 </button>
@@ -542,7 +542,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
           {activeSubTab === 'naskah' && (
             <div className="space-y-4">
               <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                 <span>
                   Pengaturan Judul Buku, Titimangsa Cetak, dan Pejabat Pengesah Penyerahan Ijazah
                 </span>
@@ -550,7 +550,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Judul Buku Ekspedisi:
                   </label>
                   <input
@@ -561,7 +561,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Sub Judul / Satuan Pendidikan:
                   </label>
                   <input
@@ -575,7 +575,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Titimangsa:
                   </label>
                   <input
@@ -587,7 +587,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tanggal Titimangsa Pengesahan:
                   </label>
                   <input
@@ -599,7 +599,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Jabatan Penyerah:
                   </label>
                   <input
@@ -613,7 +613,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nama Pejabat / Kepala Sekolah:
                   </label>
                   <input
@@ -624,7 +624,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     NIP Pejabat Penyerah:
                   </label>
                   <input
@@ -637,7 +637,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Catatan Kaki Dokumen:
                 </label>
                 <textarea
@@ -656,7 +656,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
           <button
             type="button"
             onClick={handleResetToDefault}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-750 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2 text-xs font-semibold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-750 transition-colors"
           >
             <RotateCcw className="h-4 w-4" />
             Reset Default
@@ -666,7 +666,7 @@ export const EditSerahTerimaModal: React.FC<EditSerahTerimaModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               Batal
             </button>

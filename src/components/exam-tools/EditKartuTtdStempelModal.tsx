@@ -248,7 +248,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                   Standar DNT Resmi
                 </span>
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Atur format tanda tangan digital / basah, stempel lingkaran kedinasan, atau unggah gambar berkas asli
               </p>
             </div>
@@ -257,7 +257,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-xl text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-1.5 rounded-xl text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -272,8 +272,8 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             onClick={() => setActiveTab('ttd')}
             className={`flex items-center gap-2 px-4 py-2.5 font-bold rounded-t-xl transition-all border-b-2 ${
               activeTab === 'ttd'
-                ? 'bg-white dark:bg-zinc-900 text-sky-700 dark:text-sky-400 border-sky-600 shadow-xs'
-                : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
+                ? 'bg-white dark:bg-zinc-900 text-sky-900 dark:text-sky-400 border-sky-600 shadow-xs'
+                : 'text-zinc-800 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
             <PenTool className="h-4 w-4" />
@@ -290,8 +290,8 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             onClick={() => setActiveTab('stempel')}
             className={`flex items-center gap-2 px-4 py-2.5 font-bold rounded-t-xl transition-all border-b-2 ${
               activeTab === 'stempel'
-                ? 'bg-white dark:bg-zinc-900 text-indigo-700 dark:text-indigo-400 border-indigo-600 shadow-xs'
-                : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
+                ? 'bg-white dark:bg-zinc-900 text-indigo-900 dark:text-indigo-400 border-indigo-600 shadow-xs'
+                : 'text-zinc-800 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
             <Stamp className="h-4 w-4" />
@@ -309,7 +309,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             className={`flex items-center gap-2 px-4 py-2.5 font-bold rounded-t-xl transition-all border-b-2 ${
               activeTab === 'naskah'
                 ? 'bg-white dark:bg-zinc-900 text-amber-700 dark:text-amber-400 border-amber-600 shadow-xs'
-                : 'text-zinc-600 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
+                : 'text-zinc-800 dark:text-zinc-400 border-transparent hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
             <Type className="h-4 w-4" />
@@ -329,14 +329,14 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Toggle Aktif / Nonaktif */}
               <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850">
                 <div className="flex items-center gap-2.5">
-                  <div className={`p-2 rounded-lg ${config.showSignature ? 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300' : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700'}`}>
+                  <div className={`p-2 rounded-lg ${config.showSignature ? 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300' : 'bg-zinc-200 text-zinc-800 dark:bg-zinc-700'}`}>
                     {config.showSignature ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                   </div>
                   <div>
                     <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 block">
                       Tampilkan Tanda Tangan Pada Kartu
                     </span>
-                    <span className="text-[11px] text-zinc-500">
+                    <span className="text-[11px] text-zinc-900">
                       Aktifkan untuk menampilkan tanda tangan digital / gambar, atau nonaktifkan untuk kartu blanko penandatanganan manual
                     </span>
                   </div>
@@ -347,7 +347,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                     config.showSignature
                       ? 'bg-sky-700 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300'
+                      : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-300'
                   }`}
                 >
                   {config.showSignature ? '✓ Ditampilkan' : '✗ Disembunyikan'}
@@ -367,16 +367,16 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'upload'
                         ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
-                      <Upload className="h-4 w-4 text-sky-600" />
-                      {config.signatureType === 'upload' && <Check className="h-3.5 w-3.5 text-sky-600" />}
+                      <Upload className="h-4 w-4 text-sky-800" />
+                      {config.signatureType === 'upload' && <Check className="h-3.5 w-3.5 text-sky-800" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Unggah Gambar</span>
-                      <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Berkas PNG/JPG TTD Asli</span>
+                      <span className="text-[10px] text-zinc-900 dark:text-zinc-400">Berkas PNG/JPG TTD Asli</span>
                     </div>
                   </button>
 
@@ -387,16 +387,16 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'draw'
                         ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
-                      <PenTool className="h-4 w-4 text-blue-600" />
-                      {config.signatureType === 'draw' && <Check className="h-3.5 w-3.5 text-sky-600" />}
+                      <PenTool className="h-4 w-4 text-blue-800" />
+                      {config.signatureType === 'draw' && <Check className="h-3.5 w-3.5 text-sky-800" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Gores / Gambar</span>
-                      <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Tanda tangan di layar</span>
+                      <span className="text-[10px] text-zinc-900 dark:text-zinc-400">Tanda tangan di layar</span>
                     </div>
                   </button>
 
@@ -407,16 +407,16 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'digital'
                         ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
-                      <Sparkles className="h-4 w-4 text-amber-600" />
-                      {config.signatureType === 'digital' && <Check className="h-3.5 w-3.5 text-sky-600" />}
+                      <Sparkles className="h-4 w-4 text-amber-800" />
+                      {config.signatureType === 'digital' && <Check className="h-3.5 w-3.5 text-sky-800" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Standar Vektor</span>
-                      <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Gaya dinamis resmi</span>
+                      <span className="text-[10px] text-zinc-900 dark:text-zinc-400">Gaya dinamis resmi</span>
                     </div>
                   </button>
 
@@ -427,16 +427,16 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
                       config.signatureType === 'manual'
                         ? 'border-sky-600 bg-sky-50/60 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
-                      <FileSignature className="h-4 w-4 text-zinc-600" />
-                      {config.signatureType === 'manual' && <Check className="h-3.5 w-3.5 text-sky-600" />}
+                      <FileSignature className="h-4 w-4 text-zinc-800" />
+                      {config.signatureType === 'manual' && <Check className="h-3.5 w-3.5 text-sky-800" />}
                     </div>
                     <div className="mt-2">
                       <span className="font-extrabold text-xs block">Kosongkan (Manual)</span>
-                      <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Pulpen basah di kertas</span>
+                      <span className="text-[10px] text-zinc-900 dark:text-zinc-400">Pulpen basah di kertas</span>
                     </div>
                   </button>
                 </div>
@@ -447,7 +447,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                      <Upload className="h-4 w-4 text-sky-600" />
+                      <Upload className="h-4 w-4 text-sky-800" />
                       <span>Unggah Berkas Gambar Tanda Tangan (PNG / JPG)</span>
                     </span>
                     <input
@@ -477,10 +477,10 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                         />
                       </div>
                       <div className="flex-1 text-xs">
-                        <span className="font-bold text-sky-700 dark:text-sky-400 block">
+                        <span className="font-bold text-sky-900 dark:text-sky-400 block">
                           ✓ Gambar Tanda Tangan Aktif
                         </span>
-                        <span className="text-[11px] text-zinc-500 block mt-0.5">
+                        <span className="text-[11px] text-zinc-900 block mt-0.5">
                           Telah dioptimalkan dan siap dicetak tajam pada kartu peserta ujian.
                         </span>
                       </div>
@@ -498,11 +498,11 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onClick={() => fileInputTtdRef.current?.click()}
                       className="border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl p-5 text-center cursor-pointer hover:border-sky-500 transition-colors"
                     >
-                      <Upload className="h-8 w-8 text-zinc-400 mx-auto mb-1.5" />
-                      <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 block">
+                      <Upload className="h-8 w-8 text-zinc-900 mx-auto mb-1.5" />
+                      <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300 block">
                         Klik di sini untuk mengunggah scan tanda tangan
                       </span>
-                      <span className="text-[11px] text-zinc-500">
+                      <span className="text-[11px] text-zinc-900">
                         Disarankan file format PNG dengan latar belakang transparan
                       </span>
                     </div>
@@ -514,7 +514,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                      <PenTool className="h-4 w-4 text-blue-600" />
+                      <PenTool className="h-4 w-4 text-blue-800" />
                       <span>Kanvas Goresan Tanda Tangan Digital</span>
                     </span>
                     <div className="flex items-center gap-2">
@@ -541,9 +541,9 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       <button
                         type="button"
                         onClick={clearCanvas}
-                        className="px-2.5 py-1 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-semibold flex items-center gap-1"
+                        className="px-2.5 py-1 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 text-xs font-semibold flex items-center gap-1"
                       >
-                        <Eraser className="h-3.5 w-3.5 text-zinc-500" />
+                        <Eraser className="h-3.5 w-3.5 text-zinc-900" />
                         <span>Hapus Goresan</span>
                       </button>
                     </div>
@@ -563,7 +563,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onTouchEnd={stopDrawing}
                       className="w-full h-36 touch-none"
                     />
-                    <div className="absolute bottom-2 left-3 pointer-events-none text-[10px] text-zinc-400 font-mono">
+                    <div className="absolute bottom-2 left-3 pointer-events-none text-[10px] text-zinc-900 font-mono">
                       Goreskan tanda tangan menggunakan mouse / layar sentuh
                     </div>
                   </div>
@@ -573,7 +573,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {config.signatureType === 'digital' && (
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                   <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                    <Sparkles className="h-4 w-4 text-amber-600" />
+                    <Sparkles className="h-4 w-4 text-amber-800" />
                     <span>Pilih Model Goresan Vektor Kedinasan:</span>
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
@@ -583,7 +583,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'formal'
                           ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
-                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
                       <div className="h-9 flex items-center justify-center">
@@ -600,7 +600,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'flowing'
                           ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
-                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
                       <div className="h-9 flex items-center justify-center">
@@ -617,7 +617,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       className={`p-3 rounded-xl border text-center transition-all ${
                         config.digitalSignatureStyle === 'script'
                           ? 'border-sky-600 bg-white dark:bg-zinc-800 text-sky-900 dark:text-sky-300 font-bold shadow-xs'
-                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                       }`}
                     >
                       <div className="h-9 flex items-center justify-center">
@@ -634,14 +634,14 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Slider Penyesuaian Ukuran & Posisi TTD */}
               <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                 <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                  <Sliders className="h-4 w-4 text-sky-600" />
+                  <Sliders className="h-4 w-4 text-sky-800" />
                   <span>Penyesuaian Skala Ukuran & Posisi Tanda Tangan:</span>
                 </span>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   {/* Skala Ukuran */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Ukuran / Skala</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.signatureScale}%</span>
                     </div>
@@ -658,7 +658,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Offset X */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Geser Kiri/Kanan (X)</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.signatureOffsetX}px</span>
                     </div>
@@ -675,7 +675,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Offset Y */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Geser Atas/Bawah (Y)</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.signatureOffsetY}px</span>
                     </div>
@@ -702,14 +702,14 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Toggle Aktif / Nonaktif */}
               <div className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850">
                 <div className="flex items-center gap-2.5">
-                  <div className={`p-2 rounded-lg ${config.showStamp ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300' : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700'}`}>
+                  <div className={`p-2 rounded-lg ${config.showStamp ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300' : 'bg-zinc-200 text-zinc-800 dark:bg-zinc-700'}`}>
                     <Stamp className="h-4 w-4" />
                   </div>
                   <div>
                     <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 block">
                       Tampilkan Cap Stempel Sekolah
                     </span>
-                    <span className="text-[11px] text-zinc-500">
+                    <span className="text-[11px] text-zinc-900">
                       Stempel resmi melingkar dinas untuk verifikasi dan autentikasi fisik kartu peserta
                     </span>
                   </div>
@@ -720,7 +720,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                     config.showStamp
                       ? 'bg-indigo-700 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300'
+                      : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-300'
                   }`}
                 >
                   {config.showStamp ? '✓ Stempel Aktif' : '✗ Sembunyikan Stempel'}
@@ -740,18 +740,18 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3.5 rounded-xl border-2 text-left transition-all flex items-start gap-3 ${
                       config.stampType === 'auto-svg'
                         ? 'border-indigo-600 bg-indigo-50/60 dark:bg-indigo-950/40 text-indigo-950 dark:text-indigo-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
-                    <div className="h-10 w-10 shrink-0 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 flex items-center justify-center text-indigo-700">
+                    <div className="h-10 w-10 shrink-0 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 flex items-center justify-center text-indigo-900">
                       <Stamp className="h-5 w-5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <span className="font-extrabold text-xs block">Stempel Vektor Resmi (Auto-SVG)</span>
-                        {config.stampType === 'auto-svg' && <Check className="h-4 w-4 text-indigo-600" />}
+                        {config.stampType === 'auto-svg' && <Check className="h-4 w-4 text-indigo-800" />}
                       </div>
-                      <span className="text-[11px] text-zinc-500 dark:text-zinc-400 block mt-0.5">
+                      <span className="text-[11px] text-zinc-900 dark:text-zinc-400 block mt-0.5">
                         Format lingkaran standar Permendikbud dengan teks instansi, bintang, dan nama sekolah
                       </span>
                     </div>
@@ -764,18 +764,18 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-3.5 rounded-xl border-2 text-left transition-all flex items-start gap-3 ${
                       config.stampType === 'upload'
                         ? 'border-indigo-600 bg-indigo-50/60 dark:bg-indigo-950/40 text-indigo-950 dark:text-indigo-200'
-                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-700 dark:text-zinc-300'
+                        : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 text-zinc-900 dark:text-zinc-300'
                     }`}
                   >
-                    <div className="h-10 w-10 shrink-0 rounded-lg bg-sky-100 dark:bg-sky-900/60 flex items-center justify-center text-sky-700">
+                    <div className="h-10 w-10 shrink-0 rounded-lg bg-sky-100 dark:bg-sky-900/60 flex items-center justify-center text-sky-900">
                       <Upload className="h-5 w-5" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <span className="font-extrabold text-xs block">Unggah Gambar Cap Asli (PNG)</span>
-                        {config.stampType === 'upload' && <Check className="h-4 w-4 text-indigo-600" />}
+                        {config.stampType === 'upload' && <Check className="h-4 w-4 text-indigo-800" />}
                       </div>
-                      <span className="text-[11px] text-zinc-500 dark:text-zinc-400 block mt-0.5">
+                      <span className="text-[11px] text-zinc-900 dark:text-zinc-400 block mt-0.5">
                         Gunakan hasil scan cap basah stempel asli sekolah (latar transparan)
                       </span>
                     </div>
@@ -787,13 +787,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {config.stampType === 'auto-svg' && (
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-4">
                   <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                    <Type className="h-4 w-4 text-indigo-600" />
+                    <Type className="h-4 w-4 text-indigo-800" />
                     <span>Sesuaikan Teks Pada Lingkaran Stempel:</span>
                   </span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div>
-                      <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                      <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                         Teks Melingkar Atas (Instansi/Pemkab):
                       </label>
                       <input
@@ -806,7 +806,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                      <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                         Teks Melingkar Bawah (Kecamatan/Korwil):
                       </label>
                       <input
@@ -819,7 +819,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                      <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                         Teks Tengah Baris 1 (Nama Satuan Pendidikan):
                       </label>
                       <input
@@ -832,7 +832,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                      <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                         Teks Tengah Baris 2 (Jenis Cap):
                       </label>
                       <input
@@ -847,7 +847,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Pilihan Warna Tinta Cap */}
                   <div>
-                    <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1.5">
+                    <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1.5">
                       Pilihan Warna Tinta Cap Stempel:
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -879,7 +879,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                      <Upload className="h-4 w-4 text-indigo-600" />
+                      <Upload className="h-4 w-4 text-indigo-800" />
                       <span>Unggah Gambar Stempel Cap Asli (PNG)</span>
                     </span>
                     <input
@@ -909,10 +909,10 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                         />
                       </div>
                       <div className="flex-1 text-xs">
-                        <span className="font-bold text-indigo-700 dark:text-indigo-400 block">
+                        <span className="font-bold text-indigo-900 dark:text-indigo-400 block">
                           ✓ Gambar Cap Stempel Aktif
                         </span>
-                        <span className="text-[11px] text-zinc-500 block mt-0.5">
+                        <span className="text-[11px] text-zinc-900 block mt-0.5">
                           Akan otomatis ditempelkan melingkar pada tanda tangan kartu ujian.
                         </span>
                       </div>
@@ -930,11 +930,11 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                       onClick={() => fileInputStampRef.current?.click()}
                       className="border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl p-5 text-center cursor-pointer hover:border-indigo-500 transition-colors"
                     >
-                      <Stamp className="h-8 w-8 text-zinc-400 mx-auto mb-1.5" />
-                      <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 block">
+                      <Stamp className="h-8 w-8 text-zinc-900 mx-auto mb-1.5" />
+                      <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300 block">
                         Klik di sini untuk mengunggah scan cap stempel
                       </span>
-                      <span className="text-[11px] text-zinc-500">
+                      <span className="text-[11px] text-zinc-900">
                         Gunakan gambar format PNG dengan latar belakang transparan
                       </span>
                     </div>
@@ -945,7 +945,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
               {/* Posisi & Penempatan Stempel */}
               <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-3">
                 <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                  <Move className="h-4 w-4 text-indigo-600" />
+                  <Move className="h-4 w-4 text-indigo-800" />
                   <span>Letak & Efek Cap Stempel Pada Kartu:</span>
                 </span>
 
@@ -956,11 +956,11 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-2.5 rounded-xl border text-left transition-all ${
                       config.stampPosition === 'ttd'
                         ? 'border-indigo-600 bg-white dark:bg-zinc-800 text-indigo-950 dark:text-indigo-200 font-bold shadow-xs'
-                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                     }`}
                   >
                     <span className="block font-bold">1. Di Tanda Tangan Saja</span>
-                    <span className="text-[10px] text-zinc-500 block">Menimpa TTD & nama Kepsek</span>
+                    <span className="text-[10px] text-zinc-900 block">Menimpa TTD & nama Kepsek</span>
                   </button>
 
                   <button
@@ -969,11 +969,11 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-2.5 rounded-xl border text-left transition-all ${
                       config.stampPosition === 'foto'
                         ? 'border-indigo-600 bg-white dark:bg-zinc-800 text-indigo-950 dark:text-indigo-200 font-bold shadow-xs'
-                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                     }`}
                   >
                     <span className="block font-bold">2. Di Pojok Foto 2x3 Saja</span>
-                    <span className="text-[10px] text-zinc-500 block">Autentikasi foto peserta ujian</span>
+                    <span className="text-[10px] text-zinc-900 block">Autentikasi foto peserta ujian</span>
                   </button>
 
                   <button
@@ -982,18 +982,18 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     className={`p-2.5 rounded-xl border text-left transition-all ${
                       config.stampPosition === 'both'
                         ? 'border-indigo-600 bg-white dark:bg-zinc-800 text-indigo-950 dark:text-indigo-200 font-bold shadow-xs'
-                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                        : 'border-zinc-200 dark:border-zinc-700 text-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                     }`}
                   >
                     <span className="block font-bold">3. Keduanya (Foto & TTD)</span>
-                    <span className="text-[10px] text-zinc-500 block">Standar keamanan ganda dinas</span>
+                    <span className="text-[10px] text-zinc-900 block">Standar keamanan ganda dinas</span>
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs pt-2">
                   {/* Skala Ukuran */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Ukuran Stempel</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.stampScale}%</span>
                     </div>
@@ -1010,7 +1010,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Rotasi / Kemiringan */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Kemiringan Cap</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.stampRotation}°</span>
                     </div>
@@ -1027,7 +1027,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Opasitas Tinta */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Transparansi Tinta</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.stampOpacity}%</span>
                     </div>
@@ -1044,7 +1044,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
                   {/* Geser Posisi X */}
                   <div>
-                    <div className="flex justify-between text-zinc-600 dark:text-zinc-400 mb-1">
+                    <div className="flex justify-between text-zinc-800 dark:text-zinc-400 mb-1">
                       <span>Geser Posisi (X)</span>
                       <span className="font-bold text-zinc-900 dark:text-zinc-100">{config.stampOffsetX}px</span>
                     </div>
@@ -1069,13 +1069,13 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
           {activeTab === 'naskah' && (
             <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 space-y-4">
               <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-                <Type className="h-4 w-4 text-amber-600" />
+                <Type className="h-4 w-4 text-amber-800" />
                 <span>Ubah Keterangan Teks Titimangsa & Pejabat Penandatangan Kartu:</span>
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                     Tempat Penetapan Titimangsa:
                   </label>
                   <input
@@ -1088,7 +1088,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                     Tanggal Titimangsa Kartu Ujian:
                   </label>
                   <input
@@ -1101,7 +1101,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                     Jabatan Penandatangan:
                   </label>
                   <input
@@ -1114,7 +1114,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                     Nama Lengkap & Gelar Penandatangan:
                   </label>
                   <input
@@ -1127,7 +1127,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 block mb-1">
+                  <label className="text-[11px] font-bold text-zinc-800 dark:text-zinc-400 block mb-1">
                     NIP Penandatangan (Nomor Induk Pegawai):
                   </label>
                   <input
@@ -1151,7 +1151,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <Eye className="h-4 w-4" />
                 <span>Pratinjau Langsung Hasil Pengesahan Kartu Ujian</span>
               </span>
-              <span className="text-[10px] text-sky-700 dark:text-sky-400 font-mono">
+              <span className="text-[10px] text-sky-900 dark:text-sky-400 font-mono">
                 Live Interactive Preview
               </span>
             </div>
@@ -1191,16 +1191,16 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                     </div>
                   )}
                 </div>
-                <div className="text-[11px] text-zinc-500 max-w-[160px] leading-tight">
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300 block">
+                <div className="text-[11px] text-zinc-900 max-w-[160px] leading-tight">
+                  <span className="font-bold text-zinc-900 dark:text-zinc-300 block">
                     Sudut Pas Foto 2x3
                   </span>
                   {config.showStamp && (config.stampPosition === 'foto' || config.stampPosition === 'both') ? (
-                    <span className="text-sky-700 font-semibold text-[10px]">
+                    <span className="text-sky-900 font-semibold text-[10px]">
                       ✓ Dilengkapi cap autentikasi basah
                     </span>
                   ) : (
-                    <span className="text-zinc-400 text-[10px]">
+                    <span className="text-zinc-900 text-[10px]">
                       Tanpa stempel di foto
                     </span>
                   )}
@@ -1209,7 +1209,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
 
               {/* Simulasi Titimangsa & TTD */}
               <div className="relative text-right min-w-[200px] space-y-0.5 text-xs">
-                <div className="text-zinc-600 dark:text-zinc-400 text-[11px]">
+                <div className="text-zinc-800 dark:text-zinc-400 text-[11px]">
                   {config.titimangsaTempat}, {config.titimangsaTanggal}
                 </div>
                 <div className="font-bold text-zinc-800 dark:text-zinc-200 text-[11.5px]">
@@ -1288,7 +1288,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
                 <div className="font-extrabold uppercase text-zinc-950 dark:text-zinc-50 underline text-[11px] tracking-tight">
                   {config.namaPenandatangan}
                 </div>
-                <div className="font-mono text-zinc-600 dark:text-zinc-400 text-[9.5px]">
+                <div className="font-mono text-zinc-800 dark:text-zinc-400 text-[9.5px]">
                   NIP. {config.nipPenandatangan}
                 </div>
               </div>
@@ -1303,9 +1303,9 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={handleResetToDefault}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-semibold text-zinc-900 dark:text-zinc-300 transition-colors"
           >
-            <RotateCcw className="h-3.5 w-3.5 text-zinc-500" />
+            <RotateCcw className="h-3.5 w-3.5 text-zinc-900" />
             <span>Reset Standar Awal</span>
           </button>
 
@@ -1313,7 +1313,7 @@ export const EditKartuTtdStempelModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-colors"
+              className="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-xs font-semibold text-zinc-900 dark:text-zinc-300 transition-colors"
             >
               Batal
             </button>

@@ -200,8 +200,8 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
           }`}
         >
           {/* Subtle Screen Page Border Guideline (Hidden on Print) */}
-          <div className="absolute top-2 right-3 text-[10px] font-mono text-zinc-400 uppercase select-none print:hidden flex items-center gap-1">
-            <span className="inline-block w-2 h-2 rounded-full bg-sky-500"></span>
+          <div className="absolute top-2 right-3 text-[10px] font-mono font-semibold text-zinc-700 uppercase select-none print:hidden flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-full bg-sky-600"></span>
             Simulasi Kertas {paperSize} {orientation === 'landscape' ? 'Mendatar' : 'Tegak'}
           </div>
 

@@ -90,7 +90,7 @@ export const StudentPhotoManagementView: React.FC = () => {
               <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
                 Menu Tambah & Kelola Pas Foto Siswa
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Format pas foto resmi (2x3 & 3x4) terintegrasi otomatis untuk Denah Meja Ujian, Kartu Peserta UN, dan SKHU/Ijazah SDN 006 Sungai Buluh
               </p>
             </div>
@@ -114,7 +114,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/40 dark:text-sky-200 dark:hover:bg-sky-900/50 transition-colors"
             title="Pasang pas foto avatar resmi seragam SD otomatis untuk seluruh siswa"
           >
-            <Sparkles className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <Sparkles className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Pasang Avatar Resmi Otomatis
           </button>
 
@@ -125,7 +125,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                 clearAllStudentPhotos();
               }
             }}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-rose-400 dark:hover:bg-rose-950/30 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-semibold text-rose-800 hover:bg-rose-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-rose-400 dark:hover:bg-rose-950/30 transition-colors"
           >
             <Trash2 className="h-3.5 w-3.5" />
             Hapus Semua
@@ -138,8 +138,8 @@ export const StudentPhotoManagementView: React.FC = () => {
         {/* Total & Progress */}
         <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-zinc-500 uppercase">Kelengkapan Foto</span>
-            <span className="text-xs font-extrabold text-sky-700 dark:text-sky-400">
+            <span className="text-xs font-bold text-zinc-900 uppercase">Kelengkapan Foto</span>
+            <span className="text-xs font-extrabold text-sky-900 dark:text-sky-400">
               {photoPercent}%
             </span>
           </div>
@@ -148,7 +148,7 @@ export const StudentPhotoManagementView: React.FC = () => {
               <span className="text-2xl font-black text-zinc-900 dark:text-zinc-50">
                 {studentsWithPhoto}
               </span>
-              <span className="text-xs text-zinc-400 font-semibold">/ {totalStudents} Siswa</span>
+              <span className="text-xs text-zinc-900 font-semibold">/ {totalStudents} Siswa</span>
             </div>
             {/* Progress bar */}
             <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
@@ -170,12 +170,12 @@ export const StudentPhotoManagementView: React.FC = () => {
               <Layers className="h-3.5 w-3.5" />
               Denah Ruang Ujian
             </span>
-            <ExternalLink className="h-3.5 w-3.5 text-sky-600 opacity-60 group-hover:opacity-100" />
+            <ExternalLink className="h-3.5 w-3.5 text-sky-800 opacity-60 group-hover:opacity-100" />
           </div>
           <p className="mt-2 text-xs font-medium text-sky-950 dark:text-sky-200">
             Foto siswa otomatis tampil di meja peserta Ruang 1 s.d 4
           </p>
-          <div className="mt-2 text-[11px] font-bold text-sky-700 dark:text-sky-400">
+          <div className="mt-2 text-[11px] font-bold text-sky-900 dark:text-sky-400">
             Buka Denah Ruang →
           </div>
         </div>
@@ -190,12 +190,12 @@ export const StudentPhotoManagementView: React.FC = () => {
               <Users className="h-3.5 w-3.5" />
               Kartu Peserta UN
             </span>
-            <ExternalLink className="h-3.5 w-3.5 text-blue-600 opacity-60 group-hover:opacity-100" />
+            <ExternalLink className="h-3.5 w-3.5 text-blue-800 opacity-60 group-hover:opacity-100" />
           </div>
           <p className="mt-2 text-xs font-medium text-blue-950 dark:text-blue-200">
             Pas foto resmi 2x3 tercetak di kartu ujian standar DNT dinas
           </p>
-          <div className="mt-2 text-[11px] font-bold text-blue-700 dark:text-blue-400">
+          <div className="mt-2 text-[11px] font-bold text-blue-900 dark:text-blue-400">
             Buka Kartu Ujian →
           </div>
         </div>
@@ -210,7 +210,7 @@ export const StudentPhotoManagementView: React.FC = () => {
               <FileCheck2 className="h-3.5 w-3.5" />
               SKHU & Buku Ijazah
             </span>
-            <ExternalLink className="h-3.5 w-3.5 text-amber-600 opacity-60 group-hover:opacity-100" />
+            <ExternalLink className="h-3.5 w-3.5 text-amber-800 opacity-60 group-hover:opacity-100" />
           </div>
           <p className="mt-2 text-xs font-medium text-amber-950 dark:text-amber-200">
             Pas foto 3x4 resmi dengan stempel cap tiga jari pada transkrip
@@ -226,7 +226,7 @@ export const StudentPhotoManagementView: React.FC = () => {
         <div className="flex flex-1 flex-wrap items-center gap-2.5">
           {/* Search Box */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
             <input
               type="text"
               placeholder="Cari nama, NISN, no peserta..."
@@ -237,7 +237,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-900 hover:text-zinc-600"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -248,7 +248,7 @@ export const StudentPhotoManagementView: React.FC = () => {
           <select
             value={selectedRoom}
             onChange={(e) => setSelectedRoom(e.target.value as any)}
-            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="ALL">Semua Ruangan</option>
             <option value="RUANG 1">Ruang 1</option>
@@ -261,7 +261,7 @@ export const StudentPhotoManagementView: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}
-            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="ALL">Semua Status Foto</option>
             <option value="WITH_PHOTO">Sudah Ada Foto ({studentsWithPhoto})</option>
@@ -272,7 +272,7 @@ export const StudentPhotoManagementView: React.FC = () => {
           <select
             value={genderFilter}
             onChange={(e) => setGenderFilter(e.target.value as any)}
-            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
             <option value="ALL">Semua Jenis Kelamin</option>
             <option value="L">Laki-laki (L)</option>
@@ -288,7 +288,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             className={`p-1.5 rounded-lg text-xs font-bold transition-colors ${
               viewMode === 'grid'
                 ? 'bg-white dark:bg-zinc-700 text-sky-800 dark:text-sky-300 shadow-xs'
-                : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400'
+                : 'text-zinc-900 hover:text-zinc-800 dark:text-zinc-400'
             }`}
             title="Tampilan Galeri Pas Foto"
           >
@@ -300,7 +300,7 @@ export const StudentPhotoManagementView: React.FC = () => {
             className={`p-1.5 rounded-lg text-xs font-bold transition-colors ${
               viewMode === 'table'
                 ? 'bg-white dark:bg-zinc-700 text-sky-800 dark:text-sky-300 shadow-xs'
-                : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400'
+                : 'text-zinc-900 hover:text-zinc-800 dark:text-zinc-400'
             }`}
             title="Tampilan Tabel Ringkas"
           >
@@ -312,11 +312,11 @@ export const StudentPhotoManagementView: React.FC = () => {
       {/* 4. Main Gallery / Table Display */}
       {filteredStudents.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-zinc-300 bg-white p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
-          <Camera className="mx-auto h-12 w-12 text-zinc-400" />
+          <Camera className="mx-auto h-12 w-12 text-zinc-900" />
           <h3 className="mt-3 text-sm font-bold text-zinc-900 dark:text-zinc-100">
             Tidak ada data siswa ditemukan
           </h3>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1 text-xs text-zinc-900 dark:text-zinc-400">
             Coba sesuaikan kata kunci pencarian atau filter ruangan/status foto Anda.
           </p>
         </div>
@@ -332,7 +332,7 @@ export const StudentPhotoManagementView: React.FC = () => {
               >
                 {/* Top Badges */}
                 <div className="flex items-center justify-between gap-1 mb-2">
-                  <span className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
+                  <span className="text-[10px] font-bold text-zinc-900 dark:text-zinc-400">
                     {s.ruang.replace('RUANG ', 'R')} • M{s.noMeja}
                   </span>
                   <span
@@ -387,10 +387,10 @@ export const StudentPhotoManagementView: React.FC = () => {
                     /* Empty Placeholder Frame */
                     <div className="flex flex-col items-center justify-center p-2 text-center">
                       <div className="text-2xl mb-1">{s.jenisKelamin === 'L' ? '👦' : '👧'}</div>
-                      <span className="text-[9px] font-extrabold uppercase text-zinc-400">
+                      <span className="text-[9px] font-extrabold uppercase text-zinc-900">
                         PAS FOTO
                       </span>
-                      <span className="text-[8px] text-zinc-400">2x3 / 3x4</span>
+                      <span className="text-[8px] text-zinc-900">2x3 / 3x4</span>
                       <button
                         type="button"
                         onClick={() => setSingleUploadStudent(s)}
@@ -411,18 +411,18 @@ export const StudentPhotoManagementView: React.FC = () => {
                   <div className="text-[10px] font-mono font-bold text-sky-800 dark:text-sky-400 truncate">
                     {s.noPeserta}
                   </div>
-                  <div className="text-[9px] text-zinc-400">NISN: {s.nisn}</div>
+                  <div className="text-[9px] text-zinc-900">NISN: {s.nisn}</div>
                 </div>
 
                 {/* Footer Quick Status Button */}
                 <div className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-[10px]">
                   {hasPhoto ? (
-                    <span className="inline-flex items-center gap-1 font-bold text-sky-600 dark:text-sky-400">
+                    <span className="inline-flex items-center gap-1 font-bold text-sky-800 dark:text-sky-400">
                       <CheckCircle2 className="h-3 w-3" />
                       Ada Foto
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 font-bold text-amber-600 dark:text-amber-400">
+                    <span className="inline-flex items-center gap-1 font-bold text-amber-800 dark:text-amber-400">
                       <AlertCircle className="h-3 w-3" />
                       Belum
                     </span>
@@ -430,7 +430,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSingleUploadStudent(s)}
-                    className="font-bold text-zinc-500 hover:text-sky-700 dark:hover:text-sky-300"
+                    className="font-bold text-zinc-900 hover:text-sky-700 dark:hover:text-sky-300"
                   >
                     Edit
                   </button>
@@ -444,7 +444,7 @@ export const StudentPhotoManagementView: React.FC = () => {
         <div className="rounded-2xl border border-zinc-200 bg-white overflow-hidden shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-zinc-50 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-800">
+              <thead className="bg-zinc-50 dark:bg-zinc-800/80 text-zinc-900 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-800">
                 <tr>
                   <th className="p-3 text-center w-12">No</th>
                   <th className="p-3 w-20 text-center">Pas Foto</th>
@@ -461,7 +461,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                   const hasPhoto = Boolean(s.foto);
                   return (
                     <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                      <td className="p-3 text-center text-zinc-400 font-medium">{idx + 1}</td>
+                      <td className="p-3 text-center text-zinc-900 font-medium">{idx + 1}</td>
                       <td className="p-3 text-center">
                         <div className="mx-auto h-12 w-9 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
                           {hasPhoto ? (
@@ -475,17 +475,17 @@ export const StudentPhotoManagementView: React.FC = () => {
                         <div className="font-bold uppercase text-zinc-900 dark:text-zinc-100">
                           {s.nama}
                         </div>
-                        <div className="text-[10px] text-zinc-400">
+                        <div className="text-[10px] text-zinc-900">
                           {s.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}
                         </div>
                       </td>
                       <td className="p-3 font-mono font-bold text-sky-800 dark:text-sky-400">
                         {s.noPeserta}
                       </td>
-                      <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">
+                      <td className="p-3 font-mono text-zinc-800 dark:text-zinc-400">
                         {s.nisn} / {s.nis}
                       </td>
-                      <td className="p-3 text-center font-bold text-zinc-700 dark:text-zinc-300">
+                      <td className="p-3 text-center font-bold text-zinc-900 dark:text-zinc-300">
                         {s.ruang} • Meja {s.noMeja}
                       </td>
                       <td className="p-3 text-center">
@@ -515,7 +515,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={() => setPreviewStudent(s)}
-                                className="rounded-lg bg-zinc-100 p-1 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"
+                                className="rounded-lg bg-zinc-100 p-1 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"
                                 title="Pratinjau"
                               >
                                 <Eye className="h-3.5 w-3.5" />
@@ -523,7 +523,7 @@ export const StudentPhotoManagementView: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={() => updateStudentPhoto(s.id, null)}
-                                className="rounded-lg bg-rose-50 p-1 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-400"
+                                className="rounded-lg bg-rose-50 p-1 text-rose-800 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-400"
                                 title="Hapus Foto"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
@@ -657,7 +657,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   active
                     ? 'bg-sky-800 text-white'
-                    : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
+                    : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
                 }`}
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -671,7 +671,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 items-center">
           {/* Left: Preview Frame */}
           <div className="flex flex-col items-center justify-center">
-            <span className="text-[10px] font-bold text-zinc-500 uppercase mb-1.5">
+            <span className="text-[10px] font-bold text-zinc-900 uppercase mb-1.5">
               Pratinjau Pas Foto (3x4)
             </span>
             <div className="relative aspect-[3/4] w-32 overflow-hidden rounded-xl border-2 border-sky-600 shadow-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
@@ -684,7 +684,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
               ) : (
                 <div className="text-center p-3">
                   <span className="text-3xl">{student.jenisKelamin === 'L' ? '👦' : '👧'}</span>
-                  <p className="text-[9px] font-bold text-zinc-400 mt-1 uppercase">Belum Ada Foto</p>
+                  <p className="text-[9px] font-bold text-zinc-900 mt-1 uppercase">Belum Ada Foto</p>
                 </div>
               )}
             </div>
@@ -692,7 +692,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPhotoUrl('')}
-                className="mt-2 text-xs font-semibold text-rose-600 hover:underline flex items-center gap-1"
+                className="mt-2 text-xs font-semibold text-rose-800 hover:underline flex items-center gap-1"
               >
                 <Trash2 className="h-3 w-3" />
                 Hapus Foto Ini
@@ -709,11 +709,11 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                 onClick={() => fileInputRef.current?.click()}
                 className="cursor-pointer rounded-2xl border-2 border-dashed border-sky-400 bg-sky-50/30 p-6 text-center hover:bg-sky-50/60 dark:border-sky-700 dark:bg-sky-950/20 transition-colors"
               >
-                <Upload className="mx-auto h-8 w-8 text-sky-600 dark:text-sky-400" />
+                <Upload className="mx-auto h-8 w-8 text-sky-800 dark:text-sky-400" />
                 <p className="mt-2 text-xs font-bold text-zinc-800 dark:text-zinc-200">
                   Klik untuk memilih foto atau seret berkas ke sini
                 </p>
-                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
+                <p className="text-[11px] text-zinc-900 dark:text-zinc-400 mt-0.5">
                   Mendukung format JPG, PNG, atau WebP (disarankan rasio pas foto 2x3 atau 3x4)
                 </p>
                 <input
@@ -728,7 +728,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
 
             {activeTab === 'preset' && (
               <div className="space-y-3">
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+                <p className="text-xs text-zinc-800 dark:text-zinc-400 font-medium">
                   Pilih gaya pas foto avatar resmi SDN 006 Sungai Buluh (berdasarkan standar seragam putih merah & jilbab):
                 </p>
                 <div className="grid grid-cols-4 gap-2">
@@ -749,7 +749,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                           alt={`Preset ${v}`}
                           className="h-16 w-full object-cover rounded-lg"
                         />
-                        <span className="text-[9px] font-bold text-zinc-500 block mt-1">
+                        <span className="text-[9px] font-bold text-zinc-900 block mt-1">
                           Varian {v}
                         </span>
                       </div>
@@ -761,7 +761,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
 
             {activeTab === 'url' && (
               <div className="space-y-2">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                   Tautan / Link URL Foto:
                 </label>
                 <input
@@ -771,7 +771,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
                   onChange={(e) => setPhotoUrl(e.target.value)}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50 p-2.5 text-xs text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <p className="text-[10px] text-zinc-400">
+                <p className="text-[10px] text-zinc-900">
                   Masukkan link gambar daring langsung jika tidak ingin mengunggah berkas lokal.
                 </p>
               </div>
@@ -784,7 +784,7 @@ const SinglePhotoModal: React.FC<SinglePhotoModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Batal
           </button>
@@ -930,11 +930,11 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
           }}
           className="cursor-pointer rounded-2xl border-2 border-dashed border-sky-400 bg-sky-50/40 p-6 text-center hover:bg-sky-50/70 dark:border-sky-700 dark:bg-sky-950/20 transition-colors"
         >
-          <Upload className="mx-auto h-8 w-8 text-sky-600 dark:text-sky-400" />
+          <Upload className="mx-auto h-8 w-8 text-sky-800 dark:text-sky-400" />
           <h4 className="mt-2 text-sm font-bold text-zinc-900 dark:text-zinc-100">
             Pilih atau Seret Sekaligus Seluruh Foto Siswa ke Sini
           </h4>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1 text-xs text-zinc-900 dark:text-zinc-400">
             💡 Tips penamaan berkas agar otomatis cocok: <br />
             <code className="rounded bg-zinc-200 px-1 dark:bg-zinc-800">[NISN].jpg</code> (contoh: <code>0123456781.jpg</code>), atau <br />
             <code className="rounded bg-zinc-200 px-1 dark:bg-zinc-800">[No_Peserta].jpg</code> (contoh: <code>04-006-001-8.jpg</code>), atau <br />
@@ -954,13 +954,13 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
         {matchedList.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-bold">
-              <span className="text-zinc-700 dark:text-zinc-300">
+              <span className="text-zinc-900 dark:text-zinc-300">
                 Berkas Terpilih: {matchedList.length} Foto ({validMatchesCount} Otomatis Cocok)
               </span>
               <button
                 type="button"
                 onClick={() => setMatchedList([])}
-                className="text-rose-600 hover:underline"
+                className="text-rose-800 hover:underline"
               >
                 Kosongkan Daftar
               </button>
@@ -982,7 +982,7 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
                       <div className="font-bold text-zinc-900 dark:text-zinc-100 truncate max-w-xs">
                         {item.file.name}
                       </div>
-                      <div className="text-[10px] text-zinc-400">
+                      <div className="text-[10px] text-zinc-900">
                         Ukuran: {(item.file.size / 1024).toFixed(1)} KB
                       </div>
                     </div>
@@ -995,7 +995,7 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
                         <div className="font-extrabold text-sky-800 dark:text-sky-400 uppercase">
                           {item.matchedStudent.nama}
                         </div>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-600">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-800">
                           <CheckCircle2 className="h-3 w-3" />
                           Cocok via {item.matchReason}
                         </span>
@@ -1012,7 +1012,7 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setMatchedList((prev) => prev.filter((_, i) => i !== idx))}
-                      className="text-zinc-400 hover:text-rose-600 p-1"
+                      className="text-zinc-900 hover:text-rose-600 p-1"
                     >
                       <X className="h-3.5 w-3.5" />
                     </button>
@@ -1028,7 +1028,7 @@ const BatchPhotoModal: React.FC<BatchPhotoModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Tutup
           </button>
@@ -1071,7 +1071,7 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
       maxWidth="2xl"
     >
       <div className="space-y-6">
-        <p className="text-xs text-zinc-600 dark:text-zinc-400">
+        <p className="text-xs text-zinc-800 dark:text-zinc-400">
           Berikut adalah simulasi bagaimana pas foto siswa ini langsung terpasang pada <b>Kartu Peserta Ujian Nasional</b> dan <b>Denah Meja Ruangan</b>.
         </p>
 
@@ -1091,13 +1091,13 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
 
         {/* 2. Simulasi Meja Denah */}
         <div>
-          <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 block mb-2">
+          <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300 block mb-2">
             Simulasi Kartu Meja Pada Denah Ruang:
           </span>
           <div className="flex flex-col items-center justify-between rounded-xl border-2 border-sky-600 bg-sky-50/50 p-4 text-center max-w-xs mx-auto shadow-xs dark:bg-sky-950/20">
             <div className="flex items-center justify-between w-full border-b border-sky-200 dark:border-sky-800 pb-1 mb-2">
-              <span className="text-[10px] font-bold text-zinc-500">MEJA #{student.noMeja}</span>
-              <span className="text-[9px] font-bold text-sky-700">{student.ruang}</span>
+              <span className="text-[10px] font-bold text-zinc-900">MEJA #{student.noMeja}</span>
+              <span className="text-[9px] font-bold text-sky-900">{student.ruang}</span>
             </div>
 
             <div className="my-1 flex flex-col items-center">
@@ -1118,7 +1118,7 @@ const StudentCardPreviewModal: React.FC<StudentCardPreviewModalProps> = ({
               </div>
             </div>
 
-            <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-500 font-medium w-full">
+            <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-900 font-medium w-full">
               SDN 006 SUNGAI BULUH
             </div>
           </div>

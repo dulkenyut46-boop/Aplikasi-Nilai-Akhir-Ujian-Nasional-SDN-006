@@ -121,12 +121,12 @@ export const ExamGradesView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <FileSpreadsheet className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+            <FileSpreadsheet className="h-5 w-5 text-sky-800 dark:text-sky-400" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Nilai Ujian Sekolah (N_US) Teori & Praktik
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Nilai Ujian Sekolah tulis dan praktik siswa SDN 006 Sungai Buluh TP 2025/2026 ({subjects.length} Mata Pelajaran)
           </p>
         </div>
@@ -139,7 +139,7 @@ export const ExamGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-blue-300 bg-blue-50/80 px-3.5 py-2 text-xs font-bold text-blue-800 hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-200 dark:hover:bg-blue-900/60 transition-colors shadow-xs"
             title="Kelola mata pelajaran: Tambah mapel, edit nama pelajaran & KKM, atau hapus mapel"
           >
-            <BookOpen className="h-4 w-4 text-blue-700 dark:text-blue-400" />
+            <BookOpen className="h-4 w-4 text-blue-900 dark:text-blue-400" />
             Kelola Mapel ({subjects.length})
           </button>
 
@@ -150,17 +150,17 @@ export const ExamGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Tambah mata pelajaran ujian baru"
           >
-            <Plus className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+            <Plus className="h-4 w-4 text-sky-900 dark:text-sky-400" />
             Tambah Mapel
           </button>
 
           <button
             type="button"
             onClick={() => downloadGradesExcelTemplate('us')}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
             title="Unduh format template Excel (.xlsx) untuk Nilai Ujian Sekolah"
           >
-            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Template Excel
           </button>
 
@@ -170,7 +170,7 @@ export const ExamGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors shadow-xs"
             title="Impor nilai ujian sekolah dari berkas Excel (.xlsx)"
           >
-            <Upload className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
+            <Upload className="h-4 w-4 text-zinc-800 dark:text-zinc-400" />
             Impor Nilai US
           </button>
 
@@ -193,7 +193,7 @@ export const ExamGradesView: React.FC = () => {
           <button
             type="button"
             onClick={() => scrollSubjectBar('left')}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-2xs transition-colors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-2xs transition-colors"
             title="Geser mata pelajaran ke kiri"
             aria-label="Geser mapel ke kiri"
           >
@@ -212,7 +212,7 @@ export const ExamGradesView: React.FC = () => {
               className={`shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeSubject === 'ALL'
                   ? 'bg-sky-800 text-white shadow-md'
-                  : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
+                  : 'border border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
               }`}
             >
               Semua Mapel (Rekap US)
@@ -228,7 +228,7 @@ export const ExamGradesView: React.FC = () => {
                     className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                       isActive
                         ? 'bg-sky-800 text-white shadow-md'
-                        : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
+                        : 'border border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                     }`}
                   >
                     <span className="font-mono font-extrabold">{sub.code}</span>
@@ -254,7 +254,7 @@ export const ExamGradesView: React.FC = () => {
           <button
             type="button"
             onClick={() => scrollSubjectBar('right')}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-2xs transition-colors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-2xs transition-colors"
             title="Geser mata pelajaran ke kanan"
             aria-label="Geser mapel ke kanan"
           >
@@ -263,7 +263,7 @@ export const ExamGradesView: React.FC = () => {
         </div>
 
         {/* Scroll hint helper */}
-        <div className="flex items-center justify-between px-1 pt-1.5 text-[10px] text-zinc-400 dark:text-zinc-500">
+        <div className="flex items-center justify-between px-1 pt-1.5 text-[10px] text-zinc-900 dark:text-zinc-500">
           <span className="inline-flex items-center gap-1">
             <MoveHorizontal className="h-3 w-3" />
             Klik tombol panah atau geser ke samping untuk melihat seluruh {subjects.length} mata pelajaran
@@ -292,7 +292,7 @@ export const ExamGradesView: React.FC = () => {
                   KKM: {currentSubjectInfo.kkm}
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Input nilai ujian tulis (teori) dan ujian praktik (50% Teori + 50% Praktik)
               </p>
             </div>
@@ -325,7 +325,7 @@ export const ExamGradesView: React.FC = () => {
             <button
               type="button"
               onClick={() => setActiveSubject('ALL')}
-              className="inline-flex items-center gap-1 rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors"
+              className="inline-flex items-center gap-1 rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors"
             >
               Semua Mapel
               <ArrowRight className="h-3.5 w-3.5" />
@@ -338,7 +338,7 @@ export const ExamGradesView: React.FC = () => {
       <div className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
             <input
               type="text"
               placeholder="Cari Peserta Ujian berdasarkan nama atau No. Peserta..."
@@ -365,8 +365,8 @@ export const ExamGradesView: React.FC = () => {
         {activeSubject === 'ALL' && (
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-zinc-100 dark:border-zinc-800 text-xs">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-zinc-600 dark:text-zinc-400 flex items-center gap-1.5">
-                <MoveHorizontal className="h-4 w-4 text-sky-600" />
+              <span className="font-semibold text-zinc-800 dark:text-zinc-400 flex items-center gap-1.5">
+                <MoveHorizontal className="h-4 w-4 text-sky-800" />
                 Scroll Kolom Mapel:
               </span>
 
@@ -375,7 +375,7 @@ export const ExamGradesView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => scrollTable('left')}
-                  className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors shadow-2xs"
                   title="Geser tabel ke kiri untuk melihat mapel sebelumnya"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" />
@@ -385,7 +385,7 @@ export const ExamGradesView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => scrollTable('right')}
-                  className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors shadow-2xs"
                   title="Geser tabel ke kanan untuk melihat mapel berikutnya"
                 >
                   Geser Kanan
@@ -393,7 +393,7 @@ export const ExamGradesView: React.FC = () => {
                 </button>
               </div>
 
-              <span className="hidden sm:inline text-[11px] text-zinc-400">
+              <span className="hidden sm:inline text-[11px] text-zinc-900">
                 (atau tahan <kbd className="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border font-mono">Shift</kbd> + scroll mouse)
               </span>
             </div>
@@ -406,7 +406,7 @@ export const ExamGradesView: React.FC = () => {
                 className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1 text-xs font-bold transition-colors ${
                   isQuickEditMode
                     ? 'bg-blue-600 text-white shadow-xs'
-                    : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
+                    : 'border border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                 }`}
                 title="Aktifkan input nilai langsung pada tabel matriks seluruh mata pelajaran"
               >
@@ -427,7 +427,7 @@ export const ExamGradesView: React.FC = () => {
           {activeSubject === 'ALL' ? (
             /* ALL SUBJECTS US RECAP / MATRIX WITH PINNED STUDENT INFO & SCROLLABLE MAPEL COLUMNS */
             <table className="w-full text-left text-xs border-collapse">
-              <thead className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/90 text-zinc-700 dark:text-zinc-200 font-bold sticky top-0 z-10">
+              <thead className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/90 text-zinc-900 dark:text-zinc-200 font-bold sticky top-0 z-10">
                 <tr>
                   {/* Frozen Column 1: No */}
                   <th className="p-3 w-12 text-center sticky left-0 bg-zinc-50 dark:bg-zinc-800 z-30 border-r border-zinc-200 dark:border-zinc-700">
@@ -458,10 +458,10 @@ export const ExamGradesView: React.FC = () => {
                         >
                           {sub.code}
                         </button>
-                        <span className="text-[10px] text-zinc-400 font-normal truncate max-w-[85px]" title={sub.name}>
+                        <span className="text-[10px] text-zinc-900 font-normal truncate max-w-[85px]" title={sub.name}>
                           {sub.name}
                         </span>
-                        <span className="text-[9px] font-mono text-zinc-500 dark:text-zinc-400">
+                        <span className="text-[9px] font-mono text-zinc-900 dark:text-zinc-400">
                           KKM {sub.kkm}
                         </span>
                       </div>
@@ -477,7 +477,7 @@ export const ExamGradesView: React.FC = () => {
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 {filteredStudents.length === 0 ? (
                   <tr>
-                    <td colSpan={subjects.length + 4} className="p-8 text-center text-zinc-500 dark:text-zinc-400">
+                    <td colSpan={subjects.length + 4} className="p-8 text-center text-zinc-900 dark:text-zinc-400">
                       Tidak ada data peserta ujian yang sesuai filter.
                     </td>
                   </tr>
@@ -491,19 +491,19 @@ export const ExamGradesView: React.FC = () => {
                         className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors"
                       >
                         {/* Frozen Column 1 */}
-                        <td className="p-3 text-center font-bold text-zinc-500 sticky left-0 bg-white dark:bg-zinc-900 z-20 border-r border-zinc-200 dark:border-zinc-800">
+                        <td className="p-3 text-center font-bold text-zinc-900 sticky left-0 bg-white dark:bg-zinc-900 z-20 border-r border-zinc-200 dark:border-zinc-800">
                           {idx + 1}
                         </td>
 
                         {/* Frozen Column 2 */}
                         <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100 sticky left-12 bg-white dark:bg-zinc-900 z-20 border-r-2 border-sky-600/40 dark:border-sky-500/40 shadow-[4px_0_6px_-2px_rgba(0,0,0,0.06)] truncate max-w-[210px]">
                           <div className="truncate font-bold">{s.nama}</div>
-                          <div className="text-[10px] font-mono text-zinc-400">
+                          <div className="text-[10px] font-mono text-zinc-900">
                             {s.noPeserta}
                           </div>
                         </td>
 
-                        <td className="p-3 text-center text-zinc-600 dark:text-zinc-400 font-medium">
+                        <td className="p-3 text-center text-zinc-800 dark:text-zinc-400 font-medium">
                           {s.ruang.replace('RUANG ', 'R')}
                         </td>
 
@@ -545,7 +545,7 @@ export const ExamGradesView: React.FC = () => {
                         })}
 
                         {/* Overall Average */}
-                        <td className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20 border-l-2 border-sky-300 dark:border-sky-800">
+                        <td className="p-3 text-center font-mono font-extrabold text-sky-900 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20 border-l-2 border-sky-300 dark:border-sky-800">
                           {overallUSAvg.toFixed(2)}
                         </td>
                       </tr>
@@ -557,7 +557,7 @@ export const ExamGradesView: React.FC = () => {
           ) : (
             /* DETAILED SINGLE SUBJECT EDITOR (TULIS & PRAKTIK) */
             <table className="w-full text-left text-xs border-collapse">
-              <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
+              <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-900 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
                 <tr>
                   <th className="p-3 w-12 text-center">No</th>
                   <th className="p-3 min-w-[220px]">Nama Peserta</th>
@@ -583,16 +583,16 @@ export const ExamGradesView: React.FC = () => {
                       key={s.id}
                       className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors"
                     >
-                      <td className="p-3 text-center font-bold text-zinc-500">
+                      <td className="p-3 text-center font-bold text-zinc-900">
                         {idx + 1}
                       </td>
                       <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100">
                         <div className="font-bold">{s.nama}</div>
-                        <div className="text-[10px] font-mono text-zinc-400">
+                        <div className="text-[10px] font-mono text-zinc-900">
                           {s.noPeserta}
                         </div>
                       </td>
-                      <td className="p-3 text-center font-medium text-zinc-600 dark:text-zinc-400">
+                      <td className="p-3 text-center font-medium text-zinc-800 dark:text-zinc-400">
                         {s.ruang} (Meja #{s.noMeja})
                       </td>
                       <td className="p-2 text-center">
@@ -622,7 +622,7 @@ export const ExamGradesView: React.FC = () => {
                           className="w-28 rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-center font-mono text-xs font-semibold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 placeholder:text-[10px]"
                         />
                       </td>
-                      <td className="p-3 text-center font-mono font-bold text-sm text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
+                      <td className="p-3 text-center font-mono font-bold text-sm text-sky-900 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                         {finalUS.toFixed(2)}
                       </td>
                     </tr>
@@ -640,7 +640,7 @@ export const ExamGradesView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => scrollTable('left')}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 shadow-2xs"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Scroll Geser Kiri
@@ -649,7 +649,7 @@ export const ExamGradesView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => scrollTable('right')}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 shadow-2xs"
               >
                 Scroll Geser Kanan
                 <ChevronRight className="h-4 w-4" />
@@ -657,20 +657,20 @@ export const ExamGradesView: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-zinc-500 dark:text-zinc-400">
+              <span className="text-zinc-900 dark:text-zinc-400">
                 Total <strong>{subjects.length}</strong> Mapel:
               </span>
               <div className="hidden md:flex items-center gap-1">
                 {subjects.slice(0, 8).map((sub) => (
                   <span
                     key={sub.key}
-                    className="inline-block rounded bg-zinc-200/80 dark:bg-zinc-700 px-1.5 py-0.5 font-mono text-[10px] font-bold text-zinc-700 dark:text-zinc-200"
+                    className="inline-block rounded bg-zinc-200/80 dark:bg-zinc-700 px-1.5 py-0.5 font-mono text-[10px] font-bold text-zinc-900 dark:text-zinc-200"
                   >
                     {sub.code}
                   </span>
                 ))}
                 {subjects.length > 8 && (
-                  <span className="text-[10px] text-zinc-500">
+                  <span className="text-[10px] text-zinc-900">
                     +{subjects.length - 8} lainnya
                   </span>
                 )}

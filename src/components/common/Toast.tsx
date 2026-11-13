@@ -12,11 +12,11 @@ export const ToastContainer: React.FC = () => {
       {toasts.map((toast) => {
         const icon =
           toast.type === 'success' ? (
-            <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />
+            <CheckCircle2 className="h-5 w-5 text-emerald-700 shrink-0" />
           ) : toast.type === 'error' ? (
-            <AlertCircle className="h-5 w-5 text-rose-500 shrink-0" />
+            <AlertCircle className="h-5 w-5 text-rose-700 shrink-0" />
           ) : (
-            <Info className="h-5 w-5 text-sky-500 shrink-0" />
+            <Info className="h-5 w-5 text-sky-900 shrink-0" />
           );
 
         const borderClass =
@@ -38,7 +38,7 @@ export const ToastContainer: React.FC = () => {
             </div>
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1"
+              className="text-zinc-900 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1"
             >
               <X className="h-4 w-4" />
             </button>

@@ -382,7 +382,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
         {/* Step 2: Upload Area / Direct Paste */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-300">
               2. Pilih / Masukkan Berkas Excel
             </h4>
             <div className="flex rounded-lg border border-zinc-200 p-0.5 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
@@ -392,7 +392,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
                   inputMode === 'upload'
                     ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-700 dark:text-white'
-                    : 'text-zinc-600 dark:text-zinc-400'
+                    : 'text-zinc-800 dark:text-zinc-400'
                 }`}
               >
                 <Upload className="h-3.5 w-3.5" /> Upload File (.xlsx/.csv)
@@ -403,7 +403,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
                   inputMode === 'paste'
                     ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-700 dark:text-white'
-                    : 'text-zinc-600 dark:text-zinc-400'
+                    : 'text-zinc-800 dark:text-zinc-400'
                 }`}
               >
                 <ClipboardPaste className="h-3.5 w-3.5" /> Tempel Data (Paste)
@@ -413,19 +413,19 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
 
           {inputMode === 'upload' ? (
             <label className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/40 p-8 text-center cursor-pointer hover:border-sky-500 hover:bg-sky-50/20 transition-all group">
-              <div className="rounded-2xl bg-sky-100 dark:bg-sky-950/70 p-3 text-sky-700 dark:text-sky-400 mb-3 group-hover:scale-110 transition-transform">
+              <div className="rounded-2xl bg-sky-100 dark:bg-sky-950/70 p-3 text-sky-900 dark:text-sky-400 mb-3 group-hover:scale-110 transition-transform">
                 <Upload className="h-7 w-7" />
               </div>
               <span className="text-sm font-extrabold text-zinc-800 dark:text-zinc-100">
                 {fileName ? (
-                  <span className="text-sky-700 dark:text-sky-400 font-mono">
+                  <span className="text-sky-900 dark:text-sky-400 font-mono">
                     Berkas Terpilih: {fileName}
                   </span>
                 ) : (
                   'Klik atau seret berkas Excel (.xlsx / .xls) / CSV ke area ini'
                 )}
               </span>
-              <span className="text-xs text-zinc-500 mt-1 max-w-sm">
+              <span className="text-xs text-zinc-900 mt-1 max-w-sm">
                 Sistem akan memvalidasi kolom No Peserta, NISN, Nama, Gender, Tempat/Tanggal Lahir, Ruang & Meja.
               </span>
               <input
@@ -452,10 +452,10 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
             {/* Summary Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-xl border border-zinc-200 dark:border-zinc-800 p-3.5 bg-zinc-50/70 dark:bg-zinc-800/40">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                   Hasil Validasi:
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-2 py-0.5 rounded-md">
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-900 dark:text-sky-400 bg-sky-100 dark:bg-sky-950 px-2 py-0.5 rounded-md">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   {validCount} Baris Valid
                 </span>
@@ -475,7 +475,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                   className={`px-2.5 py-1 rounded-md font-semibold ${
                     filterTab === 'all'
                       ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-100'
-                      : 'text-zinc-600 dark:text-zinc-300'
+                      : 'text-zinc-800 dark:text-zinc-300'
                   }`}
                 >
                   Semua ({totalRows})
@@ -486,7 +486,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                   className={`px-2.5 py-1 rounded-md font-semibold ${
                     filterTab === 'valid'
                       ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-100'
-                      : 'text-zinc-600 dark:text-zinc-300'
+                      : 'text-zinc-800 dark:text-zinc-300'
                   }`}
                 >
                   Valid ({validCount})
@@ -497,7 +497,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                   className={`px-2.5 py-1 rounded-md font-semibold ${
                     filterTab === 'invalid'
                       ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-100'
-                      : 'text-zinc-600 dark:text-zinc-300'
+                      : 'text-zinc-800 dark:text-zinc-300'
                   }`}
                 >
                   Bermasalah ({invalidCount})
@@ -508,7 +508,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
             {/* Preview Table */}
             <div className="max-h-60 overflow-y-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
               <table className="w-full text-left text-xs">
-                <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
+                <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
                   <tr>
                     <th className="p-2.5 text-center w-10">No</th>
                     <th className="p-2.5">Status Validasi</th>
@@ -534,10 +534,10 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                           !res.isValid ? 'bg-rose-50/40 dark:bg-rose-950/20' : ''
                         }`}
                       >
-                        <td className="p-2.5 text-center font-bold text-zinc-500">{res.rowIndex}</td>
+                        <td className="p-2.5 text-center font-bold text-zinc-900">{res.rowIndex}</td>
                         <td className="p-2.5">
                           {res.isValid ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-700 dark:text-sky-400">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-900 dark:text-sky-400">
                               <CheckCircle2 className="h-3.5 w-3.5" /> Valid
                             </span>
                           ) : (
@@ -548,9 +548,9 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                         </td>
                         <td className="p-2.5 font-bold text-zinc-900 dark:text-zinc-100">{s.nama || '-'}</td>
                         <td className="p-2.5 font-mono text-sky-800 dark:text-sky-300">{s.noPeserta}</td>
-                        <td className="p-2.5 font-mono text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
+                        <td className="p-2.5 font-mono text-zinc-800 dark:text-zinc-400">{s.nisn}</td>
                         <td className="p-2.5 text-center font-bold">{s.jenisKelamin}</td>
-                        <td className="p-2.5 text-zinc-600 dark:text-zinc-400">
+                        <td className="p-2.5 text-zinc-800 dark:text-zinc-400">
                           {s.tempatLahir}, {s.tanggalLahir}
                         </td>
                         <td className="p-2.5 font-semibold text-zinc-800 dark:text-zinc-200">
@@ -559,25 +559,25 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                         <td className="p-2.5 font-mono text-zinc-800 dark:text-zinc-200 font-semibold text-[11px]">
                           {s.noSeriIjazah || '-'}
                         </td>
-                        <td className="p-2.5 font-mono text-zinc-700 dark:text-zinc-300 text-[11px]">
+                        <td className="p-2.5 font-mono text-zinc-900 dark:text-zinc-300 text-[11px]">
                           {s.noSuratKelulusan || '-'}
                         </td>
-                        <td className="p-2.5 font-mono text-zinc-700 dark:text-zinc-300 text-[11px]">
+                        <td className="p-2.5 font-mono text-zinc-900 dark:text-zinc-300 text-[11px]">
                           {s.noSuratTranskrip || '-'}
                         </td>
                         <td className="p-2.5 text-[11px]">
                           {res.errors.length > 0 && (
-                            <span className="text-rose-600 dark:text-rose-400 font-medium">
+                            <span className="text-rose-800 dark:text-rose-400 font-medium">
                               {res.errors.join(', ')}
                             </span>
                           )}
                           {res.warnings.length > 0 && (
-                            <span className="text-amber-600 dark:text-amber-400 italic block">
+                            <span className="text-amber-800 dark:text-amber-400 italic block">
                               {res.warnings.join(', ')}
                             </span>
                           )}
                           {res.errors.length === 0 && res.warnings.length === 0 && (
-                            <span className="text-zinc-400">Lengkap</span>
+                            <span className="text-zinc-900">Lengkap</span>
                           )}
                         </td>
                       </tr>
@@ -589,7 +589,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
 
             {/* Mode Penambahan */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/40">
-              <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+              <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                 Pilih Mode Penyimpanan State:
               </span>
               <div className="flex items-center gap-4 text-xs">
@@ -600,7 +600,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                     value="append"
                     checked={importMode === 'append'}
                     onChange={() => setImportMode('append')}
-                    className="text-sky-600"
+                    className="text-sky-800"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tambahkan ke Data Saat Ini (Append)
@@ -613,7 +613,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
                     value="replace"
                     checked={importMode === 'replace'}
                     onChange={() => setImportMode('replace')}
-                    className="text-sky-600"
+                    className="text-sky-800"
                   />
                   <span className="font-semibold text-rose-700 dark:text-rose-400">
                     Gantikan Seluruh Data Siswa (Replace)
@@ -629,7 +629,7 @@ export const ImportStudentModal: React.FC<ImportStudentModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Batal
           </button>

@@ -91,70 +91,70 @@ export const StudentDetailModal: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-2.5">
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 text-sm border-b pb-2 border-zinc-200 dark:border-zinc-700">
-              <User className="h-4 w-4 text-sky-600" />
+              <User className="h-4 w-4 text-sky-800" />
               Biodata & Informasi Keluarga
             </h4>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Tempat, Tgl Lahir:</span>
+              <span className="text-zinc-900">Tempat, Tgl Lahir:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">
                 {s.tempatLahir}, {s.tanggalLahir}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Nama Ayah:</span>
+              <span className="text-zinc-900">Nama Ayah:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">{s.namaAyah}</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Nama Ibu:</span>
+              <span className="text-zinc-900">Nama Ibu:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">{s.namaIbu}</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Pekerjaan Orang Tua:</span>
+              <span className="text-zinc-900">Pekerjaan Orang Tua:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">{s.pekerjaanOrtu}</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Alamat Tempat Tinggal:</span>
+              <span className="text-zinc-900">Alamat Tempat Tinggal:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">{s.alamat}</span>
             </div>
           </div>
 
           <div className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 dark:border-zinc-800 dark:bg-zinc-800/40 space-y-2.5">
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2 text-sm border-b pb-2 border-zinc-200 dark:border-zinc-700">
-              <Layers className="h-4 w-4 text-sky-600" />
+              <Layers className="h-4 w-4 text-sky-800" />
               Penempatan Ujian & Ijazah
             </h4>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Ruang Ujian:</span>
-              <span className="col-span-2 font-bold text-sky-700 dark:text-sky-400">
+              <span className="text-zinc-900">Ruang Ujian:</span>
+              <span className="col-span-2 font-bold text-sky-900 dark:text-sky-400">
                 {s.ruang} (Meja #{s.noMeja})
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">No. Ijazah:</span>
+              <span className="text-zinc-900">No. Ijazah:</span>
               <span className="col-span-2 font-mono font-bold text-zinc-900 dark:text-zinc-100">
                 {s.noSeriIjazah || '-'}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">No. SK Kelulusan:</span>
+              <span className="text-zinc-900">No. SK Kelulusan:</span>
               <span className="col-span-2 font-mono font-medium text-sky-800 dark:text-sky-300">
                 {s.noSuratKelulusan || '-'}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">No. SKHU / Transkrip:</span>
+              <span className="text-zinc-900">No. SKHU / Transkrip:</span>
               <span className="col-span-2 font-mono font-medium text-sky-800 dark:text-sky-300">
                 {s.noSuratTranskrip || '-'}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Pengambilan Ijazah:</span>
+              <span className="text-zinc-900">Pengambilan Ijazah:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">
                 {s.tanggalAmbilIjazah ? `${s.tanggalAmbilIjazah} (Oleh: ${s.penerimaIjazah})` : 'Belum Diambil'}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-zinc-500">Predikat Mutu:</span>
+              <span className="text-zinc-900">Predikat Mutu:</span>
               <span className="col-span-2 font-medium text-zinc-800 dark:text-zinc-200">
                 {pred.grade} ({pred.label})
               </span>
@@ -166,17 +166,17 @@ export const StudentDetailModal: React.FC = () => {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm flex items-center gap-2">
-              <Award className="h-4 w-4 text-amber-500" />
+              <Award className="h-4 w-4 text-amber-700" />
               Rekapitulasi Nilai per Mata Pelajaran
             </h4>
-            <div className="text-xs text-zinc-500">
+            <div className="text-xs text-zinc-900">
               Formula: {schoolProfile.bobotRapor}% Rata Rapor + {schoolProfile.bobotUS}% US
             </div>
           </div>
 
           <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
             <table className="w-full text-left text-xs">
-              <thead className="bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-300">
+              <thead className="bg-zinc-100 dark:bg-zinc-800/60 text-zinc-800 dark:text-zinc-300">
                 <tr>
                   <th className="p-2.5 font-bold">Mata Pelajaran</th>
                   <th className="p-2.5 text-center font-bold">Rata Rapor (S7-S12)</th>
@@ -203,15 +203,15 @@ export const StudentDetailModal: React.FC = () => {
                   return (
                     <tr key={sub.key} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
                       <td className="p-2.5 font-medium text-zinc-800 dark:text-zinc-200">
-                        {sub.name} <span className="text-zinc-400">({sub.code})</span>
+                        {sub.name} <span className="text-zinc-900">({sub.code})</span>
                       </td>
                       <td className="p-2.5 text-center font-mono">{rAvg}</td>
                       <td className="p-2.5 text-center font-mono">{usScore}</td>
-                      <td className="p-2.5 text-center font-mono font-bold text-sky-700 dark:text-sky-400">
+                      <td className="p-2.5 text-center font-mono font-bold text-sky-900 dark:text-sky-400">
                         {na}
                       </td>
                       <td className="p-2.5 text-center">
-                        <span className="font-semibold text-zinc-700 dark:text-zinc-300">{subPred.grade}</span>
+                        <span className="font-semibold text-zinc-900 dark:text-zinc-300">{subPred.grade}</span>
                       </td>
                     </tr>
                   );
@@ -226,7 +226,7 @@ export const StudentDetailModal: React.FC = () => {
           <button
             type="button"
             onClick={() => setSelectedStudentForDetail(null)}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Tutup
           </button>

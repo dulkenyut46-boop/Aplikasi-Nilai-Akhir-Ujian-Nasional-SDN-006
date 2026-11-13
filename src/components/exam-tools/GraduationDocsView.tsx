@@ -704,7 +704,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   Format Baku Word & Cetak A4
                 </span>
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Surat undangan rapat dan naskah dokumen kelulusan peserta didik kelas 6 SDN 006 Sungai Buluh
               </p>
             </div>
@@ -720,7 +720,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               className="inline-flex items-center gap-1.5 rounded-xl border border-blue-600 bg-blue-50 px-3 py-2 text-xs font-bold text-blue-800 shadow-xs hover:bg-blue-100 dark:bg-blue-950/50 dark:border-blue-700 dark:text-blue-200 transition-all"
               title="Unduh Surat Undangan format Microsoft Word (.doc)"
             >
-              <FileDown className="h-4 w-4 text-blue-700" />
+              <FileDown className="h-4 w-4 text-blue-900" />
               Unduh Word Undangan
             </button>
           )}
@@ -732,7 +732,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               className="inline-flex items-center gap-1.5 rounded-xl border border-blue-600 bg-blue-50 px-3 py-2 text-xs font-bold text-blue-800 shadow-xs hover:bg-blue-100 dark:bg-blue-950/50 dark:border-blue-700 dark:text-blue-200 transition-all"
               title="Unduh Berita Acara format Microsoft Word (.doc)"
             >
-              <FileDown className="h-4 w-4 text-blue-700" />
+              <FileDown className="h-4 w-4 text-blue-900" />
               Unduh Word Berita Acara
             </button>
           )}
@@ -743,7 +743,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               onClick={() => setIsEditGuruModalOpen(true)}
               className="inline-flex items-center gap-1.5 rounded-xl border border-sky-600 bg-sky-50 px-3.5 py-2 text-xs font-extrabold text-sky-800 shadow-xs hover:bg-sky-100 dark:bg-sky-950/50 dark:border-sky-700 dark:text-sky-200 transition-all"
             >
-              <Users className="h-4 w-4 text-sky-700" />
+              <Users className="h-4 w-4 text-sky-900" />
               Menu Edit Nama Guru ({guruList.length})
             </button>
           )}
@@ -755,7 +755,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               className="inline-flex items-center gap-1.5 rounded-xl border border-blue-600 bg-blue-50 px-3 py-2 text-xs font-bold text-blue-800 shadow-xs hover:bg-blue-100 dark:bg-blue-950/50 dark:border-blue-700 dark:text-blue-200 transition-all"
               title="Unduh SK format Microsoft Word (.doc)"
             >
-              <FileDown className="h-4 w-4 text-blue-700" />
+              <FileDown className="h-4 w-4 text-blue-900" />
               Unduh Word SK (.doc)
             </button>
           )}
@@ -769,7 +769,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
             title="Buka menu lengkap ubah/edit data untuk semua naskah di Navigasi Lembar Kerja"
           >
-            <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+            <Edit3 className="h-4 w-4 text-amber-800 dark:text-amber-400" />
             Ubah / Edit Data Lembar Kerja
           </button>
 
@@ -782,14 +782,14 @@ export const GraduationDocsView: React.FC<Props> = ({
                 : 'border-zinc-300 bg-white text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
             }`}
           >
-            {isEditing ? <Check className="h-4 w-4" /> : <Edit3 className="h-4 w-4 text-sky-600" />}
+            {isEditing ? <Check className="h-4 w-4" /> : <Edit3 className="h-4 w-4 text-sky-800" />}
             {isEditing ? 'Selesai Menyunting' : 'Sunting Data Dokumen'}
           </button>
 
           <button
             type="button"
             onClick={resetToDefault}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
             title="Kembalikan isian ke format resmi asli"
           >
             <RotateCcw className="h-4 w-4" />
@@ -874,7 +874,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
                     isActive
                       ? 'bg-sky-600 text-white shadow-xs'
-                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'
+                      : 'bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   <Icon className="h-4.5 w-4.5" />
@@ -887,7 +887,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-bold ${
                       isActive
                         ? 'bg-sky-200/80 text-sky-900 dark:bg-sky-900 dark:text-sky-200'
-                        : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400'
+                        : 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-400'
                     }`}
                   >
                     {doc.pageBadge}
@@ -898,7 +898,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                 <div className="font-extrabold text-sm text-zinc-900 dark:text-zinc-100">
                   {doc.title}
                 </div>
-                <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-snug">
+                <div className="text-xs text-zinc-900 dark:text-zinc-400 mt-1 leading-snug">
                   {doc.subtitle}
                 </div>
                 {/* Searchable accessible text for exact matching */}
@@ -926,7 +926,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     setActiveDoc(doc.key as GraduationDocType);
                     onOpenPrintPreview(doc.key as GraduationDocType);
                   }}
-                  className="inline-flex items-center gap-1 font-bold text-sky-700 hover:text-sky-900 dark:text-sky-400 dark:hover:text-sky-300 hover:underline transition-colors py-0.5 px-1 rounded"
+                  className="inline-flex items-center gap-1 font-bold text-sky-900 hover:text-sky-900 dark:text-sky-400 dark:hover:text-sky-300 hover:underline transition-colors py-0.5 px-1 rounded"
                   title={`Cetak ${doc.title} dengan Kop Surat`}
                 >
                   <Printer className="h-3 w-3" />
@@ -958,7 +958,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             <div className="space-y-3 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nomor Surat Undangan
                   </label>
                   <input
@@ -969,7 +969,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Sifat Surat
                   </label>
                   <input
@@ -980,7 +980,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Hal / Perihal
                   </label>
                   <input
@@ -994,7 +994,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tujuan Surat (Kepada Yth)
                   </label>
                   <input
@@ -1005,7 +1005,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Tujuan (di - ...)
                   </label>
                   <input
@@ -1016,7 +1016,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tanggal Surat
                   </label>
                   <input
@@ -1030,7 +1030,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Hari / Tanggal Rapat
                   </label>
                   <input
@@ -1041,7 +1041,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Jam Pelaksanaan
                   </label>
                   <input
@@ -1052,7 +1052,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Rapat
                   </label>
                   <input
@@ -1065,7 +1065,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Agenda Acara Rapat
                 </label>
                 <input
@@ -1077,7 +1077,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Paragraf Pengantar
                 </label>
                 <textarea
@@ -1089,7 +1089,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Paragraf Penutup
                 </label>
                 <textarea
@@ -1106,7 +1106,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={undanganState.showTembusan}
                     onChange={(e) => handleUndanganFieldChange('showTembusan', e.target.checked)}
-                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                    className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Tembusan Surat di Bagian Bawah
@@ -1121,7 +1121,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             <div className="space-y-3 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nomor Berita Acara
                   </label>
                   <input
@@ -1132,7 +1132,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Judul Naskah
                   </label>
                   <input
@@ -1146,7 +1146,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="md:col-span-2">
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Hari & Tanggal Rapat (Terbilang Resmi Word)
                   </label>
                   <input
@@ -1157,7 +1157,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tahun Pelajaran (Terbilang)
                   </label>
                   <input
@@ -1170,7 +1170,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Tempat Rapat Musyawarah
                 </label>
                 <input
@@ -1182,7 +1182,7 @@ export const GraduationDocsView: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Paragraf Pembuka
                 </label>
                 <textarea
@@ -1195,7 +1195,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Total Peserta Didik
                   </label>
                   <input
@@ -1206,7 +1206,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Peserta Lulus (Orang)
                   </label>
                   <input
@@ -1217,7 +1217,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Peserta Tidak Lulus
                   </label>
                   <input
@@ -1231,7 +1231,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Dibuat di
                   </label>
                   <input
@@ -1242,7 +1242,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Pada Tanggal
                   </label>
                   <input
@@ -1253,7 +1253,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nama Notulis / Sekretaris
                   </label>
                   <input
@@ -1264,7 +1264,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     NIP Notulis
                   </label>
                   <input
@@ -1282,7 +1282,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={baState.showKop}
                     onChange={(e) => handleBAFieldChange('showKop', e.target.checked)}
-                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                    className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Sertakan Kop Surat SDN 006 di Bagian Atas
@@ -1293,7 +1293,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={baState.showNotulis}
                     onChange={(e) => handleBAFieldChange('showNotulis', e.target.checked)}
-                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                    className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Kolom Tanda Tangan Notulis (Format 2 Kolom Kedinasan)
@@ -1308,7 +1308,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             <div className="space-y-4 text-xs">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300">Titimangsa Tanggal:</span>
+                  <span className="font-bold text-zinc-900 dark:text-zinc-300">Titimangsa Tanggal:</span>
                   <input
                     type="text"
                     value={rapatHadirTanggal}
@@ -1328,7 +1328,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   <button
                     type="button"
                     onClick={handleDownloadHadirWord}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3 py-1.5 font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3 py-1.5 font-semibold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
                   >
                     <FileDown className="h-3.5 w-3.5" />
                     Unduh Format Word
@@ -1343,7 +1343,7 @@ export const GraduationDocsView: React.FC<Props> = ({
             <div className="space-y-3 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nomor Surat Keputusan (SK)
                   </label>
                   <input
@@ -1354,7 +1354,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tentang / Judul Penetapan
                   </label>
                   <input
@@ -1368,7 +1368,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Menimbang (Butir a)
                   </label>
                   <textarea
@@ -1379,7 +1379,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Menimbang (Butir b)
                   </label>
                   <textarea
@@ -1393,7 +1393,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Diktum KESATU
                   </label>
                   <textarea
@@ -1404,7 +1404,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Diktum KEDUA
                   </label>
                   <textarea
@@ -1422,7 +1422,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={skState.showTembusan}
                     onChange={(e) => handleSKFieldChange('showTembusan', e.target.checked)}
-                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                    className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Tampilkan Tembusan Surat (Dinas, Korwil, Komite, Arsip)
@@ -1433,7 +1433,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     type="checkbox"
                     checked={skState.showLampiran}
                     onChange={(e) => handleSKFieldChange('showLampiran', e.target.checked)}
-                    className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                    className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                   />
                   <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                     Sertakan Lampiran Tabel 80 Siswa Lulus di Bawah SK
@@ -1448,7 +1448,7 @@ export const GraduationDocsView: React.FC<Props> = ({
       {/* Kontrol Toolbar Word Khusus Dokumen yang Aktif */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-zinc-200/90 dark:bg-zinc-800/90 px-4 py-2.5 rounded-2xl text-xs border border-zinc-300 dark:border-zinc-700 shadow-xs print:hidden">
         <div className="flex items-center gap-2 text-zinc-800 dark:text-zinc-200 font-bold">
-          <AlignJustify className="h-4 w-4 text-sky-600" />
+          <AlignJustify className="h-4 w-4 text-sky-800" />
           <span>
             {activeDoc === 'undangan' && 'Naskah Surat Undangan Rapat (Format Baku Microsoft Word)'}
             {activeDoc === 'ba-kelulusan' && 'Naskah Berita Acara Kelulusan (Format Baku Microsoft Word)'}
@@ -1463,8 +1463,8 @@ export const GraduationDocsView: React.FC<Props> = ({
             <div className="flex flex-wrap items-center gap-1.5 bg-white/90 dark:bg-zinc-900/90 p-1 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
               {/* Pilihan Jenis Font */}
               <div className="flex items-center gap-1 px-2 py-0.5">
-                <Type className="h-3.5 w-3.5 text-zinc-500" />
-                <span className="text-zinc-500 font-bold text-[11px]">Font:</span>
+                <Type className="h-3.5 w-3.5 text-zinc-900" />
+                <span className="text-zinc-900 font-bold text-[11px]">Font:</span>
                 <select
                   value={currentFontFamily}
                   onChange={(e) => handleToolbarFontChange(e.target.value as DocFontFamily)}
@@ -1482,7 +1482,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               {/* Pilihan Ukuran Font */}
               <div className="flex items-center gap-1 px-2 py-0.5">
-                <span className="text-zinc-500 font-bold text-[11px]">Ukuran:</span>
+                <span className="text-zinc-900 font-bold text-[11px]">Ukuran:</span>
                 <select
                   value={currentFontSize}
                   onChange={(e) => handleToolbarFontSizeChange(e.target.value as DocFontSize)}
@@ -1500,7 +1500,7 @@ export const GraduationDocsView: React.FC<Props> = ({
 
               {/* Pilihan Ukuran Spasi */}
               <div className="flex items-center gap-1 px-2 py-0.5">
-                <span className="text-zinc-500 font-bold text-[11px]">Spasi:</span>
+                <span className="text-zinc-900 font-bold text-[11px]">Spasi:</span>
                 <select
                   value={currentLineSpacing}
                   onChange={(e) => handleToolbarLineSpacingChange(e.target.value as DocLineSpacing)}
@@ -1558,7 +1558,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
                     signatureMode === 'manual'
                       ? 'bg-sky-700 text-white shadow-2xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                      : 'text-zinc-800 dark:text-zinc-400 hover:text-zinc-900'
                   }`}
                 >
                   Zig-Zag (Manual)
@@ -1569,7 +1569,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                   className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
                     signatureMode === 'digital'
                       ? 'bg-sky-700 text-white shadow-2xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                      : 'text-zinc-800 dark:text-zinc-400 hover:text-zinc-900'
                   }`}
                 >
                   Paraf Terisi (Digital)
@@ -1616,7 +1616,7 @@ export const GraduationDocsView: React.FC<Props> = ({
       <div className="rounded-3xl border border-zinc-300 bg-zinc-200/70 p-4 sm:p-8 dark:border-zinc-800 dark:bg-zinc-950 flex flex-col items-center print:border-none print:p-0 print:bg-white print:m-0 print:shadow-none">
         {/* Word Ruler Bar Simulation for All Word-style Documents */}
         {['undangan', 'ba-kelulusan', 'sk-kelulusan'].includes(activeDoc) && (
-          <div className="w-full max-w-[210mm] bg-zinc-100 border border-zinc-300 border-b-0 rounded-t-xl px-6 py-2 flex items-center justify-between text-[10px] font-mono text-zinc-600 select-none shadow-xs print:hidden">
+          <div className="w-full max-w-[210mm] bg-zinc-100 border border-zinc-300 border-b-0 rounded-t-xl px-6 py-2 flex items-center justify-between text-[10px] font-mono text-zinc-800 select-none shadow-xs print:hidden">
             <span className="flex items-center gap-1.5 font-sans font-bold text-zinc-800">
               <span className="h-2 w-2 rounded-full bg-blue-600 inline-block"></span>
               Microsoft Word Print Layout • Standar A4 (21,0 cm × 29,7 cm)
@@ -1866,7 +1866,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                 <h4 className="text-xs sm:text-sm font-black uppercase text-zinc-900">
                   DEWAN GURU & TENAGA KEPENDIDIKAN SD NEGERI 006 SUNGAI BULUH
                 </h4>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -2144,7 +2144,7 @@ export const GraduationDocsView: React.FC<Props> = ({
                     <p className="text-xs font-extrabold uppercase">
                       DAFTAR PESERTA DIDIK KELAS VI YANG DINYATAKAN LULUS & REKAPITULASI NILAI AKHIR
                     </p>
-                    <p className="text-[10px] text-zinc-600">
+                    <p className="text-[10px] text-zinc-800">
                       Tahun Pelajaran {schoolProfile.tahunPelajaran} • Bobot: {schoolProfile.bobotRapor}% Rata Rapor + {schoolProfile.bobotUS}% Ujian Sekolah • KKM: {schoolProfile.kkmKelulusan}
                     </p>
                   </div>

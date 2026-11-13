@@ -176,7 +176,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               Menu Template & Impor Nilai (.xlsx)
             </h2>
           </div>
-          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1 text-xs text-zinc-900 dark:text-zinc-400">
             Pusat unduhan blangko resmi Microsoft Excel (.xlsx) untuk nilai Rapor Semester 7 s.d. 12 dan Ujian Sekolah SDN 006 Sungai Buluh
           </p>
         </div>
@@ -222,7 +222,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 isActive
                   ? 'bg-sky-800 text-white shadow-sm'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
+                  : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -237,7 +237,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
         <div className="space-y-6">
           {/* Information Callout */}
           <div className="rounded-2xl border border-sky-200 bg-sky-50/60 p-4 dark:border-sky-900/60 dark:bg-sky-950/30 flex items-start gap-3">
-            <Info className="h-5 w-5 text-sky-700 dark:text-sky-400 shrink-0 mt-0.5" />
+            <Info className="h-5 w-5 text-sky-900 dark:text-sky-400 shrink-0 mt-0.5" />
             <div className="text-xs text-sky-950 dark:text-sky-200 space-y-1">
               <p className="font-bold">
                 Format Template Excel telah disinkronkan dengan Data Peserta Didik (DNT) SDN 006 Sungai Buluh.
@@ -260,7 +260,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                     <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
                       {tpl.format}
                     </span>
-                    <span className="text-[11px] font-semibold text-zinc-400">
+                    <span className="text-[11px] font-semibold text-zinc-900">
                       {tpl.subtitle}
                     </span>
                   </div>
@@ -269,7 +269,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                     <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50">
                       {tpl.title}
                     </h3>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-2">
+                    <p className="text-xs text-zinc-900 dark:text-zinc-400 mt-1 line-clamp-2">
                       {tpl.description}
                     </p>
                   </div>
@@ -279,7 +279,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedPreviewTemplate(tpl.id)}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-600 hover:text-sky-700 dark:text-zinc-400 dark:hover:text-sky-300 transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-800 hover:text-sky-700 dark:text-zinc-400 dark:hover:text-sky-300 transition-colors"
                   >
                     <Eye className="h-3.5 w-3.5" />
                     Lihat Kolom
@@ -303,22 +303,22 @@ export const GradesTemplateAndImportView: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                  <Eye className="h-4 w-4 text-sky-600" />
+                  <Eye className="h-4 w-4 text-sky-800" />
                   Pratinjau Struktur Kolom Template Excel ({selectedPreviewTemplate.toUpperCase()})
                 </h3>
-                <p className="text-xs text-zinc-500 mt-0.5">
+                <p className="text-xs text-zinc-900 mt-0.5">
                   Tampilan simulasi kolom dan data baris saat dibuka di Microsoft Excel
                 </p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-500 font-medium">Contoh 5 Siswa Pertama</span>
+                <span className="text-xs text-zinc-900 font-medium">Contoh 5 Siswa Pertama</span>
               </div>
             </div>
 
             <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
               <table className="w-full text-left text-xs">
-                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                   <tr>
                     <th className="p-3 w-10 text-center">No</th>
                     <th className="p-3">No Peserta</th>
@@ -340,7 +340,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
                       SUBJECT_LIST.map((sub) => (
                         <th key={sub.key} className="p-3 text-center bg-sky-50 dark:bg-sky-950/30">
                           {sub.code}
-                          <div className="text-[9px] font-normal text-zinc-400">KKM {sub.kkm}</div>
+                          <div className="text-[9px] font-normal text-zinc-900">KKM {sub.kkm}</div>
                         </th>
                       ))
                     )}
@@ -349,21 +349,21 @@ export const GradesTemplateAndImportView: React.FC = () => {
                 <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800 font-mono">
                   {students.slice(0, 5).map((s, idx) => (
                     <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                      <td className="p-3 text-center text-zinc-500 font-bold">{idx + 1}</td>
-                      <td className="p-3 text-sky-700 dark:text-sky-300 font-semibold">{s.noPeserta}</td>
-                      <td className="p-3 text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
+                      <td className="p-3 text-center text-zinc-900 font-bold">{idx + 1}</td>
+                      <td className="p-3 text-sky-900 dark:text-sky-300 font-semibold">{s.noPeserta}</td>
+                      <td className="p-3 text-zinc-800 dark:text-zinc-400">{s.nisn}</td>
                       <td className="p-3 font-sans font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
-                      <td className="p-3 font-sans text-zinc-600 dark:text-zinc-400">{s.ruang}</td>
+                      <td className="p-3 font-sans text-zinc-800 dark:text-zinc-400">{s.ruang}</td>
                       {selectedPreviewTemplate === 'us' ? (
                         <>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.pab?.tulis ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.pab?.praktik ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.ppkn?.tulis ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.bin?.tulis ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.bin?.praktik ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.mat?.tulis ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.ipa?.tulis ?? 85}</td>
-                          <td className="p-3 text-center text-zinc-700 dark:text-zinc-300">{s.us.ipa?.praktik ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.pab?.tulis ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.pab?.praktik ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.ppkn?.tulis ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.bin?.tulis ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.bin?.praktik ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.mat?.tulis ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.ipa?.tulis ?? 85}</td>
+                          <td className="p-3 text-center text-zinc-900 dark:text-zinc-300">{s.us.ipa?.praktik ?? 85}</td>
                         </>
                       ) : (
                         SUBJECT_LIST.map((sub) => (
@@ -387,7 +387,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Step 1 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-sky-900 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   1
                 </span>
@@ -396,13 +396,13 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                 Gunakan Template Resmi .xlsx
               </h4>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-900 leading-relaxed">
                 Unduh template dari Tab 1 sesuai jenis nilai yang ingin diisi (Rapor per semester atau Ujian Sekolah). Jangan mengubah susunan kolom No Peserta & NISN.
               </p>
               <button
                 type="button"
                 onClick={() => setActiveTab('templates')}
-                className="text-xs font-bold text-sky-700 hover:underline dark:text-sky-400"
+                className="text-xs font-bold text-sky-900 hover:underline dark:text-sky-400"
               >
                 Pilih Template Sekarang →
               </button>
@@ -410,7 +410,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
 
             {/* Step 2 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-sky-900 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   2
                 </span>
@@ -419,17 +419,17 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                 Pengisian Offline di Excel
               </h4>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-900 leading-relaxed">
                 Buka file di Microsoft Excel, WPS Office, atau Google Spreadsheet. Masukkan angka nilai 0 s.d. 100 untuk masing-masing siswa. Simpan perubahan file.
               </p>
-              <div className="text-[11px] text-zinc-400">
+              <div className="text-[11px] text-zinc-900">
                 Rentang nilai valid: 0.0 - 100.0
               </div>
             </div>
 
             {/* Step 3 */}
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-3">
-              <div className="flex items-center gap-2 text-sky-700 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-sky-900 dark:text-sky-400 font-bold text-xs uppercase tracking-wider">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 text-xs font-black">
                   3
                 </span>
@@ -438,7 +438,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
               <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                 Sinkronisasi Otomatis
               </h4>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-900 leading-relaxed">
                 Klik tombol "Mulai Impor Berkas" di bawah. Sistem akan memvalidasi kecocokan nama & no ujian, memeriksa rentang nilai, dan memperbarui seluruh rekap akhir.
               </p>
               <button
@@ -460,7 +460,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
             <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
               Siap Mengimpor Nilai Siswa ke Sistem?
             </h3>
-            <p className="text-xs text-zinc-500 max-w-md mx-auto">
+            <p className="text-xs text-zinc-900 max-w-md mx-auto">
               Anda dapat mengunggah berkas .xlsx, .xls, .csv atau menempelkan (paste) data sel langsung dari clipboard Microsoft Excel.
             </p>
             <div className="pt-2">
@@ -483,16 +483,16 @@ export const GradesTemplateAndImportView: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                <FileCheck className="h-5 w-5 text-sky-600" />
+                <FileCheck className="h-5 w-5 text-sky-800" />
                 Matriks Kelengkapan Nilai Siswa (Data Readiness)
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-900 mt-0.5">
                 Pantau kelengkapan nilai Rapor Semester 7 s.d. 12 dan Ujian Sekolah per peserta didik
               </p>
             </div>
 
             <div className="relative w-full sm:w-72">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
               <input
                 type="text"
                 placeholder="Cari Siswa..."
@@ -505,7 +505,7 @@ export const GradesTemplateAndImportView: React.FC = () => {
 
           <div className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
             <table className="w-full text-left text-xs">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                 <tr>
                   <th className="p-3 w-10 text-center">No</th>
                   <th className="p-3">Nama Siswa</th>
@@ -526,9 +526,9 @@ export const GradesTemplateAndImportView: React.FC = () => {
                   const check = checkStudentGradesCompleteness(s);
                   return (
                     <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                      <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
+                      <td className="p-3 text-center font-bold text-zinc-900">{idx + 1}</td>
                       <td className="p-3 font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
-                      <td className="p-3 font-mono text-sky-700 dark:text-sky-400 font-semibold">{s.noPeserta}</td>
+                      <td className="p-3 font-mono text-sky-900 dark:text-sky-400 font-semibold">{s.noPeserta}</td>
                       
                       {/* S7 - S12 Checks */}
                       {(['s7', 's8', 's9', 's10', 's11', 's12'] as const).map((sem) => {
@@ -537,9 +537,9 @@ export const GradesTemplateAndImportView: React.FC = () => {
                         return (
                           <td key={sem} className="p-3 text-center">
                             {hasAll ? (
-                              <CheckCircle2 className="h-4 w-4 text-sky-600 inline" />
+                              <CheckCircle2 className="h-4 w-4 text-sky-800 inline" />
                             ) : (
-                              <AlertCircle className="h-4 w-4 text-amber-500 inline" />
+                              <AlertCircle className="h-4 w-4 text-amber-700 inline" />
                             )}
                           </td>
                         );
@@ -548,9 +548,9 @@ export const GradesTemplateAndImportView: React.FC = () => {
                       {/* US Check */}
                       <td className="p-3 text-center">
                         {check.usComplete ? (
-                          <CheckCircle2 className="h-4 w-4 text-sky-600 inline" />
+                          <CheckCircle2 className="h-4 w-4 text-sky-800 inline" />
                         ) : (
-                          <AlertCircle className="h-4 w-4 text-amber-500 inline" />
+                          <AlertCircle className="h-4 w-4 text-amber-700 inline" />
                         )}
                       </td>
 

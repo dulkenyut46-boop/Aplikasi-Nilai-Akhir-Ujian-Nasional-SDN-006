@@ -66,13 +66,13 @@ export class ErrorBoundary extends Component<Props, State> {
               <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
                 Terjadi Kendala Teknis Saat Memuat Tampilan
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 leading-relaxed">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400 mt-1.5 leading-relaxed">
                 Aplikasi mendeteksi adanya kendala saat memproses tampilan atau memori peramban. Anda dapat memuat ulang halaman secara aman.
               </p>
             </div>
 
             {this.state.error && (
-              <div className="text-left bg-zinc-50 dark:bg-zinc-850 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-[11px] font-mono text-rose-600 dark:text-rose-400 max-h-24 overflow-y-auto">
+              <div className="text-left bg-zinc-50 dark:bg-zinc-850 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-[11px] font-mono text-rose-800 dark:text-rose-400 max-h-24 overflow-y-auto">
                 {this.state.error.message || String(this.state.error)}
               </div>
             )}
@@ -90,7 +90,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <button
                 type="button"
                 onClick={this.handleResetStorage}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2.5 text-xs font-bold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-750 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2.5 text-xs font-bold text-zinc-900 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-750 transition-colors"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
                 Pulihkan Cache

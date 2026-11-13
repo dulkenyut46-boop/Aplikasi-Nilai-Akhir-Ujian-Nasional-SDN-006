@@ -168,7 +168,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     Navigasi Lembar Kerja
                   </span>
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+                <p className="text-xs text-zinc-900 dark:text-zinc-400 truncate">
                   Edit data nomor, tanggal, tempat, diktum dan susunan panitia/dewan guru secara langsung
                 </p>
               </div>
@@ -177,7 +177,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="p-2 text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -201,7 +201,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                     isActive
                       ? 'bg-sky-700 text-white shadow-sm ring-1 ring-sky-500'
-                      : 'bg-white text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
+                      : 'bg-white text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />
@@ -219,7 +219,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
             {activeTab === 'undangan' && (
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                   <span>
                     Formulir Naskah Surat Undangan Rapat Dewan Guru & Tendik (Halaman 1 Navigasi Lembar Kerja)
                   </span>
@@ -227,7 +227,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Nomor Surat Undangan:
                     </label>
                     <input
@@ -238,7 +238,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Sifat Surat:
                     </label>
                     <input
@@ -249,7 +249,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Lampiran:
                     </label>
                     <input
@@ -263,7 +263,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Perihal / Hal Surat:
                     </label>
                     <input
@@ -274,7 +274,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tujuan Surat (Kepada Yth):
                     </label>
                     <input
@@ -288,7 +288,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tempat Tujuan Surat:
                     </label>
                     <input
@@ -299,7 +299,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tempat Surat Dibuat:
                     </label>
                     <input
@@ -310,7 +310,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tanggal Surat Dikeluarkan:
                     </label>
                     <input
@@ -324,7 +324,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Hari / Tanggal Rapat:
                     </label>
                     <input
@@ -335,7 +335,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Waktu / Jam Pelaksanaan:
                     </label>
                     <input
@@ -346,7 +346,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tempat Rapat:
                     </label>
                     <input
@@ -359,7 +359,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Agenda Acara Rapat:
                   </label>
                   <input
@@ -371,7 +371,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Paragraf Pengantar:
                   </label>
                   <textarea
@@ -383,7 +383,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Paragraf Penutup:
                   </label>
                   <textarea
@@ -400,7 +400,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={undangan.showTembusan}
                       onChange={(e) => setUndangan({ ...undangan, showTembusan: e.target.checked })}
-                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                      className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Sertakan Catatan Tembusan Surat di Bagian Bawah
@@ -416,7 +416,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
             {activeTab === 'ba-kelulusan' && (
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                   <span>
                     Formulir Berita Acara Rapat Musyawarah Dewan Guru (Halaman 2 Navigasi Lembar Kerja)
                   </span>
@@ -424,7 +424,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Nomor Berita Acara:
                     </label>
                     <input
@@ -435,7 +435,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Judul Dokumen:
                     </label>
                     <input
@@ -449,7 +449,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="sm:col-span-2">
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Hari & Tanggal Rapat Terbilang:
                     </label>
                     <input
@@ -460,7 +460,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tahun Pelajaran (Terbilang):
                     </label>
                     <input
@@ -473,7 +473,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Pelaksanaan Rapat:
                   </label>
                   <input
@@ -486,7 +486,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Total Peserta Kelas VI:
                     </label>
                     <input
@@ -497,32 +497,32 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Jumlah Peserta Lulus:
                     </label>
                     <input
                       type="number"
                       value={ba.pesertaLulus}
                       onChange={(e) => setBa({ ...ba, pesertaLulus: Number(e.target.value) })}
-                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-sky-700 dark:text-sky-400"
+                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-sky-900 dark:text-sky-400"
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Jumlah Tidak Lulus:
                     </label>
                     <input
                       type="number"
                       value={ba.pesertaTidakLulus}
                       onChange={(e) => setBa({ ...ba, pesertaTidakLulus: Number(e.target.value) })}
-                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-zinc-700 dark:text-zinc-300"
+                      className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-2.5 font-bold text-zinc-900 dark:text-zinc-300"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Dibuat di:
                     </label>
                     <input
@@ -533,7 +533,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Pada Tanggal:
                     </label>
                     <input
@@ -544,7 +544,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Nama Notulis / Sekretaris:
                     </label>
                     <input
@@ -555,7 +555,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       NIP Notulis:
                     </label>
                     <input
@@ -568,7 +568,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Paragraf Pembuka:
                   </label>
                   <textarea
@@ -580,7 +580,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Paragraf Penutup:
                   </label>
                   <textarea
@@ -597,7 +597,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={ba.showNotulis}
                       onChange={(e) => setBa({ ...ba, showNotulis: e.target.checked })}
-                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                      className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Tampilkan Kolom Tanda Tangan Notulis / Sekretaris Rapat
@@ -614,7 +614,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                     <span>
                       Daftar Hadir Dewan Guru & Tenaga Kependidikan ({guruList.length} Guru/Tendik)
                     </span>
@@ -631,7 +631,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Hari / Tanggal Rapat:
                     </label>
                     <input
@@ -642,7 +642,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Waktu / Jam Pelaksanaan:
                     </label>
                     <input
@@ -653,7 +653,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tempat Pelaksanaan:
                     </label>
                     <input
@@ -667,7 +667,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Titimangsa Pengesahan Tanggal:
                     </label>
                     <input
@@ -678,7 +678,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Nama Notulis / Sekretaris Rapat:
                     </label>
                     <input
@@ -689,7 +689,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       NIP Notulis:
                     </label>
                     <input
@@ -704,13 +704,13 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                 {/* Preview 5 Guru Teratas */}
                 <div className="border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-850">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-zinc-700 dark:text-zinc-300 text-[11px]">
+                    <span className="font-bold text-zinc-900 dark:text-zinc-300 text-[11px]">
                       Susunan Dewan Guru Terdaftar ({guruList.length} Orang):
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsEditGuruModalOpen(true)}
-                      className="text-sky-700 dark:text-sky-400 font-bold hover:underline"
+                      className="text-sky-900 dark:text-sky-400 font-bold hover:underline"
                     >
                       Buka Pengelola Seluruh Guru &rarr;
                     </button>
@@ -724,11 +724,11 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                         <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                           {idx + 1}. {g.nama}
                         </span>
-                        <span className="text-zinc-500 font-medium">{g.jabatan}</span>
+                        <span className="text-zinc-900 font-medium">{g.jabatan}</span>
                       </div>
                     ))}
                     {guruList.length > 6 && (
-                      <p className="text-center text-[10px] text-zinc-400 font-semibold pt-1">
+                      <p className="text-center text-[10px] text-zinc-900 font-semibold pt-1">
                         ... dan {guruList.length - 6} guru / staf lainnya
                       </p>
                     )}
@@ -743,7 +743,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
             {activeTab === 'sk-kelulusan' && (
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                   <span>
                     Formulir Surat Keputusan (SK) Kelulusan Kepala Sekolah (Halaman 4 Navigasi Lembar Kerja)
                   </span>
@@ -751,7 +751,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Nomor SK Kelulusan:
                     </label>
                     <input
@@ -762,7 +762,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Tentang / Judul Penetapan SK:
                     </label>
                     <input
@@ -776,7 +776,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Menimbang (Butir a):
                     </label>
                     <textarea
@@ -787,7 +787,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Menimbang (Butir b):
                     </label>
                     <textarea
@@ -801,7 +801,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Diktum KESATU:
                     </label>
                     <textarea
@@ -812,7 +812,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Diktum KEDUA:
                     </label>
                     <textarea
@@ -826,7 +826,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Ditetapkan di:
                     </label>
                     <input
@@ -837,7 +837,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                    <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                       Pada Tanggal:
                     </label>
                     <input
@@ -860,7 +860,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                         type="checkbox"
                         checked={sk.showTandaTangan !== false}
                         onChange={(e) => setSk({ ...sk, showTandaTangan: e.target.checked })}
-                        className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                        className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                       />
                       <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                         Munculkan Penandatangan saat Mencetak
@@ -869,7 +869,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
-                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                      <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                         Jabatan Penandatangan:
                       </label>
                       <input
@@ -881,7 +881,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       />
                     </div>
                     <div>
-                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                      <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                         Nama Lengkap & Gelar:
                       </label>
                       <input
@@ -893,7 +893,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       />
                     </div>
                     <div>
-                      <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                      <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                         NIP Kepala Sekolah:
                       </label>
                       <input
@@ -913,7 +913,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={sk.showTembusan}
                       onChange={(e) => setSk({ ...sk, showTembusan: e.target.checked })}
-                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                      className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Tampilkan Tembusan Surat (Dinas, Korwil, Komite, Arsip)
@@ -924,7 +924,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
                       type="checkbox"
                       checked={sk.showLampiran}
                       onChange={(e) => setSk({ ...sk, showLampiran: e.target.checked })}
-                      className="h-4 w-4 rounded text-sky-600 focus:ring-sky-500"
+                      className="h-4 w-4 rounded text-sky-800 focus:ring-sky-500"
                     />
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                       Sertakan Lampiran Tabel 80 Siswa Lulus di Halaman Berikutnya
@@ -940,7 +940,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={handleResetCurrentTab}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-750 font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-750 font-semibold transition-colors"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               <span>Reset Default Dokumen Ini</span>
@@ -950,7 +950,7 @@ export const EditGraduationDocModal: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-bold transition-colors"
+                className="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-bold transition-colors"
               >
                 Batal
               </button>

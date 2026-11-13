@@ -184,12 +184,12 @@ export const SettingsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Settings className="h-5 w-5 text-sky-600" />
+            <Settings className="h-5 w-5 text-sky-800" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Pengaturan Identitas Sekolah & Kop Surat Resmi
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Kelola tata naskah dinas, logo kanan & kiri kop surat, pejabat penandatangan, dan formula kelulusan
           </p>
         </div>
@@ -198,7 +198,7 @@ export const SettingsView: React.FC = () => {
           <button
             onClick={() => window.print()}
             type="button"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 transition-colors"
             title="Cetak format lembar naskah dinas saat ini"
           >
             <Printer className="h-4 w-4" />
@@ -233,7 +233,7 @@ export const SettingsView: React.FC = () => {
                 ? 'bg-sky-800 text-white shadow-xs'
                 : sec.highlight
                 ? 'bg-sky-50 text-sky-800 border border-sky-300 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-700'
-                : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
+                : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300'
             }`}
           >
             {sec.label}
@@ -259,7 +259,7 @@ export const SettingsView: React.FC = () => {
                       Standar Dinas
                     </span>
                   </h3>
-                  <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                  <p className="text-[11px] text-zinc-900 dark:text-zinc-400">
                     Kop surat ini digunakan otomatis pada SKHU Sementara, SK Kelulusan, Kartu Peserta Ujian, dan Daftar Hadir
                   </p>
                 </div>
@@ -269,7 +269,7 @@ export const SettingsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={resetKopToDefault}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 px-3 py-1.5 text-[11px] font-bold text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 px-3 py-1.5 text-[11px] font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   Format Default SDN 006
@@ -281,18 +281,18 @@ export const SettingsView: React.FC = () => {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-extrabold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
-                  <Eye className="h-4 w-4 text-sky-600" />
+                  <Eye className="h-4 w-4 text-sky-800" />
                   Pratinjau Langsung (Live Preview Kop Surat):
                 </span>
                 <div className="flex items-center gap-2 text-[11px]">
-                  <span className="text-zinc-500">Latar Pratinjau:</span>
+                  <span className="text-zinc-900">Latar Pratinjau:</span>
                   <button
                     type="button"
                     onClick={() => setPreviewPaperTheme('white')}
                     className={`px-2 py-0.5 rounded font-bold border ${
                       previewPaperTheme === 'white'
                         ? 'bg-white text-zinc-900 border-zinc-400 shadow-xs'
-                        : 'text-zinc-500 border-transparent'
+                        : 'text-zinc-900 border-transparent'
                     }`}
                   >
                     Kertas Putih (A4)
@@ -303,7 +303,7 @@ export const SettingsView: React.FC = () => {
                     className={`px-2 py-0.5 rounded font-bold border ${
                       previewPaperTheme === 'dark'
                         ? 'bg-zinc-800 text-white border-zinc-600 shadow-xs'
-                        : 'text-zinc-500 border-transparent'
+                        : 'text-zinc-900 border-transparent'
                     }`}
                   >
                     Gelap
@@ -321,7 +321,7 @@ export const SettingsView: React.FC = () => {
               >
                 <KopSurat config={currentKop} />
                 <div className="mt-3 text-center">
-                  <span className="text-[10px] text-zinc-400 italic">
+                  <span className={`text-[10px] italic font-medium ${previewPaperTheme === 'white' ? 'text-zinc-700' : 'text-zinc-300'}`}>
                     ▲ Bagian atas dokumen resmi (SKHU / SK Kelulusan / Kartu Ujian / Berita Acara) ▲
                   </span>
                 </div>
@@ -352,7 +352,7 @@ export const SettingsView: React.FC = () => {
                       className="sr-only peer"
                     />
                     <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-600"></div>
-                    <span className="ml-2 text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
+                    <span className="ml-2 text-[11px] font-bold text-zinc-900 dark:text-zinc-300">
                       {currentKop.showLogoKiri ? 'Tampil' : 'Sembunyi'}
                     </span>
                   </label>
@@ -368,13 +368,13 @@ export const SettingsView: React.FC = () => {
                         className="max-h-full max-w-full object-contain"
                       />
                     ) : (
-                      <span className="text-[10px] text-zinc-400 font-bold">Tidak Aktif</span>
+                      <span className="text-[10px] text-zinc-900 font-bold">Tidak Aktif</span>
                     )}
                   </div>
 
                   <div className="flex-1 space-y-2 text-xs">
                     <div>
-                      <span className="text-[10px] font-bold text-zinc-500 uppercase">Preset Terpilih:</span>
+                      <span className="text-[10px] font-bold text-zinc-900 uppercase">Preset Terpilih:</span>
                       <p className="font-bold text-zinc-900 dark:text-zinc-100 text-xs truncate">
                         {currentKop.logoKiriPreset === 'custom'
                           ? '📁 Logo Kustom (Unggahan)'
@@ -383,9 +383,9 @@ export const SettingsView: React.FC = () => {
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 mb-1">
+                      <div className="flex justify-between text-[11px] font-semibold text-zinc-800 dark:text-zinc-400 mb-1">
                         <span>Ukuran Logo:</span>
-                        <span className="font-mono font-bold text-sky-700 dark:text-sky-400">
+                        <span className="font-mono font-bold text-sky-900 dark:text-sky-400">
                           {currentKop.logoKiriSize || 76} px
                         </span>
                       </div>
@@ -404,7 +404,7 @@ export const SettingsView: React.FC = () => {
 
                 {/* Pilihan Preset Logo Kiri */}
                 <div className="space-y-1.5 text-xs">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 text-[11px]">
                     Pilih Logo Resmi Kiri:
                   </label>
                   <div className="grid grid-cols-2 gap-2">
@@ -416,7 +416,7 @@ export const SettingsView: React.FC = () => {
                         className={`flex items-center gap-2 p-2 rounded-xl text-left border transition-all ${
                           currentKop.logoKiriPreset === p.id
                             ? 'border-sky-600 bg-sky-50 dark:bg-sky-950/40 text-sky-950 dark:text-sky-200 font-bold shadow-xs'
-                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-sky-300'
+                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-300 hover:border-sky-300'
                         }`}
                       >
                         <img
@@ -426,7 +426,7 @@ export const SettingsView: React.FC = () => {
                         />
                         <div className="min-w-0">
                           <p className="text-[11px] font-bold leading-tight truncate">{p.name}</p>
-                          <span className="text-[9px] text-zinc-400 block truncate">{p.category}</span>
+                          <span className="text-[9px] text-zinc-900 block truncate">{p.category}</span>
                         </div>
                       </button>
                     ))}
@@ -435,7 +435,7 @@ export const SettingsView: React.FC = () => {
 
                 {/* Unggah Custom File Logo Kiri */}
                 <div className="space-y-1 text-xs">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 text-[11px]">
                     Atau Unggah Logo Kiri Sendiri (PNG / JPG / SVG):
                   </label>
                   <div className="flex gap-2">
@@ -457,7 +457,7 @@ export const SettingsView: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleSelectPresetLogo('kiri', 'pemda_kuansing')}
-                      className="rounded-xl border border-zinc-200 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                      className="rounded-xl border border-zinc-200 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                       title="Kembalikan ke Lambang Pemkab Kuansing"
                     >
                       Reset
@@ -488,7 +488,7 @@ export const SettingsView: React.FC = () => {
                       className="sr-only peer"
                     />
                     <div className="w-9 h-5 bg-zinc-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-600"></div>
-                    <span className="ml-2 text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
+                    <span className="ml-2 text-[11px] font-bold text-zinc-900 dark:text-zinc-300">
                       {currentKop.showLogoKanan ? 'Tampil' : 'Sembunyi'}
                     </span>
                   </label>
@@ -504,13 +504,13 @@ export const SettingsView: React.FC = () => {
                         className="max-h-full max-w-full object-contain"
                       />
                     ) : (
-                      <span className="text-[10px] text-zinc-400 font-bold">Tidak Aktif</span>
+                      <span className="text-[10px] text-zinc-900 font-bold">Tidak Aktif</span>
                     )}
                   </div>
 
                   <div className="flex-1 space-y-2 text-xs">
                     <div>
-                      <span className="text-[10px] font-bold text-zinc-500 uppercase">Preset Terpilih:</span>
+                      <span className="text-[10px] font-bold text-zinc-900 uppercase">Preset Terpilih:</span>
                       <p className="font-bold text-zinc-900 dark:text-zinc-100 text-xs truncate">
                         {currentKop.logoKananPreset === 'custom'
                           ? '📁 Logo Kustom (Unggahan)'
@@ -519,9 +519,9 @@ export const SettingsView: React.FC = () => {
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 mb-1">
+                      <div className="flex justify-between text-[11px] font-semibold text-zinc-800 dark:text-zinc-400 mb-1">
                         <span>Ukuran Logo:</span>
-                        <span className="font-mono font-bold text-sky-700 dark:text-sky-400">
+                        <span className="font-mono font-bold text-sky-900 dark:text-sky-400">
                           {currentKop.logoKananSize || 76} px
                         </span>
                       </div>
@@ -540,7 +540,7 @@ export const SettingsView: React.FC = () => {
 
                 {/* Pilihan Preset Logo Kanan */}
                 <div className="space-y-1.5 text-xs">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 text-[11px]">
                     Pilih Logo Resmi Kanan:
                   </label>
                   <div className="grid grid-cols-2 gap-2">
@@ -552,7 +552,7 @@ export const SettingsView: React.FC = () => {
                         className={`flex items-center gap-2 p-2 rounded-xl text-left border transition-all ${
                           currentKop.logoKananPreset === p.id
                             ? 'border-sky-600 bg-sky-50 dark:bg-sky-950/40 text-sky-950 dark:text-sky-200 font-bold shadow-xs'
-                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:border-sky-300'
+                            : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-300 hover:border-sky-300'
                         }`}
                       >
                         <img
@@ -562,7 +562,7 @@ export const SettingsView: React.FC = () => {
                         />
                         <div className="min-w-0">
                           <p className="text-[11px] font-bold leading-tight truncate">{p.name}</p>
-                          <span className="text-[9px] text-zinc-400 block truncate">{p.category}</span>
+                          <span className="text-[9px] text-zinc-900 block truncate">{p.category}</span>
                         </div>
                       </button>
                     ))}
@@ -571,7 +571,7 @@ export const SettingsView: React.FC = () => {
 
                 {/* Unggah Custom File Logo Kanan */}
                 <div className="space-y-1 text-xs">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 text-[11px]">
                     Atau Unggah Logo Kanan Sendiri (PNG / JPG / SVG):
                   </label>
                   <div className="flex gap-2">
@@ -593,7 +593,7 @@ export const SettingsView: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleSelectPresetLogo('kanan', 'tutwuri')}
-                      className="rounded-xl border border-zinc-200 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                      className="rounded-xl border border-zinc-200 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                       title="Kembalikan ke Tut Wuri Handayani"
                     >
                       Reset
@@ -616,7 +616,7 @@ export const SettingsView: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Instansi Induk Baris 1 (Pemerintah Daerah)
                   </label>
                   <input
@@ -626,11 +626,11 @@ export const SettingsView: React.FC = () => {
                     placeholder="PEMERINTAH KABUPATEN KUANTAN SINGINGI"
                     className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-medium text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
-                  <span className="text-[10px] text-zinc-400">Contoh: PEMERINTAH KABUPATEN KUANTAN SINGINGI</span>
+                  <span className="text-[10px] text-zinc-900">Contoh: PEMERINTAH KABUPATEN KUANTAN SINGINGI</span>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Instansi Baris 2 (Dinas Terkait)
                   </label>
                   <input
@@ -640,11 +640,11 @@ export const SettingsView: React.FC = () => {
                     placeholder="DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA"
                     className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
-                  <span className="text-[10px] text-zinc-400">Contoh: DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA</span>
+                  <span className="text-[10px] text-zinc-900">Contoh: DINAS PENDIDIKAN KEPEMUDAAN DAN OLAHRAGA</span>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Sub-Instansi / Korwil (Opsional)
                   </label>
                   <input
@@ -654,11 +654,11 @@ export const SettingsView: React.FC = () => {
                     placeholder="KOORDINATOR WILAYAH KECAMATAN SINGINGI HILIR"
                     className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
-                  <span className="text-[10px] text-zinc-400">Kosongkan jika tidak diperlukan</span>
+                  <span className="text-[10px] text-zinc-900">Kosongkan jika tidak diperlukan</span>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nama Satuan Pendidikan pada Kop Surat (Huruf Tebal)
                   </label>
                   <input
@@ -671,7 +671,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tipe Garis Pembatas Kop Surat
                   </label>
                   <select
@@ -687,7 +687,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Alamat Lengkap Sekolah pada Kop Surat
                   </label>
                   <input
@@ -700,7 +700,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Kode Pos
                   </label>
                   <input
@@ -713,7 +713,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Kontak / Telepon / WhatsApp
                   </label>
                   <input
@@ -726,7 +726,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Pos-el (Email Resmi Sekolah)
                   </label>
                   <input
@@ -739,7 +739,7 @@ export const SettingsView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Laman Web (Website Sekolah)
                   </label>
                   <input
@@ -761,7 +761,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'identitas') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <Building className="h-4 w-4 text-sky-600" />
+              <Building className="h-4 w-4 text-sky-800" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Identitas Satuan Pendidikan & Data Sekolah
               </h3>
@@ -769,7 +769,7 @@ export const SettingsView: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
               <div className="sm:col-span-2">
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Nama Satuan Pendidikan
                 </label>
                 <input
@@ -782,7 +782,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   NPSN
                 </label>
                 <input
@@ -795,7 +795,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   NSS
                 </label>
                 <input
@@ -808,7 +808,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Akreditasi Sekolah
                 </label>
                 <input
@@ -821,7 +821,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Tahun Pelajaran
                 </label>
                 <input
@@ -834,7 +834,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Alamat Lengkap
                 </label>
                 <input
@@ -847,7 +847,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Desa / Kelurahan
                 </label>
                 <input
@@ -860,7 +860,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Kecamatan
                 </label>
                 <input
@@ -873,7 +873,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Kabupaten
                 </label>
                 <input
@@ -886,7 +886,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Provinsi
                 </label>
                 <input
@@ -899,7 +899,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Tempat & Tanggal Kelulusan
                 </label>
                 <input
@@ -921,7 +921,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'pejabat') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <School className="h-4 w-4 text-sky-600" />
+              <School className="h-4 w-4 text-sky-800" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Pejabat Penandatangan SKHU & Ijazah
               </h3>
@@ -929,7 +929,7 @@ export const SettingsView: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Nama Kepala Sekolah
                 </label>
                 <input
@@ -942,7 +942,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   NIP Kepala Sekolah
                 </label>
                 <input
@@ -955,7 +955,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Ketua Panitia Ujian
                 </label>
                 <input
@@ -968,7 +968,7 @@ export const SettingsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   NIP Ketua Panitia
                 </label>
                 <input
@@ -989,7 +989,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'bobot') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <Sliders className="h-4 w-4 text-sky-600" />
+              <Sliders className="h-4 w-4 text-sky-800" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Formula Bobot Nilai Akhir & KKM Kelulusan
               </h3>
@@ -997,7 +997,7 @@ export const SettingsView: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Bobot Rata-rata Rapor S7-S12 (%)
                 </label>
                 <input
@@ -1009,11 +1009,11 @@ export const SettingsView: React.FC = () => {
                   onChange={handleChange}
                   className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <span className="text-[10px] text-zinc-500">Standar Nasional: 60%</span>
+                <span className="text-[10px] text-zinc-900">Standar Nasional: 60%</span>
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Bobot Nilai Ujian Sekolah / US (%)
                 </label>
                 <input
@@ -1025,11 +1025,11 @@ export const SettingsView: React.FC = () => {
                   onChange={handleChange}
                   className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <span className="text-[10px] text-zinc-500">Standar Nasional: 40%</span>
+                <span className="text-[10px] text-zinc-900">Standar Nasional: 40%</span>
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Batas Minimal Kelulusan (KKM)
                 </label>
                 <input
@@ -1042,7 +1042,7 @@ export const SettingsView: React.FC = () => {
                   onChange={handleChange}
                   className="w-full font-mono font-bold rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <span className="text-[10px] text-zinc-500">Nilai Akhir &ge; KKM dinyatakan Lulus</span>
+                <span className="text-[10px] text-zinc-900">Nilai Akhir &ge; KKM dinyatakan Lulus</span>
               </div>
             </div>
           </div>
@@ -1054,7 +1054,7 @@ export const SettingsView: React.FC = () => {
         {(activeSection === 'all' || activeSection === 'backup') && (
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4">
             <div className="flex items-center gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3">
-              <ShieldCheck className="h-4 w-4 text-sky-600" />
+              <ShieldCheck className="h-4 w-4 text-sky-800" />
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                 Cadangan & Pemulihan Basis Data (Offline First & Sync)
               </h3>
@@ -1063,7 +1063,7 @@ export const SettingsView: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50 dark:bg-zinc-800/40 space-y-2">
                 <h4 className="font-bold text-zinc-900 dark:text-zinc-100">Ekspor Cadangan (JSON)</h4>
-                <p className="text-zinc-500 text-[11px]">
+                <p className="text-zinc-900 text-[11px]">
                   Simpan seluruh database peserta, nilai rapor, US, profil sekolah, dan format kop surat.
                 </p>
                 <button
@@ -1078,7 +1078,7 @@ export const SettingsView: React.FC = () => {
 
               <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50 dark:bg-zinc-800/40 space-y-2">
                 <h4 className="font-bold text-zinc-900 dark:text-zinc-100">Pulihkan Data (JSON)</h4>
-                <p className="text-zinc-500 text-[11px]">
+                <p className="text-zinc-900 text-[11px]">
                   Muat kembali file cadangan JSON yang pernah diunduh sebelumnya.
                 </p>
                 <label className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-sky-700 px-3 py-2 text-xs font-bold text-white hover:bg-sky-800 transition-colors cursor-pointer">
@@ -1095,10 +1095,10 @@ export const SettingsView: React.FC = () => {
 
               <div className="rounded-xl border border-rose-200 dark:border-rose-900/60 p-4 bg-rose-50/50 dark:bg-rose-950/20 space-y-2">
                 <h4 className="font-bold text-rose-900 dark:text-rose-200 flex items-center gap-1.5">
-                  <AlertTriangle className="h-4 w-4 text-rose-600" />
+                  <AlertTriangle className="h-4 w-4 text-rose-800" />
                   Reset Data Pabrik
                 </h4>
-                <p className="text-zinc-500 text-[11px]">
+                <p className="text-zinc-900 text-[11px]">
                   Kembalikan seluruh data peserta, nilai rapor, dan pengaturan ke data standar SDN 006 Sungai Buluh.
                 </p>
                 <button

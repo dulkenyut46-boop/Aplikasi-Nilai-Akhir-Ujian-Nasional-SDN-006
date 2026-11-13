@@ -171,7 +171,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   {rows.length} Siswa & Wali
                 </span>
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Sesuaikan jadwal acara perpisahan, nama wali murid, serta presensi kehadiran siswa & orang tua
               </p>
             </div>
@@ -179,7 +179,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-2 text-zinc-900 hover:text-zinc-600 dark:hover:text-zinc-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -193,7 +193,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'kehadiran'
                 ? 'bg-sky-700 text-white shadow-xs'
-                : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
             <Users className="h-4 w-4" />
@@ -205,7 +205,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
               activeSubTab === 'acara'
                 ? 'bg-sky-700 text-white shadow-xs'
-                : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}
           >
             <Settings className="h-4 w-4" />
@@ -220,7 +220,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
               {/* Quick Actions & Search */}
               <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl border border-amber-300/80 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/20">
                 <div className="flex items-center gap-2">
-                  <UserCheck className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+                  <UserCheck className="h-4 w-4 text-sky-900 dark:text-sky-400" />
                   <span className="font-bold text-amber-900 dark:text-amber-200">
                     Aksi Presensi Cepat:
                   </span>
@@ -234,14 +234,14 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   </button>
                 </div>
 
-                <div className="text-zinc-500 dark:text-zinc-400 font-semibold text-[11px]">
+                <div className="text-zinc-900 dark:text-zinc-400 font-semibold text-[11px]">
                   💡 Format titik tanda tangan (1. ......., 2. .......) otomatis terisi saat dicetak
                 </div>
               </div>
 
               {/* Search Bar */}
               <div className="relative">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-900" />
                 <input
                   type="text"
                   value={search}
@@ -255,7 +255,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
               <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-xs">
                 <div className="max-h-[380px] overflow-y-auto">
                   <table className="w-full text-left text-xs border-collapse">
-                    <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
+                    <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 font-bold border-b border-zinc-200 dark:border-zinc-700 z-10">
                       <tr>
                         <th className="p-2.5 w-10 text-center">No</th>
                         <th className="p-2.5 min-w-[180px]">Nama Siswa</th>
@@ -271,7 +271,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                           key={r.id}
                           className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
                         >
-                          <td className="p-2 text-center font-bold font-mono text-zinc-500">
+                          <td className="p-2 text-center font-bold font-mono text-zinc-900">
                             {idx + 1}
                           </td>
                           <td className="p-2 font-bold uppercase text-zinc-900 dark:text-zinc-100">
@@ -295,7 +295,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                               className={`rounded-lg border px-2 py-1 text-xs font-bold ${
                                 r.kehadiranSiswa === 'Hadir'
                                   ? 'border-sky-500 bg-sky-50 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
-                                  : 'border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
+                                  : 'border-zinc-300 bg-white text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                               }`}
                             >
                               <option value="Hadir">Hadir</option>
@@ -313,7 +313,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                               className={`rounded-lg border px-2 py-1 text-xs font-bold ${
                                 r.kehadiranWali === 'Hadir'
                                   ? 'border-sky-500 bg-sky-50 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300'
-                                  : 'border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
+                                  : 'border-zinc-300 bg-white text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                               }`}
                             >
                               <option value="Hadir">Hadir</option>
@@ -343,7 +343,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
           {activeSubTab === 'acara' && (
             <div className="space-y-4">
               <div className="p-3 bg-sky-50 dark:bg-sky-950/30 rounded-xl border border-sky-200 dark:border-sky-800 text-sky-900 dark:text-sky-200 font-semibold text-[11px] flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-600" />
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-sky-800" />
                 <span>
                   Informasi Jadwal Acara Perpisahan, Tempat, dan Titimangsa Lembar Presensi
                 </span>
@@ -351,7 +351,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Judul Naskah Dokumen:
                   </label>
                   <input
@@ -362,7 +362,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Sub Judul / Keterangan:
                   </label>
                   <input
@@ -376,7 +376,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Hari & Tanggal Pelaksanaan:
                   </label>
                   <input
@@ -388,7 +388,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Waktu / Jam Pelaksanaan:
                   </label>
                   <input
@@ -400,7 +400,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Acara:
                   </label>
                   <input
@@ -415,7 +415,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5">
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tempat Titimangsa:
                   </label>
                   <input
@@ -427,7 +427,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Tanggal Titimangsa Pengesahan:
                   </label>
                   <input
@@ -439,7 +439,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     Nama Kepala Sekolah:
                   </label>
                   <input
@@ -450,7 +450,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                     NIP Kepala Sekolah:
                   </label>
                   <input
@@ -470,7 +470,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
           <button
             type="button"
             onClick={handleResetToDefault}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-750 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3.5 py-2 text-xs font-semibold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-750 transition-colors"
           >
             <RotateCcw className="h-4 w-4" />
             Reset Default
@@ -480,7 +480,7 @@ export const EditPerpisahanModal: React.FC<EditPerpisahanModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               Batal
             </button>

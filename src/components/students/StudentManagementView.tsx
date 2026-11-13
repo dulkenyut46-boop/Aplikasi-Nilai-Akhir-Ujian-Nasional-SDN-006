@@ -121,12 +121,12 @@ export const StudentManagementView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div>
           <div className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-sky-600" />
+            <Users className="h-5 w-5 text-sky-800" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Data Pokok Peserta Ujian Nasional (Data PD)
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Total {students.length} peserta terdaftar di SDN 006 Sungai Buluh, Singingi Hilir
           </p>
         </div>
@@ -137,15 +137,15 @@ export const StudentManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors"
             title="Kelola pas foto resmi siswa untuk denah, kartu ujian, dan ijazah"
           >
-            <Camera className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+            <Camera className="h-4 w-4 text-sky-900 dark:text-sky-400" />
             Foto Siswa ({students.filter((s) => Boolean(s.foto)).length}/{students.length})
           </button>
           <button
             onClick={downloadStudentExcelTemplate}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
             title="Unduh format template Excel (.xlsx) untuk data siswa"
           >
-            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Template Excel (.xlsx)
           </button>
           <button
@@ -153,7 +153,7 @@ export const StudentManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors"
             title="Impor data siswa dari berkas Excel (.xlsx) / CSV"
           >
-            <Upload className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+            <Upload className="h-4 w-4 text-sky-900 dark:text-sky-400" />
             Impor Data Siswa
           </button>
           <button
@@ -161,14 +161,14 @@ export const StudentManagementView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak daftar peserta ujian (DNT, Biodata, Presensi)"
           >
-            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <Printer className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Menu Cetak Peserta
           </button>
           <button
             onClick={exportToCSV}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors"
           >
-            <Download className="h-4 w-4 text-sky-600" />
+            <Download className="h-4 w-4 text-sky-800" />
             Ekspor CSV
           </button>
           <button
@@ -188,7 +188,7 @@ export const StudentManagementView: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         {/* Search Input */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
           <input
             type="text"
             placeholder="Cari Nama / NISN / No Ujian..."
@@ -253,7 +253,7 @@ export const StudentManagementView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-zinc-200 bg-zinc-50/70 text-zinc-600 dark:border-zinc-800 dark:bg-zinc-800/60 dark:text-zinc-300 font-bold uppercase tracking-wider">
+            <thead className="border-b border-zinc-200 bg-zinc-50/70 text-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/60 dark:text-zinc-300 font-bold uppercase tracking-wider">
               <tr>
                 <th className="p-3.5 w-12 text-center">No</th>
                 <th className="p-3.5">Nama Peserta Ujian</th>
@@ -271,7 +271,7 @@ export const StudentManagementView: React.FC = () => {
             <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
               {paginatedStudents.length === 0 ? (
                 <tr>
-                  <td colSpan={11} className="p-8 text-center text-zinc-500">
+                  <td colSpan={11} className="p-8 text-center text-zinc-900">
                     Tidak ada data siswa yang cocok dengan filter pencarian.
                   </td>
                 </tr>
@@ -283,7 +283,7 @@ export const StudentManagementView: React.FC = () => {
                       key={s.id}
                       className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors"
                     >
-                      <td className="p-3.5 text-center font-bold text-zinc-500">{globalIdx}</td>
+                      <td className="p-3.5 text-center font-bold text-zinc-900">{globalIdx}</td>
                       <td className="p-3.5">
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-8 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 shrink-0 flex items-center justify-center">
@@ -301,15 +301,15 @@ export const StudentManagementView: React.FC = () => {
                             >
                               {s.nama}
                             </button>
-                            <div className="text-[11px] text-zinc-500">{s.alamat}</div>
+                            <div className="text-[11px] text-zinc-900">{s.alamat}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="p-3.5 font-mono text-zinc-700 dark:text-zinc-300">
+                      <td className="p-3.5 font-mono text-zinc-900 dark:text-zinc-300">
                         <div className="font-semibold text-sky-800 dark:text-sky-300">
                           {s.noPeserta}
                         </div>
-                        <div className="text-[10px] text-zinc-400">NISN: {s.nisn}</div>
+                        <div className="text-[10px] text-zinc-900">NISN: {s.nisn}</div>
                       </td>
                       <td className="p-3.5">
                         <span
@@ -322,23 +322,23 @@ export const StudentManagementView: React.FC = () => {
                           {s.jenisKelamin}
                         </span>
                       </td>
-                      <td className="p-3.5 text-zinc-700 dark:text-zinc-300">
+                      <td className="p-3.5 text-zinc-900 dark:text-zinc-300">
                         <div>{s.tempatLahir}</div>
-                        <div className="text-[11px] text-zinc-400">{s.tanggalLahir}</div>
+                        <div className="text-[11px] text-zinc-900">{s.tanggalLahir}</div>
                       </td>
                       <td className="p-3.5">
                         <div className="font-semibold text-zinc-800 dark:text-zinc-200">{s.ruang}</div>
-                        <div className="text-[11px] text-sky-600 dark:text-sky-400 font-bold">
+                        <div className="text-[11px] text-sky-800 dark:text-sky-400 font-bold">
                           Meja #{s.noMeja}
                         </div>
                       </td>
                       <td className="p-3.5 font-mono text-zinc-800 dark:text-zinc-200 font-semibold">
                         {s.noSeriIjazah || '-'}
                       </td>
-                      <td className="p-3.5 font-mono text-zinc-700 dark:text-zinc-300">
+                      <td className="p-3.5 font-mono text-zinc-900 dark:text-zinc-300">
                         {s.noSuratKelulusan || '-'}
                       </td>
-                      <td className="p-3.5 font-mono text-zinc-700 dark:text-zinc-300">
+                      <td className="p-3.5 font-mono text-zinc-900 dark:text-zinc-300">
                         {s.noSuratTranskrip || '-'}
                       </td>
                       <td className="p-3.5 text-center">
@@ -351,7 +351,7 @@ export const StudentManagementView: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => setSelectedStudentForDetail(s)}
-                            className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 hover:text-sky-700 dark:hover:bg-zinc-800 dark:hover:text-sky-400 transition-colors"
+                            className="rounded-lg p-1.5 text-zinc-900 hover:bg-zinc-100 hover:text-sky-700 dark:hover:bg-zinc-800 dark:hover:text-sky-400 transition-colors"
                             title="Lihat Profil Lengkap"
                           >
                             <Eye className="h-4 w-4" />
@@ -359,7 +359,7 @@ export const StudentManagementView: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => handleEdit(s)}
-                            className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 hover:text-blue-600 dark:hover:bg-zinc-800 dark:hover:text-blue-400 transition-colors"
+                            className="rounded-lg p-1.5 text-zinc-900 hover:bg-zinc-100 hover:text-blue-600 dark:hover:bg-zinc-800 dark:hover:text-blue-400 transition-colors"
                             title="Edit Biodata"
                           >
                             <Edit2 className="h-4 w-4" />
@@ -367,7 +367,7 @@ export const StudentManagementView: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => handleDelete(s)}
-                            className="rounded-lg p-1.5 text-zinc-500 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-zinc-800 dark:hover:text-rose-400 transition-colors"
+                            className="rounded-lg p-1.5 text-zinc-900 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-zinc-800 dark:hover:text-rose-400 transition-colors"
                             title="Hapus Siswa"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -384,7 +384,7 @@ export const StudentManagementView: React.FC = () => {
 
         {/* Pagination Footer */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-900">
-          <div className="text-xs text-zinc-500">
+          <div className="text-xs text-zinc-900">
             Menampilkan {(currentPage - 1) * itemsPerPage + 1} -{' '}
             {Math.min(currentPage * itemsPerPage, filteredStudents.length)} dari {filteredStudents.length} peserta
           </div>
@@ -393,17 +393,17 @@ export const StudentManagementView: React.FC = () => {
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+              className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
             >
               <ChevronLeft className="h-3.5 w-3.5" /> Sebelumnya
             </button>
-            <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 px-2">
+            <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300 px-2">
               Hal {currentPage} dari {totalPages}
             </span>
             <button
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+              className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
             >
               Berikutnya <ChevronRight className="h-3.5 w-3.5" />
             </button>
@@ -491,7 +491,7 @@ export const StudentManagementView: React.FC = () => {
               {printFormat === 'presensi' && 'DAFTAR HADIR & VERIFIKASI PESERTA UJIAN NASIONAL'}
               {printFormat === 'rekap' && 'REKAPITULASI JUMLAH PESERTA UJIAN PER RUANGAN'}
             </h3>
-            <p className="text-xs font-bold text-zinc-700">
+            <p className="text-xs font-bold text-zinc-900">
               {schoolProfile.namaSekolah} • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
               {printRoom !== 'ALL' && ` • ${printRoom}`}
             </p>
@@ -549,9 +549,9 @@ export const StudentManagementView: React.FC = () => {
                   <div className="flex-1 space-y-0.5 text-[11px] min-w-0">
                     <div className="font-extrabold uppercase text-black truncate">{s.nama}</div>
                     <div className="font-mono text-zinc-800 font-bold">{s.noPeserta}</div>
-                    <div className="text-zinc-700">NISN: {s.nisn} • {s.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}</div>
-                    <div className="text-zinc-600 truncate">{s.tempatLahir}, {s.tanggalLahir}</div>
-                    <div className="text-zinc-600 truncate">Ortu: {s.namaAyah}</div>
+                    <div className="text-zinc-900">NISN: {s.nisn} • {s.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}</div>
+                    <div className="text-zinc-800 truncate">{s.tempatLahir}, {s.tanggalLahir}</div>
+                    <div className="text-zinc-800 truncate">Ortu: {s.namaAyah}</div>
                     <div className="font-bold text-black">{s.ruang} • No. Meja #{s.noMeja}</div>
                   </div>
                 </div>
@@ -582,10 +582,10 @@ export const StudentManagementView: React.FC = () => {
                       <td className="p-2 font-bold uppercase border-r border-black">{s.nama}</td>
                       <td className="p-2 text-center border-r border-black">{s.jenisKelamin}</td>
                       <td className="p-2 border-r border-black">
-                        {idx % 2 === 0 ? <span className="text-[10px] text-zinc-500">{idx + 1}. ....................</span> : ''}
+                        {idx % 2 === 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. ....................</span> : ''}
                       </td>
                       <td className="p-2 border-r border-black">
-                        {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-500">{idx + 1}. ....................</span> : ''}
+                        {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. ....................</span> : ''}
                       </td>
                       <td className="p-2 text-center font-bold text-[10px]">HADIR</td>
                     </tr>
@@ -652,7 +652,7 @@ export const StudentManagementView: React.FC = () => {
               <span>Perempuan (P): <b>{printStudents.filter((s) => s.jenisKelamin === 'P').length}</b></span>
               <span>Total Peserta: <b>{printStudents.length} siswa</b></span>
             </div>
-            <div className="text-[11px] text-zinc-500">
+            <div className="text-[11px] text-zinc-900">
               Dicetak tanggal: {new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
           </div>
@@ -663,14 +663,14 @@ export const StudentManagementView: React.FC = () => {
               <p className="font-semibold text-zinc-800">Ketua Panitia Ujian,</p>
               <div className="h-16"></div>
               <p className="font-bold underline uppercase text-black">{schoolProfile.ketuaPanitia}</p>
-              <p className="font-mono text-[11px] text-zinc-700">NIP. {schoolProfile.nipKetuaPanitia}</p>
+              <p className="font-mono text-[11px] text-zinc-900">NIP. {schoolProfile.nipKetuaPanitia}</p>
             </div>
             <div className="text-right">
-              <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
+              <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
               <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
               <div className="h-16"></div>
               <p className="font-bold underline uppercase text-black">{schoolProfile.kepalaSekolah}</p>
-              <p className="font-mono text-[11px] text-zinc-700">NIP. {schoolProfile.nipKepalaSekolah}</p>
+              <p className="font-mono text-[11px] text-zinc-900">NIP. {schoolProfile.nipKepalaSekolah}</p>
             </div>
           </div>
         </div>

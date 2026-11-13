@@ -494,10 +494,10 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-sky-900 dark:text-sky-200 flex items-center gap-2">
-                <FileSpreadsheet className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+                <FileSpreadsheet className="h-4 w-4 text-sky-900 dark:text-sky-400" />
                 Pilihan Jenis Nilai & Template
               </h4>
-              <p className="text-[11px] text-sky-700/80 dark:text-sky-300/80">
+              <p className="text-[11px] text-sky-900/80 dark:text-sky-300/80">
                 Tentukan target nilai yang akan diimpor atau unduh template Excel sesuai kebutuhan
               </p>
             </div>
@@ -527,7 +527,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-sky-200/60 dark:border-sky-800/60">
             {/* Target Category */}
             <div>
-              <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+              <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                 Kategori Nilai:
               </label>
               <select
@@ -546,7 +546,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             {/* Target Semester (if Rapor) */}
             {category === 'rapor' && (
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Pilih Semester Rapor:
                 </label>
                 <select
@@ -567,7 +567,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             {/* Available Sheets Switcher if workbook has multiple */}
             {availableSheets.length > 1 && (
               <div>
-                <label className="block text-[11px] font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-[11px] font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Lembar Kerja (Sheet) Terdeteksi:
                 </label>
                 <select
@@ -593,8 +593,8 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             onClick={() => setInputMode('upload')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
               inputMode === 'upload'
-                ? 'border-sky-600 text-sky-700 dark:text-sky-400'
-                : 'border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                ? 'border-sky-600 text-sky-900 dark:text-sky-400'
+                : 'border-transparent text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-300'
             }`}
           >
             <Upload className="h-4 w-4" />
@@ -605,8 +605,8 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             onClick={() => setInputMode('paste')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-bold border-b-2 transition-colors ${
               inputMode === 'paste'
-                ? 'border-sky-600 text-sky-700 dark:text-sky-400'
-                : 'border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                ? 'border-sky-600 text-sky-900 dark:text-sky-400'
+                : 'border-transparent text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-300'
             }`}
           >
             <ClipboardPaste className="h-4 w-4" />
@@ -628,13 +628,13 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
               htmlFor="grade-excel-upload"
               className="cursor-pointer flex flex-col items-center justify-center space-y-2"
             >
-              <div className="rounded-2xl bg-sky-100 p-3 text-sky-700 dark:bg-sky-950 dark:text-sky-400">
+              <div className="rounded-2xl bg-sky-100 p-3 text-sky-900 dark:bg-sky-950 dark:text-sky-400">
                 <FileSpreadsheet className="h-8 w-8" />
               </div>
               <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
                 {fileName ? fileName : 'Klik di sini atau Seret file Excel (.xlsx / .csv)'}
               </span>
-              <span className="text-[11px] text-zinc-500 max-w-sm">
+              <span className="text-[11px] text-zinc-900 max-w-sm">
                 Mendukung template resmi atau format Excel dari guru mapel / wali kelas. Sistem otomatis mencocokkan Nama & No Peserta.
               </span>
             </label>
@@ -678,7 +678,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                     {unmatchedCount} Tidak Cocok
                   </Badge>
                 )}
-                <span className="text-xs text-zinc-500">
+                <span className="text-xs text-zinc-900">
                   Total {parsedRows.length} baris
                 </span>
               </div>
@@ -691,7 +691,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-md ${
                     filterTab === 'all'
                       ? 'bg-sky-700 text-white'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   Semua ({parsedRows.length})
@@ -702,7 +702,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-md ${
                     filterTab === 'matched'
                       ? 'bg-sky-700 text-white'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   Cocok ({matchedCount})
@@ -713,7 +713,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-md ${
                     filterTab === 'unmatched'
                       ? 'bg-amber-600 text-white'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   Belum Cocok ({unmatchedCount})
@@ -724,7 +724,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
             {/* Preview Table */}
             <div className="max-h-60 overflow-y-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
               <table className="w-full text-left text-xs">
-                <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+                <thead className="sticky top-0 bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                   <tr>
                     <th className="p-2.5 w-10 text-center">No</th>
                     <th className="p-2.5">Identitas pada Berkas</th>
@@ -743,7 +743,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                           : 'bg-amber-50/50 dark:bg-amber-950/20'
                       }
                     >
-                      <td className="p-2.5 text-center text-zinc-400 font-bold">
+                      <td className="p-2.5 text-center text-zinc-900 font-bold">
                         {i + 1}
                       </td>
                       <td className="p-2.5">
@@ -753,18 +753,18 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                       </td>
                       <td className="p-2.5">
                         {r.isMatched ? (
-                          <div className="flex items-center gap-1.5 text-sky-700 dark:text-sky-400 font-semibold text-[11px]">
+                          <div className="flex items-center gap-1.5 text-sky-900 dark:text-sky-400 font-semibold text-[11px]">
                             <CheckCircle2 className="h-3.5 w-3.5" />
                             <span>{r.matchedStudentName}</span>
                           </div>
                         ) : (
-                          <div className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 text-[11px]">
+                          <div className="flex items-center gap-1.5 text-amber-800 dark:text-amber-400 text-[11px]">
                             <AlertTriangle className="h-3.5 w-3.5" />
                             <span>Tidak ditemukan di DNT</span>
                           </div>
                         )}
                       </td>
-                      <td className="p-2.5 font-semibold text-zinc-700 dark:text-zinc-300">
+                      <td className="p-2.5 font-semibold text-zinc-900 dark:text-zinc-300">
                         {Object.keys(r.scores).length} mapel
                       </td>
                       <td className="p-2.5">
@@ -778,7 +778,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
                             </span>
                           ))}
                           {Object.entries(r.scores).length > 6 && (
-                            <span className="text-[10px] text-zinc-400 self-center">
+                            <span className="text-[10px] text-zinc-900 self-center">
                               +{Object.entries(r.scores).length - 6} lainnya
                             </span>
                           )}
@@ -797,7 +797,7 @@ export const ImportGradesModal: React.FC<ImportGradesModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Batal
           </button>

@@ -308,12 +308,12 @@ export const ExamToolsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4 print:hidden">
         <div>
           <div className="flex items-center gap-2">
-            <Layers className="h-5 w-5 text-sky-600" />
+            <Layers className="h-5 w-5 text-sky-800" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Perangkat Ujian, Denah Ruang & Panitia Pengawas
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Kelengkapan teknis operasional ujian nasional/sekolah SDN 006 Sungai Buluh (TPU VI Singingi Hilir)
           </p>
         </div>
@@ -331,7 +331,7 @@ export const ExamToolsView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak seluruh dokumen perangkat & ruang ujian"
           >
-            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <Printer className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Menu Cetak Perangkat & Ruang
           </button>
           <button
@@ -358,7 +358,7 @@ export const ExamToolsView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-4.5 dark:border-zinc-800 dark:bg-zinc-900 shadow-xs print:hidden space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
-            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <Printer className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             <span className="text-xs font-bold uppercase tracking-wide text-zinc-800 dark:text-zinc-200">
               Navigasi Menu Cetak & Edit Dokumen Ujian
             </span>
@@ -367,7 +367,7 @@ export const ExamToolsView: React.FC = () => {
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 mr-1">
+            <span className="text-[11px] font-semibold text-zinc-900 dark:text-zinc-400 mr-1">
               Menu Edit Cepat:
             </span>
             <button
@@ -467,19 +467,19 @@ export const ExamToolsView: React.FC = () => {
                       className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
                         isTabActive
                           ? 'bg-sky-700 text-white shadow-xs'
-                          : 'bg-zinc-200/80 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300'
+                          : 'bg-zinc-200/80 text-zinc-900 dark:bg-zinc-700 dark:text-zinc-300'
                       }`}
                     >
                       <Icon className="h-4 w-4" />
                     </span>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/80 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300">
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/80 text-zinc-900 dark:bg-zinc-700 dark:text-zinc-300">
                       {item.format}
                     </span>
                   </div>
                   <h4 className="font-extrabold text-xs text-zinc-900 dark:text-zinc-100 leading-snug">
                     {item.title}
                   </h4>
-                  <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-1">
+                  <p className="text-[10px] text-zinc-900 dark:text-zinc-400 mt-0.5 line-clamp-1">
                     {item.subtitle}
                   </p>
                 </div>
@@ -500,7 +500,7 @@ export const ExamToolsView: React.FC = () => {
                         Edit
                       </button>
                     ) : (
-                      <span className="text-[10px] font-bold text-zinc-400">
+                      <span className="text-[10px] font-bold text-zinc-900">
                         {isTabActive ? '● Aktif' : 'Pilih'}
                       </span>
                     )}
@@ -554,7 +554,7 @@ export const ExamToolsView: React.FC = () => {
               className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
                   ? 'bg-sky-800 text-white shadow-sm ring-1 ring-sky-500 border-sky-600'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
+                  : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
               <button
@@ -589,7 +589,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`p-1 rounded-lg transition-all ${
                     isActive
                       ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
-                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                      : 'text-amber-800 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
                   }`}
                   title="Menu Edit Pengawas TPU VI"
                   aria-label="Menu Edit Pengawas TPU VI"
@@ -607,7 +607,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`p-1 rounded-lg transition-all ${
                     isActive
                       ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
-                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                      : 'text-amber-800 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
                   }`}
                   title="Menu Edit Susunan Panitia"
                   aria-label="Menu Edit Susunan Panitia"
@@ -625,7 +625,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`p-1 rounded-lg transition-all ${
                     isActive
                       ? 'bg-amber-400 text-zinc-950 hover:bg-amber-300'
-                      : 'text-amber-600 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
+                      : 'text-amber-800 hover:text-amber-700 hover:bg-white dark:hover:bg-zinc-700'
                   }`}
                   title="Menu Edit Berita Acara Pelaksanaan"
                   aria-label="Menu Edit Berita Acara Pelaksanaan"
@@ -645,7 +645,7 @@ export const ExamToolsView: React.FC = () => {
                 className={`mr-1.5 p-1 rounded-lg transition-all ${
                   isActive
                     ? 'bg-sky-700 hover:bg-sky-600 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
+                    : 'text-zinc-900 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
                 }`}
                 title={`Cetak ${tab.label}`}
                 aria-label={`Menu Cetak ${tab.label}`}
@@ -661,7 +661,7 @@ export const ExamToolsView: React.FC = () => {
       {['denah', 'label-meja', 'kartu', 'hadir', 'nilai', 'berita'].includes(activeSubTab) && (
         <div className="flex items-center justify-between bg-zinc-50 dark:bg-zinc-800/60 p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 print:hidden">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Pilih Ruangan:</span>
+            <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">Pilih Ruangan:</span>
             {(['RUANG 1', 'RUANG 2', 'RUANG 3', 'RUANG 4'] as const).map((r) => (
               <button
                 key={r}
@@ -669,7 +669,7 @@ export const ExamToolsView: React.FC = () => {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                   selectedRoom === r
                     ? 'bg-sky-700 text-white'
-                    : 'bg-white dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-600'
+                    : 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-600'
                 }`}
               >
                 {r}
@@ -677,7 +677,7 @@ export const ExamToolsView: React.FC = () => {
             ))}
           </div>
 
-          <div className="text-xs text-zinc-500 font-medium">
+          <div className="text-xs text-zinc-900 font-medium">
             {roomStudents.length} Peserta Terdaftar di {selectedRoom}
           </div>
         </div>
@@ -696,7 +696,7 @@ export const ExamToolsView: React.FC = () => {
                 <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Denah Ruang Ujian ({selectedRoom})
                 </h4>
-                <p className="text-[11px] text-sky-700 dark:text-sky-300">
+                <p className="text-[11px] text-sky-900 dark:text-sky-300">
                   {roomStudents.length} peserta terdaftar di {selectedRoom} • Siap cetak lembar format A4 landscape
                 </p>
               </div>
@@ -717,7 +717,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-sky-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-800" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -728,7 +728,7 @@ export const ExamToolsView: React.FC = () => {
             <h3 className="text-base font-extrabold uppercase text-zinc-900 dark:text-zinc-50">
               DENAH PENATAAN TEMPAT DUDUK PESERTA UJIAN NASIONAL
             </h3>
-            <p className="text-xs text-zinc-500 font-semibold mt-1">
+            <p className="text-xs text-zinc-900 font-semibold mt-1">
               {selectedRoom} • {schoolProfile.namaSekolah} • TP {schoolProfile.tahunPelajaran}
             </p>
           </div>
@@ -747,7 +747,7 @@ export const ExamToolsView: React.FC = () => {
                 ))}
               </div>
             </div>
-            <span className="text-[10px] text-zinc-400 font-bold mt-1.5 uppercase">
+            <span className="text-[10px] text-zinc-900 font-bold mt-1.5 uppercase">
               ▲ BAGIAN DEPAN RUANGAN ▲
             </span>
           </div>
@@ -760,7 +760,7 @@ export const ExamToolsView: React.FC = () => {
                 className="flex flex-col justify-between rounded-xl border-2 border-sky-600/60 bg-sky-50/40 p-3 shadow-xs dark:border-sky-800 dark:bg-sky-950/20 text-center hover:scale-[1.02] transition-transform"
               >
                 <div className="flex items-center justify-between border-b border-sky-200 dark:border-sky-800 pb-1.5 mb-2">
-                  <span className="text-[10px] font-bold text-zinc-500">MEJA #{s.noMeja}</span>
+                  <span className="text-[10px] font-bold text-zinc-900">MEJA #{s.noMeja}</span>
                   <span
                     className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded ${
                       s.jenisKelamin === 'L'
@@ -786,17 +786,17 @@ export const ExamToolsView: React.FC = () => {
                   <div className="text-[10px] font-mono text-sky-800 dark:text-sky-300 font-semibold mt-0.5">
                     {s.noPeserta}
                   </div>
-                  <div className="text-[9px] text-zinc-400">NISN: {s.nisn}</div>
+                  <div className="text-[9px] text-zinc-900">NISN: {s.nisn}</div>
                 </div>
 
-                <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-500 font-medium">
+                <div className="border-t border-sky-200 dark:border-sky-800 pt-1 text-[9px] text-zinc-900 font-medium">
                   SDN 006 Sungai Buluh
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center text-[10px] text-zinc-400 font-bold uppercase pt-2">
+          <div className="flex justify-center text-[10px] text-zinc-900 font-bold uppercase pt-2">
             ▼ PINTU MASUK / KELUAR RUANGAN ▼
           </div>
         </div>
@@ -810,7 +810,7 @@ export const ExamToolsView: React.FC = () => {
               <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase">
                 Label Nomor Meja Peserta Ujian ({selectedRoom})
               </h3>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-zinc-900">
                 Format stiker/kartu meja peserta siap cetak dan tempel di atas meja ujian
               </p>
             </div>
@@ -831,7 +831,7 @@ export const ExamToolsView: React.FC = () => {
               >
                 {/* Header Kop Mini */}
                 <div className="border-b border-zinc-300 dark:border-zinc-700 pb-1.5 mb-2">
-                  <div className="text-[8.5px] font-bold uppercase text-zinc-500">
+                  <div className="text-[8.5px] font-bold uppercase text-zinc-900">
                     {schoolProfile.namaSekolah} • TP {schoolProfile.tahunPelajaran}
                   </div>
                   <div className="text-[10px] font-black uppercase text-sky-950 dark:text-sky-400">
@@ -856,12 +856,12 @@ export const ExamToolsView: React.FC = () => {
                   <div className="min-w-0 text-[10px] leading-tight space-y-0.5">
                     <p className="font-extrabold uppercase text-zinc-900 dark:text-zinc-50 truncate">{s.nama}</p>
                     <p className="font-mono font-bold text-sky-800 dark:text-sky-400">{s.noPeserta}</p>
-                    <p className="text-zinc-500">NISN: {s.nisn}</p>
-                    <p className="font-semibold text-zinc-700 dark:text-zinc-300">{s.ruang}</p>
+                    <p className="text-zinc-900">NISN: {s.nisn}</p>
+                    <p className="font-semibold text-zinc-900 dark:text-zinc-300">{s.ruang}</p>
                   </div>
                 </div>
 
-                <div className="border-t border-dashed border-zinc-300 dark:border-zinc-700 pt-1 text-[8px] text-zinc-400">
+                <div className="border-t border-dashed border-zinc-300 dark:border-zinc-700 pt-1 text-[8px] text-zinc-900">
                   *Gunting sesuai garis putus-putus & tempel di meja
                 </div>
               </div>
@@ -887,7 +887,7 @@ export const ExamToolsView: React.FC = () => {
                       Standar DNT Kemdikbud
                     </span>
                   </h3>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                  <p className="text-xs text-zinc-900 dark:text-zinc-400 mt-0.5">
                     Kartu ujian resmi dilengkapi pas foto 2x3, nomor DNT berformat resmi, barcode verifikasi digital, stempel sekolah, dan pengesahan kepala sekolah
                   </p>
                 </div>
@@ -901,7 +901,7 @@ export const ExamToolsView: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-300 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-900 dark:text-indigo-200 px-3.5 py-2 text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-95"
                   title="Unggah dan edit gambar tanda tangan serta cap stempel sekolah"
                 >
-                  <FileSignature className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                  <FileSignature className="h-4 w-4 text-indigo-800 dark:text-indigo-400" />
                   <span>Upload & Edit TTD / Stempel</span>
                 </button>
                 <button
@@ -916,10 +916,10 @@ export const ExamToolsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => openPrintPreview('kartu')}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-3.5 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-200 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-3.5 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-200 transition-colors cursor-pointer"
                   title="Buka lembar cetak 6 kartu per halaman untuk langsung dicetak"
                 >
-                  <Printer className="h-3.5 w-3.5 text-zinc-500" />
+                  <Printer className="h-3.5 w-3.5 text-zinc-900" />
                   <span>Cetak Langsung (6/Lembar)</span>
                 </button>
               </div>
@@ -928,14 +928,14 @@ export const ExamToolsView: React.FC = () => {
             {/* Model Tata Letak Kartu (Classic vs Modern) */}
             <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/60 p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-start sm:items-center gap-2.5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950/70 text-sky-700 dark:text-sky-300">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950/70 text-sky-900 dark:text-sky-300">
                   <LayoutTemplate className="h-4 w-4" />
                 </span>
                 <div>
                   <span className="font-bold text-xs text-zinc-800 dark:text-zinc-200 block">
                     Model Tata Letak Kartu Cetak (Layout Desain)
                   </span>
-                  <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                  <span className="text-[11px] text-zinc-900 dark:text-zinc-400">
                     Pilih tampilan <b>Modern</b> (kop gradien & blok warna) atau <b>Klasik</b> (format surat resmi kedinasan bergaris ganda & tabel titik dua)
                   </span>
                 </div>
@@ -948,7 +948,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                     kartuLayout === 'modern'
                       ? 'bg-sky-700 text-white shadow-xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                      : 'text-zinc-800 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
                   }`}
                 >
                   <Sparkles className="h-3.5 w-3.5" />
@@ -960,7 +960,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                     kartuLayout === 'classic'
                       ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                      : 'text-zinc-800 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
                   }`}
                 >
                   <FileText className="h-3.5 w-3.5" />
@@ -974,8 +974,8 @@ export const ExamToolsView: React.FC = () => {
               {/* 1. Theme Selector */}
               <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <Palette className="h-3.5 w-3.5 text-sky-600" />
+                  <span className="font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                    <Palette className="h-3.5 w-3.5 text-sky-800" />
                     <span>Gaya / Tema Desain</span>
                   </span>
                 </div>
@@ -986,7 +986,7 @@ export const ExamToolsView: React.FC = () => {
                     className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
                       kartuTheme === 'emerald'
                         ? 'bg-emerald-700 text-white shadow-xs'
-                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                     }`}
                   >
                     <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
@@ -998,7 +998,7 @@ export const ExamToolsView: React.FC = () => {
                     className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
                       kartuTheme === 'blue'
                         ? 'bg-blue-800 text-white shadow-xs'
-                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                     }`}
                   >
                     <span className="h-2 w-2 rounded-full bg-blue-400 shrink-0" />
@@ -1010,7 +1010,7 @@ export const ExamToolsView: React.FC = () => {
                     className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
                       kartuTheme === 'gold'
                         ? 'bg-amber-800 text-white shadow-xs'
-                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                     }`}
                   >
                     <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0" />
@@ -1022,7 +1022,7 @@ export const ExamToolsView: React.FC = () => {
                     className={`px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all text-left truncate flex items-center gap-1.5 ${
                       kartuTheme === 'monochrome'
                         ? 'bg-zinc-900 text-white shadow-xs'
-                        : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                        : 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                     }`}
                   >
                     <span className="h-2 w-2 rounded-full bg-zinc-400 shrink-0" />
@@ -1036,18 +1036,18 @@ export const ExamToolsView: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
-                      <Stamp className="h-3.5 w-3.5 text-indigo-600" />
+                      <Stamp className="h-3.5 w-3.5 text-indigo-800" />
                       <span>Pengesahan TTD & Stempel</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setIsEditTtdStempelOpen(true)}
-                      className="text-[10px] text-indigo-700 dark:text-indigo-400 font-bold hover:underline cursor-pointer"
+                      className="text-[10px] text-indigo-900 dark:text-indigo-400 font-bold hover:underline cursor-pointer"
                     >
                       Ubah / Edit
                     </button>
                   </div>
-                  <div className="text-[10px] text-zinc-600 dark:text-zinc-400 mt-1 space-y-0.5">
+                  <div className="text-[10px] text-zinc-800 dark:text-zinc-400 mt-1 space-y-0.5">
                     <div className="truncate">
                       <b>TTD:</b> {ttdStempelConfig.showSignature ? (ttdStempelConfig.signatureType === 'upload' ? 'Gambar Unggahan' : ttdStempelConfig.signatureType === 'draw' ? 'Goresan Kanvas' : ttdStempelConfig.signatureType === 'digital' ? 'Vektor Dinas' : 'Manual Basah') : 'Disembunyikan'}
                     </div>
@@ -1074,7 +1074,7 @@ export const ExamToolsView: React.FC = () => {
                     className={`py-1.5 px-2.5 rounded-lg font-bold text-[10.5px] transition-colors cursor-pointer text-center ${
                       kartuShowStamp
                         ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-200'
-                        : 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300'
+                        : 'bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-300'
                     }`}
                     title="Toggle cepat tampilkan/sembunyikan stempel"
                   >
@@ -1086,11 +1086,11 @@ export const ExamToolsView: React.FC = () => {
               {/* 3. Toggle Barcode Verifikasi */}
               <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
                 <div>
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <QrCode className="h-3.5 w-3.5 text-sky-600" />
+                  <span className="font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                    <QrCode className="h-3.5 w-3.5 text-sky-800" />
                     <span>Barcode Otentikasi</span>
                   </span>
-                  <p className="text-[10px] text-zinc-500 mt-1">
+                  <p className="text-[10px] text-zinc-900 mt-1">
                     Barcode presisi DNT di bawah pas foto untuk verifikasi pengawas ujian
                   </p>
                 </div>
@@ -1100,7 +1100,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
                     kartuShowBarcode
                       ? 'bg-sky-700 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
+                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   {kartuShowBarcode ? '✓ Barcode Aktif' : '✗ Sembunyikan Barcode'}
@@ -1110,11 +1110,11 @@ export const ExamToolsView: React.FC = () => {
               {/* 4. Toggle Watermark Keamanan */}
               <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850/60 flex flex-col justify-between">
                 <div>
-                  <span className="font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <ShieldCheck className="h-3.5 w-3.5 text-amber-600" />
+                  <span className="font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                    <ShieldCheck className="h-3.5 w-3.5 text-amber-800" />
                     <span>Watermark Kertas Sekuriti</span>
                   </span>
-                  <p className="text-[10px] text-zinc-500 mt-1">
+                  <p className="text-[10px] text-zinc-900 mt-1">
                     Pola latar belakang resmi logo Tut Wuri Handayani transparan
                   </p>
                 </div>
@@ -1124,7 +1124,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`mt-2 w-full py-1.5 px-3 rounded-lg font-bold text-[11px] transition-colors cursor-pointer text-center ${
                     kartuShowWatermark
                       ? 'bg-amber-700 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-600 dark:text-zinc-400'
+                      : 'bg-zinc-200 dark:bg-zinc-750 text-zinc-800 dark:text-zinc-400'
                   }`}
                 >
                   {kartuShowWatermark ? '✓ Watermark Aktif' : '✗ Sembunyikan Watermark'}
@@ -1134,11 +1134,11 @@ export const ExamToolsView: React.FC = () => {
           </div>
 
           {/* Info Jumlah Siswa Terdaftar */}
-          <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 px-1 print:hidden">
+          <div className="flex items-center justify-between text-xs text-zinc-800 dark:text-zinc-400 px-1 print:hidden">
             <span className="font-semibold">
               Menampilkan {roomStudents.length} Kartu Peserta Ujian di <b>{selectedRoom}</b>
             </span>
-            <span className="text-[11px] text-sky-700 dark:text-sky-400 font-bold flex items-center gap-1.5">
+            <span className="text-[11px] text-sky-900 dark:text-sky-400 font-bold flex items-center gap-1.5">
               <Scissors className="h-3.5 w-3.5" />
               Format lembar cetak: isi 6 kartu per lembar A4 (2 kolom × 3 baris)
             </span>
@@ -1160,7 +1160,7 @@ export const ExamToolsView: React.FC = () => {
                 />
                 {/* Print separator helper every 2 cards */}
                 {idx % 2 === 1 && idx !== roomStudents.length - 1 && (
-                  <div className="hidden print:block col-span-2 text-center text-[8px] text-zinc-400 font-mono my-2 border-b border-dashed border-zinc-400">
+                  <div className="hidden print:block col-span-2 text-center text-[8px] text-zinc-900 font-mono my-2 border-b border-dashed border-zinc-400">
                     ✂ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   </div>
                 )}
@@ -1183,7 +1183,7 @@ export const ExamToolsView: React.FC = () => {
                 <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Daftar Hadir Peserta Ujian ({selectedRoom})
                 </h4>
-                <p className="text-[11px] text-sky-700 dark:text-sky-300">
+                <p className="text-[11px] text-sky-900 dark:text-sky-300">
                   {roomStudents.length} peserta terdaftar di {selectedRoom} • Format presensi resmi kolom tanda tangan ganjil/genap
                 </p>
               </div>
@@ -1204,7 +1204,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-sky-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-800" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1216,14 +1216,14 @@ export const ExamToolsView: React.FC = () => {
             <h3 className="text-sm font-extrabold uppercase text-zinc-900 dark:text-zinc-50">
               DAFTAR HADIR PESERTA UJIAN NASIONAL / SEKOLAH
             </h3>
-            <p className="text-xs text-zinc-500 font-semibold mt-0.5">
+            <p className="text-xs text-zinc-900 font-semibold mt-0.5">
               {schoolProfile.namaSekolah} • {selectedRoom} • KECAMATAN SINGINGI HILIR • TP {schoolProfile.tahunPelajaran}
             </p>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border border-zinc-300 dark:border-zinc-700">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold border-b border-zinc-300 dark:border-zinc-700">
+              <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 font-bold border-b border-zinc-300 dark:border-zinc-700">
                 <tr>
                   <th className="p-2.5 w-10 text-center border-r border-zinc-300 dark:border-zinc-700">No</th>
                   <th className="p-2.5 min-w-[120px] border-r border-zinc-300 dark:border-zinc-700">No. Peserta</th>
@@ -1250,12 +1250,12 @@ export const ExamToolsView: React.FC = () => {
                       {s.jenisKelamin}
                     </td>
                     <td className="p-2 border-r border-zinc-200 dark:border-zinc-800">
-                      {idx % 2 === 0 ? <span className="text-[10px] text-zinc-400">{idx + 1}. .........</span> : ''}
+                      {idx % 2 === 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. .........</span> : ''}
                     </td>
                     <td className="p-2 border-r border-zinc-200 dark:border-zinc-800">
-                      {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-400">{idx + 1}. .........</span> : ''}
+                      {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. .........</span> : ''}
                     </td>
-                    <td className="p-2 text-center text-[10px] text-sky-700 font-bold">
+                    <td className="p-2 text-center text-[10px] text-sky-900 font-bold">
                       Hadir
                     </td>
                   </tr>
@@ -1267,20 +1267,20 @@ export const ExamToolsView: React.FC = () => {
           {/* Pengawas Signature Section */}
           <div className="grid grid-cols-2 gap-8 pt-8 text-xs">
             <div>
-              <p className="font-semibold text-zinc-700 dark:text-zinc-300">Pengawas 1,</p>
+              <p className="font-semibold text-zinc-900 dark:text-zinc-300">Pengawas 1,</p>
               <div className="h-14"></div>
               <p className="font-bold underline text-zinc-900 dark:text-zinc-100">
                 {roomSupervisors[0]?.nama || '.....................................'}
               </p>
-              <p className="font-mono text-zinc-500">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
+              <p className="font-mono text-zinc-900">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
             </div>
             <div className="text-right">
-              <p className="font-semibold text-zinc-700 dark:text-zinc-300">Pengawas 2,</p>
+              <p className="font-semibold text-zinc-900 dark:text-zinc-300">Pengawas 2,</p>
               <div className="h-14"></div>
               <p className="font-bold underline text-zinc-900 dark:text-zinc-100">
                 {roomSupervisors[1]?.nama || '.....................................'}
               </p>
-              <p className="font-mono text-zinc-500">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
+              <p className="font-mono text-zinc-900">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
             </div>
           </div>
         </div>
@@ -1293,12 +1293,12 @@ export const ExamToolsView: React.FC = () => {
           <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 space-y-4 print:hidden">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-zinc-200 dark:border-zinc-800 pb-3">
               <div className="flex items-center gap-2">
-                <FileSpreadsheet className="h-5 w-5 text-sky-600" />
+                <FileSpreadsheet className="h-5 w-5 text-sky-800" />
                 <div>
                   <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-50 uppercase tracking-wider">
                     Format Isian Daftar Nilai Per Ruangan ({selectedRoom})
                   </h3>
-                  <p className="text-[11px] text-zinc-500">
+                  <p className="text-[11px] text-zinc-900">
                     Rekapitulasi hasil koreksi lembar ujian (Nilai Asli & Nilai Jadi) siap cetak dan tandatangan
                   </p>
                 </div>
@@ -1311,7 +1311,7 @@ export const ExamToolsView: React.FC = () => {
                   className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-colors ${
                     isEditingScores
                       ? 'bg-amber-600 text-white shadow-xs'
-                      : 'border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
+                      : 'border border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200'
                   }`}
                 >
                   <Edit3 className="h-3.5 w-3.5" />
@@ -1351,7 +1351,7 @@ export const ExamToolsView: React.FC = () => {
             {/* Input Form Metadata: Mata Pelajaran, Hari/Tanggal, Pengoreksi I & II */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs">
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Mata Pelajaran:
                 </label>
                 <select
@@ -1368,7 +1368,7 @@ export const ExamToolsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Hari / Tanggal Ujian:
                 </label>
                 <input
@@ -1381,7 +1381,7 @@ export const ExamToolsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Nama Pengoreksi I:
                 </label>
                 <input
@@ -1396,12 +1396,12 @@ export const ExamToolsView: React.FC = () => {
                   value={nipPengoreksi1}
                   onChange={(e) => setNipPengoreksi1(e.target.value)}
                   placeholder="NIP Pengoreksi I"
-                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-800 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block font-bold text-zinc-900 dark:text-zinc-300 mb-1">
                   Nama Pengoreksi II (Pendamping):
                 </label>
                 <input
@@ -1416,7 +1416,7 @@ export const ExamToolsView: React.FC = () => {
                   value={nipPengoreksi2}
                   onChange={(e) => setNipPengoreksi2(e.target.value)}
                   placeholder="NIP Pengoreksi II"
-                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-600 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="mt-1 w-full rounded-lg border border-zinc-200 px-2.5 py-1 font-mono text-[11px] text-zinc-800 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                 />
               </div>
             </div>
@@ -1432,7 +1432,7 @@ export const ExamToolsView: React.FC = () => {
               <h3 className="text-base font-extrabold uppercase tracking-wide text-zinc-950 dark:text-zinc-50 underline">
                 DAFTAR NILAI HASIL KOREKSI UJIAN SEKOLAH / UJIAN NASIONAL
               </h3>
-              <p className="text-xs font-bold text-zinc-600 dark:text-zinc-400">
+              <p className="text-xs font-bold text-zinc-800 dark:text-zinc-400">
                 TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
               </p>
             </div>
@@ -1442,19 +1442,19 @@ export const ExamToolsView: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                 <div className="space-y-1.5">
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Mata Pelajaran</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Mata Pelajaran</span>
                     <span className="col-span-2 font-extrabold uppercase text-zinc-950 dark:text-zinc-50">
                       : {currentSubject.name} ({currentSubject.code})
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Hari / Tanggal</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Hari / Tanggal</span>
                     <span className="col-span-2 font-medium">
                       : {hariTanggal}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Ruang Ujian</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Ruang Ujian</span>
                     <span className="col-span-2 font-extrabold text-sky-800 dark:text-sky-400">
                       : {selectedRoom}
                     </span>
@@ -1463,19 +1463,19 @@ export const ExamToolsView: React.FC = () => {
 
                 <div className="space-y-1.5">
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Nama Pengoreksi I</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Nama Pengoreksi I</span>
                     <span className="col-span-2 font-bold uppercase">
                       : {namaPengoreksi1}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Nama Pengoreksi II</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Nama Pengoreksi II</span>
                     <span className="col-span-2 font-bold uppercase">
                       : {namaPengoreksi2}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
-                    <span className="font-bold text-zinc-600 dark:text-zinc-400">Standar KKM</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-400">Standar KKM</span>
                     <span className="col-span-2 font-mono font-bold text-amber-700 dark:text-amber-400">
                       : {currentSubject.kkm} (Minimal Tuntas)
                     </span>
@@ -1515,13 +1515,13 @@ export const ExamToolsView: React.FC = () => {
 
                     return (
                       <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 h-10">
-                        <td className="p-2 text-center font-bold text-zinc-500 border-r border-zinc-200 dark:border-zinc-800">
+                        <td className="p-2 text-center font-bold text-zinc-900 border-r border-zinc-200 dark:border-zinc-800">
                           {idx + 1}
                         </td>
                         <td className="p-2 font-mono font-medium border-r border-zinc-200 dark:border-zinc-800">
                           {s.noPeserta}
                         </td>
-                        <td className="p-2 font-mono text-[11px] text-zinc-600 dark:text-zinc-400 border-r border-zinc-200 dark:border-zinc-800">
+                        <td className="p-2 font-mono text-[11px] text-zinc-800 dark:text-zinc-400 border-r border-zinc-200 dark:border-zinc-800">
                           {s.nisn} / {s.nis}
                         </td>
                         <td className="p-2 font-extrabold uppercase border-r border-zinc-200 dark:border-zinc-800">
@@ -1591,7 +1591,7 @@ export const ExamToolsView: React.FC = () => {
 
                         {/* Paraf Pengoreksi */}
                         <td className="p-2 text-center border-zinc-200 dark:border-zinc-800">
-                          <span className="text-[10px] text-zinc-300 dark:text-zinc-600">
+                          <span className="text-[10px] text-zinc-600 dark:text-zinc-500">
                             ..........
                           </span>
                         </td>
@@ -1605,7 +1605,7 @@ export const ExamToolsView: React.FC = () => {
             {/* RINGKASAN STATISTIK NILAI RUANGAN */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2 text-center">
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-2.5 dark:border-zinc-700 dark:bg-zinc-800/40">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase block">Rata-rata Nilai Asli</span>
+                <span className="text-[10px] font-bold text-zinc-900 uppercase block">Rata-rata Nilai Asli</span>
                 <span className="text-sm font-mono font-bold text-zinc-900 dark:text-zinc-100">{avgTulis}</span>
               </div>
               <div className="rounded-xl border border-sky-300 bg-sky-50/60 p-2.5 dark:border-sky-800 dark:bg-sky-950/30">
@@ -1613,11 +1613,11 @@ export const ExamToolsView: React.FC = () => {
                 <span className="text-sm font-mono font-black text-sky-900 dark:text-sky-200">{avgAkhir}</span>
               </div>
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-2.5 dark:border-zinc-700 dark:bg-zinc-800/40">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase block">Nilai Tertinggi (Maks)</span>
-                <span className="text-sm font-mono font-bold text-blue-700 dark:text-blue-400">{maxAkhir}</span>
+                <span className="text-[10px] font-bold text-zinc-900 uppercase block">Nilai Tertinggi (Maks)</span>
+                <span className="text-sm font-mono font-bold text-blue-900 dark:text-blue-400">{maxAkhir}</span>
               </div>
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-2.5 dark:border-zinc-700 dark:bg-zinc-800/40">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase block">Nilai Terendah (Min)</span>
+                <span className="text-[10px] font-bold text-zinc-900 uppercase block">Nilai Terendah (Min)</span>
                 <span className="text-sm font-mono font-bold text-amber-700 dark:text-amber-400">{minAkhir}</span>
               </div>
               <div className="col-span-2 sm:col-span-1 rounded-xl border border-sky-300 bg-sky-50/60 p-2.5 dark:border-sky-800 dark:bg-sky-950/30">
@@ -1631,36 +1631,36 @@ export const ExamToolsView: React.FC = () => {
             {/* TANDA TANGAN PENGOREKSI & KEPALA SEKOLAH (3 KOLOM RESMI) */}
             <div className="grid grid-cols-3 gap-4 pt-6 text-xs text-center border-t border-zinc-200 dark:border-zinc-700">
               <div>
-                <p className="font-semibold text-zinc-600 dark:text-zinc-400">Pengoreksi II (Pendamping),</p>
+                <p className="font-semibold text-zinc-800 dark:text-zinc-400">Pengoreksi II (Pendamping),</p>
                 <div className="h-16"></div>
                 <p className="font-bold underline uppercase text-zinc-900 dark:text-zinc-100">
                   {namaPengoreksi2 || '.....................................'}
                 </p>
-                <p className="font-mono text-[11px] text-zinc-500">
+                <p className="font-mono text-[11px] text-zinc-900">
                   NIP. {nipPengoreksi2 || '.....................................'}
                 </p>
               </div>
 
               <div>
-                <p className="font-semibold text-zinc-600 dark:text-zinc-400">Mengetahui,</p>
+                <p className="font-semibold text-zinc-800 dark:text-zinc-400">Mengetahui,</p>
                 <p className="font-bold text-zinc-800 dark:text-zinc-200">Kepala {schoolProfile.namaSekolah},</p>
                 <div className="h-12"></div>
                 <p className="font-bold underline uppercase text-zinc-900 dark:text-zinc-100">
                   {schoolProfile.kepalaSekolah}
                 </p>
-                <p className="font-mono text-[11px] text-zinc-500">
+                <p className="font-mono text-[11px] text-zinc-900">
                   NIP. {schoolProfile.nipKepalaSekolah}
                 </p>
               </div>
 
               <div>
-                <p className="text-zinc-500">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {hariTanggal}</p>
+                <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {hariTanggal}</p>
                 <p className="font-bold text-zinc-800 dark:text-zinc-200">Pengoreksi I (Guru Mapel),</p>
                 <div className="h-12"></div>
                 <p className="font-bold underline uppercase text-zinc-900 dark:text-zinc-100">
                   {namaPengoreksi1 || '.....................................'}
                 </p>
-                <p className="font-mono text-[11px] text-zinc-500">
+                <p className="font-mono text-[11px] text-zinc-900">
                   NIP. {nipPengoreksi1 || '.....................................'}
                 </p>
               </div>
@@ -1681,7 +1681,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                   Daftar Pengawas Ruang TPU VI Singingi Hilir
                 </h3>
-                <p className="text-xs text-zinc-500 mt-0.5">
+                <p className="text-xs text-zinc-900 mt-0.5">
                   Sistem pengawasan silang antar-sekolah dasar se-Kecamatan Singingi Hilir ({supervisors.length} Pengawas)
                 </p>
               </div>
@@ -1711,7 +1711,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-sky-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-800" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1719,7 +1719,7 @@ export const ExamToolsView: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold">
+              <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-300 font-bold">
                 <tr>
                   <th className="p-3 w-10 text-center">No</th>
                   <th className="p-3">Nama Lengkap Pengawas</th>
@@ -1732,16 +1732,16 @@ export const ExamToolsView: React.FC = () => {
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 {supervisors.map((sup, idx) => (
                   <tr key={sup.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                    <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
+                    <td className="p-3 text-center font-bold text-zinc-900">{idx + 1}</td>
                     <td className="p-3 font-bold text-zinc-900 dark:text-zinc-100">{sup.nama}</td>
-                    <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">{sup.nip}</td>
-                    <td className="p-3 text-zinc-700 dark:text-zinc-300">{sup.asalSekolah}</td>
+                    <td className="p-3 font-mono text-zinc-800 dark:text-zinc-400">{sup.nip}</td>
+                    <td className="p-3 text-zinc-900 dark:text-zinc-300">{sup.asalSekolah}</td>
                     <td className="p-3 text-center">
                       <Badge variant="emerald" size="sm">
                         {sup.ruangTugas}
                       </Badge>
                     </td>
-                    <td className="p-3 text-zinc-600 dark:text-zinc-400 font-mono">{sup.kontak}</td>
+                    <td className="p-3 text-zinc-800 dark:text-zinc-400 font-mono">{sup.kontak}</td>
                   </tr>
                 ))}
               </tbody>
@@ -1758,7 +1758,7 @@ export const ExamToolsView: React.FC = () => {
                 <span className="font-bold text-zinc-800 dark:text-zinc-200 block">
                   {tpuLeader.jabatanTpu}: {tpuLeader.namaKetuaTpu}
                 </span>
-                <span className="font-mono text-zinc-500 text-[11px]">
+                <span className="font-mono text-zinc-900 text-[11px]">
                   NIP. {tpuLeader.nipKetuaTpu} • Wilayah {tpuLeader.kecamatanTpu}
                 </span>
               </div>
@@ -1766,7 +1766,7 @@ export const ExamToolsView: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsEditPengawasOpen(true)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 dark:text-sky-300 hover:underline cursor-pointer"
+              className="inline-flex items-center gap-1 text-xs font-bold text-sky-900 dark:text-sky-300 hover:underline cursor-pointer"
             >
               <Edit3 className="h-3.5 w-3.5" />
               Edit Data Pengawas & Ketua TPU
@@ -1787,7 +1787,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                   Susunan Panitia Ujian Sekolah SDN 006 Sungai Buluh
                 </h3>
-                <p className="text-xs text-zinc-500 mt-0.5">
+                <p className="text-xs text-zinc-900 mt-0.5">
                   Berdasarkan {panitiaMeta.keteranganSk} No. {panitiaMeta.nomorSk} tanggal {panitiaMeta.tanggalSk} ({committee.length} Panitia)
                 </p>
               </div>
@@ -1817,7 +1817,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-sky-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-800" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1836,9 +1836,9 @@ export const ExamToolsView: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-extrabold text-sm text-zinc-900 dark:text-zinc-100">{c.nama}</h4>
-                  <p className="font-mono text-xs text-zinc-500">NIP. {c.nip}</p>
+                  <p className="font-mono text-xs text-zinc-900">NIP. {c.nip}</p>
                 </div>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700 pt-2">
+                <p className="text-xs text-zinc-800 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700 pt-2">
                   <b>Tugas:</b> {c.tugas}
                 </p>
               </div>
@@ -1860,7 +1860,7 @@ export const ExamToolsView: React.FC = () => {
                 <h4 className="font-bold text-xs sm:text-sm text-sky-950 dark:text-sky-100">
                   Berita Acara Pelaksanaan Ujian Nasional / Sekolah
                 </h4>
-                <p className="text-[11px] text-sky-700 dark:text-sky-300">
+                <p className="text-[11px] text-sky-900 dark:text-sky-300">
                   Dokumen naskah resmi pelaksanaan ujian berkop sekolah dan pengesahan pimpinan
                 </p>
               </div>
@@ -1890,7 +1890,7 @@ export const ExamToolsView: React.FC = () => {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-300 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-bold text-sky-900 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer w-full sm:w-auto"
                 title="Buka menu cetak seluruh dokumen ujian"
               >
-                <Printer className="h-3.5 w-3.5 text-sky-600" />
+                <Printer className="h-3.5 w-3.5 text-sky-800" />
                 Menu Cetak Lengkap
               </button>
             </div>
@@ -1932,23 +1932,23 @@ export const ExamToolsView: React.FC = () => {
 
                     <div className="pl-4 space-y-1 text-xs">
                       <div className="grid grid-cols-12 gap-1">
-                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Pada Sekolah</span>
+                        <span className="col-span-5 sm:col-span-4 text-zinc-800 dark:text-zinc-400">Pada Sekolah</span>
                         <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.padaSekolah || schoolProfile.namaSekolah}</span>
                       </div>
                       <div className="grid grid-cols-12 gap-1">
-                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Ruang</span>
+                        <span className="col-span-5 sm:col-span-4 text-zinc-800 dark:text-zinc-400">Ruang</span>
                         <span className="col-span-7 sm:col-span-8 font-bold">: {selectedRoom || beritaAcaraState.ruang || 'RUANG 1'}</span>
                       </div>
                       <div className="grid grid-cols-12 gap-1">
-                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta seharusnya</span>
+                        <span className="col-span-5 sm:col-span-4 text-zinc-800 dark:text-zinc-400">Jumlah Peserta seharusnya</span>
                         <span className="col-span-7 sm:col-span-8 font-bold">: {roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya} orang</span>
                       </div>
                       <div className="grid grid-cols-12 gap-1">
-                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta yang tidak hadir</span>
+                        <span className="col-span-5 sm:col-span-4 text-zinc-800 dark:text-zinc-400">Jumlah Peserta yang tidak hadir</span>
                         <span className="col-span-7 sm:col-span-8 font-bold">: {beritaAcaraState.jumlahPesertaTidakHadir || 0} orang</span>
                       </div>
                       <div className="grid grid-cols-12 gap-1">
-                        <span className="col-span-5 sm:col-span-4 text-zinc-600 dark:text-zinc-400">Jumlah Peserta yang hadir</span>
+                        <span className="col-span-5 sm:col-span-4 text-zinc-800 dark:text-zinc-400">Jumlah Peserta yang hadir</span>
                         <span className="col-span-7 sm:col-span-8 font-bold">: {Math.max(0, (roomStudents.length || beritaAcaraState.jumlahPesertaSeharusnya) - (beritaAcaraState.jumlahPesertaTidakHadir || 0))} orang</span>
                       </div>
                     </div>
@@ -2017,19 +2017,19 @@ export const ExamToolsView: React.FC = () => {
                   <div className="pt-3 flex justify-between items-center">
                     <div className="space-y-0.5">
                       <div className="flex">
-                        <span className="w-16 text-zinc-500">1. Nama</span>
+                        <span className="w-16 text-zinc-900">1. Nama</span>
                         <span className="font-bold uppercase text-zinc-900 dark:text-zinc-100">
                           : {roomSupervisors[0]?.nama || beritaAcaraState.pengawas1Nama || '.....................................'}
                         </span>
                       </div>
                       <div className="flex">
-                        <span className="w-16 pl-4 text-zinc-500">NIP</span>
-                        <span className="font-mono text-zinc-700 dark:text-zinc-300">
+                        <span className="w-16 pl-4 text-zinc-900">NIP</span>
+                        <span className="font-mono text-zinc-900 dark:text-zinc-300">
                           : {roomSupervisors[0]?.nip || beritaAcaraState.pengawas1Nip || '.....................................'}
                         </span>
                       </div>
                     </div>
-                    <div className="w-36 text-right pr-6 font-mono text-zinc-400">
+                    <div className="w-36 text-right pr-6 font-mono text-zinc-900">
                       .........................
                     </div>
                   </div>
@@ -2038,19 +2038,19 @@ export const ExamToolsView: React.FC = () => {
                   <div className="pt-4 flex justify-between items-center">
                     <div className="space-y-0.5">
                       <div className="flex">
-                        <span className="w-16 text-zinc-500">2. Nama</span>
+                        <span className="w-16 text-zinc-900">2. Nama</span>
                         <span className="font-bold uppercase text-zinc-900 dark:text-zinc-100">
                           : {roomSupervisors[1]?.nama || beritaAcaraState.pengawas2Nama || '.....................................'}
                         </span>
                       </div>
                       <div className="flex">
-                        <span className="w-16 pl-4 text-zinc-500">NIP</span>
-                        <span className="font-mono text-zinc-700 dark:text-zinc-300">
+                        <span className="w-16 pl-4 text-zinc-900">NIP</span>
+                        <span className="font-mono text-zinc-900 dark:text-zinc-300">
                           : {roomSupervisors[1]?.nip || beritaAcaraState.pengawas2Nip || '.....................................'}
                         </span>
                       </div>
                     </div>
-                    <div className="w-36 text-right pr-6 font-mono text-zinc-400">
+                    <div className="w-36 text-right pr-6 font-mono text-zinc-900">
                       .........................
                     </div>
                   </div>
@@ -2324,7 +2324,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase tracking-wide underline text-black">
                   DAFTAR NILAI HASIL KOREKSI UJIAN SEKOLAH / UJIAN NASIONAL
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -2334,19 +2334,19 @@ export const ExamToolsView: React.FC = () => {
                 <div className="grid grid-cols-2 gap-x-8 gap-y-1.5">
                   <div className="space-y-1">
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Mata Pelajaran</span>
+                      <span className="font-bold text-zinc-900">Mata Pelajaran</span>
                       <span className="col-span-2 font-extrabold uppercase text-black">
                         : {currentSubject.name} ({currentSubject.code})
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Hari / Tanggal</span>
+                      <span className="font-bold text-zinc-900">Hari / Tanggal</span>
                       <span className="col-span-2 font-medium">
                         : {hariTanggal}
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Ruang Ujian</span>
+                      <span className="font-bold text-zinc-900">Ruang Ujian</span>
                       <span className="col-span-2 font-extrabold text-black">
                         : {selectedRoom}
                       </span>
@@ -2355,19 +2355,19 @@ export const ExamToolsView: React.FC = () => {
 
                   <div className="space-y-1">
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Nama Pengoreksi I</span>
+                      <span className="font-bold text-zinc-900">Nama Pengoreksi I</span>
                       <span className="col-span-2 font-bold uppercase">
                         : {namaPengoreksi1}
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Nama Pengoreksi II</span>
+                      <span className="font-bold text-zinc-900">Nama Pengoreksi II</span>
                       <span className="col-span-2 font-bold uppercase">
                         : {namaPengoreksi2}
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-1">
-                      <span className="font-bold text-zinc-700">Standar KKM</span>
+                      <span className="font-bold text-zinc-900">Standar KKM</span>
                       <span className="col-span-2 font-mono font-bold">
                         : {currentSubject.kkm} (Batas Minimal Tuntas)
                       </span>
@@ -2421,7 +2421,7 @@ export const ExamToolsView: React.FC = () => {
                         <td className="p-1.5 text-center font-bold border-r border-black text-[10px]">
                           {isPassed ? 'TUNTAS' : 'BELUM'}
                         </td>
-                        <td className="p-1.5 text-center text-zinc-400 text-[10px]">
+                        <td className="p-1.5 text-center text-zinc-900 text-[10px]">
                           ..........
                         </td>
                       </tr>
@@ -2433,23 +2433,23 @@ export const ExamToolsView: React.FC = () => {
               {/* Ringkasan Statistik */}
               <div className="grid grid-cols-5 gap-2 text-center text-xs">
                 <div className="border border-black p-2 rounded">
-                  <span className="text-[10px] text-zinc-600 uppercase block font-semibold">Rata-rata Nilai Asli</span>
+                  <span className="text-[10px] text-zinc-800 uppercase block font-semibold">Rata-rata Nilai Asli</span>
                   <span className="font-mono font-bold text-black">{avgTulis}</span>
                 </div>
                 <div className="border border-black p-2 rounded bg-zinc-50">
-                  <span className="text-[10px] text-zinc-700 uppercase block font-bold">Rata-rata Nilai Jadi</span>
+                  <span className="text-[10px] text-zinc-900 uppercase block font-bold">Rata-rata Nilai Jadi</span>
                   <span className="font-mono font-black text-black">{avgAkhir}</span>
                 </div>
                 <div className="border border-black p-2 rounded">
-                  <span className="text-[10px] text-zinc-600 uppercase block font-semibold">Nilai Tertinggi</span>
+                  <span className="text-[10px] text-zinc-800 uppercase block font-semibold">Nilai Tertinggi</span>
                   <span className="font-mono font-bold text-black">{maxAkhir}</span>
                 </div>
                 <div className="border border-black p-2 rounded">
-                  <span className="text-[10px] text-zinc-600 uppercase block font-semibold">Nilai Terendah</span>
+                  <span className="text-[10px] text-zinc-800 uppercase block font-semibold">Nilai Terendah</span>
                   <span className="font-mono font-bold text-black">{minAkhir}</span>
                 </div>
                 <div className="border border-black p-2 rounded bg-zinc-50">
-                  <span className="text-[10px] text-zinc-700 uppercase block font-bold">Ketuntasan Ruang</span>
+                  <span className="text-[10px] text-zinc-900 uppercase block font-bold">Ketuntasan Ruang</span>
                   <span className="font-mono font-black text-black">{passedPercentage}% ({passedCount}/{roomStudents.length})</span>
                 </div>
               </div>
@@ -2460,21 +2460,21 @@ export const ExamToolsView: React.FC = () => {
                   <p className="font-semibold text-zinc-800">Pengoreksi II (Pendamping),</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline uppercase text-black">{namaPengoreksi2 || '.....................................'}</p>
-                  <p className="font-mono text-[11px] text-zinc-700">NIP. {nipPengoreksi2 || '.....................................'}</p>
+                  <p className="font-mono text-[11px] text-zinc-900">NIP. {nipPengoreksi2 || '.....................................'}</p>
                 </div>
                 <div>
                   <p className="font-semibold text-zinc-800">Mengetahui,</p>
                   <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
                   <div className="h-12"></div>
                   <p className="font-bold underline uppercase text-black">{schoolProfile.kepalaSekolah}</p>
-                  <p className="font-mono text-[11px] text-zinc-700">NIP. {schoolProfile.nipKepalaSekolah}</p>
+                  <p className="font-mono text-[11px] text-zinc-900">NIP. {schoolProfile.nipKepalaSekolah}</p>
                 </div>
                 <div>
-                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {hariTanggal}</p>
+                  <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {hariTanggal}</p>
                   <p className="font-bold text-black">Pengoreksi I (Guru Mapel),</p>
                   <div className="h-12"></div>
                   <p className="font-bold underline uppercase text-black">{namaPengoreksi1 || '.....................................'}</p>
-                  <p className="font-mono text-[11px] text-zinc-700">NIP. {nipPengoreksi1 || '.....................................'}</p>
+                  <p className="font-mono text-[11px] text-zinc-900">NIP. {nipPengoreksi1 || '.....................................'}</p>
                 </div>
               </div>
             </div>
@@ -2490,7 +2490,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase underline text-black">
                   DAFTAR HADIR PESERTA UJIAN NASIONAL / SEKOLAH
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   {schoolProfile.namaSekolah} • {selectedRoom} • TP {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -2515,10 +2515,10 @@ export const ExamToolsView: React.FC = () => {
                       <td className="p-2 font-bold uppercase border-r border-black">{s.nama}</td>
                       <td className="p-2 text-center border-r border-black">{s.jenisKelamin}</td>
                       <td className="p-2 border-r border-black">
-                        {idx % 2 === 0 ? <span className="text-[10px] text-zinc-500">{idx + 1}. ....................</span> : ''}
+                        {idx % 2 === 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. ....................</span> : ''}
                       </td>
                       <td className="p-2 border-r border-black">
-                        {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-500">{idx + 1}. ....................</span> : ''}
+                        {idx % 2 !== 0 ? <span className="text-[10px] text-zinc-900">{idx + 1}. ....................</span> : ''}
                       </td>
                       <td className="p-2 text-center font-bold text-[10px]">Hadir</td>
                     </tr>
@@ -2531,13 +2531,13 @@ export const ExamToolsView: React.FC = () => {
                   <p className="font-semibold text-zinc-800">Pengawas 1,</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{roomSupervisors[0]?.nama || '.....................................'}</p>
-                  <p className="font-mono text-zinc-600">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
+                  <p className="font-mono text-zinc-800">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
                 </div>
                 <div className="text-right">
                   <p className="font-semibold text-zinc-800">Pengawas 2,</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{roomSupervisors[1]?.nama || '.....................................'}</p>
-                  <p className="font-mono text-zinc-600">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
+                  <p className="font-mono text-zinc-800">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
                 </div>
               </div>
             </div>
@@ -2555,7 +2555,7 @@ export const ExamToolsView: React.FC = () => {
 
             if (kartuPages.length === 0) {
               return (
-                <div className="p-8 text-center text-zinc-500 font-medium">
+                <div className="p-8 text-center text-zinc-900 font-medium">
                   Tidak ada data peserta ujian di ruangan {selectedRoom}.
                 </div>
               );
@@ -2580,13 +2580,13 @@ export const ExamToolsView: React.FC = () => {
                         <span className="font-black uppercase text-black text-xs block leading-tight">
                           LEMBAR CETAK KARTU PESERTA UJIAN SEKOLAH ({selectedRoom})
                         </span>
-                        <span className="text-[9px] text-zinc-600 print:text-black leading-tight">
+                        <span className="text-[9px] text-zinc-800 print:text-black leading-tight">
                           {schoolProfile.namaSekolah} • Tahun Pelajaran {schoolProfile.tahunPelajaran} • Model {kartuLayout === 'classic' ? 'Klasik Resmi' : 'Modern'} • 6 Kartu / Lembar A4
                         </span>
                       </div>
-                      <div className="text-right font-mono text-[9px] text-zinc-600 print:text-black leading-tight">
+                      <div className="text-right font-mono text-[9px] text-zinc-800 print:text-black leading-tight">
                         <span className="font-bold">Lembar {pageIdx + 1} dari {kartuPages.length}</span>
-                        <span className="block text-[8px] text-zinc-500 print:text-black">
+                        <span className="block text-[8px] text-zinc-900 print:text-black">
                           Peserta #{pageIdx * CARDS_PER_PAGE + 1} - #{Math.min((pageIdx + 1) * CARDS_PER_PAGE, roomStudents.length)} dari {roomStudents.length} Siswa
                         </span>
                       </div>
@@ -2612,7 +2612,7 @@ export const ExamToolsView: React.FC = () => {
                       {Array.from({ length: CARDS_PER_PAGE - pageStudents.length }).map((_, emptyIdx) => (
                         <div
                           key={`blank-${emptyIdx}`}
-                          className="rounded-xl border-2 border-dashed border-zinc-300 print:border-zinc-300 p-2 flex flex-col items-center justify-center text-center text-zinc-400 print:text-zinc-400 select-none bg-zinc-50/50 print:bg-transparent"
+                          className="rounded-xl border-2 border-dashed border-zinc-300 print:border-zinc-300 p-2 flex flex-col items-center justify-center text-center text-zinc-900 print:text-zinc-400 select-none bg-zinc-50/50 print:bg-transparent"
                           style={{ height: '88mm', maxHeight: '88mm', minHeight: '88mm' }}
                         >
                           <span className="text-[10px] font-extrabold uppercase tracking-wider block">
@@ -2621,7 +2621,7 @@ export const ExamToolsView: React.FC = () => {
                           <span className="text-[8px] mt-0.5">
                             {schoolProfile.namaSekolah} • US TP {schoolProfile.tahunPelajaran}
                           </span>
-                          <span className="text-[7.5px] text-zinc-400 font-mono mt-1">
+                          <span className="text-[7.5px] text-zinc-900 font-mono mt-1">
                             Slot kartu cadangan / siswa susulan
                           </span>
                         </div>
@@ -2629,7 +2629,7 @@ export const ExamToolsView: React.FC = () => {
                     </div>
 
                     {/* Sheet Footer Guide */}
-                    <div className="mt-1 pt-1 border-t border-dashed border-zinc-300 print:border-black flex items-center justify-between text-[7.5px] text-zinc-400 print:text-black font-mono">
+                    <div className="mt-1 pt-1 border-t border-dashed border-zinc-300 print:border-black flex items-center justify-between text-[7.5px] text-zinc-900 print:text-black font-mono">
                       <span>✂ Garis potong presisi: 2 kolom × 3 baris = 6 kartu peserta per lembar A4</span>
                       <span>Siap digunting & dilaminating</span>
                     </div>
@@ -2649,7 +2649,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase underline text-black">
                   DENAH PENATAAN TEMPAT DUDUK PESERTA UJIAN NASIONAL
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   {schoolProfile.namaSekolah} • {selectedRoom} • KAPASITAS 20 PESERTA
                 </p>
               </div>
@@ -2678,10 +2678,10 @@ export const ExamToolsView: React.FC = () => {
                             {studentOnSeat.nama}
                           </div>
                         ) : (
-                          <span className="text-zinc-400 italic text-[10px]">Meja Kosong</span>
+                          <span className="text-zinc-900 italic text-[10px]">Meja Kosong</span>
                         )}
                       </div>
-                      <div className="text-[9px] font-mono text-zinc-600">
+                      <div className="text-[9px] font-mono text-zinc-800">
                         {studentOnSeat ? `NISN: ${studentOnSeat.nisn}` : '-'}
                       </div>
                     </div>
@@ -2694,13 +2694,13 @@ export const ExamToolsView: React.FC = () => {
                   <p className="font-semibold text-zinc-800">Pengawas 1,</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{roomSupervisors[0]?.nama || '.....................................'}</p>
-                  <p className="font-mono text-zinc-600">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
+                  <p className="font-mono text-zinc-800">NIP. {roomSupervisors[0]?.nip || '.......................'}</p>
                 </div>
                 <div className="text-right">
                   <p className="font-semibold text-zinc-800">Pengawas 2,</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{roomSupervisors[1]?.nama || '.....................................'}</p>
-                  <p className="font-mono text-zinc-600">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
+                  <p className="font-mono text-zinc-800">NIP. {roomSupervisors[1]?.nip || '.......................'}</p>
                 </div>
               </div>
             </div>
@@ -2715,7 +2715,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-sm font-extrabold uppercase text-black">
                   LABEL MEJA PESERTA UJIAN ({selectedRoom})
                 </h3>
-                <p className="text-[11px] text-zinc-600">
+                <p className="text-[11px] text-zinc-800">
                   Potong sesuai garis putus-putus dan tempel di sudut kanan meja ujian
                 </p>
               </div>
@@ -2744,7 +2744,7 @@ export const ExamToolsView: React.FC = () => {
                     <div>
                       <div className="font-extrabold uppercase text-[11px] truncate text-black">{s.nama}</div>
                       <div className="font-mono text-[10px] font-bold text-zinc-800">{s.noPeserta}</div>
-                      <div className="font-mono text-[9px] text-zinc-600">NISN: {s.nisn}</div>
+                      <div className="font-mono text-[9px] text-zinc-800">NISN: {s.nisn}</div>
                     </div>
                   </div>
                 ))}
@@ -2889,7 +2889,7 @@ export const ExamToolsView: React.FC = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="w-36 text-right pr-6 font-mono text-zinc-500">
+                      <div className="w-36 text-right pr-6 font-mono text-zinc-900">
                         .........................
                       </div>
                     </div>
@@ -2910,7 +2910,7 @@ export const ExamToolsView: React.FC = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="w-36 text-right pr-6 font-mono text-zinc-500">
+                      <div className="w-36 text-right pr-6 font-mono text-zinc-900">
                         .........................
                       </div>
                     </div>
@@ -2930,7 +2930,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase underline text-black">
                   DAFTAR PENGAWAS RUANG TPU VI SINGINGI HILIR
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   Sistem Pengawasan Silang Antar-SD Se-Kecamatan Singingi Hilir • TP {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -2965,14 +2965,14 @@ export const ExamToolsView: React.FC = () => {
                   <p className="font-semibold text-zinc-800">{tpuLeader.jabatanTpu},</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{tpuLeader.namaKetuaTpu}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {tpuLeader.nipKetuaTpu}</p>
+                  <p className="pt-0.5 text-zinc-900 font-normal">NIP. {tpuLeader.nipKetuaTpu}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
+                  <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
                   <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{schoolProfile.kepalaSekolah}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
+                  <p className="pt-0.5 text-zinc-900 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
                 </div>
               </div>
             </div>
@@ -2988,7 +2988,7 @@ export const ExamToolsView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase underline text-black">
                   SUSUNAN PANITIA UJIAN SEKOLAH / UJIAN NASIONAL
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   {schoolProfile.namaSekolah} • Berdasarkan {panitiaMeta.keteranganSk} No. {panitiaMeta.nomorSk}
                 </p>
               </div>
@@ -3023,16 +3023,16 @@ export const ExamToolsView: React.FC = () => {
                   <p className="font-bold underline text-black">
                     {committee.find((c) => c.jabatan.toLowerCase().includes('ketua'))?.nama || schoolProfile.ketuaPanitia}
                   </p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">
+                  <p className="pt-0.5 text-zinc-900 font-normal">
                     NIP. {committee.find((c) => c.jabatan.toLowerCase().includes('ketua'))?.nip || schoolProfile.nipKetuaPanitia}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {panitiaMeta.tanggalSk || schoolProfile.tanggalKelulusan}</p>
+                  <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {panitiaMeta.tanggalSk || schoolProfile.tanggalKelulusan}</p>
                   <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
                   <div className="h-16"></div>
                   <p className="font-bold underline text-black">{schoolProfile.kepalaSekolah}</p>
-                  <p className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
+                  <p className="pt-0.5 text-zinc-900 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</p>
                 </div>
               </div>
             </div>
@@ -3258,7 +3258,7 @@ export const ExamToolsView: React.FC = () => {
                   <h4 className="text-xs sm:text-sm font-black uppercase text-black">
                     DEWAN GURU & TENAGA KEPENDIDIKAN SD NEGERI 006 SUNGAI BULUH
                   </h4>
-                  <p className="text-xs font-bold text-zinc-700">
+                  <p className="text-xs font-bold text-zinc-900">
                     TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
                   </p>
                 </div>
@@ -3320,14 +3320,14 @@ export const ExamToolsView: React.FC = () => {
                     <div>Notulis / Sekretaris Rapat,</div>
                     <div className="h-16"></div>
                     <div className="font-bold underline uppercase">{hadirMeta.notulisNama}</div>
-                    <div className="pt-0.5 text-zinc-700 font-normal">NIP. {hadirMeta.notulisNip}</div>
+                    <div className="pt-0.5 text-zinc-900 font-normal">NIP. {hadirMeta.notulisNip}</div>
                   </div>
                   <div className="text-center w-64 space-y-1">
                     <div>{hadirMeta.rapatPengesahanTanggal}</div>
                     <div className="font-bold">Kepala SDN 006 Sungai Buluh</div>
                     <div className="h-16"></div>
                     <div className="font-bold underline uppercase">{schoolProfile.kepalaSekolah}</div>
-                    <div className="pt-0.5 text-zinc-700 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
+                    <div className="pt-0.5 text-zinc-900 font-normal">NIP. {schoolProfile.nipKepalaSekolah}</div>
                   </div>
                 </div>
               </div>
@@ -3516,7 +3516,7 @@ export const ExamToolsView: React.FC = () => {
                       <p className="text-xs font-extrabold uppercase">
                         DAFTAR PESERTA DIDIK KELAS VI YANG DINYATAKAN LULUS & REKAPITULASI NILAI AKHIR
                       </p>
-                      <p className="text-[10px] text-zinc-600">
+                      <p className="text-[10px] text-zinc-800">
                         Tahun Pelajaran {schoolProfile.tahunPelajaran} • Bobot: {schoolProfile.bobotRapor}% Rata Rapor + {schoolProfile.bobotUS}% Ujian Sekolah • KKM: {schoolProfile.kkmKelulusan}
                       </p>
                     </div>

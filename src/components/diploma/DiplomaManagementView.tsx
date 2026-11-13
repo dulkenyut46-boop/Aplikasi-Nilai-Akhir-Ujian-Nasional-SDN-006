@@ -147,12 +147,12 @@ export const DiplomaManagementView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4 print:hidden">
         <div>
           <div className="flex items-center gap-2">
-            <GraduationCap className="h-5 w-5 text-sky-600" />
+            <GraduationCap className="h-5 w-5 text-sky-800" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Penerbitan Transkrip Nilai, SK Kelulusan & Pengelolaan Ijazah
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Cetak format resmi Transkrip Nilai, SK Kelulusan, Laporan Blangko, dan Buku Serah Terima
           </p>
         </div>
@@ -186,7 +186,7 @@ export const DiplomaManagementView: React.FC = () => {
               className={`inline-flex items-center rounded-xl transition-all shrink-0 border ${
                 isActive
                   ? 'bg-sky-800 text-white shadow-sm border-sky-600'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
+                  : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-transparent'
               }`}
             >
               <button
@@ -207,7 +207,7 @@ export const DiplomaManagementView: React.FC = () => {
                 className={`mr-1.5 p-1 rounded-lg transition-all ${
                   isActive
                     ? 'bg-sky-700 hover:bg-sky-600 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
+                    : 'text-zinc-900 hover:text-sky-700 hover:bg-white dark:hover:bg-zinc-700 dark:hover:text-sky-300'
                 }`}
                 title={`Cetak ${tab.label}`}
                 aria-label={`Menu Cetak ${tab.label}`}
@@ -225,7 +225,7 @@ export const DiplomaManagementView: React.FC = () => {
           {/* Student Selector Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-zinc-50 dark:bg-zinc-800/60 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 print:hidden">
             <div className="flex items-center gap-3 w-full sm:w-auto">
-              <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 shrink-0">
+              <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300 shrink-0">
                 Pilih Peserta Didik:
               </span>
               <select
@@ -242,7 +242,7 @@ export const DiplomaManagementView: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="text-xs text-zinc-500 font-medium hidden md:block">
+              <div className="text-xs text-zinc-900 font-medium hidden md:block">
                 Format Resmi Transkrip Nilai Siswa SDN 006 Sungai Buluh
               </div>
               <button
@@ -265,7 +265,7 @@ export const DiplomaManagementView: React.FC = () => {
               <h3 className="text-base font-extrabold uppercase underline tracking-wider">
                 TRANSKRIP NILAI
               </h3>
-              <p className="text-xs font-bold text-zinc-600 dark:text-zinc-400 mt-0.5">
+              <p className="text-xs font-bold text-zinc-800 dark:text-zinc-400 mt-0.5">
                 Nomor: {currentStudent.noSuratTranskrip || `421.2 / SDN-006 / TRANSKRIP / ${schoolProfile.tahunPelajaran.replace('/', '-')} / ${currentStudent.noMeja.toString().padStart(3, '0')}`}
               </p>
             </div>
@@ -275,37 +275,37 @@ export const DiplomaManagementView: React.FC = () => {
               <table className="w-full text-xs">
                 <tbody className="divide-y divide-zinc-200/50 dark:divide-zinc-700/50">
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Satuan Pendidikan</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Satuan Pendidikan</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-bold text-zinc-950 dark:text-zinc-50 uppercase">{schoolProfile.namaSekolah}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Nomor Pokok Sekolah Nasional</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Pokok Sekolah Nasional</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-mono font-medium">{schoolProfile.npsn}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Nama Siswa</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nama Siswa</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-extrabold uppercase text-zinc-950 dark:text-zinc-50">{currentStudent.nama}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Tempat Tanggal Lahir</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tempat Tanggal Lahir</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-medium">{currentStudent.tempatLahir}, {currentStudent.tanggalLahir}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Nomor Induk Siswa Nasional</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Induk Siswa Nasional</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-mono font-medium">{currentStudent.nisn}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Nomor Ijazah</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Ijazah</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-mono font-bold text-zinc-900 dark:text-zinc-100">{currentStudent.noSeriIjazah || '-'}</td>
                   </tr>
                   <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-600 dark:text-zinc-400 font-medium">Tanggal kelulusan</td>
+                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tanggal kelulusan</td>
                     <td className="w-4 py-1.5">:</td>
                     <td className="py-1.5 font-medium">{schoolProfile.tanggalKelulusan}</td>
                   </tr>
@@ -376,7 +376,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <p className="font-extrabold underline text-sm uppercase">
                   {schoolProfile.kepalaSekolah}
                 </p>
-                <p className="pt-0.5 text-zinc-700 dark:text-zinc-300 font-normal">
+                <p className="pt-0.5 text-zinc-900 dark:text-zinc-300 font-normal">
                   NIP. {schoolProfile.nipKepalaSekolah}
                 </p>
               </div>
@@ -396,14 +396,14 @@ export const DiplomaManagementView: React.FC = () => {
                   Resmi Kedinasan
                 </span>
               </h4>
-              <p className="text-xs text-zinc-500">Format resmi Keputusan Kepala Sekolah & Lampiran Rekapitulasi Nilai Akhir</p>
+              <p className="text-xs text-zinc-900">Format resmi Keputusan Kepala Sekolah & Lampiran Rekapitulasi Nilai Akhir</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Menu Ganti Font Dokumen Resmi */}
               <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
-                <Type className="h-4 w-4 text-sky-600 shrink-0" />
-                <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Pilih Font:</span>
+                <Type className="h-4 w-4 text-sky-800 shrink-0" />
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">Pilih Font:</span>
                 <select
                   value={skFontFamily}
                   onChange={(e) => handleFontChange(e.target.value as DocFontFamily)}
@@ -420,7 +420,7 @@ export const DiplomaManagementView: React.FC = () => {
 
               {/* Menu Pilihan Ukuran Font */}
               <div className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 px-2.5 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 shadow-2xs">
-                <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Ukuran:</span>
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">Ukuran:</span>
                 <select
                   value={skFontSize}
                   onChange={(e) => handleFontSizeChange(e.target.value)}
@@ -461,7 +461,7 @@ export const DiplomaManagementView: React.FC = () => {
             <h4 className="text-xs sm:text-sm font-bold uppercase text-zinc-900 dark:text-zinc-100">
               KEPALA SEKOLAH DASAR NEGERI 006 SUNGAI BULUH
             </h4>
-            <p className="font-mono font-bold text-xs text-zinc-600 dark:text-zinc-400">
+            <p className="font-mono font-bold text-xs text-zinc-800 dark:text-zinc-400">
               NOMOR : 422/KPTS/SDN-006/SB/VI/2026/041
             </p>
             <div className="pt-2">
@@ -649,7 +649,7 @@ export const DiplomaManagementView: React.FC = () => {
               <p className="text-xs font-extrabold uppercase">
                 DAFTAR PESERTA DIDIK KELAS VI YANG DINYATAKAN LULUS & REKAP NILAI AKHIR
               </p>
-              <p className="text-[11px] text-zinc-600 dark:text-zinc-400">
+              <p className="text-[11px] text-zinc-800 dark:text-zinc-400">
                 Tahun Pelajaran {schoolProfile.tahunPelajaran} • Kriteria Kelulusan Nilai Minimal: {schoolProfile.kkmKelulusan}
               </p>
             </div>
@@ -714,7 +714,7 @@ export const DiplomaManagementView: React.FC = () => {
               <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                 Laporan Penggunaan Blangko Ijazah SDN 006 Sungai Buluh
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-900 mt-0.5">
                 Pencatatan nomor seri blangko ijazah yang diterima dari Dinas Pendidikan Kab. Kuantan Singingi
               </p>
             </div>
@@ -729,7 +729,7 @@ export const DiplomaManagementView: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border border-zinc-200 dark:border-zinc-700">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                 <tr>
                   <th className="p-3">Tahun Pelajaran</th>
                   <th className="p-3 text-center">Jumlah Diterima</th>
@@ -748,13 +748,13 @@ export const DiplomaManagementView: React.FC = () => {
                     </td>
                     <td className="p-3 text-center font-mono font-bold">{rec.jumlahDiterima} lbr</td>
                     <td className="p-3 text-center font-mono text-green-600 font-bold">{rec.terpakai} lbr</td>
-                    <td className="p-3 text-center font-mono text-rose-600 font-bold">{rec.rusak} lbr</td>
-                    <td className="p-3 text-center font-mono text-amber-600 font-bold">{rec.sisa} lbr</td>
-                    <td className="p-3 font-mono text-zinc-700 dark:text-zinc-300">
+                    <td className="p-3 text-center font-mono text-rose-800 font-bold">{rec.rusak} lbr</td>
+                    <td className="p-3 text-center font-mono text-amber-800 font-bold">{rec.sisa} lbr</td>
+                    <td className="p-3 font-mono text-zinc-900 dark:text-zinc-300">
                       <div>{rec.seriAwal}</div>
-                      <div className="text-zinc-400">s.d. {rec.seriAkhir}</div>
+                      <div className="text-zinc-900">s.d. {rec.seriAkhir}</div>
                     </td>
-                    <td className="p-3 text-zinc-600 dark:text-zinc-400">{rec.keterangan}</td>
+                    <td className="p-3 text-zinc-800 dark:text-zinc-400">{rec.keterangan}</td>
                   </tr>
                 ))}
               </tbody>
@@ -786,7 +786,7 @@ export const DiplomaManagementView: React.FC = () => {
                     {deliveredCount}/{students.length} Diserahkan
                   </span>
                 </h3>
-                <p className="text-xs text-zinc-500 mt-0.5">
+                <p className="text-xs text-zinc-900 mt-0.5">
                   Tanda bukti penerimaan fisik ijazah asli oleh orang tua / wali murid • Titimangsa:{' '}
                   <b>{serahTerimaMeta.titimangsaTempat}, {serahTerimaMeta.titimangsaTanggal}</b>
                 </p>
@@ -798,7 +798,7 @@ export const DiplomaManagementView: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
                   title="Ubah nomor seri ijazah, tanggal penyerahan, dan nama penerima serentak atau per siswa"
                 >
-                  <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  <Edit3 className="h-4 w-4 text-amber-800 dark:text-amber-400" />
                   Ubah / Edit Data Buku Serah Terima
                 </button>
                 <button
@@ -815,7 +815,7 @@ export const DiplomaManagementView: React.FC = () => {
             {/* Filter Search */}
             <div className="flex items-center justify-between gap-3 print:hidden">
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-900" />
                 <input
                   type="text"
                   value={serahTerimaSearch}
@@ -824,14 +824,14 @@ export const DiplomaManagementView: React.FC = () => {
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 py-2 pl-9 pr-4 text-xs dark:text-zinc-100"
                 />
               </div>
-              <span className="text-xs text-zinc-500 font-semibold">
+              <span className="text-xs text-zinc-900 font-semibold">
                 Menampilkan {filteredStudents.length} dari {students.length} Siswa
               </span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border border-zinc-200 dark:border-zinc-700">
-                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+                <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                   <tr>
                     <th className="p-3 w-10 text-center">No</th>
                     <th className="p-3">Nama Siswa</th>
@@ -844,27 +844,27 @@ export const DiplomaManagementView: React.FC = () => {
                 <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                   {filteredStudents.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="p-6 text-center text-zinc-400 italic">
+                      <td colSpan={6} className="p-6 text-center text-zinc-900 italic">
                         Tidak ditemukan data siswa dengan kata kunci "{serahTerimaSearch}"
                       </td>
                     </tr>
                   ) : (
                     filteredStudents.map((s, idx) => (
                       <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                        <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
+                        <td className="p-3 text-center font-bold text-zinc-900">{idx + 1}</td>
                         <td className="p-3">
                           <div className="font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</div>
-                          <div className="text-[10px] text-zinc-400 font-mono">NISN: {s.nisn}</div>
+                          <div className="text-[10px] text-zinc-900 font-mono">NISN: {s.nisn}</div>
                         </td>
                         <td className="p-3 font-mono font-semibold text-sky-800 dark:text-sky-400">
                           {s.noSeriIjazah || '-'}
                         </td>
-                        <td className="p-3 font-medium text-zinc-700 dark:text-zinc-300">
+                        <td className="p-3 font-medium text-zinc-900 dark:text-zinc-300">
                           {s.tanggalAmbilIjazah !== undefined ? (
                             s.tanggalAmbilIjazah.trim() ? (
                               s.tanggalAmbilIjazah
                             ) : (
-                              <span className="text-zinc-400 italic text-[11px] font-normal">(Kosong / Blanko)</span>
+                              <span className="text-zinc-900 italic text-[11px] font-normal">(Kosong / Blanko)</span>
                             )
                           ) : (
                             serahTerimaMeta.titimangsaTanggal
@@ -875,7 +875,7 @@ export const DiplomaManagementView: React.FC = () => {
                             s.penerimaIjazah.trim() ? (
                               s.penerimaIjazah
                             ) : (
-                              <span className="text-zinc-400 italic text-[11px] font-normal">(Kosong / Tulis Tangan)</span>
+                              <span className="text-zinc-900 italic text-[11px] font-normal">(Kosong / Tulis Tangan)</span>
                             )
                           ) : (
                             `${s.namaAyah || 'Orang Tua'} (Orang Tua)`
@@ -900,7 +900,7 @@ export const DiplomaManagementView: React.FC = () => {
             </div>
 
             {serahTerimaMeta.catatanKaki && (
-              <p className="text-[11px] text-zinc-500 italic pt-1">
+              <p className="text-[11px] text-zinc-900 italic pt-1">
                 Catatan: {serahTerimaMeta.catatanKaki}
               </p>
             )}
@@ -916,7 +916,7 @@ export const DiplomaManagementView: React.FC = () => {
               <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                 Buku Register Nomor Ijazah, SK Kelulusan & Transkrip SKHU
               </h3>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-900 mt-0.5">
                 Buku kendali penomoran dokumen resmi kelulusan siswa kelas VI SDN 006 Sungai Buluh
               </p>
             </div>
@@ -931,7 +931,7 @@ export const DiplomaManagementView: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-700 dark:text-zinc-300">
+              <thead className="bg-zinc-100 dark:bg-zinc-800 font-bold text-zinc-900 dark:text-zinc-300">
                 <tr>
                   <th className="p-3 w-10 text-center">No</th>
                   <th className="p-3">Nama Siswa</th>
@@ -946,17 +946,17 @@ export const DiplomaManagementView: React.FC = () => {
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                 {students.map((s, idx) => (
                   <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                    <td className="p-3 text-center font-bold text-zinc-500">{idx + 1}</td>
+                    <td className="p-3 text-center font-bold text-zinc-900">{idx + 1}</td>
                     <td className="p-3 font-bold text-zinc-900 dark:text-zinc-100">{s.nama}</td>
-                    <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">{s.noPeserta}</td>
-                    <td className="p-3 font-mono text-zinc-600 dark:text-zinc-400">{s.nisn}</td>
+                    <td className="p-3 font-mono text-zinc-800 dark:text-zinc-400">{s.noPeserta}</td>
+                    <td className="p-3 font-mono text-zinc-800 dark:text-zinc-400">{s.nisn}</td>
                     <td className="p-3 font-mono font-bold text-sky-800 dark:text-sky-300">
                       {s.noSeriIjazah || '-'}
                     </td>
-                    <td className="p-3 font-mono text-zinc-700 dark:text-zinc-300">
+                    <td className="p-3 font-mono text-zinc-900 dark:text-zinc-300">
                       {s.noSuratKelulusan || '-'}
                     </td>
-                    <td className="p-3 font-mono text-zinc-700 dark:text-zinc-300">
+                    <td className="p-3 font-mono text-zinc-900 dark:text-zinc-300">
                       {s.noSuratTranskrip || '-'}
                     </td>
                     <td className="p-3 text-center">
@@ -998,7 +998,7 @@ export const DiplomaManagementView: React.FC = () => {
                     {students.length} Siswa & Wali
                   </span>
                 </h3>
-                <p className="text-xs text-zinc-500 font-semibold mt-0.5">
+                <p className="text-xs text-zinc-900 font-semibold mt-0.5">
                   {perpisahanMeta.subJudul}
                 </p>
               </div>
@@ -1009,7 +1009,7 @@ export const DiplomaManagementView: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-bold text-amber-900 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200 transition-all shadow-xs cursor-pointer"
                   title="Ubah jadwal acara, tempat, nama wali murid, dan status presensi kehadiran"
                 >
-                  <Edit3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                  <Edit3 className="h-4 w-4 text-amber-800 dark:text-amber-400" />
                   Ubah / Edit Data Perpisahan
                 </button>
                 <button
@@ -1026,23 +1026,23 @@ export const DiplomaManagementView: React.FC = () => {
             {/* Event Metadata Banner */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-750 text-xs">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-sky-600 shrink-0" />
+                <Calendar className="h-4 w-4 text-sky-800 shrink-0" />
                 <div>
-                  <span className="text-[10px] text-zinc-400 block font-semibold">Hari / Tanggal Acara:</span>
+                  <span className="text-[10px] text-zinc-900 block font-semibold">Hari / Tanggal Acara:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.hariTanggal}</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-sky-600 shrink-0" />
+                <Clock className="h-4 w-4 text-sky-800 shrink-0" />
                 <div>
-                  <span className="text-[10px] text-zinc-400 block font-semibold">Waktu Pelaksanaan:</span>
+                  <span className="text-[10px] text-zinc-900 block font-semibold">Waktu Pelaksanaan:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100">{perpisahanMeta.waktu}</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-sky-600 shrink-0" />
+                <MapPin className="h-4 w-4 text-sky-800 shrink-0" />
                 <div className="min-w-0">
-                  <span className="text-[10px] text-zinc-400 block font-semibold">Tempat Acara:</span>
+                  <span className="text-[10px] text-zinc-900 block font-semibold">Tempat Acara:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-100 truncate block">{perpisahanMeta.tempat}</span>
                 </div>
               </div>
@@ -1051,7 +1051,7 @@ export const DiplomaManagementView: React.FC = () => {
             {/* Filter Search */}
             <div className="flex items-center justify-between gap-3 print:hidden">
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-900" />
                 <input
                   type="text"
                   value={perpisahanSearch}
@@ -1060,7 +1060,7 @@ export const DiplomaManagementView: React.FC = () => {
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 py-2 pl-9 pr-4 text-xs dark:text-zinc-100"
                 />
               </div>
-              <span className="text-xs text-zinc-500 font-semibold">
+              <span className="text-xs text-zinc-900 font-semibold">
                 Menampilkan {filteredStudents.length} dari {students.length} Siswa
               </span>
             </div>
@@ -1080,7 +1080,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                   {filteredStudents.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="p-6 text-center text-zinc-400 italic">
+                      <td colSpan={6} className="p-6 text-center text-zinc-900 italic">
                         Tidak ditemukan data presensi dengan kata kunci "{perpisahanSearch}"
                       </td>
                     </tr>
@@ -1098,13 +1098,13 @@ export const DiplomaManagementView: React.FC = () => {
                           <td className="p-2 font-bold uppercase border-r border-zinc-200 text-zinc-900 dark:text-zinc-100">
                             {s.nama}
                           </td>
-                          <td className="p-2 text-zinc-700 dark:text-zinc-300 border-r border-zinc-200 font-medium">
+                          <td className="p-2 text-zinc-900 dark:text-zinc-300 border-r border-zinc-200 font-medium">
                             {namaWali}
                           </td>
-                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400 font-mono">
+                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-900 font-mono">
                             {idx + 1}. .........
                           </td>
-                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-400 font-mono">
+                          <td className="p-2 border-r border-zinc-200 text-center text-[10px] text-zinc-900 font-mono">
                             {idx + 1}. .........
                           </td>
                           <td className="p-2 text-center">
@@ -1274,7 +1274,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <h3 className="text-base font-extrabold uppercase underline tracking-wider">
                   TRANSKRIP NILAI
                 </h3>
-                <p className="text-xs font-bold text-zinc-700 mt-0.5">
+                <p className="text-xs font-bold text-zinc-900 mt-0.5">
                   Nomor: {currentStudent.noSuratTranskrip || `421.2 / SDN-006 / TRANSKRIP / ${schoolProfile.tahunPelajaran.replace('/', '-')} / ${currentStudent.noMeja.toString().padStart(3, '0')}`}
                 </p>
               </div>
@@ -1546,7 +1546,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
                   LAPORAN PENGGUNAAN BLANGKO IJAZAH
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   SDN 006 SUNGAI BULUH • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -1596,7 +1596,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
                   {serahTerimaMeta.judul}
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   {serahTerimaMeta.subJudul}
                 </p>
               </div>
@@ -1621,14 +1621,14 @@ export const DiplomaManagementView: React.FC = () => {
                       <td className="p-1.5 font-mono border-r border-black">{s.noSeriIjazah || '-'}</td>
                       <td className="p-1.5 border-r border-black">{s.tanggalAmbilIjazah !== undefined ? s.tanggalAmbilIjazah : serahTerimaMeta.titimangsaTanggal}</td>
                       <td className="p-1.5 border-r border-black">{s.penerimaIjazah !== undefined ? s.penerimaIjazah : `${s.namaAyah || 'Orang Tua'} (Orang Tua)`}</td>
-                      <td className="p-1.5 text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
+                      <td className="p-1.5 text-center text-[10px] text-zinc-900 font-mono">{idx + 1}. .........</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
 
               {serahTerimaMeta.catatanKaki && (
-                <p className="text-[10px] text-zinc-600 italic">
+                <p className="text-[10px] text-zinc-800 italic">
                   * {serahTerimaMeta.catatanKaki}
                 </p>
               )}
@@ -1653,7 +1653,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
                   BUKU REGISTER NOMOR IJAZAH, SKL & TRANSKRIP NILAI
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   SDN 006 SUNGAI BULUH • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
                 </p>
               </div>
@@ -1705,7 +1705,7 @@ export const DiplomaManagementView: React.FC = () => {
                 <h3 className="text-sm font-extrabold uppercase tracking-wide underline">
                   {perpisahanMeta.judul}
                 </h3>
-                <p className="text-xs font-bold text-zinc-700">
+                <p className="text-xs font-bold text-zinc-900">
                   {perpisahanMeta.subJudul}
                 </p>
                 <div className="mt-2 text-[11px] font-semibold text-zinc-800 border-y border-black py-1 max-w-2xl mx-auto flex flex-wrap justify-center gap-x-4">
@@ -1736,8 +1736,8 @@ export const DiplomaManagementView: React.FC = () => {
                         <td className="p-2 text-center font-bold border-r border-black">{idx + 1}</td>
                         <td className="p-2 font-bold uppercase border-r border-black">{s.nama}</td>
                         <td className="p-2 border-r border-black font-medium">{namaWali}</td>
-                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
-                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-500 font-mono">{idx + 1}. .........</td>
+                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-900 font-mono">{idx + 1}. .........</td>
+                        <td className="p-2 border-r border-black text-center text-[10px] text-zinc-900 font-mono">{idx + 1}. .........</td>
                         <td className="p-2 text-center font-bold">{ket}</td>
                       </tr>
                     );

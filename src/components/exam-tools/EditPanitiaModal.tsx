@@ -166,7 +166,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                   {items.length} Panitia
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-900 mt-0.5">
                 Kelola struktur kepanitiaan ujian, pembagian tugas jabatan, dan dasar hukum SK Keputusan
               </p>
             </div>
@@ -174,7 +174,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+            className="rounded-xl p-1.5 text-zinc-900 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -189,7 +189,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
               className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-colors cursor-pointer ${
                 activeSection === 'anggota'
                   ? 'bg-sky-700 text-white shadow-xs'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  : 'text-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`}
             >
               Anggota Panitia ({items.length})
@@ -200,7 +200,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
               className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-colors cursor-pointer ${
                 activeSection === 'sk'
                   ? 'bg-sky-700 text-white shadow-xs'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  : 'text-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`}
             >
               Dasar SK Penetapan Panitia
@@ -210,7 +210,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
           {activeSection === 'anggota' && (
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-zinc-400" />
+                <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-zinc-900" />
                 <input
                   type="text"
                   placeholder="Cari nama / jabatan..."
@@ -236,7 +236,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
           {activeSection === 'anggota' ? (
             <div className="space-y-3">
               {filteredItems.length === 0 ? (
-                <div className="py-12 text-center text-zinc-400 text-sm">
+                <div className="py-12 text-center text-zinc-900 text-sm">
                   Tidak ada anggota panitia yang cocok dengan pencarian.
                 </div>
               ) : (
@@ -252,7 +252,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                           <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 text-xs font-black">
                             {originalIndex + 1}
                           </span>
-                          <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                          <span className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                             {item.jabatan || `Panitia #${originalIndex + 1}`}
                           </span>
                         </div>
@@ -263,7 +263,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             onClick={() => handleMoveUp(originalIndex)}
                             disabled={originalIndex === 0}
                             title="Geser ke atas"
-                            className="p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30 cursor-pointer"
+                            className="p-1 text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30 cursor-pointer"
                           >
                             <ArrowUp className="h-4 w-4" />
                           </button>
@@ -272,7 +272,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                             onClick={() => handleMoveDown(originalIndex)}
                             disabled={originalIndex === items.length - 1}
                             title="Geser ke bawah"
-                            className="p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30 cursor-pointer"
+                            className="p-1 text-zinc-900 hover:text-zinc-700 dark:hover:text-zinc-200 disabled:opacity-30 cursor-pointer"
                           >
                             <ArrowDown className="h-4 w-4" />
                           </button>
@@ -290,7 +290,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                       {/* Fields */}
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
                         <div className="sm:col-span-4 space-y-1">
-                          <label className="font-semibold text-zinc-600 dark:text-zinc-400 flex items-center gap-1">
+                          <label className="font-semibold text-zinc-800 dark:text-zinc-400 flex items-center gap-1">
                             <Briefcase className="h-3 w-3" /> Jabatan Kepanitiaan
                           </label>
                           <input
@@ -304,7 +304,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                         </div>
 
                         <div className="sm:col-span-5 space-y-1">
-                          <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                          <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                             Nama Lengkap & Gelar
                           </label>
                           <input
@@ -317,7 +317,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                         </div>
 
                         <div className="sm:col-span-3 space-y-1">
-                          <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                          <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                             NIP (18 Digit / -)
                           </label>
                           <input
@@ -330,7 +330,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                         </div>
 
                         <div className="sm:col-span-12 space-y-1">
-                          <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                          <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                             Uraian Tugas & Tanggung Jawab
                           </label>
                           <textarea
@@ -364,7 +364,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                   <h4 className="font-bold text-sm text-zinc-900 dark:text-zinc-50">
                     Dasar Surat Keputusan (SK) Panitia
                   </h4>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-zinc-900">
                     Nomor dan tanggal penetapan SK Keputusan Kepala Sekolah untuk Ujian Sekolah
                   </p>
                 </div>
@@ -372,7 +372,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
 
               <div className="space-y-3 text-xs">
                 <div className="space-y-1">
-                  <label className="font-bold text-zinc-700 dark:text-zinc-300 block">
+                  <label className="font-bold text-zinc-900 dark:text-zinc-300 block">
                     Nomor SK Penetapan Panitia
                   </label>
                   <input
@@ -385,7 +385,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-bold text-zinc-700 dark:text-zinc-300 block">
+                  <label className="font-bold text-zinc-900 dark:text-zinc-300 block">
                     Tanggal Penetapan SK
                   </label>
                   <input
@@ -398,7 +398,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-bold text-zinc-700 dark:text-zinc-300 block">
+                  <label className="font-bold text-zinc-900 dark:text-zinc-300 block">
                     Tahun Pelajaran
                   </label>
                   <input
@@ -411,7 +411,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-bold text-zinc-700 dark:text-zinc-300 block">
+                  <label className="font-bold text-zinc-900 dark:text-zinc-300 block">
                     Keterangan Perihal SK
                   </label>
                   <textarea
@@ -432,7 +432,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer w-full sm:w-auto justify-center"
           >
             <RotateCcw className="h-3.5 w-3.5" />
             Kembalikan ke Default
@@ -442,7 +442,7 @@ export const EditPanitiaModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
             >
               Batal
             </button>

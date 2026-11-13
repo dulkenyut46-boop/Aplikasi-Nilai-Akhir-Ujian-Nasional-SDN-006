@@ -222,18 +222,18 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
   const activeSlice = hoveredSlice || slices.find((s) => s.value > 0) || slices[0];
 
   return (
-    <div className="rounded-2xl border border-sky-200/80 bg-white/85 backdrop-blur-sm p-5 sm:p-6 shadow-xs dark:border-sky-900/60 dark:bg-slate-900/85 space-y-5">
+    <div className="rounded-2xl border border-sky-200/90 bg-white/95 backdrop-blur-sm p-5 sm:p-6 shadow-xs dark:border-sky-900/60 dark:bg-slate-900/90 space-y-5">
       {/* Header & Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-sky-100 dark:border-slate-800 pb-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300">
             <PieChart className="h-4.5 w-4.5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-slate-50">
+            <h3 className="text-base font-extrabold text-slate-950 dark:text-slate-50">
               Diagram Lingkaran: Proporsi & Distribusi Mutu
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
               Sebaran klasifikasi predikat kelulusan dan kapasitas kelas
             </p>
           </div>
@@ -241,14 +241,14 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
 
         {/* Metric Selector Tabs */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex rounded-xl bg-sky-100/70 dark:bg-slate-800 p-0.5 text-xs font-semibold">
+          <div className="inline-flex rounded-xl bg-sky-100/80 dark:bg-slate-800 p-0.5 text-xs font-bold">
             <button
               type="button"
               onClick={() => setMetric('predicate')}
               className={`rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer ${
                 metric === 'predicate'
-                  ? 'bg-white text-slate-900 dark:bg-slate-700 dark:text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-white text-slate-950 dark:bg-slate-700 dark:text-white shadow-xs'
+                  : 'text-slate-800 dark:text-slate-300 hover:text-slate-950'
               }`}
             >
               Predikat (A/B/C/D)
@@ -258,8 +258,8 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
               onClick={() => setMetric('room')}
               className={`rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer ${
                 metric === 'room'
-                  ? 'bg-white text-slate-900 dark:bg-slate-700 dark:text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-white text-slate-950 dark:bg-slate-700 dark:text-white shadow-xs'
+                  : 'text-slate-800 dark:text-slate-300 hover:text-slate-950'
               }`}
             >
               Ruang Ujian
@@ -269,8 +269,8 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
               onClick={() => setMetric('mastery')}
               className={`rounded-lg px-2.5 py-1.5 transition-colors cursor-pointer ${
                 metric === 'mastery'
-                  ? 'bg-white text-slate-900 dark:bg-slate-700 dark:text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-white text-slate-950 dark:bg-slate-700 dark:text-white shadow-xs'
+                  : 'text-slate-800 dark:text-slate-300 hover:text-slate-950'
               }`}
             >
               Ketuntasan KKM
@@ -345,28 +345,28 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4">
               {activeSlice ? (
                 <div className="animate-in fade-in duration-150">
-                  <span className="text-[10px] uppercase font-bold text-zinc-400 block tracking-wider">
+                  <span className="text-[10px] uppercase font-bold text-slate-700 dark:text-slate-300 block tracking-wider">
                     {activeSlice.id.replace('RUANG ', 'R-')}
                   </span>
-                  <div className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 font-mono leading-none my-0.5">
+                  <div className="text-3xl font-black text-slate-950 dark:text-slate-50 font-mono leading-none my-0.5">
                     {activeSlice.percentage}%
                   </div>
-                  <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 block">
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block">
                     {activeSlice.value} Siswa
                   </span>
                 </div>
               ) : (
                 <div>
-                  <span className="text-2xl font-black text-zinc-900 dark:text-zinc-100 font-mono">
+                  <span className="text-2xl font-black text-slate-950 dark:text-slate-100 font-mono">
                     {filteredStudents.length}
                   </span>
-                  <span className="text-xs text-zinc-500 block">Total Siswa</span>
+                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Total Siswa</span>
                 </div>
               )}
             </div>
           </div>
 
-          <span className="text-[11px] text-zinc-400 italic mt-1 text-center">
+          <span className="text-[11px] font-medium text-slate-700 dark:text-slate-400 italic mt-1 text-center">
             Arahkan kursor pada diagram untuk melihat rincian
           </span>
         </div>
@@ -382,8 +382,8 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
                 onMouseLeave={() => setHoveredSlice(null)}
                 className={`flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 rounded-xl border transition-all cursor-pointer ${
                   isHovered
-                    ? 'border-sky-400 bg-sky-50/70 dark:border-sky-700 dark:bg-sky-950/30 shadow-xs scale-[1.01]'
-                    : 'border-sky-100 dark:border-slate-800 bg-sky-50/30 dark:bg-slate-800/40 hover:border-sky-300'
+                    ? 'border-sky-500 bg-sky-50/90 dark:border-sky-700 dark:bg-sky-950/30 shadow-xs scale-[1.01]'
+                    : 'border-sky-200 dark:border-slate-800 bg-sky-50/50 dark:bg-slate-800/40 hover:border-sky-400'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -392,15 +392,15 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
                     style={{ backgroundColor: slice.color }}
                   />
                   <div>
-                    <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <div className="text-xs font-extrabold text-slate-950 dark:text-slate-100 flex items-center gap-2">
                       <span>{slice.label}</span>
                       {slice.value > 0 && isHovered && (
-                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-sky-100 dark:bg-slate-700 font-mono">
+                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-sky-200 dark:bg-slate-700 font-mono">
                           Fokus
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                    <div className="text-[11px] font-medium text-slate-700 dark:text-slate-300">
                       {slice.subLabel}
                     </div>
                   </div>
@@ -419,10 +419,10 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
                   </div>
 
                   <div className="text-right font-mono">
-                    <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                    <span className="text-sm font-extrabold text-slate-950 dark:text-slate-100">
                       {slice.value}
                     </span>
-                    <span className="text-xs text-slate-400 ml-1">
+                    <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 ml-1">
                       ({slice.percentage}%)
                     </span>
                   </div>
@@ -432,8 +432,8 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
           })}
 
           {/* Quick Context Footnote */}
-          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pt-1 border-t border-sky-100 dark:border-slate-800">
-            <ShieldCheck className="h-4 w-4 text-sky-600 shrink-0" />
+          <div className="flex items-center gap-2 text-xs font-medium text-slate-800 dark:text-slate-300 pt-1 border-t border-sky-100 dark:border-slate-800">
+            <ShieldCheck className="h-4 w-4 text-sky-800 dark:text-sky-400 shrink-0" />
             <span>
               Total sampel data: <b>{filteredStudents.length} siswa</b> • Standar SKHU SDN 006 Sungai Buluh
             </span>

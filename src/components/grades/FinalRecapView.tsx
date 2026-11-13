@@ -89,12 +89,12 @@ export const FinalRecapView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-amber-500" />
+            <Award className="h-5 w-5 text-amber-700" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Rekapitulasi Nilai Akhir (K-13 / US) & Perangkingan
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Formula Penetapan Kelulusan: {schoolProfile.bobotRapor}% Rata-Rata Rapor + {schoolProfile.bobotUS}% Ujian Sekolah (SDN 006 Sungai Buluh)
           </p>
         </div>
@@ -106,7 +106,7 @@ export const FinalRecapView: React.FC = () => {
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 viewMode === 'condensed'
                   ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-700 dark:text-white'
-                  : 'text-zinc-600 dark:text-zinc-300'
+                  : 'text-zinc-800 dark:text-zinc-300'
               }`}
             >
               Ringkas (Nilai Akhir)
@@ -116,7 +116,7 @@ export const FinalRecapView: React.FC = () => {
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 viewMode === 'detailed'
                   ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-700 dark:text-white'
-                  : 'text-zinc-600 dark:text-zinc-300'
+                  : 'text-zinc-800 dark:text-zinc-300'
               }`}
             >
               Lengkap (Rapor + US + NA)
@@ -128,7 +128,7 @@ export const FinalRecapView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Buka menu template dan impor nilai Excel"
           >
-            <FileSpreadsheet className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-900 dark:text-sky-400" />
             Template & Impor Nilai
           </button>
 
@@ -137,15 +137,15 @@ export const FinalRecapView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-3.5 py-2 text-xs font-bold text-zinc-800 shadow-xs hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 transition-colors"
             title="Buka menu cetak buku ledger rekapitulasi nilai akhir dan peringkat"
           >
-            <Printer className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <Printer className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Menu Cetak Rekap Nilai
           </button>
 
           <button
             onClick={exportToCSV}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
           >
-            <Download className="h-4 w-4 text-sky-600" />
+            <Download className="h-4 w-4 text-sky-800" />
             Unduh Excel/CSV
           </button>
         </div>
@@ -154,7 +154,7 @@ export const FinalRecapView: React.FC = () => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
           <input
             type="text"
             placeholder="Cari Peserta Berdasarkan Nama / NISN / No UN..."
@@ -181,7 +181,7 @@ export const FinalRecapView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
+            <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-900 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
               <tr>
                 <th className="p-3 w-12 text-center sticky left-0 bg-zinc-50 dark:bg-zinc-800 z-10">Rank</th>
                 <th className="p-3 min-w-[200px] sticky left-12 bg-zinc-50 dark:bg-zinc-800 z-10">Nama Peserta</th>
@@ -221,7 +221,7 @@ export const FinalRecapView: React.FC = () => {
                             ? 'bg-zinc-300 text-zinc-900'
                             : item.rank === 3
                             ? 'bg-amber-600 text-white'
-                            : 'text-zinc-600 dark:text-zinc-400'
+                            : 'text-zinc-800 dark:text-zinc-400'
                         }`}
                       >
                         {item.rank}
@@ -231,11 +231,11 @@ export const FinalRecapView: React.FC = () => {
                     {/* Name */}
                     <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100 sticky left-12 bg-white dark:bg-zinc-900 z-10 truncate max-w-[220px]">
                       <div>{s.nama}</div>
-                      <div className="text-[10px] font-mono text-zinc-400">{s.noPeserta}</div>
+                      <div className="text-[10px] font-mono text-zinc-900">{s.noPeserta}</div>
                     </td>
 
                     {/* Room */}
-                    <td className="p-3 text-center text-zinc-600 dark:text-zinc-400 font-medium">
+                    <td className="p-3 text-center text-zinc-800 dark:text-zinc-400 font-medium">
                       {s.ruang.replace('RUANG ', 'R')}
                     </td>
 
@@ -253,10 +253,10 @@ export const FinalRecapView: React.FC = () => {
                             </span>
                           ) : (
                             <div className="text-[11px] leading-tight">
-                              <div className="font-bold text-sky-700 dark:text-sky-400">
+                              <div className="font-bold text-sky-900 dark:text-sky-400">
                                 {finalScore.toFixed(1)}
                               </div>
-                              <div className="text-[9px] text-zinc-400">
+                              <div className="text-[9px] text-zinc-900">
                                 R:{rAvg.toFixed(0)}|U:{usVal.toFixed(0)}
                               </div>
                             </div>
@@ -271,13 +271,13 @@ export const FinalRecapView: React.FC = () => {
                     </td>
 
                     {/* Average NA */}
-                    <td className="p-3 text-center font-mono font-extrabold text-sm text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
+                    <td className="p-3 text-center font-mono font-extrabold text-sm text-sky-900 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                       {item.avgNA.toFixed(2)}
                     </td>
 
                     {/* Predikat */}
                     <td className="p-3 text-center">
-                      <span className="font-bold text-zinc-700 dark:text-zinc-300">{pred.grade}</span>
+                      <span className="font-bold text-zinc-900 dark:text-zinc-300">{pred.grade}</span>
                     </td>
 
                     {/* Status */}
@@ -294,7 +294,7 @@ export const FinalRecapView: React.FC = () => {
                           setSelectedStudentForSKHU(s);
                           setActiveTab('diploma');
                         }}
-                        className="rounded-lg bg-sky-50 px-2.5 py-1 text-xs font-semibold text-sky-700 hover:bg-sky-100 dark:bg-sky-950 dark:text-sky-300 transition-colors"
+                        className="rounded-lg bg-sky-50 px-2.5 py-1 text-xs font-semibold text-sky-900 hover:bg-sky-100 dark:bg-sky-950 dark:text-sky-300 transition-colors"
                         title="Buka Transkrip Nilai Siswa"
                       >
                         Transkrip
@@ -312,18 +312,18 @@ export const FinalRecapView: React.FC = () => {
                   Rata-Rata Nilai Sekolah:
                 </td>
                 {subjectStats.map((item) => (
-                  <td key={item.sub.key} className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400">
+                  <td key={item.sub.key} className="p-3 text-center font-mono font-extrabold text-sky-900 dark:text-sky-400">
                     {item.avg.toFixed(2)}
                   </td>
                 ))}
                 <td colSpan={5} className="p-3"></td>
               </tr>
               <tr>
-                <td colSpan={3} className="p-2 text-right uppercase tracking-wider text-[11px] text-zinc-500">
+                <td colSpan={3} className="p-2 text-right uppercase tracking-wider text-[11px] text-zinc-900">
                   Nilai Tertinggi (Maksimum):
                 </td>
                 {subjectStats.map((item) => (
-                  <td key={item.sub.key} className="p-2 text-center font-mono text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  <td key={item.sub.key} className="p-2 text-center font-mono text-zinc-900 dark:text-zinc-300 text-[11px]">
                     {item.max.toFixed(2)}
                   </td>
                 ))}
@@ -397,11 +397,11 @@ export const FinalRecapView: React.FC = () => {
               {(printFormat === 'ledger' || printFormat === 'per-ruang') && 'BUKU LEDGER REKAPITULASI NILAI AKHIR & PERANGKINGAN KELULUSAN'}
               {printFormat === 'statistik' && 'REKAPITULASI STATISTIK & ANALISIS KETUNTASAN MATA PELAJARAN'}
             </h3>
-            <p className="text-xs font-bold text-zinc-700">
+            <p className="text-xs font-bold text-zinc-900">
               {schoolProfile.namaSekolah} • TAHUN PELAJARAN {schoolProfile.tahunPelajaran}
               {printRoom !== 'ALL' && ` • ${printRoom}`}
             </p>
-            <p className="text-[10px] text-zinc-600 font-medium">
+            <p className="text-[10px] text-zinc-800 font-medium">
               Formula Bobot: {schoolProfile.bobotRapor}% Rata-Rata Rapor + {schoolProfile.bobotUS}% Ujian Sekolah • KKM Kelulusan: {schoolProfile.kkmKelulusan}
             </p>
           </div>
@@ -490,18 +490,18 @@ export const FinalRecapView: React.FC = () => {
                         <h4 className="font-extrabold uppercase text-xs text-black truncate">
                           {item.student.nama}
                         </h4>
-                        <p className="font-mono text-[11px] text-zinc-700">
+                        <p className="font-mono text-[11px] text-zinc-900">
                           {item.student.noPeserta} • {item.student.ruang}
                         </p>
-                        <p className="text-[10px] text-zinc-600">NISN: {item.student.nisn}</p>
+                        <p className="text-[10px] text-zinc-800">NISN: {item.student.nisn}</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className="text-[10px] font-bold text-zinc-600 block uppercase">Nilai Rata-rata</span>
+                      <span className="text-[10px] font-bold text-zinc-800 block uppercase">Nilai Rata-rata</span>
                       <span className="font-mono font-black text-base text-black">
                         {item.avgNA.toFixed(2)}
                       </span>
-                      <span className="text-[10px] font-semibold text-zinc-700 block">
+                      <span className="text-[10px] font-semibold text-zinc-900 block">
                         Total NA: {item.totalNA.toFixed(1)}
                       </span>
                     </div>
@@ -567,7 +567,7 @@ export const FinalRecapView: React.FC = () => {
                   : 0}%
               </b></span>
             </div>
-            <div className="text-[11px] text-zinc-500">
+            <div className="text-[11px] text-zinc-900">
               Dicetak: {new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
           </div>
@@ -578,14 +578,14 @@ export const FinalRecapView: React.FC = () => {
               <p className="font-semibold text-zinc-800">Ketua Panitia Ujian,</p>
               <div className="h-16"></div>
               <p className="font-bold underline uppercase text-black">{schoolProfile.ketuaPanitia}</p>
-              <p className="font-mono text-[11px] text-zinc-700">NIP. {schoolProfile.nipKetuaPanitia}</p>
+              <p className="font-mono text-[11px] text-zinc-900">NIP. {schoolProfile.nipKetuaPanitia}</p>
             </div>
             <div className="text-right">
-              <p className="text-zinc-700">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
+              <p className="text-zinc-900">{schoolProfile.tempatCetak || 'Sungai Buluh'}, {schoolProfile.tanggalKelulusan}</p>
               <p className="font-bold text-black">Kepala {schoolProfile.namaSekolah},</p>
               <div className="h-16"></div>
               <p className="font-bold underline uppercase text-black">{schoolProfile.kepalaSekolah}</p>
-              <p className="font-mono text-[11px] text-zinc-700">NIP. {schoolProfile.nipKepalaSekolah}</p>
+              <p className="font-mono text-[11px] text-zinc-900">NIP. {schoolProfile.nipKepalaSekolah}</p>
             </div>
           </div>
         </div>

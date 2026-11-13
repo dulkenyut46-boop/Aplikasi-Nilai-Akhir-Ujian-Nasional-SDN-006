@@ -61,13 +61,13 @@ export const Modal: React.FC<ModalProps> = ({
           <div>
             <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">{title}</h3>
             {subtitle && (
-              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{subtitle}</p>
+              <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">{subtitle}</p>
             )}
           </div>
           <button
             onClick={onClose}
             type="button"
-            className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-colors"
+            className="rounded-lg p-1.5 text-zinc-900 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>

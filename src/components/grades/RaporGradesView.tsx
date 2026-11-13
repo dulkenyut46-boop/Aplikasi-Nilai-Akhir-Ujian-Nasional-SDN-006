@@ -49,12 +49,12 @@ export const RaporGradesView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-sky-600" />
+            <BookOpen className="h-5 w-5 text-sky-800" />
             <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
               Pengolahan Nilai Rapor Semester 7 s.d. 12 (K13)
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="mt-0.5 text-xs text-zinc-900 dark:text-zinc-400">
             Nilai rapor semester Kelas 4, 5, dan 6 dengan formula rata-rata otomatis untuk syarat kelulusan
           </p>
         </div>
@@ -68,10 +68,10 @@ export const RaporGradesView: React.FC = () => {
                 selectedSemester === 'summary' ? 's12' : selectedSemester
               )
             }
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-750 transition-colors shadow-xs"
             title="Unduh format template Excel (.xlsx) untuk semester ini"
           >
-            <FileSpreadsheet className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+            <FileSpreadsheet className="h-4 w-4 text-sky-800 dark:text-sky-400" />
             Template Excel (.xlsx)
           </button>
 
@@ -81,7 +81,7 @@ export const RaporGradesView: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-xl border border-sky-300 bg-sky-50/70 px-3.5 py-2 text-xs font-bold text-sky-800 hover:bg-sky-100 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-200 dark:hover:bg-sky-900/60 transition-colors shadow-xs"
             title="Impor nilai rapor dari berkas Excel (.xlsx)"
           >
-            <Upload className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+            <Upload className="h-4 w-4 text-sky-900 dark:text-sky-400" />
             Impor Nilai Rapor
           </button>
 
@@ -108,13 +108,13 @@ export const RaporGradesView: React.FC = () => {
               className={`flex flex-col shrink-0 px-4 py-2.5 rounded-xl border text-left transition-all ${
                 isActive
                   ? 'border-sky-600 bg-sky-800 text-white shadow-md'
-                  : 'border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800'
+                  : 'border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800'
               }`}
             >
               <span className="text-xs font-bold leading-tight">{sem.label}</span>
               <span
                 className={`text-[10px] ${
-                  isActive ? 'text-sky-200' : 'text-zinc-400'
+                  isActive ? 'text-sky-200' : 'text-zinc-900'
                 }`}
               >
                 {sem.desc}
@@ -127,7 +127,7 @@ export const RaporGradesView: React.FC = () => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
           <input
             type="text"
             placeholder="Cari Nama Peserta atau No Ujian..."
@@ -154,7 +154,7 @@ export const RaporGradesView: React.FC = () => {
       <div className="rounded-2xl border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
+            <thead className="border-b border-zinc-200 bg-zinc-50/80 text-zinc-900 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-200 font-bold">
               <tr>
                 <th className="p-3 w-12 text-center sticky left-0 bg-zinc-50 dark:bg-zinc-800 z-10">No</th>
                 <th className="p-3 min-w-[200px] sticky left-12 bg-zinc-50 dark:bg-zinc-800 z-10">Nama Peserta</th>
@@ -162,7 +162,7 @@ export const RaporGradesView: React.FC = () => {
                 {subjects.map((sub) => (
                   <th key={sub.key} className="p-3 text-center min-w-[75px]" title={sub.name}>
                     <div>{sub.code}</div>
-                    <div className="text-[10px] text-zinc-400 font-normal">KKM {sub.kkm}</div>
+                    <div className="text-[10px] text-zinc-900 font-normal">KKM {sub.kkm}</div>
                   </th>
                 ))}
                 <th className="p-3 text-center min-w-[90px] bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-200">
@@ -176,14 +176,14 @@ export const RaporGradesView: React.FC = () => {
 
                 return (
                   <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors">
-                    <td className="p-3 text-center font-bold text-zinc-500 sticky left-0 bg-white dark:bg-zinc-900 z-10">
+                    <td className="p-3 text-center font-bold text-zinc-900 sticky left-0 bg-white dark:bg-zinc-900 z-10">
                       {idx + 1}
                     </td>
                     <td className="p-3 font-semibold text-zinc-900 dark:text-zinc-100 sticky left-12 bg-white dark:bg-zinc-900 z-10 truncate max-w-[220px]">
                       <div>{s.nama}</div>
-                      <div className="text-[10px] font-mono text-zinc-400">{s.noPeserta}</div>
+                      <div className="text-[10px] font-mono text-zinc-900">{s.noPeserta}</div>
                     </td>
-                    <td className="p-3 text-center text-zinc-600 dark:text-zinc-400 font-medium">
+                    <td className="p-3 text-center text-zinc-800 dark:text-zinc-400 font-medium">
                       {s.ruang.replace('RUANG ', 'R')}
                     </td>
 
@@ -224,7 +224,7 @@ export const RaporGradesView: React.FC = () => {
                     })}
 
                     {/* Row Average */}
-                    <td className="p-3 text-center font-mono font-extrabold text-sky-700 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
+                    <td className="p-3 text-center font-mono font-extrabold text-sky-900 dark:text-sky-400 bg-sky-50/50 dark:bg-sky-950/20">
                       {overallRaporAvg.toFixed(2)}
                     </td>
                   </tr>

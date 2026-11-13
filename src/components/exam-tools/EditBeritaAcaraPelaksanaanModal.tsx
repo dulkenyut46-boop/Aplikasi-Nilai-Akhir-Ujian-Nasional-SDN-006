@@ -130,7 +130,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                   Format Sesuai PDF
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 mt-0.5">
+              <p className="text-xs text-zinc-900 mt-0.5">
                 Susunan kata-kata, poin a (waktu & peserta), poin b (sampul & naskah), poin c (catatan), dan TTD pengawas
               </p>
             </div>
@@ -138,7 +138,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+            className="rounded-xl p-1.5 text-zinc-900 hover:text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -146,8 +146,8 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
 
         {/* Action Quick Sync */}
         <div className="flex items-center justify-between px-5 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 text-xs">
-          <div className="text-zinc-600 dark:text-zinc-400">
-            Ruangan Saat Ini: <b className="text-sky-700 dark:text-sky-400">{currentRoom}</b> ({roomStudentsCount} Siswa)
+          <div className="text-zinc-800 dark:text-zinc-400">
+            Ruangan Saat Ini: <b className="text-sky-900 dark:text-sky-400">{currentRoom}</b> ({roomStudentsCount} Siswa)
           </div>
           <button
             type="button"
@@ -164,13 +164,13 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           {/* Judul & Tanggal Pembuka */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-3">
             <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-sky-600" />
+              <Calendar className="h-4 w-4 text-sky-800" />
               Paragraf Pembuka: Pada hari ini ... tanggal ... bulan ... tahun ...
             </h4>
 
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs">
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Hari
                 </label>
                 <input
@@ -183,7 +183,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Tanggal
                 </label>
                 <input
@@ -196,7 +196,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Bulan
                 </label>
                 <input
@@ -209,7 +209,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Tahun
                 </label>
                 <input
@@ -222,7 +222,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1 col-span-2 sm:col-span-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Tahun Pelajaran
                 </label>
                 <input
@@ -239,13 +239,13 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           {/* Poin a: Ujian Sekolah (US) pada pukul & Data Sekolah / Ruang */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-3">
             <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <Clock className="h-4 w-4 text-sky-600" />
+              <Clock className="h-4 w-4 text-sky-800" />
               Poin a. Penyelenggaraan Ujian Sekolah (US)
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
               <div className="sm:col-span-6 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Waktu Pelaksanaan (pukul ..... s/d .....)
                 </label>
                 <div className="flex items-center gap-2">
@@ -256,7 +256,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                     placeholder="08.00"
                     className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-xs font-mono text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-sky-500 text-center"
                   />
-                  <span className="font-bold text-zinc-500">s/d</span>
+                  <span className="font-bold text-zinc-900">s/d</span>
                   <input
                     type="text"
                     value={formData.waktuSelesai}
@@ -268,7 +268,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-6 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Pada Sekolah
                 </label>
                 <input
@@ -281,7 +281,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Ruang
                 </label>
                 <input
@@ -294,7 +294,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Jumlah Peserta seharusnya
                 </label>
                 <input
@@ -313,7 +313,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Jumlah Peserta tidak hadir
                 </label>
                 <input
@@ -332,7 +332,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Jumlah Peserta yang hadir
                 </label>
                 <input
@@ -348,13 +348,13 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           {/* Poin b: Pembukaan Sampul Soal & Eksamplar */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-3">
             <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <Layers className="h-4 w-4 text-sky-600" />
+              <Layers className="h-4 w-4 text-sky-800" />
               Poin b. Pembukaan Sampul Soal & Lembar Kerja
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
               <div className="sm:col-span-6 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Untuk Mata Pelajaran
                 </label>
                 <input
@@ -373,7 +373,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Lembar Soal (eksamplar)
                 </label>
                 <input
@@ -386,7 +386,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="sm:col-span-3 space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 block">
                   Lembar Hasil Kerja (eksamplar)
                 </label>
                 <input
@@ -398,7 +398,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                 />
               </div>
 
-              <div className="sm:col-span-12 text-[11px] text-zinc-500 italic bg-white dark:bg-zinc-800/80 p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
+              <div className="sm:col-span-12 text-[11px] text-zinc-900 italic bg-white dark:bg-zinc-800/80 p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700">
                 Bunyi Naskah: "Di ruang kelas dengan saksi oleh para peserta Ujian Sekolah (US) dan berisi lembar soal <b>{formData.lembarSoalEksamplar}</b> eksamplar, lembar hasil kerja sebanyak <b>{formData.lembarHasilKerjaEksamplar}</b> eksamplar."
               </div>
             </div>
@@ -407,13 +407,13 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           {/* Poin c: Catatan selama Ujian Sekolah (US) berlangsung */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-3">
             <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <FileText className="h-4 w-4 text-sky-600" />
+              <FileText className="h-4 w-4 text-sky-800" />
               Poin c. Catatan selama Ujian Sekolah (US) berlangsung
             </h4>
 
             <div className="space-y-2 text-xs">
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 text-[11px] block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 text-[11px] block">
                   Baris Catatan 1
                 </label>
                 <input
@@ -426,7 +426,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 text-[11px] block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 text-[11px] block">
                   Baris Catatan 2
                 </label>
                 <input
@@ -439,7 +439,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-zinc-600 dark:text-zinc-400 text-[11px] block">
+                <label className="font-semibold text-zinc-800 dark:text-zinc-400 text-[11px] block">
                   Baris Catatan 3
                 </label>
                 <input
@@ -456,7 +456,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           {/* Yang membuat berita acara : Pengawas (1 & 2) */}
           <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/50 dark:bg-zinc-800/40 space-y-3">
             <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide flex items-center gap-2">
-              <UserCheck className="h-4 w-4 text-sky-600" />
+              <UserCheck className="h-4 w-4 text-sky-800" />
               Yang membuat berita acara : Pengawas (Ruang Ujian)
             </h4>
 
@@ -467,7 +467,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                   1. Pengawas 1
                 </span>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-semibold text-zinc-500 block">
+                  <label className="text-[11px] font-semibold text-zinc-900 block">
                     Nama Lengkap & Gelar
                   </label>
                   <input
@@ -479,7 +479,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-semibold text-zinc-500 block">
+                  <label className="text-[11px] font-semibold text-zinc-900 block">
                     NIP (18 Digit / -)
                   </label>
                   <input
@@ -498,7 +498,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                   2. Pengawas 2
                 </span>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-semibold text-zinc-500 block">
+                  <label className="text-[11px] font-semibold text-zinc-900 block">
                     Nama Lengkap & Gelar
                   </label>
                   <input
@@ -510,7 +510,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-semibold text-zinc-500 block">
+                  <label className="text-[11px] font-semibold text-zinc-900 block">
                     NIP (18 Digit / -)
                   </label>
                   <input
@@ -531,7 +531,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
           <button
             type="button"
             onClick={handleResetDefault}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer w-full sm:w-auto justify-center"
           >
             <RotateCcw className="h-3.5 w-3.5" />
             Kembalikan ke Format Asli PDF
@@ -541,7 +541,7 @@ export const EditBeritaAcaraPelaksanaanModal: React.FC<Props> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+              className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-2 text-xs font-bold text-zinc-900 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
             >
               Batal
             </button>

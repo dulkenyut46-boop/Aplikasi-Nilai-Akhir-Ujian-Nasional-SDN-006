@@ -181,7 +181,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
             ) : (
               <div className="text-center p-1">
                 <span className="text-xl">{jenisKelamin === 'L' ? '👦' : '👧'}</span>
-                <span className="text-[7px] text-zinc-400 font-bold block uppercase mt-0.5">FOTO 2x3</span>
+                <span className="text-[7px] text-zinc-900 font-bold block uppercase mt-0.5">FOTO 2x3</span>
               </div>
             )}
           </div>
@@ -190,7 +190,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
             <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200 block uppercase">
               Pas Foto Resmi Peserta (Ukuran 2x3 & 3x4)
             </span>
-            <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+            <p className="text-[11px] text-zinc-900 dark:text-zinc-400">
               Digunakan pada Kartu Peserta Ujian, Denah Meja Ruangan, dan Surat Keterangan Hasil Ujian (SKHU).
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 justify-center sm:justify-start">
@@ -208,9 +208,9 @@ export const StudentModal: React.FC<StudentModalProps> = ({
               <button
                 type="button"
                 onClick={() => setFoto(generateStudentPhotoSvg(nama || 'SISWA BARU', jenisKelamin, 1))}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
               >
-                <Sparkles className="h-3.5 w-3.5 text-sky-600" />
+                <Sparkles className="h-3.5 w-3.5 text-sky-800" />
                 Gunakan Avatar Resmi
               </button>
 
@@ -218,7 +218,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setFoto('')}
-                  className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30"
+                  className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-rose-800 hover:bg-rose-50 dark:hover:bg-rose-950/30"
                 >
                   <Trash2 className="h-3 w-3" />
                   Hapus
@@ -230,7 +230,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nama Lengkap Siswa *
             </label>
             <input
@@ -244,7 +244,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               No. Peserta Ujian *
             </label>
             <input
@@ -258,7 +258,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               NISN (10 Digit) *
             </label>
             <input
@@ -272,7 +272,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               NIS (Buku Induk)
             </label>
             <input
@@ -285,7 +285,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Jenis Kelamin
             </label>
             <select
@@ -299,7 +299,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Tempat Lahir
             </label>
             <input
@@ -312,7 +312,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Tanggal Lahir
             </label>
             <input
@@ -324,7 +324,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nama Ayah Kandung
             </label>
             <input
@@ -337,7 +337,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nama Ibu Kandung
             </label>
             <input
@@ -350,7 +350,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Ruang Ujian
             </label>
             <select
@@ -366,7 +366,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nomor Meja
             </label>
             <input
@@ -380,7 +380,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nomor Ijazah
             </label>
             <input
@@ -393,7 +393,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nomor Surat Kelulusan (SKL)
             </label>
             <input
@@ -406,7 +406,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           </div>
 
           <div className="sm:col-span-2">
-            <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-zinc-900 dark:text-zinc-300 uppercase mb-1">
               Nomor Surat Transkrip Nilai (SKHU)
             </label>
             <input
@@ -423,7 +423,7 @@ export const StudentModal: React.FC<StudentModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Batal
           </button>

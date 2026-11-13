@@ -48,7 +48,7 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen app-blue-atmosphere relative text-slate-900 antialiased dark:text-slate-50 flex print:bg-white">
+    <div className="min-h-screen app-blue-atmosphere relative text-slate-950 antialiased dark:text-slate-50 flex print:bg-white">
       {/* Subtle Light-Blue Atmospheric Nuance Orbs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden z-0 print:hidden" aria-hidden="true">
         <div className="absolute -top-28 right-8 h-96 w-96 rounded-full bg-sky-300/30 blur-3xl dark:bg-sky-500/10" />
@@ -82,7 +82,7 @@ const MainLayout: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-sky-200/80 bg-white/70 py-4 px-6 text-center text-xs text-slate-600 backdrop-blur-md dark:border-sky-900/60 dark:bg-slate-900/70 dark:text-slate-400 print:hidden">
+        <footer className="border-t border-sky-300/80 bg-white/85 py-4 px-6 text-center text-xs font-medium text-slate-800 backdrop-blur-md dark:border-sky-900/60 dark:bg-slate-900/75 dark:text-slate-300 print:hidden">
           <p>
             © {new Date().getFullYear()} Aplikasi Rekap Nilai Akhir Ujian Nasional • <b>SDN 006 Sungai Buluh</b>, Kecamatan Singingi Hilir, Kabupaten Kuantan Singingi, Riau
           </p>

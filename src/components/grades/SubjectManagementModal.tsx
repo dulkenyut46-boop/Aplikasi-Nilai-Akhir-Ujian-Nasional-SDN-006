@@ -160,7 +160,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
                 activeTab === 'list' && !editingSubject
                   ? 'bg-sky-800 text-white shadow-xs'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
+                  : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
               }`}
             >
               <BookOpen className="h-4 w-4" />
@@ -179,7 +179,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   : 'bg-sky-50 text-sky-800 hover:bg-sky-100 border border-sky-300 dark:bg-sky-950/40 dark:text-sky-200 dark:border-sky-800'
               }`}
             >
-              <Plus className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+              <Plus className="h-4 w-4 text-sky-800 dark:text-sky-400" />
               Tambah Mapel Baru
             </button>
           </div>
@@ -187,10 +187,10 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
           <button
             type="button"
             onClick={resetSubjectsToDefault}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 hover:text-zinc-900 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 hover:text-zinc-900 transition-colors"
             title="Kembalikan daftar mata pelajaran ke 10 mata pelajaran standar kurikulum"
           >
-            <RotateCcw className="h-3.5 w-3.5 text-zinc-500" />
+            <RotateCcw className="h-3.5 w-3.5 text-zinc-900" />
             Reset ke Standar (10 Mapel)
           </button>
         </div>
@@ -198,11 +198,11 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
         {/* TAB 1: LIST OF SUBJECTS */}
         {activeTab === 'list' && !editingSubject && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center justify-between text-xs text-zinc-900 dark:text-zinc-400">
               <p>
                 Daftar mata pelajaran yang digunakan dalam penilaian Ujian Sekolah, Kartu Ujian, Rekap Nilai, dan SKHU.
               </p>
-              <span className="font-semibold text-sky-700 dark:text-sky-400">
+              <span className="font-semibold text-sky-900 dark:text-sky-400">
                 {subjects.length} Mata Pelajaran Aktif
               </span>
             </div>
@@ -210,7 +210,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
             <div className="overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/80 font-bold text-zinc-700 dark:text-zinc-200">
+                  <thead className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/80 font-bold text-zinc-900 dark:text-zinc-200">
                     <tr>
                       <th className="p-3 w-12 text-center">No</th>
                       <th className="p-3 w-24">Kode</th>
@@ -231,7 +231,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                           key={sub.key}
                           className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
                         >
-                          <td className="p-3 text-center font-bold text-zinc-400">
+                          <td className="p-3 text-center font-bold text-zinc-900">
                             {idx + 1}
                           </td>
                           <td className="p-3">
@@ -243,7 +243,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                             <div className="font-bold text-zinc-900 dark:text-zinc-100">
                               {sub.name}
                             </div>
-                            <div className="text-[10px] text-zinc-400 font-mono">
+                            <div className="text-[10px] text-zinc-900 font-mono">
                               Key ID: {sub.key}
                             </div>
                           </td>
@@ -251,7 +251,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                             {sub.kkm}
                           </td>
                           <td className="p-3 text-center">
-                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-sky-700 dark:text-sky-400">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-sky-900 dark:text-sky-400">
                               <Check className="h-3 w-3" />
                               {gradedCount}/{students.length} Siswa
                             </span>
@@ -292,7 +292,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
             </div>
 
             <div className="rounded-xl border border-blue-200 bg-blue-50/70 p-3.5 text-xs text-blue-900 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-200 flex items-start gap-2.5">
-              <HelpCircle className="h-4 w-4 shrink-0 text-blue-700 dark:text-blue-400 mt-0.5" />
+              <HelpCircle className="h-4 w-4 shrink-0 text-blue-900 dark:text-blue-400 mt-0.5" />
               <div>
                 <strong>Informasi Sinkronisasi:</strong> Setiap perubahan nama, penambahan mapel, maupun penghapusan mapel akan langsung tersinkronisasi di menu{' '}
                 <strong>Nilai Ujian Sekolah</strong>, <strong>Rekap Nilai Rapor</strong>,{' '}
@@ -307,7 +307,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
           <form onSubmit={handleAddSubmit} className="space-y-4">
             <div className="rounded-xl border border-sky-200 bg-sky-50/60 p-4 dark:border-sky-900/60 dark:bg-sky-950/30">
               <h3 className="font-bold text-sm text-sky-950 dark:text-sky-200 flex items-center gap-2">
-                <Plus className="h-4 w-4 text-sky-700 dark:text-sky-400" />
+                <Plus className="h-4 w-4 text-sky-900 dark:text-sky-400" />
                 Formulir Tambah Mata Pelajaran Baru
               </h3>
               <p className="mt-1 text-xs text-sky-800/80 dark:text-sky-300">
@@ -324,9 +324,9 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5 md:col-span-2">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <BookOpen className="h-3.5 w-3.5 text-sky-600" />
-                  Nama Mata Pelajaran <span className="text-rose-500">*</span>
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                  <BookOpen className="h-3.5 w-3.5 text-sky-800" />
+                  Nama Mata Pelajaran <span className="text-rose-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -349,9 +349,9 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <Hash className="h-3.5 w-3.5 text-sky-600" />
-                  Kode Singkat / Singkatan Mapel <span className="text-rose-500">*</span>
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                  <Hash className="h-3.5 w-3.5 text-sky-800" />
+                  Kode Singkat / Singkatan Mapel <span className="text-rose-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -362,14 +362,14 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   onChange={(e) => setNewCode(e.target.value.toUpperCase())}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold uppercase text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                <p className="text-[10px] text-zinc-900 dark:text-zinc-400">
                   Digunakan untuk header kolom tabel dan kartu ujian (maksimal 10 karakter).
                 </p>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                  <Award className="h-3.5 w-3.5 text-sky-600" />
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300 flex items-center gap-1.5">
+                  <Award className="h-3.5 w-3.5 text-sky-800" />
                   KKM (Kriteria Ketuntasan Minimal)
                 </label>
                 <input
@@ -380,13 +380,13 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   onChange={(e) => setNewKkm(Number(e.target.value))}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                <p className="text-[10px] text-zinc-900 dark:text-zinc-400">
                   Standar ketuntasan kelulusan (biasanya antara 70 - 75).
                 </p>
               </div>
 
               <div className="space-y-1.5 md:col-span-2">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                   Nilai Standar Awal untuk Seluruh Siswa Aktif
                 </label>
                 <input
@@ -397,7 +397,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                   onChange={(e) => setNewDefaultScore(Number(e.target.value))}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 font-mono text-xs font-bold text-zinc-900 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                <p className="text-[10px] text-zinc-900 dark:text-zinc-400">
                   Nilai ini akan diisi secara otomatis untuk seluruh siswa agar tidak ada nilai kosong. Nilai dapat diedit kapan saja melalui menu nilai.
                 </p>
               </div>
@@ -407,7 +407,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTab('list')}
-                className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
               >
                 Batal
               </button>
@@ -428,7 +428,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
             <div className="rounded-xl border border-blue-200 bg-blue-50/70 p-4 dark:border-blue-900/60 dark:bg-blue-950/40">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Pencil className="h-4 w-4 text-blue-700 dark:text-blue-400" />
+                  <Pencil className="h-4 w-4 text-blue-900 dark:text-blue-400" />
                   <h3 className="font-bold text-sm text-blue-950 dark:text-blue-200">
                     Edit Nama & Data Mata Pelajaran
                   </h3>
@@ -436,7 +436,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setEditingSubject(null)}
-                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+                  className="text-zinc-900 hover:text-zinc-600 dark:hover:text-zinc-200"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -455,8 +455,8 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5 md:col-span-2">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
-                  Nama Mata Pelajaran <span className="text-rose-500">*</span>
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
+                  Nama Mata Pelajaran <span className="text-rose-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -468,8 +468,8 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
-                  Kode / Singkatan Mapel <span className="text-rose-500">*</span>
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
+                  Kode / Singkatan Mapel <span className="text-rose-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -482,7 +482,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                <label className="text-xs font-bold text-zinc-900 dark:text-zinc-300">
                   KKM (Kriteria Ketuntasan Minimal)
                 </label>
                 <input
@@ -500,7 +500,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
               <button
                 type="button"
                 onClick={() => setEditingSubject(null)}
-                className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
               >
                 Batal
               </button>
@@ -520,14 +520,14 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
           <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
             <div className="w-full max-w-md rounded-2xl border border-rose-300 bg-white p-5 shadow-2xl dark:border-rose-900 dark:bg-zinc-900 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-400">
                   <Trash2 className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
                     Hapus Mata Pelajaran?
                   </h4>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="text-xs text-zinc-900 dark:text-zinc-400">
                     Konfirmasi tindakan penghapusan mapel
                   </p>
                 </div>
@@ -545,7 +545,7 @@ export const SubjectManagementModal: React.FC<SubjectManagementModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setDeletingSubject(null)}
-                  className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                 >
                   Batal
                 </button>

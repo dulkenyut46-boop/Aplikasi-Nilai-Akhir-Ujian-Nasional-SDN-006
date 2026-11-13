@@ -141,7 +141,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                   {items.length} Peserta
                 </span>
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-900 dark:text-zinc-400">
                 Ubah nama, gelar, jabatan dinas, atau urutan tanda tangan untuk lembar presensi rapat kelulusan
               </p>
             </div>
@@ -149,7 +149,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl p-2 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-colors"
+            className="rounded-xl p-2 text-zinc-900 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -158,13 +158,13 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
         {/* Toolbar & Search */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 bg-zinc-50 px-6 py-3 dark:border-zinc-800 dark:bg-zinc-900/60">
           <div className="relative flex-1 min-w-[200px] max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-900" />
             <input
               type="text"
               placeholder="Cari nama atau jabatan..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-zinc-300 bg-white py-1.5 pl-9 pr-3 text-xs text-zinc-900 placeholder-zinc-400 focus:border-sky-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+              className="w-full rounded-xl border border-zinc-300 bg-white py-1.5 pl-9 pr-3 text-xs text-zinc-900 placeholder-zinc-600 focus:border-sky-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
             />
           </div>
 
@@ -180,7 +180,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
             <button
               type="button"
               onClick={handleCopyAll}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
               title="Salin semua nama ke clipboard"
             >
               <Copy className="h-3.5 w-3.5" />
@@ -189,7 +189,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
             <button
               type="button"
               onClick={handleResetDefault}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
               title="Kembalikan susunan 23 guru asli"
             >
               <RotateCcw className="h-3.5 w-3.5" />
@@ -201,7 +201,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
         {/* Content Table / List */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2">
           {filteredItems.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400">
+            <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-900">
               <Users className="h-10 w-10 stroke-1 mb-2 opacity-50" />
               <p className="text-sm font-medium">Tidak ada data nama yang cocok dengan "{searchQuery}"</p>
             </div>
@@ -217,7 +217,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                   >
                     {/* Index & Reorder Controls */}
                     <div className="flex items-center gap-1 min-w-[70px]">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-100 text-xs font-bold text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-100 text-xs font-bold text-zinc-900 dark:bg-zinc-700 dark:text-zinc-200">
                         #{realIndex + 1}
                       </span>
                       <div className="flex flex-col">
@@ -225,7 +225,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                           type="button"
                           disabled={realIndex === 0}
                           onClick={() => handleMoveUp(realIndex)}
-                          className="text-zinc-400 hover:text-sky-600 disabled:opacity-20 p-0.5"
+                          className="text-zinc-900 hover:text-sky-600 disabled:opacity-20 p-0.5"
                           title="Pindahkan ke atas"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
@@ -234,7 +234,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                           type="button"
                           disabled={realIndex === items.length - 1}
                           onClick={() => handleMoveDown(realIndex)}
-                          className="text-zinc-400 hover:text-sky-600 disabled:opacity-20 p-0.5"
+                          className="text-zinc-900 hover:text-sky-600 disabled:opacity-20 p-0.5"
                           title="Pindahkan ke bawah"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
@@ -244,7 +244,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
 
                     {/* Nama Input */}
                     <div className="flex-1">
-                      <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-0.5">
+                      <label className="block text-[10px] font-bold text-zinc-900 uppercase tracking-wider mb-0.5">
                         Nama Lengkap & Gelar
                       </label>
                       <input
@@ -258,7 +258,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
 
                     {/* Jabatan Input */}
                     <div className="flex-1">
-                      <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-0.5">
+                      <label className="block text-[10px] font-bold text-zinc-900 uppercase tracking-wider mb-0.5">
                         Jabatan / Peran Rapat
                       </label>
                       <input
@@ -275,7 +275,7 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleDelete(realIndex)}
-                        className="rounded-xl p-2 text-zinc-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors"
+                        className="rounded-xl p-2 text-zinc-900 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors"
                         title="Hapus baris ini"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -290,14 +290,14 @@ export const EditGuruRapatModal: React.FC<EditGuruRapatModalProps> = ({
 
         {/* Footer Actions */}
         <div className="flex items-center justify-between border-t border-zinc-200 bg-zinc-50 px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900/60">
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">
+          <span className="text-xs text-zinc-900 dark:text-zinc-400">
             Total {items.length} guru & staf kependidikan terdaftar
           </span>
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-zinc-300 bg-white px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+              className="rounded-xl border border-zinc-300 bg-white px-4 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
             >
               Batal
             </button>
