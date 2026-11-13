@@ -5,6 +5,12 @@ import {
   DiplomaRecord,
   SubjectInfo,
 } from '../types';
+import {
+  idbGet,
+  idbSet,
+  safeLocalStorageSet,
+  stripHeavyStudentPhotosForLocalStorage,
+} from './safeStorage';
 
 export interface TpArchiveMeta {
   tahunPelajaran: string;
@@ -82,11 +88,7 @@ export function loadActiveTp(): string | null {
 }
 
 export function saveActiveTp(tp: string): void {
-  try {
-    localStorage.setItem(ACTIVE_TP_KEY, normalizeTpLabel(tp));
-  } catch (err) {
-    console.warn('Gagal menyimpan TP aktif:', err);
-  }
+  safeLocalStorageSet(ACTIVE_TP_KEY, normalizeTpLabel(tp));
 }
 
 export function loadTpIndex(): TpArchiveMeta[] {
@@ -101,14 +103,11 @@ export function loadTpIndex(): TpArchiveMeta[] {
 }
 
 export function saveTpIndex(index: TpArchiveMeta[]): void {
-  try {
-    const sorted = [...index].sort((a, b) =>
-      b.tahunPelajaran.localeCompare(a.tahunPelajaran)
-    );
-    localStorage.setItem(TP_INDEX_KEY, JSON.stringify(sorted));
-  } catch (err) {
-    console.warn('Gagal menyimpan indeks arsip TP:', err);
-  }
+  const sorted = [...index].sort((a, b) =>
+    b.tahunPelajaran.localeCompare(a.tahunPelajaran)
+  );
+  void idbSet(TP_INDEX_KEY, sorted);
+  safeLocalStorageSet(TP_INDEX_KEY, JSON.stringify(sorted));
 }
 
 export function hasTpArchive(tp: string): boolean {
@@ -137,6 +136,10 @@ export function loadTpSnapshot(tp: string): TpSnapshot | null {
   }
 }
 
+export async function loadTpSnapshotFromIdb(tp: string): Promise<TpSnapshot | null> {
+  return idbGet<TpSnapshot>(getTpStorageKey(tp));
+}
+
 export function readModuleStatesFromStorage(): TpModuleStates {
   const result: TpModuleStates = {};
   (Object.keys(MODULE_STORAGE_KEYS) as Array<keyof TpModuleStates>).forEach((k) => {
@@ -153,14 +156,14 @@ export function writeModuleStatesToStorage(modules?: TpModuleStates): void {
   (Object.keys(MODULE_STORAGE_KEYS) as Array<keyof TpModuleStates>).forEach((k) => {
     const storageKey = MODULE_STORAGE_KEYS[k];
     const val = modules?.[k];
-    try {
-      if (val !== undefined && val !== null) {
-        localStorage.setItem(storageKey, val);
-      } else {
+    if (val !== undefined && val !== null) {
+      safeLocalStorageSet(storageKey, val);
+    } else {
+      try {
         localStorage.removeItem(storageKey);
+      } catch {
+        // ignore
       }
-    } catch (err) {
-      console.warn('Gagal memulihkan modul state:', storageKey, err);
     }
   });
 }
@@ -226,11 +229,15 @@ export function saveTpSnapshot(
     updatedAt: new Date().toISOString(),
   };
 
-  try {
-    localStorage.setItem(getTpStorageKey(normTp), JSON.stringify(finalSnapshot));
-  } catch (err) {
-    console.warn('Gagal menyimpan snapshot TP:', normTp, err);
-  }
+  // Always save full snapshot (including student photos) to IndexedDB
+  void idbSet(getTpStorageKey(normTp), finalSnapshot);
+
+  // Strip heavy raster photos from localStorage snapshot copy to avoid quota exhaustion
+  const lightSnapshot: TpSnapshot = {
+    ...finalSnapshot,
+    students: stripHeavyStudentPhotosForLocalStorage(finalSnapshot.students),
+  };
+  safeLocalStorageSet(getTpStorageKey(normTp), JSON.stringify(lightSnapshot));
 
   const meta: TpArchiveMeta = {
     tahunPelajaran: normTp,
@@ -257,12 +264,17 @@ export function setTpLockInStorage(tp: string, locked: boolean): TpArchiveMeta[]
   const snap = loadTpSnapshot(normTp);
   if (snap) {
     snap.locked = locked;
-    try {
-      localStorage.setItem(getTpStorageKey(normTp), JSON.stringify(snap));
-    } catch {
-      // ignore
-    }
+    const lightSnapshot: TpSnapshot = {
+      ...snap,
+      students: stripHeavyStudentPhotosForLocalStorage(snap.students || []),
+    };
+    safeLocalStorageSet(getTpStorageKey(normTp), JSON.stringify(lightSnapshot));
   }
+  void loadTpSnapshotFromIdb(normTp).then((idbSnap) => {
+    if (idbSnap) {
+      void idbSet(getTpStorageKey(normTp), { ...idbSnap, locked });
+    }
+  });
 
   const index = loadTpIndex();
   const updated = index.map((item) =>

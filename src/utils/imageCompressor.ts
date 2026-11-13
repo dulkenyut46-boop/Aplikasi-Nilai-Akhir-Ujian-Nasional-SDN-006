@@ -154,3 +154,64 @@ export async function compressStudentPhotoBatch(
 
   return results;
 }
+
+/**
+ * Compress/resize an uploaded letterhead logo (Kop Surat) into an optimized
+ * transparent PNG (or keep SVG intact) so it never bloats browser storage.
+ */
+export async function compressLogoImage(file: File, maxDimension = 480): Promise<string> {
+  if (file.type === 'image/svg+xml') {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(new Error('Gagal membaca berkas SVG.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      try {
+        let width = img.naturalWidth || img.width;
+        let height = img.naturalHeight || img.height;
+        if (width <= 0 || height <= 0) {
+          reject(new Error('Dimensi gambar logo tidak valid.'));
+          return;
+        }
+        if (width > maxDimension || height > maxDimension) {
+          const ratio = Math.min(maxDimension / width, maxDimension / height);
+          width = Math.max(1, Math.round(width * ratio));
+          height = Math.max(1, Math.round(height * ratio));
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Gagal menginisialisasi canvas logo.'));
+          return;
+        }
+        ctx.clearRect(0, 0, width, height);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const pngUrl = canvas.toDataURL('image/png');
+        canvas.width = 1;
+        canvas.height = 1;
+        resolve(pngUrl);
+      } catch (err) {
+        reject(err instanceof Error ? err : new Error('Gagal memproses gambar logo.'));
+      }
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error('Berkas gambar logo rusak atau tidak didukung.'));
+    };
+    img.src = objectUrl;
+  });
+}

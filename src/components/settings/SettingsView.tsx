@@ -7,6 +7,8 @@ import {
   KOP_LOGO_PRESETS,
   getPresetLogoDataUrl,
 } from '../../utils/kopSuratLogos';
+import { compressLogoImage } from '../../utils/imageCompressor';
+import { sanitizeLoadedKopSurat } from '../../utils/safeStorage';
 import {
   Settings,
   Save,
@@ -107,33 +109,34 @@ export const SettingsView: React.FC = () => {
     }));
   };
 
-  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>, position: 'kiri' | 'kanan') => {
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>, position: 'kiri' | 'kanan') => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file) return;
 
-    if (file.size > 2.5 * 1024 * 1024) {
-      showToast('Ukuran File Terlalu Besar', 'Maksimal ukuran file logo adalah 2.5MB.', 'error');
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Ukuran File Terlalu Besar', 'Maksimal ukuran file logo adalah 5MB.', 'error');
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const dataUrl = event.target?.result as string;
+    try {
+      const dataUrl = await compressLogoImage(file, 480);
       if (dataUrl) {
         if (position === 'kiri') {
           handleKopChange('logoKiri', dataUrl);
           handleKopChange('logoKiriPreset', 'custom');
           handleKopChange('showLogoKiri', true);
-          showToast('Logo Kiri Diperbarui', 'Logo kustom kiri berhasil dimuat dan disimpan.', 'success');
+          showToast('Logo Kiri Diperbarui', 'Logo kustom kiri berhasil dioptimalkan dan dimuat.', 'success');
         } else {
           handleKopChange('logoKanan', dataUrl);
           handleKopChange('logoKananPreset', 'custom');
           handleKopChange('showLogoKanan', true);
-          showToast('Logo Kanan Diperbarui', 'Logo kustom kanan berhasil dimuat dan disimpan.', 'success');
+          showToast('Logo Kanan Diperbarui', 'Logo kustom kanan berhasil dioptimalkan dan dimuat.', 'success');
         }
       }
-    };
-    reader.readAsDataURL(file);
+    } catch (err: any) {
+      showToast('Gagal Memuat Logo', err?.message || 'Berkas gambar logo tidak dapat diproses.', 'error');
+    }
   };
 
   const handleSelectPresetLogo = (position: 'kiri' | 'kanan', presetId: string) => {
@@ -171,6 +174,7 @@ export const SettingsView: React.FC = () => {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file) return;
 
     const reader = new FileReader();
@@ -185,10 +189,10 @@ export const SettingsView: React.FC = () => {
               setFormData({
                 ...INITIAL_SCHOOL_PROFILE,
                 ...parsed.schoolProfile,
-                kopSurat: {
+                kopSurat: sanitizeLoadedKopSurat({
                   ...INITIAL_SCHOOL_PROFILE.kopSurat!,
                   ...(parsed.schoolProfile.kopSurat || {}),
-                },
+                }),
               });
             }
           } catch (err) {}

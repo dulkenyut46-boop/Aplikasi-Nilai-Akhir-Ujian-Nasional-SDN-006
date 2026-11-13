@@ -18,6 +18,7 @@ import {
   loadTpIndex,
   hasTpArchive,
   loadTpSnapshot,
+  loadTpSnapshotFromIdb,
   saveTpSnapshot,
   setTpLockInStorage,
   getTpLockFromStorage,
@@ -26,6 +27,18 @@ import {
   resetPerTpModuleStatesInStorage,
   computeHasData,
 } from '../utils/tpArchiveStorage';
+import {
+  compactLocalStorageForQuota,
+  idbDelete,
+  idbGet,
+  idbSet,
+  isIdbToken,
+  persistSchoolProfileSafe,
+  persistStudentsSafe,
+  safeLocalStorageRemove,
+  safeLocalStorageSet,
+  sanitizeLoadedKopSurat,
+} from '../utils/safeStorage';
 
 export interface ToastMessage {
   id: string;
@@ -150,7 +163,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [students, setStudents] = useState<Student[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.STUDENTS);
-      return stored ? JSON.parse(stored) : INITIAL_STUDENTS;
+      if (!stored) return INITIAL_STUDENTS;
+      const parsed = JSON.parse(stored);
+      if (!Array.isArray(parsed)) return INITIAL_STUDENTS;
+      return parsed.map((s: Student) =>
+        isIdbToken(s.foto) ? { ...s, foto: undefined } : s
+      );
     } catch (e) {
       return INITIAL_STUDENTS;
     }
@@ -162,11 +180,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const savedActiveTp = loadActiveTp();
       if (stored) {
         const parsed = JSON.parse(stored);
-        const resolvedKop = {
+        const resolvedKop = sanitizeLoadedKopSurat({
           ...INITIAL_SCHOOL_PROFILE.kopSurat,
           ...(parsed.kopSurat || {}),
-        };
-        if (resolvedKop.kontak && resolvedKop.kontak.includes('0812')) {
+        });
+        if (resolvedKop && resolvedKop.kontak && resolvedKop.kontak.includes('0812')) {
           resolvedKop.kontak = '';
           resolvedKop.email = '';
           resolvedKop.website = '';
@@ -207,7 +225,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Persist committee
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(committee));
+    safeLocalStorageSet(STORAGE_KEYS.COMMITTEE, JSON.stringify(committee));
+    void idbSet(STORAGE_KEYS.COMMITTEE, committee);
   }, [committee]);
 
   const [diplomaRecords, setDiplomaRecords] = useState<DiplomaRecord[]>(() => {
@@ -251,9 +270,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     getTpLockFromStorage(schoolProfile.tahunPelajaran)
   );
   const isSwitchingTpRef = useRef<boolean>(false);
+  const currentTpRef = useRef<string>(normalizeTpLabel(schoolProfile.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran));
+  currentTpRef.current = normalizeTpLabel(schoolProfile.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran);
 
-  // Ensure active TP is registered & archived on first boot
+  // Ensure active TP is registered & archived on first boot, compact heavy localStorage duplicates,
+  // and hydrate any offloaded logos/photos from IndexedDB.
   useEffect(() => {
+    compactLocalStorageForQuota();
+
     const activeTp = normalizeTpLabel(schoolProfile.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran);
     saveActiveTp(activeTp);
     if (!hasTpArchive(activeTp)) {
@@ -274,6 +298,55 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       );
       setTpArchives(loadTpIndex());
     }
+
+    // Hydrate full schoolProfile (custom logos) & students (photos) from IndexedDB if available
+    void (async () => {
+      try {
+        const storedRaw = localStorage.getItem(STORAGE_KEYS.SCHOOL);
+        const hasIdbLogos =
+          !storedRaw ||
+          storedRaw.includes('__IDB_LOGO_');
+        const idbProfile = await idbGet<SchoolProfile>(STORAGE_KEYS.SCHOOL);
+        if (idbProfile && (hasIdbLogos || !storedRaw)) {
+          setSchoolProfile((prev) => ({
+            ...prev,
+            ...idbProfile,
+            tahunPelajaran: prev.tahunPelajaran,
+            kopSurat: sanitizeLoadedKopSurat({
+              ...INITIAL_SCHOOL_PROFILE.kopSurat!,
+              ...(prev.kopSurat || {}),
+              ...(idbProfile.kopSurat || {}),
+            }),
+          }));
+        }
+
+        const idbStudents = await idbGet<Student[]>(STORAGE_KEYS.STUDENTS);
+        if (Array.isArray(idbStudents) && idbStudents.length > 0) {
+          const photoMap = new Map<string, string>();
+          idbStudents.forEach((s) => {
+            if (s.id && s.foto && !isIdbToken(s.foto)) {
+              photoMap.set(s.id, s.foto);
+            }
+          });
+          if (photoMap.size > 0) {
+            setStudents((prev) => {
+              let changed = false;
+              const next = prev.map((s) => {
+                const idbFoto = photoMap.get(s.id);
+                if (idbFoto && (!s.foto || isIdbToken(s.foto))) {
+                  changed = true;
+                  return { ...s, foto: idbFoto };
+                }
+                return s;
+              });
+              return changed ? next : prev;
+            });
+          }
+        }
+      } catch {
+        // ignore hydration errors
+      }
+    })();
   }, []);
 
   // Apply dark class to document
@@ -283,32 +356,35 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem(STORAGE_KEYS.DARK_MODE, String(darkMode));
+    safeLocalStorageSet(STORAGE_KEYS.DARK_MODE, String(darkMode));
   }, [darkMode]);
 
-  // Persist students
+  // Persist students (IndexedDB full + quota-safe localStorage)
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(students));
+    persistStudentsSafe(STORAGE_KEYS.STUDENTS, students);
   }, [students]);
 
-  // Persist school profile
+  // Persist school profile (IndexedDB full + quota-safe localStorage)
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SCHOOL, JSON.stringify(schoolProfile));
+    persistSchoolProfileSafe(STORAGE_KEYS.SCHOOL, schoolProfile);
   }, [schoolProfile]);
 
   // Persist supervisors
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SUPERVISORS, JSON.stringify(supervisors));
+    safeLocalStorageSet(STORAGE_KEYS.SUPERVISORS, JSON.stringify(supervisors));
+    void idbSet(STORAGE_KEYS.SUPERVISORS, supervisors);
   }, [supervisors]);
 
   // Persist diploma records
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.DIPLOMA, JSON.stringify(diplomaRecords));
+    safeLocalStorageSet(STORAGE_KEYS.DIPLOMA, JSON.stringify(diplomaRecords));
+    void idbSet(STORAGE_KEYS.DIPLOMA, diplomaRecords);
   }, [diplomaRecords]);
 
   // Persist subjects
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SUBJECTS, JSON.stringify(subjects));
+    safeLocalStorageSet(STORAGE_KEYS.SUBJECTS, JSON.stringify(subjects));
+    void idbSet(STORAGE_KEYS.SUBJECTS, subjects);
   }, [subjects]);
 
   // Keep active TP snapshot synced in archive when unlocked
@@ -425,7 +501,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     if (existingTarget) {
       writeModuleStatesToStorage(existingTarget.modules);
-      const restoredStudents = existingTarget.students || [];
+      const restoredStudents = (existingTarget.students || []).map((s) =>
+        isIdbToken(s.foto) ? { ...s, foto: undefined } : s
+      );
       const restoredSupervisors = existingTarget.supervisors || [];
       const restoredCommittee = existingTarget.committee || [];
       const restoredDiploma = existingTarget.diplomaRecords || [];
@@ -434,11 +512,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           ? existingTarget.subjects
           : subjects;
 
-      localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(restoredStudents));
-      localStorage.setItem(STORAGE_KEYS.SUPERVISORS, JSON.stringify(restoredSupervisors));
-      localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(restoredCommittee));
-      localStorage.setItem(STORAGE_KEYS.DIPLOMA, JSON.stringify(restoredDiploma));
-      localStorage.setItem(STORAGE_KEYS.SUBJECTS, JSON.stringify(restoredSubjects));
+      persistStudentsSafe(STORAGE_KEYS.STUDENTS, restoredStudents);
+      safeLocalStorageSet(STORAGE_KEYS.SUPERVISORS, JSON.stringify(restoredSupervisors));
+      safeLocalStorageSet(STORAGE_KEYS.COMMITTEE, JSON.stringify(restoredCommittee));
+      safeLocalStorageSet(STORAGE_KEYS.DIPLOMA, JSON.stringify(restoredDiploma));
+      safeLocalStorageSet(STORAGE_KEYS.SUBJECTS, JSON.stringify(restoredSubjects));
 
       setStudents(restoredStudents);
       setSupervisors(restoredSupervisors);
@@ -456,6 +534,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           existingTarget.tanggalKelulusan ||
           prev.tanggalKelulusan,
       }));
+
+      // Hydrate full-resolution photos from IndexedDB archive snapshot if present
+      void loadTpSnapshotFromIdb(nextTp).then((idbSnap) => {
+        if (!idbSnap || currentTpRef.current !== nextTp) return;
+        if (Array.isArray(idbSnap.students) && idbSnap.students.length > 0) {
+          setStudents(
+            idbSnap.students.map((s) => (isIdbToken(s.foto) ? { ...s, foto: undefined } : s))
+          );
+          persistStudentsSafe(STORAGE_KEYS.STUDENTS, idbSnap.students);
+        }
+      });
 
       if (restoredStudents.length > 0) {
         showToast(
@@ -478,10 +567,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const emptyCommittee: CommitteeMember[] = [];
       const emptyDiploma: DiplomaRecord[] = [];
 
-      localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(emptyStudents));
-      localStorage.setItem(STORAGE_KEYS.SUPERVISORS, JSON.stringify(emptySupervisors));
-      localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(emptyCommittee));
-      localStorage.setItem(STORAGE_KEYS.DIPLOMA, JSON.stringify(emptyDiploma));
+      persistStudentsSafe(STORAGE_KEYS.STUDENTS, emptyStudents);
+      safeLocalStorageSet(STORAGE_KEYS.SUPERVISORS, JSON.stringify(emptySupervisors));
+      safeLocalStorageSet(STORAGE_KEYS.COMMITTEE, JSON.stringify(emptyCommittee));
+      safeLocalStorageSet(STORAGE_KEYS.DIPLOMA, JSON.stringify(emptyDiploma));
 
       setStudents(emptyStudents);
       setSupervisors(emptySupervisors);
@@ -894,12 +983,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setDiplomaRecords(INITIAL_DIPLOMA_RECORDS);
     setSubjects(SUBJECT_LIST);
     saveActiveTp(INITIAL_SCHOOL_PROFILE.tahunPelajaran);
-    localStorage.removeItem(STORAGE_KEYS.STUDENTS);
-    localStorage.removeItem(STORAGE_KEYS.SCHOOL);
-    localStorage.removeItem(STORAGE_KEYS.SUPERVISORS);
-    localStorage.removeItem(STORAGE_KEYS.COMMITTEE);
-    localStorage.removeItem(STORAGE_KEYS.DIPLOMA);
-    localStorage.removeItem(STORAGE_KEYS.SUBJECTS);
+    safeLocalStorageRemove(STORAGE_KEYS.STUDENTS);
+    safeLocalStorageRemove(STORAGE_KEYS.SCHOOL);
+    safeLocalStorageRemove(STORAGE_KEYS.SUPERVISORS);
+    safeLocalStorageRemove(STORAGE_KEYS.COMMITTEE);
+    safeLocalStorageRemove(STORAGE_KEYS.DIPLOMA);
+    safeLocalStorageRemove(STORAGE_KEYS.SUBJECTS);
+    void idbDelete(STORAGE_KEYS.STUDENTS);
+    void idbDelete(STORAGE_KEYS.SCHOOL);
+    void idbDelete(STORAGE_KEYS.SUPERVISORS);
+    void idbDelete(STORAGE_KEYS.COMMITTEE);
+    void idbDelete(STORAGE_KEYS.DIPLOMA);
+    void idbDelete(STORAGE_KEYS.SUBJECTS);
     showToast('Data Direset', 'Semua data telah dikembalikan ke standar awal SDN 006 Sungai Buluh.', 'info');
   };
 
@@ -978,38 +1073,142 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const exportToJSON = () => {
-    const data = {
-      exportedAt: new Date().toISOString(),
-      schoolProfile,
-      students,
-      supervisors,
-      diplomaRecords,
-    };
-    const jsonStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data, null, 2));
-    const link = document.createElement('a');
-    link.setAttribute('href', jsonStr);
-    link.setAttribute('download', `Backup_Data_SDN006_${Date.now()}.json`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    showToast('Cadangan Disimpan', 'File JSON backup berhasil diunduh.', 'success');
+    try {
+      const data = {
+        version: 2,
+        exportedAt: new Date().toISOString(),
+        schoolProfile,
+        students,
+        supervisors,
+        committee,
+        diplomaRecords,
+        subjects,
+        modules: readModuleStatesFromStorage(),
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: 'application/json;charset=utf-8',
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `Backup_Data_SDN006_${Date.now()}.json`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+      showToast('Cadangan Disimpan', 'File JSON backup berhasil diunduh.', 'success');
+    } catch (err) {
+      showToast('Gagal Ekspor', 'Terjadi kendala saat membuat berkas cadangan JSON.', 'error');
+    }
   };
 
   const importFromJSON = (jsonStr: string): boolean => {
     try {
       const parsed = JSON.parse(jsonStr);
-      if (Array.isArray(parsed.students)) {
-        setStudents(parsed.students);
+      if (!parsed || typeof parsed !== 'object') {
+        showToast('Gagal Import', 'Isi berkas JSON tidak valid.', 'error');
+        return false;
       }
-      if (parsed.schoolProfile) {
-        setSchoolProfile(parsed.schoolProfile);
+
+      isSwitchingTpRef.current = true;
+
+      // Compact any old heavy localStorage snapshots first so restore has clean quota
+      compactLocalStorageForQuota();
+
+      const nextStudents: Student[] = Array.isArray(parsed.students)
+        ? parsed.students.map((s: Student) =>
+            isIdbToken(s.foto) ? { ...s, foto: undefined } : s
+          )
+        : students;
+
+      const nextSupervisors: Supervisor[] = Array.isArray(parsed.supervisors)
+        ? parsed.supervisors
+        : supervisors;
+
+      const nextCommittee: CommitteeMember[] = Array.isArray(parsed.committee)
+        ? parsed.committee
+        : committee;
+
+      const nextDiploma: DiplomaRecord[] = Array.isArray(parsed.diplomaRecords)
+        ? parsed.diplomaRecords
+        : diplomaRecords;
+
+      const nextSubjects: SubjectInfo[] = Array.isArray(parsed.subjects) && parsed.subjects.length > 0
+        ? parsed.subjects
+        : subjects;
+
+      let nextProfile: SchoolProfile = schoolProfile;
+      if (parsed.schoolProfile && typeof parsed.schoolProfile === 'object') {
+        nextProfile = {
+          ...INITIAL_SCHOOL_PROFILE,
+          ...parsed.schoolProfile,
+          kopSurat: sanitizeLoadedKopSurat({
+            ...INITIAL_SCHOOL_PROFILE.kopSurat!,
+            ...(parsed.schoolProfile.kopSurat || {}),
+          }),
+        };
       }
-      if (Array.isArray(parsed.supervisors)) {
-        setSupervisors(parsed.supervisors);
+
+      const targetTp = normalizeTpLabel(
+        nextProfile.tahunPelajaran || schoolProfile.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran
+      );
+      nextProfile = { ...nextProfile, tahunPelajaran: targetTp };
+      saveActiveTp(targetTp);
+
+      if (parsed.modules && typeof parsed.modules === 'object') {
+        writeModuleStatesToStorage(parsed.modules);
       }
-      showToast('Import Berhasil', 'Data berhasil dipulihkan dari file backup.', 'success');
+
+      // Persist full fidelity to IndexedDB and compact copies to localStorage
+      persistStudentsSafe(STORAGE_KEYS.STUDENTS, nextStudents);
+      persistSchoolProfileSafe(STORAGE_KEYS.SCHOOL, nextProfile);
+      safeLocalStorageSet(STORAGE_KEYS.SUPERVISORS, JSON.stringify(nextSupervisors));
+      safeLocalStorageSet(STORAGE_KEYS.COMMITTEE, JSON.stringify(nextCommittee));
+      safeLocalStorageSet(STORAGE_KEYS.DIPLOMA, JSON.stringify(nextDiploma));
+      safeLocalStorageSet(STORAGE_KEYS.SUBJECTS, JSON.stringify(nextSubjects));
+      void idbSet(STORAGE_KEYS.SUPERVISORS, nextSupervisors);
+      void idbSet(STORAGE_KEYS.COMMITTEE, nextCommittee);
+      void idbSet(STORAGE_KEYS.DIPLOMA, nextDiploma);
+      void idbSet(STORAGE_KEYS.SUBJECTS, nextSubjects);
+
+      setStudents(nextStudents);
+      setSchoolProfile(nextProfile);
+      setSupervisors(nextSupervisors);
+      setCommittee(nextCommittee);
+      setDiplomaRecords(nextDiploma);
+      setSubjects(nextSubjects);
+      setIsCurrentTpLocked(false);
+
+      saveTpSnapshot(
+        {
+          tahunPelajaran: targetTp,
+          updatedAt: new Date().toISOString(),
+          locked: false,
+          tanggalKelulusan: nextProfile.tanggalKelulusan,
+          students: nextStudents,
+          supervisors: nextSupervisors,
+          committee: nextCommittee,
+          diplomaRecords: nextDiploma,
+          subjects: nextSubjects,
+          modules: readModuleStatesFromStorage(),
+        },
+        { lockIfFilled: false }
+      );
+      setTpArchives(loadTpIndex());
+      setTpVersion((v) => v + 1);
+
+      queueMicrotask(() => {
+        isSwitchingTpRef.current = false;
+      });
+
+      showToast(
+        'Import Berhasil',
+        `Data (${nextStudents.length} peserta, TP ${targetTp}) berhasil dipulihkan dari file backup.`,
+        'success'
+      );
       return true;
     } catch (e) {
+      isSwitchingTpRef.current = false;
       showToast('Gagal Import', 'Format berkas JSON tidak valid atau rusak.', 'error');
       return false;
     }

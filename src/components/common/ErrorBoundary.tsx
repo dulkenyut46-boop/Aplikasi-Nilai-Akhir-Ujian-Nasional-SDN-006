@@ -33,15 +33,21 @@ export class ErrorBoundary extends Component<Props, State> {
   };
 
   private handleResetStorage = () => {
-    if (window.confirm('Pulihkan data aplikasi ke pengaturan awal? Ini akan membersihkan cache peramban yang bermasalah.')) {
+    if (window.confirm('Bersihkan cache penyimpanan sementara yang penuh agar aplikasi dapat dimuat kembali?')) {
       try {
-        // Only clear storage keys used by this app
-        const keysToRemove = [
+        const keysToClean: string[] = [
           'sdn006_un_students_v2',
           'sdn006_un_students_v1',
+          'sdn006_un_school_v1',
           'sdn006_photo_db',
         ];
-        keysToRemove.forEach((k) => localStorage.removeItem(k));
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('sdn006_un_tp_data_v1__')) {
+            keysToClean.push(k);
+          }
+        }
+        keysToClean.forEach((k) => localStorage.removeItem(k));
       } catch (e) {
         // ignore
       }
