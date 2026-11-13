@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { SchoolProfile, KopSuratConfig } from '../../types';
 import { INITIAL_SCHOOL_PROFILE } from '../../data/initialData';
@@ -25,6 +25,10 @@ import {
   Eye,
   Check,
   RefreshCw,
+  Calendar,
+  Lock,
+  Unlock,
+  Plus,
 } from 'lucide-react';
 
 export const SettingsView: React.FC = () => {
@@ -36,6 +40,10 @@ export const SettingsView: React.FC = () => {
     exportToJSON,
     importFromJSON,
     showToast,
+    tpArchives,
+    isCurrentTpLocked,
+    switchTahunPelajaran,
+    toggleTpLock,
   } = useApp();
 
   const [formData, setFormData] = useState<SchoolProfile>({
@@ -47,6 +55,18 @@ export const SettingsView: React.FC = () => {
     },
   });
 
+  useEffect(() => {
+    setFormData({
+      ...INITIAL_SCHOOL_PROFILE,
+      ...schoolProfile,
+      kopSurat: {
+        ...INITIAL_SCHOOL_PROFILE.kopSurat!,
+        ...(schoolProfile.kopSurat || {}),
+      },
+    });
+  }, [schoolProfile]);
+
+  const [newTpField, setNewTpField] = useState('');
   const [activeSection, setActiveSection] = useState<'all' | 'kop' | 'identitas' | 'pejabat' | 'bobot' | 'backup'>('all');
   const [previewPaperTheme, setPreviewPaperTheme] = useState<'white' | 'dark'>('white');
 
@@ -829,8 +849,108 @@ export const SettingsView: React.FC = () => {
                   name="tahunPelajaran"
                   value={formData.tahunPelajaran}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl border border-zinc-200 px-3.5 py-2 font-bold text-zinc-900 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                 />
+                <p className="mt-1 text-[11px] text-zinc-700 dark:text-zinc-400">
+                  Mengganti TP &amp; menyimpan otomatis mengunci arsip TP lama dan membuka TP baru dalam keadaan kosong.
+                </p>
+              </div>
+
+              {/* Panel Kelola Arsip Tahun Pelajaran */}
+              <div className="sm:col-span-2 md:col-span-3 rounded-xl border border-sky-200 bg-sky-50/70 p-4 dark:border-sky-900/60 dark:bg-sky-950/20 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <h4 className="text-xs font-extrabold text-sky-950 dark:text-sky-200 flex items-center gap-1.5 uppercase tracking-wider">
+                      <Calendar className="h-3.5 w-3.5 text-sky-800 dark:text-sky-400" />
+                      Arsip &amp; Pergantian Tahun Pelajaran (TP)
+                    </h4>
+                    <p className="text-[11px] text-slate-700 dark:text-slate-300">
+                      Data TP yang sudah terisi otomatis tetap tersimpan &amp; terkunci. TP baru dimulai kosong, dan data muncul kembali saat Anda kembali ke TP lama.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <input
+                      type="text"
+                      value={newTpField}
+                      onChange={(e) => setNewTpField(e.target.value)}
+                      placeholder="TP Baru (misal 2026/2027)"
+                      className="w-40 rounded-lg border border-sky-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-zinc-900 placeholder-zinc-600 focus:border-sky-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!newTpField.trim()) return;
+                        switchTahunPelajaran(newTpField.trim());
+                        setNewTpField('');
+                      }}
+                      className="inline-flex items-center gap-1 rounded-lg bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors cursor-pointer"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Aktifkan TP
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {tpArchives.map((item) => {
+                    const isActive = item.tahunPelajaran === schoolProfile.tahunPelajaran;
+                    return (
+                      <div
+                        key={item.tahunPelajaran}
+                        className={`flex items-center justify-between gap-2 rounded-xl border p-2.5 ${
+                          isActive
+                            ? 'border-sky-500 bg-white shadow-xs dark:border-sky-600 dark:bg-slate-900'
+                            : 'border-sky-200/80 bg-white/80 dark:border-slate-800 dark:bg-slate-900/60'
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => switchTahunPelajaran(item.tahunPelajaran)}
+                          className="flex-1 text-left cursor-pointer min-w-0"
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-extrabold text-slate-950 dark:text-white">
+                              TP {item.tahunPelajaran}
+                            </span>
+                            {isActive && (
+                              <span className="rounded bg-sky-700 px-1.5 py-0.5 text-[9px] font-bold text-white">
+                                Aktif
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-[11px] font-medium text-slate-700 dark:text-slate-300 mt-0.5 truncate">
+                            {item.studentCount > 0
+                              ? `${item.studentCount} Peserta • ${item.locked ? 'Terkunci Aman' : 'Terbuka'}`
+                              : 'Data Kosong'}
+                          </div>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => toggleTpLock(item.tahunPelajaran)}
+                          className={`inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-bold border cursor-pointer transition-colors ${
+                            item.locked
+                              ? 'border-amber-400 bg-amber-100 text-amber-950 hover:bg-amber-200 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200'
+                              : 'border-slate-300 bg-slate-100 text-slate-800 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200'
+                          }`}
+                          title={item.locked ? 'Klik untuk membuka kunci edit' : 'Klik untuk mengunci data TP ini'}
+                        >
+                          {item.locked ? (
+                            <>
+                              <Lock className="h-3 w-3" />
+                              Terkunci
+                            </>
+                          ) : (
+                            <>
+                              <Unlock className="h-3 w-3" />
+                              Kunci
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="sm:col-span-2">

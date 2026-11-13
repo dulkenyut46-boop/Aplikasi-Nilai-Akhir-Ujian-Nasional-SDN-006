@@ -7,11 +7,14 @@ import {
   Download,
   Printer,
   Search,
-  Bell,
   ShieldCheck,
-  UserCheck,
   Building,
-  CheckCircle2,
+  Calendar,
+  Lock,
+  Unlock,
+  ChevronDown,
+  Plus,
+  Check,
 } from 'lucide-react';
 
 interface TopbarProps {
@@ -31,11 +34,35 @@ export const Topbar: React.FC<TopbarProps> = ({ onToggleMobile, collapsed }) => 
     exportToJSON,
     downloadStudentCSVTemplate,
     setSelectedStudentForSKHU,
+    tpArchives,
+    isCurrentTpLocked,
+    switchTahunPelajaran,
+    toggleTpLock,
   } = useApp();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [showExportMenu, setShowExportMenu] = useState(false);
+  const [showTpMenu, setShowTpMenu] = useState(false);
+  const [newTpInput, setNewTpInput] = useState('');
+
+  // Compute suggested next TP from current TP (e.g. 2025/2026 -> 2026/2027)
+  const suggestedNextTp = (() => {
+    const match = schoolProfile.tahunPelajaran.match(/^(\d{4})\/(\d{4})$/);
+    if (match) {
+      return `${Number(match[1]) + 1}/${Number(match[2]) + 1}`;
+    }
+    return '2026/2027';
+  })();
+
+  const handleCreateOrSwitchTp = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = newTpInput.trim();
+    if (!trimmed) return;
+    switchTahunPelajaran(trimmed);
+    setNewTpInput('');
+    setShowTpMenu(false);
+  };
 
   // Module titles
   const titles: Record<string, { title: string; subtitle: string }> = {
@@ -248,19 +275,184 @@ export const Topbar: React.FC<TopbarProps> = ({ onToggleMobile, collapsed }) => 
           {darkMode ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-sky-900" />}
         </button>
 
-        {/* Operator Badge */}
-        <div className="hidden lg:flex items-center gap-2.5 pl-2 border-l border-sky-300 dark:border-sky-800/70">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-950 border border-sky-300 dark:bg-sky-950 dark:text-sky-200 dark:border-sky-800 font-extrabold text-xs">
-            OP
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="text-xs font-bold text-slate-950 dark:text-slate-100 leading-none">
-              Panitia Ujian
-            </span>
-            <span className="text-[10px] font-semibold text-slate-700 dark:text-slate-300">
-              TP {schoolProfile.tahunPelajaran}
-            </span>
-          </div>
+        {/* Tahun Pelajaran (TP) Switcher & Lock Indicator */}
+        <div className="relative pl-1 sm:pl-2 sm:border-l border-sky-300 dark:border-sky-800/70">
+          <button
+            type="button"
+            onClick={() => setShowTpMenu((prev) => !prev)}
+            className={`flex items-center gap-2 rounded-xl border px-2.5 py-1.5 text-left transition-all cursor-pointer ${
+              isCurrentTpLocked
+                ? 'border-amber-400 bg-amber-50/90 text-amber-950 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200'
+                : 'border-sky-300 bg-sky-50/95 text-slate-950 hover:bg-sky-100 dark:border-sky-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700'
+            }`}
+            title="Ganti Tahun Pelajaran (TP) atau kelola kunci arsip data"
+          >
+            <div
+              className={`flex h-7 w-7 items-center justify-center rounded-lg font-extrabold text-xs ${
+                isCurrentTpLocked
+                  ? 'bg-amber-200/80 text-amber-950 dark:bg-amber-900/70 dark:text-amber-200'
+                  : 'bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300'
+              }`}
+            >
+              {isCurrentTpLocked ? <Lock className="h-3.5 w-3.5" /> : <Calendar className="h-3.5 w-3.5" />}
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 leading-none">
+                {isCurrentTpLocked ? 'Arsip Terkunci' : 'Tahun Pelajaran'}
+              </span>
+              <span className="text-xs font-extrabold text-slate-950 dark:text-white leading-tight mt-0.5 flex items-center gap-1">
+                TP {schoolProfile.tahunPelajaran}
+                <ChevronDown className="h-3.5 w-3.5 text-slate-700 dark:text-slate-300" />
+              </span>
+            </div>
+          </button>
+
+          {showTpMenu && (
+            <>
+              <div
+                className="fixed inset-0 z-40"
+                onClick={() => setShowTpMenu(false)}
+              />
+              <div className="absolute right-0 top-full mt-2 w-80 sm:w-88 rounded-2xl border border-sky-300 bg-white p-3.5 shadow-2xl dark:border-sky-800 dark:bg-slate-900 z-50 space-y-3">
+                <div className="flex items-center justify-between border-b border-sky-100 dark:border-slate-800 pb-2">
+                  <div>
+                    <h4 className="text-xs font-extrabold text-slate-950 dark:text-white uppercase tracking-wider">
+                      Pilih Tahun Pelajaran (TP)
+                    </h4>
+                    <p className="text-[11px] text-slate-700 dark:text-slate-400">
+                      Data tiap TP tersimpan &amp; terkunci terpisah
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => toggleTpLock()}
+                    className={`inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-bold border transition-colors cursor-pointer ${
+                      isCurrentTpLocked
+                        ? 'border-amber-400 bg-amber-100 text-amber-950 hover:bg-amber-200 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200'
+                        : 'border-sky-300 bg-sky-50 text-sky-950 hover:bg-sky-100 dark:border-sky-800 dark:bg-slate-800 dark:text-sky-300'
+                    }`}
+                    title={isCurrentTpLocked ? 'Buka kunci edit TP ini' : 'Kunci data TP ini'}
+                  >
+                    {isCurrentTpLocked ? (
+                      <>
+                        <Unlock className="h-3 w-3" />
+                        Buka Kunci
+                      </>
+                    ) : (
+                      <>
+                        <Lock className="h-3 w-3" />
+                        Kunci TP Ini
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Daftar Arsip TP */}
+                <div className="max-h-52 overflow-y-auto space-y-1.5 pr-0.5">
+                  {tpArchives.map((item) => {
+                    const isActive = item.tahunPelajaran === schoolProfile.tahunPelajaran;
+                    return (
+                      <div
+                        key={item.tahunPelajaran}
+                        className={`flex items-center justify-between gap-2 rounded-xl border p-2 transition-colors ${
+                          isActive
+                            ? 'border-sky-500 bg-sky-50/90 dark:border-sky-600 dark:bg-sky-950/50'
+                            : 'border-slate-200 bg-white hover:bg-sky-50/60 dark:border-slate-800 dark:bg-slate-800/50 dark:hover:bg-slate-800'
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => {
+                            switchTahunPelajaran(item.tahunPelajaran);
+                            setShowTpMenu(false);
+                          }}
+                          className="flex-1 text-left flex items-center gap-2 cursor-pointer min-w-0"
+                        >
+                          <div
+                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${
+                              isActive
+                                ? 'bg-sky-700 text-white'
+                                : 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200'
+                            }`}
+                          >
+                            {isActive ? <Check className="h-3.5 w-3.5" /> : <Calendar className="h-3.5 w-3.5" />}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-extrabold text-slate-950 dark:text-white">
+                                TP {item.tahunPelajaran}
+                              </span>
+                              {isActive && (
+                                <span className="rounded px-1.5 py-0.5 text-[9px] font-bold bg-sky-700 text-white">
+                                  Aktif
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[10px] font-medium text-slate-700 dark:text-slate-300 truncate">
+                              {item.studentCount > 0
+                                ? `${item.studentCount} Peserta • ${item.locked ? 'Terkunci' : 'Siap Edit'}`
+                                : 'Data Kosong (TP Baru)'}
+                            </div>
+                          </div>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => toggleTpLock(item.tahunPelajaran)}
+                          className={`shrink-0 rounded-lg p-1.5 border text-[10px] font-bold transition-colors cursor-pointer ${
+                            item.locked
+                              ? 'border-amber-300 bg-amber-100 text-amber-900 hover:bg-amber-200 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-300'
+                              : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                          }`}
+                          title={item.locked ? 'Terkunci (Klik untuk buka kunci)' : 'Terbuka (Klik untuk kunci)'}
+                        >
+                          {item.locked ? <Lock className="h-3.5 w-3.5" /> : <Unlock className="h-3.5 w-3.5" />}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Buat / Pindah ke TP Baru */}
+                <div className="border-t border-sky-100 dark:border-slate-800 pt-2.5 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-slate-900 dark:text-slate-200">
+                      Pindah / Buat TP Baru (Data Kosong):
+                    </span>
+                    {!tpArchives.some((a) => a.tahunPelajaran === suggestedNextTp) && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          switchTahunPelajaran(suggestedNextTp);
+                          setShowTpMenu(false);
+                        }}
+                        className="inline-flex items-center gap-1 rounded-md bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-900 hover:bg-sky-200 dark:bg-sky-950 dark:text-sky-300 cursor-pointer"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {suggestedNextTp}
+                      </button>
+                    )}
+                  </div>
+                  <form onSubmit={handleCreateOrSwitchTp} className="flex gap-1.5">
+                    <input
+                      type="text"
+                      value={newTpInput}
+                      onChange={(e) => setNewTpInput(e.target.value)}
+                      placeholder="Contoh: 2026/2027"
+                      className="flex-1 rounded-xl border border-sky-300 bg-sky-50/60 px-2.5 py-1.5 text-xs font-semibold text-slate-950 placeholder-slate-600 focus:border-sky-600 focus:bg-white focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400"
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-1 rounded-xl bg-sky-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors cursor-pointer shrink-0"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Ganti
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>

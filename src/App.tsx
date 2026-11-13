@@ -14,9 +14,10 @@ import { DiplomaManagementView } from './components/diploma/DiplomaManagementVie
 import { SettingsView } from './components/settings/SettingsView';
 import { ToastContainer } from './components/common/Toast';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { Lock, Unlock } from 'lucide-react';
 
 const MainLayout: React.FC = () => {
-  const { activeTab } = useApp();
+  const { activeTab, schoolProfile, isCurrentTpLocked, tpVersion, toggleTpLock } = useApp();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -76,9 +77,36 @@ const MainLayout: React.FC = () => {
           onToggleMobile={() => setMobileOpen(!mobileOpen)}
         />
 
+        {/* Locked Archive Banner when viewing a locked TP */}
+        {isCurrentTpLocked && (
+          <div className="mx-4 mt-4 sm:mx-6 lg:mx-8 max-w-[1600px] lg:self-center lg:w-[calc(100%-4rem)] rounded-xl border border-amber-400/90 bg-amber-50/95 px-4 py-2.5 shadow-xs dark:border-amber-700/70 dark:bg-amber-950/60 flex flex-wrap items-center justify-between gap-2 print:hidden">
+            <div className="flex items-center gap-2.5 text-xs text-amber-950 dark:text-amber-100">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-200/80 text-amber-900 dark:bg-amber-900/70 dark:text-amber-200">
+                <Lock className="h-3.5 w-3.5" />
+              </div>
+              <div>
+                <span className="font-extrabold">Arsip TP {schoolProfile.tahunPelajaran} Terkunci:</span>{' '}
+                <span className="font-medium">
+                  Data tahun pelajaran ini tersimpan aman &amp; dilindungi dari perubahan. Anda tetap dapat melihat, mencetak, dan mengekspor seluruh dokumen.
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => toggleTpLock(schoolProfile.tahunPelajaran, false)}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-bold text-white hover:bg-amber-800 transition-colors cursor-pointer shrink-0"
+            >
+              <Unlock className="h-3.5 w-3.5" />
+              Buka Kunci untuk Edit
+            </button>
+          </div>
+        )}
+
         {/* Viewport Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto print:p-0 print:max-w-none print:m-0">
-          {renderActiveView()}
+          <React.Fragment key={`${schoolProfile.tahunPelajaran}-${tpVersion}`}>
+            {renderActiveView()}
+          </React.Fragment>
         </main>
 
         {/* Footer */}

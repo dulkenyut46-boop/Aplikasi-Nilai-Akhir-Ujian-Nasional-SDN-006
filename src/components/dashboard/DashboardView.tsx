@@ -109,7 +109,9 @@ export const DashboardView: React.FC = () => {
           </div>
           <div className="mt-2 flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300 border-t border-sky-100 dark:border-slate-800 pt-2">
             <span>Terbagi dalam 4 Ruang Ujian</span>
-            <span className="font-bold text-sky-900 dark:text-sky-300">100% Hadir</span>
+            <span className="font-bold text-sky-900 dark:text-sky-300">
+              {totalStudents > 0 ? '100% Hadir' : 'Belum Ada Data'}
+            </span>
           </div>
         </div>
 
@@ -127,7 +129,9 @@ export const DashboardView: React.FC = () => {
           </div>
           <div className="mt-2 flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300 border-t border-sky-100 dark:border-slate-800 pt-2">
             <span>Kriteria KKM: {schoolProfile.kkmKelulusan}</span>
-            <span className="font-bold text-emerald-800 dark:text-emerald-400">Semua Lulus</span>
+            <span className="font-bold text-emerald-800 dark:text-emerald-400">
+              {totalStudents > 0 ? (lulusCount === totalStudents ? 'Semua Lulus' : `${lulusCount} Lulus`) : 'Belum Ada Peserta'}
+            </span>
           </div>
         </div>
 
@@ -141,7 +145,9 @@ export const DashboardView: React.FC = () => {
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="text-3xl font-black text-slate-950 dark:text-slate-50">{avgSchoolScore}</span>
-            <Badge variant="info" size="sm">Predikat B</Badge>
+            <Badge variant="info" size="sm">
+              {totalStudents > 0 ? getGradePredicate(Number(avgSchoolScore)).label : 'Belum Dinilai'}
+            </Badge>
           </div>
           <div className="mt-2 flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300 border-t border-sky-100 dark:border-slate-800 pt-2">
             <span>Tertinggi: <b className="text-sky-900 dark:text-sky-300 font-mono">{highestScore}</b></span>
@@ -158,12 +164,18 @@ export const DashboardView: React.FC = () => {
             </div>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-black text-sky-800 dark:text-sky-400">100%</span>
-            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Lengkap</span>
+            <span className="text-3xl font-black text-sky-800 dark:text-sky-400">
+              {totalStudents > 0 ? '100%' : '0%'}
+            </span>
+            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              {totalStudents > 0 ? 'Lengkap' : 'Data Kosong'}
+            </span>
           </div>
           <div className="mt-2 flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300 border-t border-sky-100 dark:border-slate-800 pt-2">
             <span>Rapor S7-S12 & US</span>
-            <span className="font-bold text-sky-900 dark:text-sky-300">Terverifikasi</span>
+            <span className="font-bold text-sky-900 dark:text-sky-300">
+              {totalStudents > 0 ? 'Terverifikasi' : 'Menunggu Input'}
+            </span>
           </div>
         </div>
       </div>
@@ -213,64 +225,86 @@ export const DashboardView: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-sky-100 dark:divide-slate-800">
-              {topStudents.map((item, index) => {
-                const s = item.student;
-                const pred = getGradePredicate(item.overallScore);
-                const rankBadges = [
-                  'bg-amber-400 text-amber-950',
-                  'bg-slate-300 text-slate-900',
-                  'bg-amber-700 text-white',
-                  'bg-sky-100 text-sky-950 dark:bg-slate-800 dark:text-slate-200',
-                  'bg-sky-100 text-sky-950 dark:bg-slate-800 dark:text-slate-200',
-                ];
-
-                return (
-                  <tr key={s.id} className="hover:bg-sky-50/80 dark:hover:bg-sky-950/30 transition-colors">
-                    <td className="py-3">
-                      <span
-                        className={`inline-flex h-6 w-6 items-center justify-center rounded-full font-bold text-xs ${
-                          rankBadges[index]
-                        }`}
-                      >
-                        {index + 1}
-                      </span>
-                    </td>
-                    <td className="py-3">
-                      <div className="font-bold text-slate-950 dark:text-slate-100">{s.nama}</div>
-                      <div className="text-[11px] font-medium text-slate-700 dark:text-slate-300">TTL: {s.tempatLahir}, {s.tanggalLahir}</div>
-                    </td>
-                    <td className="py-3 font-mono text-slate-800 dark:text-slate-300">
-                      <div className="font-semibold">{s.noPeserta}</div>
-                      <div className="text-[10px] font-medium text-slate-700 dark:text-slate-400">NISN: {s.nisn}</div>
-                    </td>
-                    <td className="py-3">
-                      <span className="font-bold text-slate-900 dark:text-slate-200">{s.ruang}</span>
-                      <div className="text-[10px] font-medium text-slate-700 dark:text-slate-400">Meja #{s.noMeja}</div>
-                    </td>
-                    <td className="py-3 text-center">
-                      <span className="font-mono text-sm font-black text-sky-900 dark:text-sky-300">
-                        {item.overallScore.toFixed(2)}
-                      </span>
-                    </td>
-                    <td className="py-3 text-center">
-                      <Badge variant="info" size="sm">
-                        {pred.label}
-                      </Badge>
-                    </td>
-                    <td className="py-3 text-right">
+              {topStudents.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="py-10 text-center">
+                    <div className="flex flex-col items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <Users className="h-8 w-8 text-sky-700/60 dark:text-sky-400/60" />
+                      <p className="font-bold text-sm text-slate-900 dark:text-slate-100">
+                        Belum Ada Data Peserta pada TP {schoolProfile.tahunPelajaran}
+                      </p>
+                      <p className="text-xs text-slate-700 dark:text-slate-400 max-w-md">
+                        Tahun Pelajaran ini masih kosong. Tambahkan peserta baru atau impor data siswa melalui menu Data Peserta (PD).
+                      </p>
                       <button
-                        onClick={() => {
-                          setSelectedStudentForSKHU(s);
-                          setActiveTab('diploma');
-                        }}
-                        className="rounded-lg bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-950 hover:bg-sky-200 border border-sky-300/80 dark:bg-sky-950 dark:text-sky-200 dark:border-sky-800 transition-colors"
+                        onClick={() => setActiveTab('students')}
+                        className="mt-1 inline-flex items-center gap-1.5 rounded-xl bg-sky-700 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-sky-800 transition-colors"
                       >
-                        Cetak SKHU
+                        Buka Data Peserta (PD)
                       </button>
-                    </td>
-                  </tr>
-                );
-              })}
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                topStudents.map((item, index) => {
+                  const s = item.student;
+                  const pred = getGradePredicate(item.overallScore);
+                  const rankBadges = [
+                    'bg-amber-400 text-amber-950',
+                    'bg-slate-300 text-slate-900',
+                    'bg-amber-700 text-white',
+                    'bg-sky-100 text-sky-950 dark:bg-slate-800 dark:text-slate-200',
+                    'bg-sky-100 text-sky-950 dark:bg-slate-800 dark:text-slate-200',
+                  ];
+
+                  return (
+                    <tr key={s.id} className="hover:bg-sky-50/80 dark:hover:bg-sky-950/30 transition-colors">
+                      <td className="py-3">
+                        <span
+                          className={`inline-flex h-6 w-6 items-center justify-center rounded-full font-bold text-xs ${
+                            rankBadges[index]
+                          }`}
+                        >
+                          {index + 1}
+                        </span>
+                      </td>
+                      <td className="py-3">
+                        <div className="font-bold text-slate-950 dark:text-slate-100">{s.nama}</div>
+                        <div className="text-[11px] font-medium text-slate-700 dark:text-slate-300">TTL: {s.tempatLahir}, {s.tanggalLahir}</div>
+                      </td>
+                      <td className="py-3 font-mono text-slate-800 dark:text-slate-300">
+                        <div className="font-semibold">{s.noPeserta}</div>
+                        <div className="text-[10px] font-medium text-slate-700 dark:text-slate-400">NISN: {s.nisn}</div>
+                      </td>
+                      <td className="py-3">
+                        <span className="font-bold text-slate-900 dark:text-slate-200">{s.ruang}</span>
+                        <div className="text-[10px] font-medium text-slate-700 dark:text-slate-400">Meja #{s.noMeja}</div>
+                      </td>
+                      <td className="py-3 text-center">
+                        <span className="font-mono text-sm font-black text-sky-900 dark:text-sky-300">
+                          {item.overallScore.toFixed(2)}
+                        </span>
+                      </td>
+                      <td className="py-3 text-center">
+                        <Badge variant="info" size="sm">
+                          {pred.label}
+                        </Badge>
+                      </td>
+                      <td className="py-3 text-right">
+                        <button
+                          onClick={() => {
+                            setSelectedStudentForSKHU(s);
+                            setActiveTab('diploma');
+                          }}
+                          className="rounded-lg bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-950 hover:bg-sky-200 border border-sky-300/80 dark:bg-sky-950 dark:text-sky-200 dark:border-sky-800 transition-colors"
+                        >
+                          Cetak SKHU
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>

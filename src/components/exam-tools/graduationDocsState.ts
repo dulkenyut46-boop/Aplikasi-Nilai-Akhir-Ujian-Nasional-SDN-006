@@ -1,4 +1,5 @@
 import { SchoolProfile, Student } from '../../types';
+import { loadActiveTp } from '../../utils/tpArchiveStorage';
 
 export type GraduationDocType = 'undangan' | 'ba-kelulusan' | 'hadir-rapat' | 'sk-kelulusan' | 'semua';
 
@@ -373,17 +374,29 @@ export function saveGuruRapatList(list: GuruRapat[]): void {
   }
 }
 
+function applyTpToText(text: string, activeTp: string): string {
+  const dashTp = activeTp.replace(/\//g, '-');
+  return text.replace(/2025\/2026/g, activeTp).replace(/2025-2026/g, dashTp);
+}
+
 export function loadUndanganDocState(): UndanganDocState {
+  const activeTp = loadActiveTp() || '2025/2026';
+  const fallback: UndanganDocState = {
+    ...DEFAULT_UNDANGAN,
+    hal: applyTpToText(DEFAULT_UNDANGAN.hal, activeTp),
+    paragrafPengantar: applyTpToText(DEFAULT_UNDANGAN.paragrafPengantar, activeTp),
+    acara: applyTpToText(DEFAULT_UNDANGAN.acara, activeTp),
+  };
   try {
     const raw = localStorage.getItem(UNDANGAN_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      return { ...DEFAULT_UNDANGAN, ...parsed };
+      return { ...fallback, ...parsed };
     }
   } catch (err) {
     console.error('Error loading Undangan state from localStorage', err);
   }
-  return DEFAULT_UNDANGAN;
+  return fallback;
 }
 
 export function saveUndanganDocState(state: UndanganDocState): void {
@@ -395,16 +408,23 @@ export function saveUndanganDocState(state: UndanganDocState): void {
 }
 
 export function loadBeritaAcaraDocState(): BeritaAcaraDocState {
+  const activeTp = loadActiveTp() || '2025/2026';
+  const fallback: BeritaAcaraDocState = {
+    ...DEFAULT_BERITA_ACARA,
+    subJudul: applyTpToText(DEFAULT_BERITA_ACARA.subJudul, activeTp),
+    tahunPelajaranTeks: applyTpToText(DEFAULT_BERITA_ACARA.tahunPelajaranTeks, activeTp),
+    paragrafPembuka: applyTpToText(DEFAULT_BERITA_ACARA.paragrafPembuka, activeTp),
+  };
   try {
     const raw = localStorage.getItem(BA_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      return { ...DEFAULT_BERITA_ACARA, ...parsed };
+      return { ...fallback, ...parsed };
     }
   } catch (err) {
     console.error('Error loading Berita Acara state from localStorage', err);
   }
-  return DEFAULT_BERITA_ACARA;
+  return fallback;
 }
 
 export function saveBeritaAcaraDocState(state: BeritaAcaraDocState): void {
@@ -416,16 +436,27 @@ export function saveBeritaAcaraDocState(state: BeritaAcaraDocState): void {
 }
 
 export function loadSKKelulusanState(): SKKelulusanState {
+  const activeTp = loadActiveTp() || '2025/2026';
+  const fallback: SKKelulusanState = {
+    ...DEFAULT_SK_KELULUSAN,
+    tentang: applyTpToText(DEFAULT_SK_KELULUSAN.tentang, activeTp),
+    menimbangA: applyTpToText(DEFAULT_SK_KELULUSAN.menimbangA, activeTp),
+    menimbangC: applyTpToText(DEFAULT_SK_KELULUSAN.menimbangC, activeTp),
+    memperhatikan1: applyTpToText(DEFAULT_SK_KELULUSAN.memperhatikan1, activeTp),
+    memperhatikan2: applyTpToText(DEFAULT_SK_KELULUSAN.memperhatikan2, activeTp),
+    diktumKesatu: applyTpToText(DEFAULT_SK_KELULUSAN.diktumKesatu, activeTp),
+    tahunPelajaran: activeTp,
+  };
   try {
     const raw = localStorage.getItem(SK_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      return { ...DEFAULT_SK_KELULUSAN, ...parsed };
+      return { ...fallback, ...parsed };
     }
   } catch (err) {
     console.error('Error loading SK state from localStorage', err);
   }
-  return DEFAULT_SK_KELULUSAN;
+  return fallback;
 }
 
 export function saveSKKelulusanState(state: SKKelulusanState): void {

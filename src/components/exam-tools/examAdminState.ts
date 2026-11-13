@@ -1,4 +1,5 @@
 // State and persistence management for Exam Administration (Berita Acara, Pengawas TPU VI, and Susunan Panitia)
+import { loadActiveTp } from '../../utils/tpArchiveStorage';
 
 export interface BeritaAcaraPelaksanaanState {
   tahunPelajaran: string;
@@ -85,12 +86,17 @@ export const DEFAULT_PANITIA_META: PanitiaMetaState = {
 };
 
 export function loadBeritaAcaraPelaksanaanState(): BeritaAcaraPelaksanaanState {
+  const activeTp = loadActiveTp() || DEFAULT_BERITA_ACARA_PELAKSANAAN.tahunPelajaran;
+  const fallback: BeritaAcaraPelaksanaanState = {
+    ...DEFAULT_BERITA_ACARA_PELAKSANAAN,
+    tahunPelajaran: activeTp,
+  };
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.BERITA_ACARA_PELAKSANAAN);
-    if (!raw) return DEFAULT_BERITA_ACARA_PELAKSANAAN;
-    return { ...DEFAULT_BERITA_ACARA_PELAKSANAAN, ...JSON.parse(raw) };
+    if (!raw) return fallback;
+    return { ...fallback, ...JSON.parse(raw) };
   } catch (e) {
-    return DEFAULT_BERITA_ACARA_PELAKSANAAN;
+    return fallback;
   }
 }
 
@@ -121,12 +127,17 @@ export function saveTpuLeaderState(data: TpuLeaderState): void {
 }
 
 export function loadPanitiaMetaState(): PanitiaMetaState {
+  const activeTp = loadActiveTp() || DEFAULT_PANITIA_META.tahunPelajaran;
+  const fallback: PanitiaMetaState = {
+    ...DEFAULT_PANITIA_META,
+    tahunPelajaran: activeTp,
+  };
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.PANITIA_META);
-    if (!raw) return DEFAULT_PANITIA_META;
-    return { ...DEFAULT_PANITIA_META, ...JSON.parse(raw) };
+    if (!raw) return fallback;
+    return { ...fallback, ...JSON.parse(raw) };
   } catch (e) {
-    return DEFAULT_PANITIA_META;
+    return fallback;
   }
 }
 

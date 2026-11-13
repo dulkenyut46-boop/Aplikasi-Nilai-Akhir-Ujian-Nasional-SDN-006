@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import { Student, SchoolProfile, Supervisor, CommitteeMember, DiplomaRecord, SubjectKey, ExamScoreDetail, SubjectInfo } from '../types';
 import {
@@ -10,6 +10,22 @@ import {
 } from '../data/initialData';
 import { SUBJECT_LIST, calculateStudentTotalFinalScore, calculateStudentOverallFinalScore } from '../constants/subjects';
 import { generateStudentPhotoSvg } from '../utils/studentAvatars';
+import {
+  TpArchiveMeta,
+  normalizeTpLabel,
+  loadActiveTp,
+  saveActiveTp,
+  loadTpIndex,
+  hasTpArchive,
+  loadTpSnapshot,
+  saveTpSnapshot,
+  setTpLockInStorage,
+  getTpLockFromStorage,
+  readModuleStatesFromStorage,
+  writeModuleStatesToStorage,
+  resetPerTpModuleStatesInStorage,
+  computeHasData,
+} from '../utils/tpArchiveStorage';
 
 export interface ToastMessage {
   id: string;
@@ -87,6 +103,13 @@ interface AppContextType {
   deleteSubject: (key: string) => void;
   resetSubjectsToDefault: () => void;
   
+  // Tahun Pelajaran (TP) Archive & Isolation
+  tpArchives: TpArchiveMeta[];
+  isCurrentTpLocked: boolean;
+  tpVersion: number;
+  switchTahunPelajaran: (newTp: string, profileUpdates?: Partial<SchoolProfile>) => void;
+  toggleTpLock: (tp?: string, forceLock?: boolean) => void;
+
   // Data utilities
   resetToDefaultData: () => void;
   exportToCSV: () => void;
@@ -136,6 +159,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.SCHOOL);
+      const savedActiveTp = loadActiveTp();
       if (stored) {
         const parsed = JSON.parse(stored);
         const resolvedKop = {
@@ -150,10 +174,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         return {
           ...INITIAL_SCHOOL_PROFILE,
           ...parsed,
+          tahunPelajaran: savedActiveTp || parsed.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran,
           kopSurat: resolvedKop,
         };
       }
-      return INITIAL_SCHOOL_PROFILE;
+      return {
+        ...INITIAL_SCHOOL_PROFILE,
+        tahunPelajaran: savedActiveTp || INITIAL_SCHOOL_PROFILE.tahunPelajaran,
+      };
     } catch (e) {
       return INITIAL_SCHOOL_PROFILE;
     }
@@ -217,6 +245,36 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   });
 
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [tpVersion, setTpVersion] = useState<number>(0);
+  const [tpArchives, setTpArchives] = useState<TpArchiveMeta[]>(() => loadTpIndex());
+  const [isCurrentTpLocked, setIsCurrentTpLocked] = useState<boolean>(() =>
+    getTpLockFromStorage(schoolProfile.tahunPelajaran)
+  );
+  const isSwitchingTpRef = useRef<boolean>(false);
+
+  // Ensure active TP is registered & archived on first boot
+  useEffect(() => {
+    const activeTp = normalizeTpLabel(schoolProfile.tahunPelajaran || INITIAL_SCHOOL_PROFILE.tahunPelajaran);
+    saveActiveTp(activeTp);
+    if (!hasTpArchive(activeTp)) {
+      saveTpSnapshot(
+        {
+          tahunPelajaran: activeTp,
+          updatedAt: new Date().toISOString(),
+          locked: false,
+          tanggalKelulusan: schoolProfile.tanggalKelulusan,
+          students,
+          supervisors,
+          committee,
+          diplomaRecords,
+          subjects,
+          modules: readModuleStatesFromStorage(),
+        },
+        { lockIfFilled: false }
+      );
+      setTpArchives(loadTpIndex());
+    }
+  }, []);
 
   // Apply dark class to document
   useEffect(() => {
@@ -253,6 +311,39 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem(STORAGE_KEYS.SUBJECTS, JSON.stringify(subjects));
   }, [subjects]);
 
+  // Keep active TP snapshot synced in archive when unlocked
+  useEffect(() => {
+    if (isSwitchingTpRef.current) return;
+    const activeTp = normalizeTpLabel(schoolProfile.tahunPelajaran);
+    if (!activeTp) return;
+    if (isCurrentTpLocked) return;
+    saveTpSnapshot(
+      {
+        tahunPelajaran: activeTp,
+        updatedAt: new Date().toISOString(),
+        locked: false,
+        tanggalKelulusan: schoolProfile.tanggalKelulusan,
+        students,
+        supervisors,
+        committee,
+        diplomaRecords,
+        subjects,
+        modules: readModuleStatesFromStorage(),
+      },
+      { preserveExistingLock: true }
+    );
+    setTpArchives(loadTpIndex());
+  }, [
+    students,
+    supervisors,
+    committee,
+    diplomaRecords,
+    subjects,
+    schoolProfile.tahunPelajaran,
+    schoolProfile.tanggalKelulusan,
+    isCurrentTpLocked,
+  ]);
+
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
   };
@@ -269,8 +360,210 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setToasts((prev) => prev.filter((t) => t.id !== id));
   };
 
+  const guardLockedTp = (): boolean => {
+    if (isCurrentTpLocked) {
+      showToast(
+        `Data TP ${schoolProfile.tahunPelajaran} Terkunci`,
+        `Arsip Tahun Pelajaran ini dikunci agar data aman. Klik "Buka Kunci" di bilah atas untuk mengedit.`,
+        'error'
+      );
+      return true;
+    }
+    return false;
+  };
+
+  const switchTahunPelajaran = (rawNewTp: string, profileUpdates?: Partial<SchoolProfile>) => {
+    const nextTp = normalizeTpLabel(rawNewTp);
+    if (!nextTp) {
+      showToast('Tahun Pelajaran Tidak Valid', 'Masukkan format Tahun Pelajaran, misal 2026/2027.', 'error');
+      return;
+    }
+
+    const currentTp = normalizeTpLabel(schoolProfile.tahunPelajaran);
+    if (nextTp === currentTp) {
+      if (profileUpdates) {
+        setSchoolProfile((prev) => ({ ...prev, ...profileUpdates, tahunPelajaran: nextTp }));
+        showToast('Profil Diperbarui', 'Data identitas sekolah & pengaturan berhasil disimpan.', 'success');
+      }
+      return;
+    }
+
+    isSwitchingTpRef.current = true;
+
+    // 1. Archive & preserve (lock if filled) the outgoing TP before switching
+    const outgoingHasData = computeHasData({
+      students,
+      supervisors,
+      committee,
+      diplomaRecords,
+    });
+    if (!isCurrentTpLocked) {
+      saveTpSnapshot(
+        {
+          tahunPelajaran: currentTp,
+          updatedAt: new Date().toISOString(),
+          locked: outgoingHasData,
+          tanggalKelulusan: schoolProfile.tanggalKelulusan,
+          students,
+          supervisors,
+          committee,
+          diplomaRecords,
+          subjects,
+          modules: readModuleStatesFromStorage(),
+        },
+        { lockIfFilled: true }
+      );
+    }
+
+    // 2. Load target TP archive OR initialize empty TP
+    saveActiveTp(nextTp);
+    const existingTarget = loadTpSnapshot(nextTp);
+
+    setSelectedStudentForDetail(null);
+    setSelectedStudentForSKHU(null);
+    setSelectedStudentForCert(null);
+
+    if (existingTarget) {
+      writeModuleStatesToStorage(existingTarget.modules);
+      const restoredStudents = existingTarget.students || [];
+      const restoredSupervisors = existingTarget.supervisors || [];
+      const restoredCommittee = existingTarget.committee || [];
+      const restoredDiploma = existingTarget.diplomaRecords || [];
+      const restoredSubjects =
+        existingTarget.subjects && existingTarget.subjects.length > 0
+          ? existingTarget.subjects
+          : subjects;
+
+      localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(restoredStudents));
+      localStorage.setItem(STORAGE_KEYS.SUPERVISORS, JSON.stringify(restoredSupervisors));
+      localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(restoredCommittee));
+      localStorage.setItem(STORAGE_KEYS.DIPLOMA, JSON.stringify(restoredDiploma));
+      localStorage.setItem(STORAGE_KEYS.SUBJECTS, JSON.stringify(restoredSubjects));
+
+      setStudents(restoredStudents);
+      setSupervisors(restoredSupervisors);
+      setCommittee(restoredCommittee);
+      setDiplomaRecords(restoredDiploma);
+      setSubjects(restoredSubjects);
+      setIsCurrentTpLocked(Boolean(existingTarget.locked));
+
+      setSchoolProfile((prev) => ({
+        ...prev,
+        ...(profileUpdates || {}),
+        tahunPelajaran: nextTp,
+        tanggalKelulusan:
+          profileUpdates?.tanggalKelulusan ||
+          existingTarget.tanggalKelulusan ||
+          prev.tanggalKelulusan,
+      }));
+
+      if (restoredStudents.length > 0) {
+        showToast(
+          `TP ${nextTp} Dimuat`,
+          `Data tersimpan (${restoredStudents.length} peserta) berhasil ditampilkan kembali.${existingTarget.locked ? ' Status: Terkunci Aman.' : ''}`,
+          'success'
+        );
+      } else {
+        showToast(
+          `Berpindah ke TP ${nextTp}`,
+          `Tahun Pelajaran ${nextTp} dibuka (belum ada data peserta).`,
+          'info'
+        );
+      }
+    } else {
+      // Brand new TP -> empty student/exam/diploma data, keep school identity & subject template
+      resetPerTpModuleStatesInStorage();
+      const emptyStudents: Student[] = [];
+      const emptySupervisors: Supervisor[] = [];
+      const emptyCommittee: CommitteeMember[] = [];
+      const emptyDiploma: DiplomaRecord[] = [];
+
+      localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(emptyStudents));
+      localStorage.setItem(STORAGE_KEYS.SUPERVISORS, JSON.stringify(emptySupervisors));
+      localStorage.setItem(STORAGE_KEYS.COMMITTEE, JSON.stringify(emptyCommittee));
+      localStorage.setItem(STORAGE_KEYS.DIPLOMA, JSON.stringify(emptyDiploma));
+
+      setStudents(emptyStudents);
+      setSupervisors(emptySupervisors);
+      setCommittee(emptyCommittee);
+      setDiplomaRecords(emptyDiploma);
+      setIsCurrentTpLocked(false);
+
+      const newProfile: SchoolProfile = {
+        ...schoolProfile,
+        ...(profileUpdates || {}),
+        tahunPelajaran: nextTp,
+      };
+      setSchoolProfile(newProfile);
+
+      saveTpSnapshot(
+        {
+          tahunPelajaran: nextTp,
+          updatedAt: new Date().toISOString(),
+          locked: false,
+          tanggalKelulusan: newProfile.tanggalKelulusan,
+          students: emptyStudents,
+          supervisors: emptySupervisors,
+          committee: emptyCommittee,
+          diplomaRecords: emptyDiploma,
+          subjects,
+          modules: readModuleStatesFromStorage(),
+        },
+        { lockIfFilled: false }
+      );
+
+      showToast(
+        `TP Baru ${nextTp} Diaktifkan`,
+        `Data TP ${currentTp} tetap tersimpan & terkunci. TP ${nextTp} dimulai dalam kondisi kosong.`,
+        'info'
+      );
+    }
+
+    setTpArchives(loadTpIndex());
+    setTpVersion((v) => v + 1);
+    queueMicrotask(() => {
+      isSwitchingTpRef.current = false;
+    });
+  };
+
+  const toggleTpLock = (tp?: string, forceLock?: boolean) => {
+    const targetTp = normalizeTpLabel(tp || schoolProfile.tahunPelajaran);
+    const currentLocked = getTpLockFromStorage(targetTp);
+    const nextLocked = forceLock !== undefined ? forceLock : !currentLocked;
+
+    if (targetTp === normalizeTpLabel(schoolProfile.tahunPelajaran)) {
+      // Ensure latest live state is saved right before locking
+      if (nextLocked) {
+        saveTpSnapshot({
+          tahunPelajaran: targetTp,
+          updatedAt: new Date().toISOString(),
+          locked: true,
+          tanggalKelulusan: schoolProfile.tanggalKelulusan,
+          students,
+          supervisors,
+          committee,
+          diplomaRecords,
+          subjects,
+          modules: readModuleStatesFromStorage(),
+        });
+      }
+      setIsCurrentTpLocked(nextLocked);
+    }
+
+    const updatedIndex = setTpLockInStorage(targetTp, nextLocked);
+    setTpArchives(updatedIndex);
+    showToast(
+      nextLocked ? `TP ${targetTp} Dikunci` : `Kunci TP ${targetTp} Dibuka`,
+      nextLocked
+        ? `Data TP ${targetTp} dikunci aman agar tidak berubah secara tidak sengaja.`
+        : `Data TP ${targetTp} kini dapat diedit kembali.`,
+      'info'
+    );
+  };
+
   // Student CRUD
   const addStudent = (studentData: Omit<Student, 'id'>) => {
+    if (guardLockedTp()) return;
     const id = `std-${Date.now()}`;
     const newStudent: Student = {
       ...studentData,
@@ -281,6 +574,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateStudent = (id: string, data: Partial<Student>) => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((std) => (std.id === id ? { ...std, ...data } : std))
     );
@@ -288,6 +582,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const deleteStudent = (id: string) => {
+    if (guardLockedTp()) return;
     const target = students.find((s) => s.id === id);
     setStudents((prev) => prev.filter((std) => std.id !== id));
     showToast('Data Dihapus', `Data ${target?.nama || 'peserta'} telah dihapus.`, 'info');
@@ -299,6 +594,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     subject: SubjectKey,
     value: number
   ) => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((s) => {
         if (s.id !== studentId) return s;
@@ -321,6 +617,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     subject: SubjectKey,
     detail: Partial<ExamScoreDetail>
   ) => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((s) => {
         if (s.id !== studentId) return s;
@@ -348,11 +645,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateSchoolProfile = (data: Partial<SchoolProfile>) => {
+    if (
+      data.tahunPelajaran !== undefined &&
+      normalizeTpLabel(data.tahunPelajaran) !== normalizeTpLabel(schoolProfile.tahunPelajaran)
+    ) {
+      switchTahunPelajaran(data.tahunPelajaran, data);
+      return;
+    }
     setSchoolProfile((prev) => ({ ...prev, ...data }));
     showToast('Profil Diperbarui', 'Data identitas sekolah & pengaturan berhasil disimpan.', 'success');
   };
 
   const updateSupervisor = (id: string, data: Partial<Supervisor>) => {
+    if (guardLockedTp()) return;
     setSupervisors((prev) =>
       prev.map((sup) => (sup.id === id ? { ...sup, ...data } : sup))
     );
@@ -360,28 +665,33 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const addSupervisor = (data: Omit<Supervisor, 'id'>) => {
+    if (guardLockedTp()) return;
     const id = `sup-${Date.now()}`;
     setSupervisors((prev) => [...prev, { ...data, id }]);
     showToast('Pengawas Ditambahkan', `${data.nama} telah ditambahkan ke daftar pengawas.`, 'success');
   };
 
   const deleteSupervisor = (id: string) => {
+    if (guardLockedTp()) return;
     setSupervisors((prev) => prev.filter((sup) => sup.id !== id));
     showToast('Pengawas Dihapus', 'Data pengawas telah dihapus.', 'info');
   };
 
   const setSupervisorsList = (list: Supervisor[]) => {
+    if (guardLockedTp()) return;
     setSupervisors(list);
     showToast('Pengawas Disimpan', `${list.length} pengawas TPU VI berhasil disimpan.`, 'success');
   };
 
   const resetSupervisorsToDefault = () => {
+    if (guardLockedTp()) return;
     setSupervisors(INITIAL_SUPERVISORS);
     localStorage.removeItem(STORAGE_KEYS.SUPERVISORS);
     showToast('Reset Pengawas', 'Daftar pengawas dikembalikan ke data awal TPU VI.', 'info');
   };
 
   const updateCommitteeMember = (id: string, data: Partial<CommitteeMember>) => {
+    if (guardLockedTp()) return;
     setCommittee((prev) =>
       prev.map((c) => (c.id === id ? { ...c, ...data } : c))
     );
@@ -389,28 +699,33 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const addCommitteeMember = (data: Omit<CommitteeMember, 'id'>) => {
+    if (guardLockedTp()) return;
     const id = `com-${Date.now()}`;
     setCommittee((prev) => [...prev, { ...data, id }]);
     showToast('Panitia Ditambahkan', `${data.nama} telah ditambahkan ke susunan panitia.`, 'success');
   };
 
   const deleteCommitteeMember = (id: string) => {
+    if (guardLockedTp()) return;
     setCommittee((prev) => prev.filter((c) => c.id !== id));
     showToast('Panitia Dihapus', 'Data anggota panitia telah dihapus.', 'info');
   };
 
   const setCommitteeList = (list: CommitteeMember[]) => {
+    if (guardLockedTp()) return;
     setCommittee(list);
     showToast('Panitia Disimpan', `${list.length} anggota susunan panitia berhasil diperbarui.`, 'success');
   };
 
   const resetCommitteeToDefault = () => {
+    if (guardLockedTp()) return;
     setCommittee(INITIAL_COMMITTEE);
     localStorage.removeItem(STORAGE_KEYS.COMMITTEE);
     showToast('Reset Panitia', 'Susunan panitia dikembalikan ke SK awal.', 'info');
   };
 
   const updateDiplomaRecord = (index: number, data: Partial<DiplomaRecord>) => {
+    if (guardLockedTp()) return;
     setDiplomaRecords((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], ...data };
@@ -420,6 +735,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateStudentPhoto = (studentId: string, foto: string | null) => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((s) => (s.id === studentId ? { ...s, foto: foto || undefined } : s))
     );
@@ -427,6 +743,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const batchUpdateStudentPhotos = (updates: Array<{ id: string; foto: string }>) => {
+    if (guardLockedTp()) return;
     const map = new Map(updates.map((u) => [u.id, u.foto]));
     setStudents((prev) =>
       prev.map((s) => {
@@ -440,6 +757,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const applyDefaultOfficialAvatars = () => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((s, idx) => ({
         ...s,
@@ -450,6 +768,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const clearAllStudentPhotos = () => {
+    if (guardLockedTp()) return;
     setStudents((prev) =>
       prev.map((s) => ({
         ...s,
@@ -461,6 +780,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Subject Management (Tambah Mapel, Edit Nama Pelajaran, Hapus Mapel)
   const addSubject = (newSub: Omit<SubjectInfo, 'key'> & { key?: string; defaultScore?: number }) => {
+    if (guardLockedTp()) return;
     const rawKey = (newSub.key || newSub.code || newSub.name)
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '_')
@@ -519,6 +839,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateSubject = (key: string, data: Partial<SubjectInfo>) => {
+    if (guardLockedTp()) return;
     setSubjects((prev) =>
       prev.map((sub) => {
         if (sub.key === key) {
@@ -542,6 +863,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const deleteSubject = (key: string) => {
+    if (guardLockedTp()) return;
     if (subjects.length <= 1) {
       showToast('Gagal Menghapus', 'Minimal harus ada 1 mata pelajaran ujian sekolah.', 'error');
       return;
@@ -558,17 +880,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const resetSubjectsToDefault = () => {
+    if (guardLockedTp()) return;
     setSubjects(SUBJECT_LIST);
     showToast('Reset Mata Pelajaran', 'Daftar mata pelajaran dikembalikan ke standar awal kurikulum.', 'info');
   };
 
   const resetToDefaultData = () => {
+    if (guardLockedTp()) return;
     setStudents(INITIAL_STUDENTS);
     setSchoolProfile(INITIAL_SCHOOL_PROFILE);
     setSupervisors(INITIAL_SUPERVISORS);
     setCommittee(INITIAL_COMMITTEE);
     setDiplomaRecords(INITIAL_DIPLOMA_RECORDS);
     setSubjects(SUBJECT_LIST);
+    saveActiveTp(INITIAL_SCHOOL_PROFILE.tahunPelajaran);
     localStorage.removeItem(STORAGE_KEYS.STUDENTS);
     localStorage.removeItem(STORAGE_KEYS.SCHOOL);
     localStorage.removeItem(STORAGE_KEYS.SUPERVISORS);
@@ -910,6 +1235,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const importStudentsList = (newStudents: Student[], mode: 'append' | 'replace') => {
+    if (guardLockedTp()) return;
     if (mode === 'replace') {
       setStudents(newStudents);
       showToast('Impor Berhasil', `Seluruh data digantikan dengan ${newStudents.length} peserta baru.`, 'success');
@@ -1204,6 +1530,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const importMultiSheetGrades = (
     sheetData: Record<string, Array<{ identifier: string; scores: Record<string, any> }>>
   ) => {
+    if (guardLockedTp()) return { totalMatched: 0, sheetsProcessed: 0 };
     let totalMatched = 0;
     const sheets = Object.keys(sheetData);
 
@@ -1304,6 +1631,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       scores: Record<string, any>;
     }>
   ) => {
+    if (guardLockedTp()) return { matched: 0, total: rows.length };
     let matched = 0;
 
     setStudents((prev) => {
@@ -1437,6 +1765,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateSubject,
         deleteSubject,
         resetSubjectsToDefault,
+        tpArchives,
+        isCurrentTpLocked,
+        tpVersion,
+        switchTahunPelajaran,
+        toggleTpLock,
         resetToDefaultData,
         exportToCSV,
         exportToJSON,

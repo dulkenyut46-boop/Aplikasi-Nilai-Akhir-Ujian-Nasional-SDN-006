@@ -256,132 +256,144 @@ export const DiplomaManagementView: React.FC = () => {
           </div>
 
           {/* Official Printable Transkrip Nilai / SKHU Sheet */}
-          <div className="mx-auto max-w-4xl rounded-2xl border-2 border-zinc-300 bg-white p-8 sm:p-12 shadow-md dark:border-zinc-700 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 print:border-none print:shadow-none print:p-0 print:m-0 print:max-w-none print:w-full">
-            {/* Kop Surat Resmi */}
-            <KopSurat schoolProfile={schoolProfile} />
-
-            {/* Document Title */}
-            <div className="text-center my-6">
-              <h3 className="text-base font-extrabold uppercase underline tracking-wider">
-                TRANSKRIP NILAI
+          {!currentStudent ? (
+            <div className="mx-auto max-w-4xl rounded-2xl border border-zinc-200 bg-white p-10 text-center shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+              <GraduationCap className="h-10 w-10 text-sky-700/60 mx-auto mb-3" />
+              <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
+                Belum Ada Data Peserta pada TP {schoolProfile.tahunPelajaran}
               </h3>
-              <p className="text-xs font-bold text-zinc-800 dark:text-zinc-400 mt-0.5">
-                Nomor: {currentStudent.noSuratTranskrip || `421.2 / SDN-006 / TRANSKRIP / ${schoolProfile.tahunPelajaran.replace('/', '-')} / ${currentStudent.noMeja.toString().padStart(3, '0')}`}
+              <p className="text-xs text-zinc-700 dark:text-zinc-400 mt-1">
+                Tambahkan atau impor data peserta didik terlebih dahulu untuk menerbitkan Transkrip Nilai (SKHU).
               </p>
             </div>
+          ) : (
+            <div className="mx-auto max-w-4xl rounded-2xl border-2 border-zinc-300 bg-white p-8 sm:p-12 shadow-md dark:border-zinc-700 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 print:border-none print:shadow-none print:p-0 print:m-0 print:max-w-none print:w-full">
+              {/* Kop Surat Resmi */}
+              <KopSurat schoolProfile={schoolProfile} />
 
-            {/* Student & School Identity Form */}
-            <div className="rounded-xl bg-zinc-50/80 dark:bg-zinc-800/40 p-4 border border-zinc-200 dark:border-zinc-700 text-xs mb-6">
-              <table className="w-full text-xs">
-                <tbody className="divide-y divide-zinc-200/50 dark:divide-zinc-700/50">
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Satuan Pendidikan</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-bold text-zinc-950 dark:text-zinc-50 uppercase">{schoolProfile.namaSekolah}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Pokok Sekolah Nasional</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-mono font-medium">{schoolProfile.npsn}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nama Siswa</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-extrabold uppercase text-zinc-950 dark:text-zinc-50">{currentStudent.nama}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tempat Tanggal Lahir</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-medium">{currentStudent.tempatLahir}, {currentStudent.tanggalLahir}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Induk Siswa Nasional</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-mono font-medium">{currentStudent.nisn}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Ijazah</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-mono font-bold text-zinc-900 dark:text-zinc-100">{currentStudent.noSeriIjazah || '-'}</td>
-                  </tr>
-                  <tr>
-                    <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tanggal kelulusan</td>
-                    <td className="w-4 py-1.5">:</td>
-                    <td className="py-1.5 font-medium">{schoolProfile.tanggalKelulusan}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Table of Grades */}
-            <div className="overflow-x-auto rounded-xl border border-zinc-300 dark:border-zinc-700 mb-6">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold border-b border-zinc-300 dark:border-zinc-700">
-                  <tr>
-                    <th className="p-2.5 w-12 text-center border-r border-zinc-300 dark:border-zinc-700">No</th>
-                    <th className="p-2.5 min-w-[240px] border-r border-zinc-300 dark:border-zinc-700">
-                      Mata Pelajaran (Kurikulum 2013)
-                    </th>
-                    <th className="p-2.5 text-center w-28">
-                      Nilai
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
-                  {subjects.map((sub, idx) => {
-                    const na = calculateSubjectFinalScore(currentStudent, sub.key, schoolProfile);
-
-                    return (
-                      <tr key={sub.key} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                        <td className="p-2.5 text-center font-medium border-r border-zinc-200 dark:border-zinc-700">
-                          {idx + 1}
-                        </td>
-                        <td className="p-2.5 font-medium text-zinc-900 dark:text-zinc-100 border-r border-zinc-200 dark:border-zinc-700">
-                          {sub.name}
-                        </td>
-                        <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-400">
-                          {na.toFixed(2)}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                <tfoot className="border-t-2 border-zinc-300 bg-zinc-50 dark:bg-zinc-800/60 font-bold">
-                  <tr>
-                    <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
-                      Jumlah / Total Nilai :
-                    </td>
-                    <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-300">
-                      {calculateStudentTotalFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
-                      Rata-Rata Nilai :
-                    </td>
-                    <td className="p-2.5 text-center font-mono font-extrabold text-sm text-sky-800 dark:text-sky-300">
-                      {calculateStudentOverallFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-
-            {/* Tanda Tangan Kepala Sekolah */}
-            <div className="flex justify-end pt-6 text-xs break-inside-avoid">
-              <div className="w-72 text-right space-y-1">
-                <p>Sungai Buluh, {schoolProfile.tanggalKelulusan}</p>
-                <p className="font-semibold">Kepala Sekolah SDN 006 Sungai Buluh,</p>
-                <div className="h-16"></div>
-                <p className="font-extrabold underline text-sm uppercase">
-                  {schoolProfile.kepalaSekolah}
-                </p>
-                <p className="pt-0.5 text-zinc-900 dark:text-zinc-300 font-normal">
-                  NIP. {schoolProfile.nipKepalaSekolah}
+              {/* Document Title */}
+              <div className="text-center my-6">
+                <h3 className="text-base font-extrabold uppercase underline tracking-wider">
+                  TRANSKRIP NILAI
+                </h3>
+                <p className="text-xs font-bold text-zinc-800 dark:text-zinc-400 mt-0.5">
+                  Nomor: {currentStudent.noSuratTranskrip || `421.2 / SDN-006 / TRANSKRIP / ${schoolProfile.tahunPelajaran.replace('/', '-')} / ${currentStudent.noMeja.toString().padStart(3, '0')}`}
                 </p>
               </div>
+
+              {/* Student & School Identity Form */}
+              <div className="rounded-xl bg-zinc-50/80 dark:bg-zinc-800/40 p-4 border border-zinc-200 dark:border-zinc-700 text-xs mb-6">
+                <table className="w-full text-xs">
+                  <tbody className="divide-y divide-zinc-200/50 dark:divide-zinc-700/50">
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Satuan Pendidikan</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-bold text-zinc-950 dark:text-zinc-50 uppercase">{schoolProfile.namaSekolah}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Pokok Sekolah Nasional</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-mono font-medium">{schoolProfile.npsn}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nama Siswa</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-extrabold uppercase text-zinc-950 dark:text-zinc-50">{currentStudent.nama}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tempat Tanggal Lahir</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-medium">{currentStudent.tempatLahir}, {currentStudent.tanggalLahir}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Induk Siswa Nasional</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-mono font-medium">{currentStudent.nisn}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Nomor Ijazah</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-mono font-bold text-zinc-900 dark:text-zinc-100">{currentStudent.noSeriIjazah || '-'}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-56 sm:w-64 py-1.5 text-zinc-800 dark:text-zinc-400 font-medium">Tanggal kelulusan</td>
+                      <td className="w-4 py-1.5">:</td>
+                      <td className="py-1.5 font-medium">{schoolProfile.tanggalKelulusan}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Table of Grades */}
+              <div className="overflow-x-auto rounded-xl border border-zinc-300 dark:border-zinc-700 mb-6">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold border-b border-zinc-300 dark:border-zinc-700">
+                    <tr>
+                      <th className="p-2.5 w-12 text-center border-r border-zinc-300 dark:border-zinc-700">No</th>
+                      <th className="p-2.5 min-w-[240px] border-r border-zinc-300 dark:border-zinc-700">
+                        Mata Pelajaran (Kurikulum 2013)
+                      </th>
+                      <th className="p-2.5 text-center w-28">
+                        Nilai
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
+                    {subjects.map((sub, idx) => {
+                      const na = calculateSubjectFinalScore(currentStudent, sub.key, schoolProfile);
+
+                      return (
+                        <tr key={sub.key} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
+                          <td className="p-2.5 text-center font-medium border-r border-zinc-200 dark:border-zinc-700">
+                            {idx + 1}
+                          </td>
+                          <td className="p-2.5 font-medium text-zinc-900 dark:text-zinc-100 border-r border-zinc-200 dark:border-zinc-700">
+                            {sub.name}
+                          </td>
+                          <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-400">
+                            {na.toFixed(2)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  <tfoot className="border-t-2 border-zinc-300 bg-zinc-50 dark:bg-zinc-800/60 font-bold">
+                    <tr>
+                      <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
+                        Jumlah / Total Nilai :
+                      </td>
+                      <td className="p-2.5 text-center font-mono font-bold text-sky-800 dark:text-sky-300">
+                        {calculateStudentTotalFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={2} className="p-2.5 text-right uppercase border-r border-zinc-300 dark:border-zinc-700">
+                        Rata-Rata Nilai :
+                      </td>
+                      <td className="p-2.5 text-center font-mono font-extrabold text-sm text-sky-800 dark:text-sky-300">
+                        {calculateStudentOverallFinalScore(currentStudent, schoolProfile, subjects).toFixed(2)}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              {/* Tanda Tangan Kepala Sekolah */}
+              <div className="flex justify-end pt-6 text-xs break-inside-avoid">
+                <div className="w-72 text-right space-y-1">
+                  <p>Sungai Buluh, {schoolProfile.tanggalKelulusan}</p>
+                  <p className="font-semibold">Kepala Sekolah SDN 006 Sungai Buluh,</p>
+                  <div className="h-16"></div>
+                  <p className="font-extrabold underline text-sm uppercase">
+                    {schoolProfile.kepalaSekolah}
+                  </p>
+                  <p className="pt-0.5 text-zinc-900 dark:text-zinc-300 font-normal">
+                    NIP. {schoolProfile.nipKepalaSekolah}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -741,22 +753,30 @@ export const DiplomaManagementView: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                {diplomaRecords.map((rec, idx) => (
-                  <tr key={idx} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
-                    <td className="p-3 font-bold text-sky-800 dark:text-sky-400">
-                      {rec.tahunPelajaran}
+                {diplomaRecords.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="p-6 text-center text-zinc-700 dark:text-zinc-400">
+                      Belum ada catatan penggunaan blangko ijazah untuk TP {schoolProfile.tahunPelajaran}.
                     </td>
-                    <td className="p-3 text-center font-mono font-bold">{rec.jumlahDiterima} lbr</td>
-                    <td className="p-3 text-center font-mono text-green-600 font-bold">{rec.terpakai} lbr</td>
-                    <td className="p-3 text-center font-mono text-rose-800 font-bold">{rec.rusak} lbr</td>
-                    <td className="p-3 text-center font-mono text-amber-800 font-bold">{rec.sisa} lbr</td>
-                    <td className="p-3 font-mono text-zinc-900 dark:text-zinc-300">
-                      <div>{rec.seriAwal}</div>
-                      <div className="text-zinc-900">s.d. {rec.seriAkhir}</div>
-                    </td>
-                    <td className="p-3 text-zinc-800 dark:text-zinc-400">{rec.keterangan}</td>
                   </tr>
-                ))}
+                ) : (
+                  diplomaRecords.map((rec, idx) => (
+                    <tr key={idx} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
+                      <td className="p-3 font-bold text-sky-800 dark:text-sky-400">
+                        {rec.tahunPelajaran}
+                      </td>
+                      <td className="p-3 text-center font-mono font-bold">{rec.jumlahDiterima} lbr</td>
+                      <td className="p-3 text-center font-mono text-green-600 font-bold">{rec.terpakai} lbr</td>
+                      <td className="p-3 text-center font-mono text-rose-800 font-bold">{rec.rusak} lbr</td>
+                      <td className="p-3 text-center font-mono text-amber-800 font-bold">{rec.sisa} lbr</td>
+                      <td className="p-3 font-mono text-zinc-900 dark:text-zinc-300">
+                        <div>{rec.seriAwal}</div>
+                        <div className="text-zinc-900">s.d. {rec.seriAkhir}</div>
+                      </td>
+                      <td className="p-3 text-zinc-800 dark:text-zinc-400">{rec.keterangan}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -1266,7 +1286,11 @@ export const DiplomaManagementView: React.FC = () => {
       >
         <div className="space-y-6 text-xs text-black">
           {/* 1. PRINTABLE TRANSKRIP NILAI */}
-          {printSelectedDoc === 'skhu' && (
+          {printSelectedDoc === 'skhu' && (!currentStudent ? (
+            <div className="p-8 text-center text-zinc-700">
+              Belum ada data peserta didik pada TP {schoolProfile.tahunPelajaran} untuk dicetak.
+            </div>
+          ) : (
             <div className="space-y-5">
               <KopSurat schoolProfile={schoolProfile} />
 
@@ -1372,7 +1396,7 @@ export const DiplomaManagementView: React.FC = () => {
                 </div>
               </div>
             </div>
-          )}
+          ))}
 
           {/* 2. PRINTABLE SK KELULUSAN & LAMPIRAN */}
           {printSelectedDoc === 'sk-kelulusan' && (

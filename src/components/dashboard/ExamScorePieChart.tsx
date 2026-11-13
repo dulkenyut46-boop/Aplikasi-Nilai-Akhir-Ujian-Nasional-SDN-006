@@ -131,7 +131,7 @@ export const ExamScorePieChart: React.FC<Props> = ({ students, schoolProfile }) 
           label: `${rc.id}`,
           subLabel: 'Kapasitas 8 Peserta Didik',
           value: val,
-          percentage: Number(((val / students.length) * 100).toFixed(1)),
+          percentage: students.length > 0 ? Number(((val / students.length) * 100).toFixed(1)) : 0,
           color: rc.color,
           accentBg: rc.bg,
           borderClass: rc.border,
